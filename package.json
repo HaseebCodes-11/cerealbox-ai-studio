@@ -1,0 +1,35 @@
+{
+  "name": "cerealbox-ai-studio",
+  "version": "1.0.0",
+  "description": "CerealBox AI Automation & Creative Workflow Challenge - proposal, prototypes and tests for all nine areas",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "demo": "tsx src/cli/demo.ts",
+    "demo:brief": "tsx src/cli/demo.ts --brief",
+    "toast": "tsx src/cli/toast.ts",
+    "toast:ask": "tsx src/cli/toast.ts ask",
+    "agent": "tsx src/cli/agent.ts",
+    "eval": "tsx src/cli/eval.ts",
+    "verify": "npm run typecheck && npm test && npm run demo && npm run eval"
+  },
+  "keywords": ["ai", "automation", "advertising", "meta-ads", "charity", "fundraising"],
+  "author": "Haseeb Metla",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "zod": "^4.6.7"
+  }
+}

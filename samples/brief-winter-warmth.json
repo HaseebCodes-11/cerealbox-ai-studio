@@ -1,0 +1,80 @@
+{
+  "id": "brief-2026-winter-warmth",
+  "client": {
+    "id": "hearthline",
+    "name": "Hearthline",
+    "cause": "Ending fuel poverty for older people in the UK",
+    "region": "UK",
+    "charityNumber": "1199999",
+    "website": "https://www.hearthline.example.org",
+    "brand": {
+      "primary": "#C8442B",
+      "secondary": "#2B3A4A",
+      "accent": "#F2B134",
+      "text": "#1C1C1C",
+      "background": "#FFF8F0",
+      "fontFamily": "Inter, Arial, sans-serif"
+    },
+    "voice": {
+      "tone": ["warm", "direct", "hopeful", "plain English"],
+      "avoid": ["vulnerable", "the elderly", "victims", "beneficiaries"],
+      "exampleLines": [
+        "Nobody should have to choose between heating and eating.",
+        "A warm home is not a luxury."
+      ]
+    },
+    "proofPoints": [
+      "Last winter Hearthline helped 4,200 older people stay warm",
+      "£30 covers a week of heating for one household",
+      "£75 pays for an emergency boiler repair callout",
+      "£150 funds a home energy visit and insulation kit",
+      "92% of the people we helped said they felt less anxious about bills",
+      "Hearthline has worked in local communities since 2009"
+    ],
+    "complianceNotes": [
+      "Never show real service users' faces without written consent",
+      "Gift Aid statement must appear on every donation page",
+      "Avoid implying 100% of donations go to direct services"
+    ]
+  },
+  "campaignName": "Winter Warmth Appeal 2026",
+  "objective": "donations",
+  "audience": {
+    "name": "Warm-hearted 45-65s",
+    "description": "UK adults aged 45-65 with ageing parents, who already give to at least one charity and worry about older relatives in winter",
+    "ageRange": "45-65",
+    "motivations": [
+      "Wants to protect older people like their own parents",
+      "Responds to concrete, local impact",
+      "Likes to see exactly what a gift pays for"
+    ],
+    "objections": [
+      "Worried the money goes on admin",
+      "Donation fatigue after Christmas",
+      "Assumes the government covers heating support"
+    ]
+  },
+  "offer": {
+    "ask": "Help an older person stay warm this winter",
+    "donationTiers": [
+      { "amount": 30, "currency": "GBP", "impact": "covers a week of heating for one household" },
+      { "amount": 75, "currency": "GBP", "impact": "pays for an emergency boiler repair callout" },
+      { "amount": 150, "currency": "GBP", "impact": "funds a home energy visit and insulation kit" }
+    ],
+    "matchFunding": "Every gift doubled by the Ashby Foundation until 31 January",
+    "deadline": "31 January 2027",
+    "giftAidEligible": true
+  },
+  "keyMessage": "This winter, a warm home for an older person costs less than you think, and right now your gift goes twice as far.",
+  "channels": ["meta_feed", "meta_stories", "meta_reels"],
+  "constraints": {
+    "dailyBudgetGbp": 250,
+    "targetRoas": 3.0,
+    "targetCpaGbp": 25,
+    "startDate": "2026-12-01",
+    "endDate": "2027-01-31"
+  },
+  "references": [
+    "Previous winter appeal: best performing creative was a stat-led static with a single older person's hands around a mug"
+  ]
+}

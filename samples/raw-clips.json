@@ -1,0 +1,56 @@
+[
+  {
+    "id": "clip-01",
+    "filename": "footage/priya-kitchen-take2.mp4",
+    "durationSec": 42,
+    "kind": "talking-head",
+    "quality": 4,
+    "tags": ["presenter", "kitchen", "mum", "question", "selfie"],
+    "transcript": [
+      { "start": 0, "end": 4.5, "text": "Okay honest question. When did you last check how warm your mum's house is?" },
+      { "start": 4.5, "end": 12, "text": "My nan was heating one room last winter and not telling anyone. Hearthline told me that's really common." },
+      { "start": 12, "end": 16, "text": "Then I found out what thirty pounds actually does." },
+      { "start": 16, "end": 26, "text": "Thirty pounds covers a week of heating for one household. And right now every gift is doubled." },
+      { "start": 26, "end": 32, "text": "Tap the link, give thirty pounds, and someone's heating goes on this week." }
+    ]
+  },
+  {
+    "id": "clip-02",
+    "filename": "footage/broll-terrace-dusk.mp4",
+    "durationSec": 18,
+    "kind": "broll",
+    "quality": 5,
+    "tags": ["terrace street at dusk", "one lit window", "street", "evening"],
+    "transcript": []
+  },
+  {
+    "id": "clip-03",
+    "filename": "footage/broll-mug-hands.mp4",
+    "durationSec": 12,
+    "kind": "broll",
+    "quality": 5,
+    "tags": ["hands around mug", "warm light", "radiator warming", "kitchen"],
+    "transcript": []
+  },
+  {
+    "id": "clip-04",
+    "filename": "footage/home-visit-team.mp4",
+    "durationSec": 65,
+    "kind": "broll",
+    "quality": 3,
+    "tags": ["home visit", "team in branded jackets", "insulation kit", "van"],
+    "transcript": [
+      { "start": 0, "end": 9, "text": "So we're just going to check the loft insulation and the boiler timer today." },
+      { "start": 9, "end": 20, "text": "Last winter we helped over four thousand people stay warm across the region." }
+    ]
+  },
+  {
+    "id": "clip-05",
+    "filename": "footage/broll-thermostat.mp4",
+    "durationSec": 8,
+    "kind": "broll",
+    "quality": 4,
+    "tags": ["heating dial", "thermostat", "radiator"],
+    "transcript": []
+  }
+]

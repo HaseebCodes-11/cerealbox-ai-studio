@@ -1,0 +1,126 @@
+{
+  "name": "Ads agent · recommendation approval loop",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "ads-agent/recommendations", "options": {} },
+      "id": "b1",
+      "name": "Agent run webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "ads-agent-recommendations"
+    },
+    {
+      "parameters": { "fieldToSplitOut": "recommendations", "options": {} },
+      "id": "b2",
+      "name": "One item per recommendation",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            { "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "id": "r1", "leftValue": "={{ $json.risk }}", "rightValue": "human", "operator": { "type": "string", "operation": "equals" } }], "combinator": "and" }, "renameOutput": true, "outputKey": "human" },
+            { "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "id": "r2", "leftValue": "={{ $json.risk }}", "rightValue": "approve", "operator": { "type": "string", "operation": "equals" } }], "combinator": "and" }, "renameOutput": true, "outputKey": "approve" }
+          ]
+        },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "b3",
+      "name": "Route by risk tier",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [480, 0]
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": { "__rl": true, "mode": "name", "value": "#ads-decisions" },
+        "text": "=:red_circle: *Needs a human decision* · {{ $json.entity.clientId }}\n*{{ $json.title }}*\n{{ $json.rationale }}\n_Recommendation {{ $json.id }} — reply in thread or act in Toast._"
+      },
+      "id": "b4",
+      "name": "Escalate to Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [760, -160],
+      "credentials": { "slackApi": { "id": "slack", "name": "Slack" } }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "select": "channel",
+        "channelId": { "__rl": true, "mode": "name", "value": "#ads-decisions" },
+        "message": "=:large_orange_circle: *One-click approval* · {{ $json.entity.clientId }}\n*{{ $json.title }}*\n{{ $json.rationale }}\nProposed: `{{ $json.proposedChange.field }}` {{ $json.proposedChange.from }} → {{ $json.proposedChange.to }}",
+        "approvalOptions": { "values": { "approvalType": "double", "approveLabel": "Approve", "disapproveLabel": "Reject" } },
+        "options": { "limitWaitTime": { "values": { "limitType": "afterTimeInterval", "resumeAmount": 12, "resumeUnit": "hours" } } }
+      },
+      "id": "b5",
+      "name": "Ask for approval (Slack)",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [760, 40],
+      "credentials": { "slackApi": { "id": "slack", "name": "Slack" } }
+    },
+    {
+      "parameters": {
+        "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "id": "ap", "leftValue": "={{ $json.data.approved }}", "rightValue": true, "operator": { "type": "boolean", "operation": "true" } }], "combinator": "and" },
+        "options": {}
+      },
+      "id": "b6",
+      "name": "Approved?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1020, 40]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/functions/v1/ads-agent-execute",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"recommendationId\": \"{{ $('One item per recommendation').item.json.id }}\", \"approvedBy\": \"{{ $json.data.approver ?? 'slack' }}\" }"
+      },
+      "id": "b7",
+      "name": "Execute via Edge Function (Meta API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1280, -60],
+      "credentials": { "httpHeaderAuth": { "id": "supabase-service-role", "name": "Supabase service role" } }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "agent_recommendations",
+        "filters": { "conditions": [{ "keyName": "id", "condition": "eq", "keyValue": "={{ $('One item per recommendation').item.json.id }}" }] },
+        "fieldsUi": { "fieldValues": [{ "fieldId": "status", "fieldValue": "rejected" }] }
+      },
+      "id": "b8",
+      "name": "Mark rejected (Supabase)",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [1280, 140],
+      "credentials": { "supabaseApi": { "id": "supabase", "name": "Supabase" } }
+    },
+    {
+      "parameters": { "content": "## Autonomy ladder\nAssist: everything lands here for a decision.\nCopilot: 'approve' tier gets a one-click Slack approval (this flow).\nAutopilot: small budget moves execute directly in the Edge Function; this flow only sees 'human' items.", "height": 180, "width": 380 },
+      "id": "b9",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [0, 220]
+    }
+  ],
+  "connections": {
+    "Agent run webhook": { "main": [[{ "node": "One item per recommendation", "type": "main", "index": 0 }]] },
+    "One item per recommendation": { "main": [[{ "node": "Route by risk tier", "type": "main", "index": 0 }]] },
+    "Route by risk tier": { "main": [[{ "node": "Escalate to Slack", "type": "main", "index": 0 }], [{ "node": "Ask for approval (Slack)", "type": "main", "index": 0 }], []] },
+    "Ask for approval (Slack)": { "main": [[{ "node": "Approved?", "type": "main", "index": 0 }]] },
+    "Approved?": { "main": [[{ "node": "Execute via Edge Function (Meta API)", "type": "main", "index": 0 }], [{ "node": "Mark rejected (Supabase)", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1", "timezone": "Europe/London" },
+  "meta": { "description": "Receives the agent's recommendations, escalates human-tier items, runs one-click Slack approvals for approve-tier items, executes approved changes through a Supabase Edge Function that calls the Meta Marketing API." }
+}

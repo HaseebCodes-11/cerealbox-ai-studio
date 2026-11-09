@@ -1,0 +1,108 @@
+{
+  "name": "Toast · daily performance digest",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "cronExpression", "expression": "0 7 * * 1-5" }] } },
+      "id": "a1",
+      "name": "Every weekday 07:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/functions/v1/toast-insights",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"asOf\": \"{{ $now.minus({days: 1}).toFormat('yyyy-MM-dd') }}\", \"days\": 7 }"
+      },
+      "id": "a2",
+      "name": "Compute insights (Edge Function)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [260, 0],
+      "credentials": { "httpHeaderAuth": { "id": "supabase-service-role", "name": "Supabase service role" } }
+    },
+    {
+      "parameters": {
+        "model": "claude-opus-5-5",
+        "options": { "maxTokens": 2000, "system": "You write the weekly performance summary for a charity-focused paid media agency. Use only the figures given. Plain English for charity leadership." },
+        "prompt": "=Week ending {{ $json.asOf }}. Insights:\n{{ $json.insights.map(i => `- [${i.severity}] ${i.title}. ${i.detail}`).join('\\n') }}\n\nReturn JSON with headline, paragraphs[], actionsToday[]."
+      },
+      "id": "a3",
+      "name": "Narrative (Claude)",
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1,
+      "position": [520, 0],
+      "credentials": { "anthropicApi": { "id": "anthropic", "name": "Anthropic" } }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "tableId": "toast_digests",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "as_of", "fieldValue": "={{ $('Compute insights (Edge Function)').item.json.asOf }}" },
+            { "fieldId": "insights", "fieldValue": "={{ JSON.stringify($('Compute insights (Edge Function)').item.json.insights) }}" },
+            { "fieldId": "narrative", "fieldValue": "={{ JSON.stringify($json) }}" }
+          ]
+        }
+      },
+      "id": "a4",
+      "name": "Store digest (Supabase)",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [780, 0],
+      "credentials": { "supabaseApi": { "id": "supabase", "name": "Supabase" } }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": { "__rl": true, "mode": "name", "value": "#toast-digest" },
+        "text": "=*{{ $json.narrative.headline }}*\n{{ $json.narrative.paragraphs.join('\\n\\n') }}\n\n*Actions today*\n{{ $json.narrative.actionsToday.map(a => '• ' + a).join('\\n') }}\n\n<{{ $env.TRUE_ROAS_URL }}/toast?asOf={{ $json.as_of }}|Open Toast>"
+      },
+      "id": "a5",
+      "name": "Post to Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [1040, 0],
+      "credentials": { "slackApi": { "id": "slack", "name": "Slack" } }
+    },
+    {
+      "parameters": {
+        "conditions": { "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" }, "conditions": [{ "id": "c1", "leftValue": "={{ $('Compute insights (Edge Function)').item.json.insights.filter(i => i.severity === 'critical').length }}", "rightValue": 0, "operator": { "type": "number", "operation": "gt" } }], "combinator": "and" },
+        "options": {}
+      },
+      "id": "a6",
+      "name": "Any critical?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1040, 220]
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": { "__rl": true, "mode": "name", "value": "#ads-alerts" },
+        "text": "=:rotating_light: *Critical Toast insight*\n{{ $('Compute insights (Edge Function)').item.json.insights.filter(i => i.severity === 'critical').map(i => `• ${i.title}\n  ${i.suggestedAction ?? ''}`).join('\\n') }}"
+      },
+      "id": "a7",
+      "name": "Page the media buyer",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [1300, 220],
+      "credentials": { "slackApi": { "id": "slack", "name": "Slack" } }
+    }
+  ],
+  "connections": {
+    "Every weekday 07:00": { "main": [[{ "node": "Compute insights (Edge Function)", "type": "main", "index": 0 }]] },
+    "Compute insights (Edge Function)": { "main": [[{ "node": "Narrative (Claude)", "type": "main", "index": 0 }, { "node": "Any critical?", "type": "main", "index": 0 }]] },
+    "Narrative (Claude)": { "main": [[{ "node": "Store digest (Supabase)", "type": "main", "index": 0 }]] },
+    "Store digest (Supabase)": { "main": [[{ "node": "Post to Slack", "type": "main", "index": 0 }]] },
+    "Any critical?": { "main": [[{ "node": "Page the media buyer", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1", "timezone": "Europe/London" },
+  "meta": { "description": "Daily Toast digest: compute insights in Supabase, narrate with Claude, store, post to Slack, page on critical." }
+}
