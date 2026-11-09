@@ -3,6 +3,7 @@ import { tokenSet, jaccard } from "../ideas/scoring";
 import type { Script } from "../scripts/types";
 import { splitIntoCues } from "./captions";
 import { ClipSelectionSchema, type ClipSelection, type Edl, type RawClip, type TimelineItem } from "./types";
+import { round } from "../../core/num";
 
 export interface ClipSelectionInput {
   script: Script;
@@ -162,6 +163,3 @@ export function analysePacing(edl: Edl): PacingReport {
   return { averageShotSec, firstCutAtSec, shotCount, issues };
 }
 
-function round(n: number): number {
-  return Math.round(n * 1000) / 1000;
-}

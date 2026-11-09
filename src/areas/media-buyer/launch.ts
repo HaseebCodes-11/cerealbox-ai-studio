@@ -1,6 +1,9 @@
 import type { CampaignBrief } from "../../core/brief";
 import type { CopyPack } from "../copy/types";
 import type { LaunchPlan } from "../../orchestrator/pipeline";
+import { slugify } from "../../core/text";
+
+const slug80 = (text: string) => slugify(text, 80);
 
 /**
  * Turn the launch plan into Meta Marketing API payloads. Everything is
@@ -88,7 +91,7 @@ export function buildMetaLaunchBundle(plan: LaunchPlan, brief: CampaignBrief, co
   const objective: MetaCampaignPayload["objective"] = plan.campaign.objective === "leads" ? "OUTCOME_LEADS" : plan.campaign.objective === "awareness" ? "OUTCOME_AWARENESS" : "OUTCOME_SALES";
   const optimisation: MetaAdSetPayload["optimization_goal"] = objective === "OUTCOME_LEADS" ? "LEAD_GENERATION" : objective === "OUTCOME_AWARENESS" ? "REACH" : "OFFSITE_CONVERSIONS";
   const [ageMin, ageMax] = parseAgeRange(brief.audience.ageRange);
-  const campaignRef = `campaign:${slug(plan.campaign.name)}`;
+  const campaignRef = `campaign:${slug80(plan.campaign.name)}`;
 
   const campaign: MetaCampaignPayload = {
     name: plan.campaign.name,
@@ -104,7 +107,7 @@ export function buildMetaLaunchBundle(plan: LaunchPlan, brief: CampaignBrief, co
   const creativeRefs = new Map<string, string>();
 
   for (const adset of plan.adsets) {
-    const adsetRef = `adset:${slug(adset.name)}`;
+    const adsetRef = `adset:${slug80(adset.name)}`;
     const positions = placementPositions(adset.placement);
     adsets.push({
       name: adset.name,
@@ -132,9 +135,9 @@ export function buildMetaLaunchBundle(plan: LaunchPlan, brief: CampaignBrief, co
       const creativeKey = `${ad.creativeId}|${ad.primaryTextVariant}|${ad.landingVariant}`;
       let creativeRef = creativeRefs.get(creativeKey);
       if (!creativeRef) {
-        creativeRef = `creative:${slug(creativeKey)}`;
+        creativeRef = `creative:${slug80(creativeKey)}`;
         creativeRefs.set(creativeKey, creativeRef);
-        const link = `${options.landingBaseUrl.replace(/\/$/, "")}/${slug(plan.campaign.name)}-${ad.landingVariant.toLowerCase()}`;
+        const link = `${options.landingBaseUrl.replace(/\/$/, "")}/${slug80(plan.campaign.name)}-${ad.landingVariant.toLowerCase()}`;
         creatives.push({
           name: `${ad.creativeId} · ${ad.primaryTextVariant} · LP ${ad.landingVariant}`,
           object_story_spec: {
@@ -197,10 +200,3 @@ export function parseAgeRange(range: string | undefined): [number, number] {
   return [min, max];
 }
 
-function slug(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 80);
-}

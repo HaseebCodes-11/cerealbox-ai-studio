@@ -1,5 +1,6 @@
 import { addDays, dateRange, type AdMetricsDaily, type AdRef, type AdSetRef, type AdsDataset, type CampaignRef, type ClientRef } from "../../core/ads";
 import { Rng } from "../../core/rng";
+import { round2 } from "../../core/num";
 
 /**
  * Seeded mock Meta Ads dataset for ~6 charity clients over 8 weeks.
@@ -366,6 +367,3 @@ function hashId(s: string): string {
   return String(100000000000 + h);
 }
 
-function round2(n: number): number {
-  return Math.round(n * 100) / 100;
-}

@@ -1,7 +1,7 @@
 import type { CampaignBrief } from "../../core/brief";
 import { formatCurrency } from "../../core/brief";
 import { defineTask } from "../../core/llm/provider";
-import { truncate } from "../../core/text";
+import { capitalise, lowerFirst, truncate } from "../../core/text";
 import { IDEA_ANGLES, IdeaBatchSchema, type Idea, type IdeaAngle, type IdeaBatch } from "./types";
 
 export interface IdeaGenerationInput {
@@ -256,9 +256,3 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
   }
 }
 
-function capitalise(s: string): string {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-function lowerFirst(s: string): string {
-  return s.charAt(0).toLowerCase() + s.slice(1);
-}

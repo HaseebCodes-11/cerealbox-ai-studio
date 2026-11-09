@@ -2,6 +2,7 @@ import { z } from "zod";
 import type { AdsDataset } from "../../core/ads";
 import { defineTask } from "../../core/llm/provider";
 import { aggregate, comparePeriods, dailySeries, detectAnomalies, lastNDays, pacing, topMovers, totals, type Comparison } from "./metrics";
+import { capitalise } from "../../core/text";
 
 /**
  * Insight generation is two-stage:
@@ -206,9 +207,6 @@ function fmt(n: number): string {
 }
 function signed(n: number): string {
   return `${n >= 0 ? "+" : ""}${n}`;
-}
-function capitalise(s: string): string {
-  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 function addDaysSafe(iso: string, days: number): string {
   const d = new Date(`${iso}T00:00:00Z`);

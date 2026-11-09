@@ -1,3 +1,4 @@
+import { round2 } from "./num";
 import { z } from "zod";
 
 /**
@@ -139,9 +140,7 @@ export function derive(t: Totals): Derived {
   };
 }
 
-export function round2(n: number): number {
-  return Math.round(n * 100) / 100;
-}
+export { round2 } from "./num";
 
 /** ISO date helpers (UTC, no time component). */
 export function addDays(iso: string, days: number): string {

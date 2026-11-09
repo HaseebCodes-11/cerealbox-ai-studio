@@ -1,4 +1,6 @@
 import type { Edl, RawClip } from "./types";
+import { round } from "../../core/num";
+import { slugify } from "../../core/text";
 
 /**
  * Turn an EDL into an ffmpeg render plan: one trim per shot, text cards for
@@ -111,7 +113,7 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
   }
   if (edl.music) {
     const mixed = `${workDir}/${edl.id}-mixed.mp4`;
-    const musicPath = options.musicPath ?? `${workDir}/music-${slug(edl.music.mood) || "default"}.m4a`;
+    const musicPath = options.musicPath ?? `${workDir}/music-${slugify(edl.music.mood, Infinity) || "default"}.m4a`;
     steps.push(
       step(
         "music bed with ducking",
@@ -183,9 +185,3 @@ function basename(path: string): string {
   return path.split(/[\\/]/).pop() ?? path;
 }
 
-function slug(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-}
-function round(n: number): number {
-  return Math.round(n * 1000) / 1000;
-}

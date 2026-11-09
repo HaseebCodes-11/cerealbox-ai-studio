@@ -1,7 +1,7 @@
 import type { CampaignBrief } from "../../core/brief";
 import { formatCurrency } from "../../core/brief";
 import { defineTask } from "../../core/llm/provider";
-import { slugify, truncate } from "../../core/text";
+import { capitalise, slugify, truncate } from "../../core/text";
 import type { CopyPack } from "../copy/types";
 import type { Idea } from "../ideas/types";
 import { LandingPageSpecSchema, type LandingPageSpec } from "./types";
@@ -138,6 +138,3 @@ function objectionToAnswer(objection: string, brief: CampaignBrief): string {
   return `${name} has answered this question many times. ${proof[0] ?? ""} If you would like more detail, our team will happily talk you through it.`.trim();
 }
 
-function capitalise(s: string): string {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}

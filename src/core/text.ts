@@ -56,12 +56,21 @@ export function wrapText(text: string, maxCharsPerLine: number): string[] {
   return lines;
 }
 
-export function slugify(text: string): string {
+/** URL/file-safe slug; `max` caps the length (default 60, pass Infinity for none). */
+export function slugify(text: string, max = 60): string {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
+    .slice(0, max);
+}
+
+export function capitalise(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+export function lowerFirst(s: string): string {
+  return s.charAt(0).toLowerCase() + s.slice(1);
 }
 
 export function escapeHtml(text: string): string {

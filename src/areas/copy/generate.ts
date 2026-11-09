@@ -1,7 +1,7 @@
 import type { CampaignBrief } from "../../core/brief";
 import { formatCurrency } from "../../core/brief";
 import { defineTask } from "../../core/llm/provider";
-import { truncate } from "../../core/text";
+import { lowerFirst, truncate } from "../../core/text";
 import type { Idea } from "../ideas/types";
 import { META_TEXT_LIMITS } from "./limits";
 import { CopyPackSchema, type CopyPack } from "./types";
@@ -104,6 +104,3 @@ export function buildMockCopy(brief: CampaignBrief, idea: Idea, seed = 0): CopyP
   };
 }
 
-function lowerFirst(s: string): string {
-  return s.charAt(0).toLowerCase() + s.slice(1);
-}

@@ -5,6 +5,7 @@ import type { LLMProvider } from "../../core/llm/provider";
 import { defineTask } from "../../core/llm/provider";
 import { buildWindows, evaluateRules, riskOrder } from "./rules";
 import { RulesConfigSchema, type ActionResult, type Alert, type AutonomyLevel, type MetaAdsClient, type Recommendation, type RulesConfig } from "./types";
+import { round2 } from "../../core/num";
 
 /**
  * The Media Buyer agent. Each daily run:
@@ -275,6 +276,3 @@ export function recommendationsToMarkdown(recs: Recommendation[]): string {
   ].join("\n");
 }
 
-function round2(n: number): number {
-  return Math.round(n * 100) / 100;
-}
