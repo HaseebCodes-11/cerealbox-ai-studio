@@ -9,7 +9,7 @@ import { checkText } from "../../src/core/guardrails";
 const rules = (text: string, opts?: Parameters<typeof checkText>[1]) => checkText(text, opts).issues.map((i) => i.rule);
 
 describe("B1 · false negatives the model could slip through", () => {
-  it.fails("[BUG-14] catches claim variants with different casing and spacing", () => {
+  it("catches claim variants with different casing and spacing", () => {
     expect(rules("We GUARANTEE warmth.")).toContain("claims.guarantee");
     expect(rules("Guaranteed to help.")).toContain("claims.guarantee");
     expect(rules("100%  of your donation reaches them")).toContain("claims.hundred-percent");
@@ -21,7 +21,7 @@ describe("B1 · false negatives the model could slip through", () => {
     expect(rules("Children are dying without you.")).toContain("pressure.guilt");
   });
 
-  it.fails("[BUG-15] catches UK mobile numbers in several formats and freephone numbers", () => {
+  it("catches UK mobile numbers in several formats and freephone numbers", () => {
     expect(rules("Text 07700900123 to give")).toContain("pii.phone");
     expect(rules("Call +44 7700 900 123")).toContain("pii.phone");
     expect(rules("Call +447700900123")).toContain("pii.phone");
@@ -30,20 +30,20 @@ describe("B1 · false negatives the model could slip through", () => {
     expect(rules("Call 0113 496 0000")).toContain("pii.phone");
   });
 
-  it.fails("[BUG-16] catches curly-quoted and unicode-punctuated placeholders", () => {
+  it("catches curly-quoted and unicode-punctuated placeholders", () => {
     expect(rules("Help “[CHARITY]” today")).toContain("placeholder");
     expect(rules("Dear {{ first_name }}")).toContain("placeholder");
     expect(rules("Hi {first_name}, give today")).toContain("placeholder");
     expect(rules("Headline goes here. Donate now.")).toContain("placeholder");
   });
 
-  it.fails("[BUG-17] flags invented statistics written as words-and-digits and as 'k'/'m' shorthand", () => {
+  it("flags invented statistics written as words-and-digits and as 'k'/'m' shorthand", () => {
     expect(rules("Over 4k people helped. Donate.", { allowedFacts: [] })).toContain("facts.unverified");
     expect(rules("We reached 1.2m families. Donate.", { allowedFacts: [] })).toContain("facts.unverified");
     expect(rules("Nine in ten families are in work. Donate.", { allowedFacts: [] })).toContain("facts.unverified");
   });
 
-  it.fails("[BUG-18] flags a statistic that only partially matches an allowed fact", () => {
+  it("flags a statistic that only partially matches an allowed fact", () => {
     // Allowed: 4,200 helped. Model writes 42,000.
     expect(rules("Last winter we helped 42,000 older people.", { allowedFacts: ["Last winter Hearthline helped 4,200 older people stay warm"] })).toContain("facts.unverified");
     expect(rules("£300 covers a week of heating.", { allowedFacts: ["£30 covers a week of heating for one household"] })).toContain("facts.unverified");
@@ -67,7 +67,7 @@ describe("B2 · false positives that would make reviewers ignore warnings", () =
     expect(rules("Help the victim", { avoidWords: ["victim"] })).toContain("voice.avoid");
   });
 
-  it.fails("[BUG-19] does not treat caption labels in square brackets as placeholders when they are legitimate stage directions", () => {
+  it("does not treat caption labels in square brackets as placeholders when they are legitimate stage directions", () => {
     // Stage directions like [music swells] are common in scripts; the placeholder rule should be scoped to copy, not scripts.
     expect(rules("[music swells] Donate today.")).not.toContain("placeholder");
   });
@@ -78,7 +78,7 @@ describe("B2 · false positives that would make reviewers ignore warnings", () =
     expect(r.issues.filter((i) => i.severity !== "info")).toHaveLength(0);
   });
 
-  it.fails("[BUG-20] does not misread 'tax' alone or 'guarantee' in a negation as a blocked claim", () => {
+  it("does not misread 'tax' alone or 'guarantee' in a negation as a blocked claim", () => {
     expect(rules("Gift Aid is a UK tax relief.")).not.toContain("claims.tax-deductible");
     // 'We cannot guarantee' is still risky phrasing for a reviewer, but should not hard-block.
     expect(checkText("We cannot guarantee every outcome, but we try.").issues.find((i) => i.rule === "claims.guarantee")?.severity).not.toBe("block");
@@ -100,12 +100,12 @@ describe("B3 · robustness", () => {
     expect(checkText("\n\t ").ok).toBe(false);
   });
 
-  it.fails("[BUG-21] character limits are measured in user-perceived characters, not UTF-16 code units", () => {
+  it("character limits are measured in user-perceived characters, not UTF-16 code units", () => {
     const emojiHeadline = "🎄".repeat(21) + "x".repeat(19); // 40 characters as a person counts them
     expect(rules(emojiHeadline, { maxChars: 40 })).not.toContain("length.max");
   });
 
-  it.fails("[BUG-22] maxChars of 0 or negative is treated as 'no limit' rather than blocking everything", () => {
+  it("maxChars of 0 or negative is treated as 'no limit' rather than blocking everything", () => {
     expect(rules("Donate today.", { maxChars: 0 })).not.toContain("length.max");
   });
 });

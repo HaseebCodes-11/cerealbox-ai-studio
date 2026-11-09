@@ -168,7 +168,12 @@ function beatLines(brief: CampaignBrief, idea: Idea, style: ScriptStyle, size: S
   };
 }
 
+export const SCRIPT_DURATIONS = [15, 30, 60] as const;
+
 export function buildMockScript(brief: CampaignBrief, idea: Idea, style: ScriptStyle, targetSeconds: 15 | 30 | 60, index: number): Script {
+  if (!(SCRIPT_DURATIONS as readonly number[]).includes(targetSeconds)) {
+    throw new Error(`Unsupported script duration ${String(targetSeconds)}s; use 15, 30 or 60.`);
+  }
   const size: Size = targetSeconds === 15 ? "short" : targetSeconds === 30 ? "medium" : "long";
   const lines = beatLines(brief, idea, style, size);
   const shares = BEAT_SHARES[targetSeconds];

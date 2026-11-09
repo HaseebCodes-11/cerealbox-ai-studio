@@ -48,7 +48,7 @@ describe("I2 · stale or partial data files", () => {
     expect(screen.getByText("Something new")).toBeInTheDocument();
   });
 
-  it.fails("[BUG-41] a review item whose preview data is null does not crash", () => {
+  it("a review item whose preview data is null does not crash", () => {
     const queue = { briefId: "b", client: "c", campaign: "x", status: "complete", items: [{ id: "g1", gate: "ideas.select", area: "ideas", risk: "human", guardrailScore: 90, decision: "pending", summary: "s", preview: { kind: "ideas", data: null } }] } as unknown as ReviewQueue;
     expect(() => render(<ReviewQueueView queue={queue} dir="b" />)).not.toThrow();
   });

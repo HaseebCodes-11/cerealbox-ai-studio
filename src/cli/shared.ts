@@ -38,6 +38,28 @@ export function arg(name: string, fallback?: string): string | undefined {
   return fallback;
 }
 
+/** Print a one-line usage error and exit 2 (no stack trace for predictable operator mistakes). */
+export function fail(message: string): never {
+  console.error(`Error: ${message}`);
+  process.exit(2);
+}
+
+/** A --name date argument that must be a real YYYY-MM-DD date. */
+export function dateArg(name: string, fallback: string): string {
+  const value = arg(name, fallback)!;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) fail(`--${name} must be a date in YYYY-MM-DD format, got "${value}"`);
+  const parsed = new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== value) fail(`--${name} is not a real calendar date: "${value}"`);
+  return value;
+}
+
+/** A --name argument restricted to a fixed set of values. */
+export function choiceArg<T extends string>(name: string, allowed: readonly T[], fallback: T): T {
+  const value = arg(name, fallback)!;
+  if (!(allowed as readonly string[]).includes(value)) fail(`--${name} must be one of ${allowed.join(", ")}, got "${value}"`);
+  return value as T;
+}
+
 export function flag(name: string): boolean {
   return process.argv.includes(`--${name}`);
 }

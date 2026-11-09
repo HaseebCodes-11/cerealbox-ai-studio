@@ -104,7 +104,7 @@ export function ToastView({ data, bundle }: { data: AdsDataset; bundle: ToastBun
                     <td className="num">{money(c.recent.revenue)}</td>
                     <td className={`num ${cls}`}>{c.recent.roas}</td>
                     <td className="num">{target}</td>
-                    <td className={`num ${c.deltas.roas >= 0 ? "text-emerald-400" : "text-red-400"}`}>{pct(c.deltas.roas)}</td>
+                    {c.hasBaseline ? <td className={`num ${c.deltas.roas >= 0 ? "text-emerald-400" : "text-red-400"}`}>{pct(c.deltas.roas)}</td> : <td className="num text-[var(--muted)]" title="No delivery in the previous period">n/a</td>}
                     <td className="num">{c.recent.conversions}</td>
                     <td className="num">{money(c.recent.cpa)}</td>
                   </tr>

@@ -71,7 +71,8 @@ export function renderCreative(spec: CreativeSpec, palette: BrandPalette, brandN
   }
 
   if (spec.layout === "stat-led" && spec.stat) {
-    const fs = Math.round(base * 0.2);
+    // Scale the numeral down so long values (£1,000,000.0) stay inside the content width.
+    const fs = Math.min(Math.round(base * 0.2), Math.floor(contentWidth / (spec.stat.value.length * 0.62)));
     parts.push(`<text x="${margin}" y="${cursorY + fs * 0.95}" font-family="${font}" font-weight="800" font-size="${fs}" fill="${accent}">${escapeHtml(spec.stat.value)}</text>`);
     textBoxes.push({ x: margin, y: cursorY, width: textWidth([spec.stat.value], fs * 1.1), height: fs * 1.05, role: "stat" });
     cursorY += Math.round(fs * 1.15);
@@ -127,12 +128,26 @@ export function renderCreative(spec: CreativeSpec, palette: BrandPalette, brandN
   parts.push(`<text x="${margin + cfs * 1.2}" y="${ctaY + cfs * 1.45}" font-family="${font}" font-weight="700" font-size="${cfs}" fill="${palette.text}">${escapeHtml(spec.cta)}</text>`);
   textBoxes.push({ x: margin, y: ctaY, width: ctaW, height: ctaH, role: "cta" });
 
-  // Logo lock-up (text wordmark placeholder) bottom right
-  const lfs2 = Math.round(base * 0.03);
-  // Bold uppercase runs wider than the body-text average; measure it generously so it never clips.
-  const logoW = Math.round(brandName.length * lfs2 * 0.72);
-  parts.push(`<text x="${width - margin - logoW}" y="${ctaY + cfs * 1.45}" font-family="${font}" font-weight="800" font-size="${lfs2}" fill="${text}" data-role="logo">${escapeHtml(brandName.toUpperCase())}</text>`);
-  textBoxes.push({ x: width - margin - logoW, y: ctaY, width: logoW, height: ctaH, role: "logo" });
+  // Logo lock-up (text wordmark placeholder) bottom right. Bold uppercase runs wider than body text
+  // (0.72 of the font size per character). Shrink to fit the space right of the CTA, then truncate.
+  const logoGap = Math.round(base * 0.03);
+  const logoAvailable = Math.max(0, width - margin - (margin + ctaW + logoGap));
+  let lfs2 = Math.round(base * 0.03);
+  const minLogoFont = Math.max(14, Math.round(base * 0.016));
+  let logoText = brandName.toUpperCase();
+  let logoW = Math.round(logoText.length * lfs2 * 0.72);
+  if (logoW > logoAvailable) {
+    lfs2 = Math.max(minLogoFont, Math.floor(logoAvailable / (logoText.length * 0.72)));
+    logoW = Math.round(logoText.length * lfs2 * 0.72);
+  }
+  if (logoW > logoAvailable) {
+    const fit = Math.max(3, Math.floor(logoAvailable / (lfs2 * 0.72)) - 1);
+    logoText = `${logoText.slice(0, fit)}…`;
+    logoW = Math.round(logoText.length * lfs2 * 0.72);
+  }
+  const logoX = width - margin - logoW;
+  parts.push(`<text x="${logoX}" y="${ctaY + cfs * 1.45}" font-family="${font}" font-weight="800" font-size="${lfs2}" fill="${text}" data-role="logo">${escapeHtml(logoText)}</text>`);
+  textBoxes.push({ x: logoX, y: ctaY, width: logoW, height: ctaH, role: "logo" });
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" data-creative-id="${escapeHtml(spec.id)}" data-layout="${spec.layout}">${parts.join("")}</svg>`;
   return { spec, svg, width, height, textBoxes };

@@ -41,7 +41,7 @@ describe("C1 · schema-maximum text on the smallest canvas", () => {
     if (r.textBoxes.some((b) => b.role === "subline-overflow")) expect(report.issues.map((i) => i.rule)).toContain("overflow");
   });
 
-  it.fails("[BUG-12] a 12-character stat value stays inside the canvas on every format", () => {
+  it("a 12-character stat value stays inside the canvas on every format", () => {
     for (const format of ["square", "story", "landscape"] as const) {
       const spec: CreativeSpec = { ...buildMockSpec(brief, sampleIdea(brief, "stat-led"), copy, format, 0), stat: { value: "£1,000,000.0", label: "funds the whole programme for a year" } };
       const r = renderCreative(spec, palette, brief.client.name);
@@ -63,7 +63,7 @@ describe("C1 · schema-maximum text on the smallest canvas", () => {
 });
 
 describe("C2 · awkward brands", () => {
-  it.fails("[BUG-13] a 60-character brand name is kept inside the canvas and clear of the CTA", () => {
+  it("a 60-character brand name is kept inside the canvas and clear of the CTA", () => {
     const name = "The Northumberland and Borders Older People's Warmth Foundation";
     const r = renderCreative(base("square"), palette, name);
     const logo = r.textBoxes.find((b) => b.role === "logo")!;

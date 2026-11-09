@@ -86,7 +86,7 @@ export function categorise(text: string): QuestionCategory {
   const q = text.toLowerCase();
   // Order matters: anything a human must own (money disputes, upset clients) wins over data questions.
   if (/\b(invoice|invoices|bill|billing|payment terms|fees?|charged|refund)\b/.test(q)) return "billing";
-  if (/\b(unhappy|disappointed|complain|complaint|unacceptable|angry|furious|cancel)\b/.test(q)) return "complaint";
+  if (/\b(unhappy|not\s+happy|disappoint\w*|complain\w*|unacceptable|angry|furious|frustrat\w*|cancel\w*|pause\s+everything|stop\s+everything|nobody\s+told\s+us)\b/.test(q)) return "complaint";
   if (/\b(budget|spend more|spend less|spending more|spending less|increase|decrease|how much are we spending|daily spend)\b/.test(q)) return "budget";
   if (/\b(creative|creatives|video|image|copy|design|which ad|ad is working|ads? look)\b/.test(q)) return "creative";
   if (/\b(how (are|is) .{0,40}(doing|performing|going)|results|roas|return|performance|cost per)\b/.test(q)) return "performance";
@@ -95,11 +95,26 @@ export function categorise(text: string): QuestionCategory {
   return "other";
 }
 
+const DATA_BACKED: ReadonlySet<QuestionCategory> = new Set(["performance", "budget", "creative", "reporting"]);
+
 export function mockReply(question: ClientQuestion, ctx: CommsContext): ClientReply {
   const category = categorise(question.text);
   const f = ctx.figures;
   const hi = `Hi ${ctx.contactFirstName},`;
   const signoff = `\n\nBest wishes,\n${ctx.accountManager}`;
+
+  // No delivery in the period: never quote zeros as if they were results; a human explains why nothing ran.
+  if (DATA_BACKED.has(category) && f.spend === 0) {
+    return {
+      category,
+      subject: `Re: ${truncateSubject(question.text)}`,
+      reply: `${hi}\n\nThanks for asking. There has been no advertising activity on the account in the last ${ctx.days} days, so there are no results to report yet. I will check why with the team and come back to you today with what is planned.${signoff}`,
+      factsUsed: [`days ${ctx.days}`],
+      needsHumanInput: true,
+      escalationReason: "No spend in the period; the account manager should explain the pause rather than report zero results.",
+      confidence: 0.9,
+    };
+  }
   // Clients read whole pounds; the verifier accepts rounded forms of every context figure.
   const money = (n: number) => `£${Math.round(n).toLocaleString("en-GB")}`;
   const onTarget = f.roas >= f.targetRoas;
@@ -184,7 +199,8 @@ export async function draftClientReply(question: ClientQuestion, context: CommsC
   const found = numbersIn(reply.reply);
   const allowed = new Set(facts.flatMap((f) => numbersIn(f)));
   const unverified = [...new Set(found.filter((n) => !allowed.has(n)))];
-  const risk: CommsDraft["risk"] = reply.needsHumanInput || !report.ok || unverified.length > 0 || reply.confidence < 0.7 ? "human" : "approve";
+  const noData = DATA_BACKED.has(reply.category) && context.figures.spend === 0;
+  const risk: CommsDraft["risk"] = noData || reply.needsHumanInput || !report.ok || unverified.length > 0 || reply.confidence < 0.7 ? "human" : "approve";
   return { question, reply, guardrails: { ok: report.ok, issues }, numbers: { ok: unverified.length === 0, unverified }, risk };
 }
 
@@ -220,7 +236,8 @@ export function draftsToMarkdown(drafts: CommsDraft[]): string {
       [
         `## ${d.question.clientId} · ${d.question.from} · ${d.question.receivedAt}`,
         ``,
-        `> ${d.question.text}`,
+        // Quote every line so a pasted thread (or a code fence) cannot break out of the quote.
+        ...d.question.text.split(/\r?\n/).map((line) => `> ${line}`),
         ``,
         `**${d.reply.subject}** · category ${d.reply.category} · risk **${d.risk}** · confidence ${Math.round(d.reply.confidence * 100)}%${d.reply.needsHumanInput ? ` · escalate: ${d.reply.escalationReason}` : ""}`,
         ``,

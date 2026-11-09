@@ -22,6 +22,11 @@ export interface DashboardInput {
   generatedBy?: string;
 }
 
+/** JSON that is safe inside a <script> block: "<" and ">" are escaped so "</script>" cannot be smuggled in through a name. */
+export function jsonForScript(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
+}
+
 export function renderDashboard(input: DashboardInput): string {
   const days = input.days ?? 7;
   const period = lastNDays(input.asOf, days);
@@ -138,7 +143,8 @@ export function renderDashboard(input: DashboardInput): string {
           .map((c) => {
             const target = clientMap.get(c.clientId)?.targetRoas ?? 0;
             const cls = c.recent.roas >= target ? "good" : c.recent.roas >= target * 0.7 ? "flat" : "bad";
-            return `<tr><td>${escapeHtml(c.name)}</td><td class="num">${money(c.recent.spend)}</td><td class="num">${money(c.recent.revenue)}</td><td class="num ${cls}">${c.recent.roas}</td><td class="num">${target}</td><td class="num ${c.deltas.roas >= 0 ? "good" : "bad"}">${c.deltas.roas > 0 ? "+" : ""}${c.deltas.roas}%</td><td class="num">${c.recent.conversions}</td><td class="num">${money(c.recent.cpa)}</td><td class="num">${c.recent.ctr}%</td></tr>`;
+            const roasDelta = c.hasBaseline ? `<td class="num ${c.deltas.roas >= 0 ? "good" : "bad"}">${c.deltas.roas > 0 ? "+" : ""}${c.deltas.roas}%</td>` : `<td class="num flat" title="No delivery in the previous period">n/a</td>`;
+            return `<tr><td>${escapeHtml(c.name)}</td><td class="num">${money(c.recent.spend)}</td><td class="num">${money(c.recent.revenue)}</td><td class="num ${cls}">${c.recent.roas}</td><td class="num">${target}</td>${roasDelta}<td class="num">${c.recent.conversions}</td><td class="num">${money(c.recent.cpa)}</td><td class="num">${c.recent.ctr}%</td></tr>`;
           })
           .join("\n        ")}
         </tbody>
@@ -194,7 +200,7 @@ export function renderDashboard(input: DashboardInput): string {
   }
 </main>
 <footer>Generated ${escapeHtml(input.generatedBy ?? "cerealbox-ai-studio")} · data range ${escapeHtml(input.data.range.start)} → ${escapeHtml(input.data.range.end)} · all figures from the aggregation layer; the narrative is written by the LLM from those figures only.</footer>
-<script id="toast-data" type="application/json">${JSON.stringify(chartData)}</script>
+<script id="toast-data" type="application/json">${jsonForScript(chartData)}</script>
 <script>
 (function(){
   var data = JSON.parse(document.getElementById('toast-data').textContent);

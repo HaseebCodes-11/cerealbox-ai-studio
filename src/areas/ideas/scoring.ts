@@ -1,4 +1,4 @@
-import type { CampaignBrief } from "../../core/brief";
+import { formatCurrency, type CampaignBrief } from "../../core/brief";
 import { checkText } from "../../core/guardrails";
 import type { Idea, IdeaFormat, RankedIdea } from "./types";
 
@@ -113,7 +113,8 @@ export function selectIdeas(ranked: RankedIdea[], count: number, requiredFormats
 export function allowedFacts(brief: CampaignBrief): string[] {
   return [
     ...brief.client.proofPoints,
-    ...brief.offer.donationTiers.flatMap((t) => [`£${t.amount}`, `$${t.amount}`, `€${t.amount}`, `£${t.amount * 2}`, t.impact]),
+    // Both the raw amount and the formatted form (£2.50, £1,000,000) so copy written either way verifies.
+    ...brief.offer.donationTiers.flatMap((t) => [`£${t.amount}`, `$${t.amount}`, `€${t.amount}`, `£${t.amount * 2}`, formatCurrency(t.amount, t.currency), formatCurrency(t.amount * 2, t.currency), t.impact]),
     brief.offer.matchFunding ?? "",
     brief.offer.deadline ?? "",
     brief.keyMessage,

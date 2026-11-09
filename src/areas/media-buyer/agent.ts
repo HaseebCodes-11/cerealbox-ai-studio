@@ -64,12 +64,19 @@ Lead with what needs a human decision today, then quick wins, then what to watch
   },
 });
 
+export const AUTONOMY_LEVELS: readonly AutonomyLevel[] = ["assist", "copilot", "autopilot"];
+
+/** Default wall-clock budget for one ads-API call; after the first timeout the rest of the run skips the API. */
+export const DEFAULT_ACTION_TIMEOUT_MS = 2500;
+
 export interface AgentRunOptions {
   data: AdsDataset;
   asOf: string;
   provider: LLMProvider;
   adsClient: MetaAdsClient;
   autonomy: AutonomyLevel;
+  /** Per-call timeout for the ads client (ms). */
+  actionTimeoutMs?: number;
   config?: Partial<RulesConfig>;
   /** Recommendation ids a human has approved before this run (one-click approvals). */
   approvedIds?: string[];
@@ -88,8 +95,13 @@ export interface AgentRunResult {
 }
 
 export async function runMediaBuyerAgent(options: AgentRunOptions): Promise<AgentRunResult> {
+  if (!AUTONOMY_LEVELS.includes(options.autonomy)) {
+    throw new Error(`Unknown autonomy level "${String(options.autonomy)}"; use ${AUTONOMY_LEVELS.join(", ")}.`);
+  }
   const audit = options.audit ?? new AuditLog();
   const config = RulesConfigSchema.parse(options.config ?? {});
+  const timeoutMs = options.actionTimeoutMs ?? DEFAULT_ACTION_TIMEOUT_MS;
+  let apiUnresponsive = false;
   const approved = new Set(options.approvedIds ?? []);
   const dryRun = options.dryRun ?? false;
   const data = options.clientFilter
@@ -142,7 +154,10 @@ export async function runMediaBuyerAgent(options: AgentRunOptions): Promise<Agen
     const decision = decideExecution(r, options.autonomy, approved, config);
     audit.record("review", "media-buyer", "policy", { recommendationId: r.id, risk: r.risk, decision });
     if (decision === "skip") continue;
-    const result = await execute(r, options.adsClient, dryRun);
+    const result = apiUnresponsive
+      ? { recommendationId: r.id, ok: false, dryRun, detail: "Skipped: the ads API timed out earlier in this run" }
+      : await execute(r, options.adsClient, dryRun, timeoutMs);
+    if (!result.ok && /timed out/.test(result.detail)) apiUnresponsive = true;
     r.status = result.ok ? (decision === "auto" ? "auto_executed" : "executed") : "failed";
     actions.push(result);
     audit.record("action", "media-buyer", r.type, { recommendationId: r.id, entity: r.entity, change: r.proposedChange ?? null, dryRun, ok: result.ok, detail: result.detail });
@@ -172,18 +187,40 @@ export function decideExecution(r: Recommendation, autonomy: AutonomyLevel, appr
   return "skip";
 }
 
-async function execute(r: Recommendation, client: MetaAdsClient, dryRun: boolean): Promise<ActionResult> {
+async function execute(r: Recommendation, client: MetaAdsClient, dryRun: boolean, timeoutMs: number): Promise<ActionResult> {
   if (dryRun) return { recommendationId: r.id, ok: true, dryRun: true, detail: `DRY RUN: would ${describe(r)}` };
   try {
-    let res: { ok: boolean; detail: string };
-    if (r.proposedChange?.field === "daily_budget_gbp") res = await client.updateAdsetBudget(r.entity.id, Number(r.proposedChange.to));
-    else if (r.type === "pause_ad") res = await client.pauseAd(r.entity.id);
-    else if (r.type === "pause_adset" || r.type === "refresh_creative") res = r.entity.level === "ad" ? await client.pauseAd(r.entity.id) : await client.pauseAdset(r.entity.id);
-    else res = { ok: false, detail: `No executor for ${r.type}` };
+    let call: Promise<{ ok: boolean; detail: string }>;
+    if (r.proposedChange?.field === "daily_budget_gbp") call = client.updateAdsetBudget(r.entity.id, Number(r.proposedChange.to));
+    else if (r.type === "pause_ad") call = client.pauseAd(r.entity.id);
+    else if (r.type === "pause_adset" || r.type === "refresh_creative") call = r.entity.level === "ad" ? client.pauseAd(r.entity.id) : client.pauseAdset(r.entity.id);
+    else call = Promise.resolve({ ok: false, detail: `No executor for ${r.type}` });
+    const res = await withTimeout(call, timeoutMs, `${describe(r)} timed out after ${timeoutMs} ms`);
     return { recommendationId: r.id, ok: res.ok, dryRun: false, detail: res.detail };
   } catch (err) {
     return { recommendationId: r.id, ok: false, dryRun: false, detail: err instanceof Error ? err.message : String(err) };
   }
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number, message: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(message)), ms);
+    promise.then(
+      (v) => {
+        clearTimeout(timer);
+        resolve(v);
+      },
+      (e) => {
+        clearTimeout(timer);
+        reject(e);
+      },
+    );
+  });
+}
+
+/** Slack mrkdwn: escape the three control characters so names from the ad account cannot inject @channel or links. */
+export function escapeSlack(text: string): string {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 export function describe(r: Recommendation): string {
@@ -225,7 +262,7 @@ export class MockMetaAdsClient implements MetaAdsClient {
 
 export function formatSlackAlert(alert: Alert): string {
   const icon = alert.severity === "critical" ? ":rotating_light:" : alert.severity === "warning" ? ":warning:" : ":information_source:";
-  return `${icon} *${alert.title}*\n${alert.message}\n_Entities: ${alert.entityIds.join(", ")}_`;
+  return `${icon} *${escapeSlack(alert.title)}*\n${escapeSlack(alert.message)}\n_Entities: ${alert.entityIds.map(escapeSlack).join(", ")}_`;
 }
 
 export function recommendationsToMarkdown(recs: Recommendation[]): string {

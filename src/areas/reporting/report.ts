@@ -83,6 +83,17 @@ export function mockNarrative(input: ClientReportInput): ClientReportNarrative {
   const round = (f: ReportFigures): ReportFigures => ({ spend: Math.round(f.spend), revenue: Math.round(f.revenue), roas: f.roas, conversions: f.conversions, cpa: Math.round(f.cpa), avgGift: Math.round(f.avgGift) });
   input = { ...input, current: round(input.current), previous: round(input.previous), adsets: input.adsets.map((a) => ({ ...a, spend: Math.round(a.spend), revenue: Math.round(a.revenue) })) };
   const c = input.current;
+  if (c.spend === 0 && c.conversions === 0) {
+    return {
+      headline: `${input.clientName}: no advertising ran this period`,
+      summary: [
+        `No advertising activity was recorded for ${input.clientName} in the ${input.days} days to ${input.asOf}, so there are no results to report. The previous period raised £${fmt(input.previous.revenue)} from ${input.previous.conversions} donations.`,
+      ],
+      highlights: [],
+      concerns: ["Campaigns were paused or did not deliver; we are confirming the reason with you before restarting."],
+      nextSteps: input.actions.length ? input.actions.slice(0, 4) : ["Agree the restart date and budget, then resume with the best-performing audiences first."],
+    };
+  }
   const onTarget = c.roas >= input.targetRoas;
   const direction = input.deltasPct.revenue >= 0 ? "up" : "down";
   const headline = onTarget ? `${input.clientName}: £${fmt(c.revenue)} raised, ahead of target` : `${input.clientName}: £${fmt(c.revenue)} raised, working to get back to target`;
@@ -136,7 +147,6 @@ export function verifyReportNumbers(narrative: ClientReportNarrative, input: Cli
   for (const a of input.actions) for (const n of numbersIn(a)) add(n);
   for (const adset of input.adsets) for (const n of numbersIn(adset.name)) add(n);
   if (input.topCreative) for (const n of numbersIn(input.topCreative.name)) add(n);
-  for (const part of input.asOf.split("-")) add(part);
   add(input.clientName);
 
   const text = [narrative.headline, ...narrative.summary, ...narrative.highlights, ...narrative.concerns, ...narrative.nextSteps].join(" ");
@@ -146,7 +156,9 @@ export function verifyReportNumbers(narrative: ClientReportNarrative, input: Cli
 }
 
 export function numbersIn(text: string): string[] {
-  return (text.replace(/(\d),(?=\d{3}\b)/g, "$1").match(/\d+(?:\.\d+)?/g) ?? []).map((n) => String(Number(n)));
+  // ISO dates are references, not figures: strip them so "11" and "8" in 2026-11-08 never count as claims or as allowed numbers.
+  const withoutDates = text.replace(/\b\d{4}-\d{2}-\d{2}\b/g, " ");
+  return (withoutDates.replace(/(\d),(?=\d{3}\b)/g, "$1").match(/\d+(?:\.\d+)?/g) ?? []).map((n) => String(Number(n)));
 }
 
 export function renderClientReport(input: ClientReportInput, narrative: ClientReportNarrative, check: NumberCheck, brand = { primary: "#C8442B", secondary: "#2B3A4A" }): string {

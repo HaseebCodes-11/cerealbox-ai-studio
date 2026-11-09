@@ -1,4 +1,4 @@
-import { addDays, derive, round2, sumMetrics, type AdMetricsDaily, type AdsDataset, type Derived } from "../../core/ads";
+import { addDays, dedupeMetrics, derive, round2, sumMetrics, type AdMetricsDaily, type AdsDataset, type Derived } from "../../core/ads";
 
 /**
  * Pure aggregation layer. Everything Toast shows and everything "Ask Toast"
@@ -30,7 +30,8 @@ export function previousPeriod(p: Period): Period {
 }
 
 export function inPeriod(rows: AdMetricsDaily[], p: Period): AdMetricsDaily[] {
-  return rows.filter((r) => r.date >= p.start && r.date <= p.end);
+  // Re-synced days arrive as duplicate rows; the last write wins so nothing is counted twice.
+  return dedupeMetrics(rows.filter((r) => r.date >= p.start && r.date <= p.end));
 }
 
 export function aggregate(data: AdsDataset, groupBy: GroupBy, period: Period, filter: { clientId?: string } = {}): AggregateRow[] {
@@ -89,6 +90,8 @@ export interface Comparison {
   clientId: string;
   recent: Derived;
   previous: Derived;
+  /** False when the previous period had no delivery: deltas are then 0 and should be shown as "n/a". */
+  hasBaseline: boolean;
   deltas: Record<"spend" | "revenue" | "roas" | "cpa" | "ctr" | "conversions" | "cpm", number>; // % change
 }
 
@@ -104,20 +107,23 @@ export function comparePeriods(data: AdsDataset, groupBy: GroupBy, asOf: string,
   const previous = new Map(aggregate(data, groupBy, prevP, filter).map((r) => [r.key, r]));
   return recent.map((r) => {
     const p = previous.get(r.key) ?? { ...r, ...derive(sumMetrics([])) };
+    const hasBaseline = p.spend > 0 || p.impressions > 0;
+    const delta = (now: number, before: number) => (hasBaseline ? pctChange(now, before) : 0);
     return {
       key: r.key,
       name: r.name,
       clientId: r.clientId,
       recent: r,
       previous: p,
+      hasBaseline,
       deltas: {
-        spend: pctChange(r.spend, p.spend),
-        revenue: pctChange(r.revenue, p.revenue),
-        roas: pctChange(r.roas, p.roas),
-        cpa: pctChange(r.cpa, p.cpa),
-        ctr: pctChange(r.ctr, p.ctr),
-        conversions: pctChange(r.conversions, p.conversions),
-        cpm: pctChange(r.cpm, p.cpm),
+        spend: delta(r.spend, p.spend),
+        revenue: delta(r.revenue, p.revenue),
+        roas: delta(r.roas, p.roas),
+        cpa: delta(r.cpa, p.cpa),
+        ctr: delta(r.ctr, p.ctr),
+        conversions: delta(r.conversions, p.conversions),
+        cpm: delta(r.cpm, p.cpm),
       },
     };
   });
@@ -126,7 +132,7 @@ export function comparePeriods(data: AdsDataset, groupBy: GroupBy, asOf: string,
 export type MetricName = keyof Comparison["deltas"];
 
 export function topMovers(comparisons: Comparison[], metric: MetricName, direction: "up" | "down", n = 3, minSpend = 50): Comparison[] {
-  const eligible = comparisons.filter((c) => c.recent.spend >= minSpend && c.previous.spend >= minSpend);
+  const eligible = comparisons.filter((c) => c.hasBaseline && c.recent.spend >= minSpend && c.previous.spend >= minSpend);
   const sorted = [...eligible].sort((a, b) => (direction === "up" ? b.deltas[metric] - a.deltas[metric] : a.deltas[metric] - b.deltas[metric]));
   return sorted.slice(0, n);
 }

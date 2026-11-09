@@ -56,7 +56,7 @@ describe("A1 · malformed and hostile brief input", () => {
     expect(brief.offer.donationTiers).toHaveLength(1);
   });
 
-  it.fails("[BUG-01] the whole pipeline completes on the minimal brief", async () => {
+  it("the whole pipeline completes on the minimal brief", async () => {
     const r = raw();
     r.offer.donationTiers = [{ amount: 10, impact: "feeds one child for a day" }];
     r.audience.objections = [];
@@ -119,7 +119,7 @@ describe("A2 · text that breaks markup: quotes, HTML, emoji, unicode", () => {
 });
 
 describe("A3 · extreme values", () => {
-  it.fails("[BUG-02] very large and decimal donation amounts format and verify", async () => {
+  it("very large and decimal donation amounts format and verify", async () => {
     const r = raw();
     r.offer.donationTiers = [
       { amount: 2.5, impact: "buys a hot drink" },
@@ -148,7 +148,7 @@ describe("A3 · extreme values", () => {
     await expect(runCampaignPipeline({ brief, provider: provider() })).rejects.toThrow(/landing\.spec|amounts/);
   });
 
-  it.fails("[BUG-01] an impact line of one word produces a landing spec that still meets the schema", async () => {
+  it("an impact line of one word produces a landing spec that still meets the schema", async () => {
     const r = raw();
     r.offer.donationTiers = [{ amount: 10, impact: "helps" }];
     r.keyMessage = "Help.";
@@ -157,7 +157,7 @@ describe("A3 · extreme values", () => {
     expect(pkg.status, pkg.stoppedAt).toBe("complete");
   });
 
-  it.fails("[BUG-03] very long client and campaign names do not overflow creatives or break the wordmark", async () => {
+  it("very long client and campaign names do not overflow creatives or break the wordmark", async () => {
     const r = raw();
     r.client.name = "The Northumberland and Borders Older People's Warmth Foundation";
     r.campaignName = "Extraordinarily Long Winter Warmth And Wellbeing Appeal For Everyone 2026";

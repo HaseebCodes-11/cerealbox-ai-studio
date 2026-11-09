@@ -15,11 +15,11 @@ const clips = sampleClips();
 const script = buildMockScript(brief, idea, "ugc-testimonial", 30, 0);
 
 describe("D1 · script durations the CLI might receive", () => {
-  it.fails("[BUG-09] an unsupported target duration fails with a clear error instead of a TypeError", () => {
+  it("an unsupported target duration fails with a clear error instead of a TypeError", () => {
     expect(() => buildMockScript(brief, idea, "founder-direct", 45 as unknown as 15, 0)).toThrow(/15|30|60/);
   });
 
-  it.fails("[BUG-32] a script with a 0-second or negative beat is rejected by validation", () => {
+  it("a script with a 0-second or negative beat is rejected by validation", () => {
     const bad = { ...script, beats: script.beats.map((b, i) => (i === 2 ? { ...b, seconds: 0 } : b)) };
     const report = validateScript(bad, brief);
     expect(report.ok).toBe(false);
@@ -61,7 +61,7 @@ describe("D2 · captions", () => {
 });
 
 describe("D3 · clip selection and EDL with bad or odd inputs", () => {
-  it.fails("[BUG-33] a selection pointing past the end of a clip never yields a negative trim", () => {
+  it("a selection pointing past the end of a clip never yields a negative trim", () => {
     const sel: ClipSelection = { selections: [{ beatName: "hook", clipId: "clip-01", inSec: 100, outSec: 103, reason: "model error" }], unmatchedBeats: [] };
     const edl = buildEdl(script, sel, clips, { brandName: "X" });
     const hook = edl.timeline.find((t) => t.beatName === "hook" && t.track !== "text")!;
@@ -104,14 +104,14 @@ describe("D3 · clip selection and EDL with bad or odd inputs", () => {
     expect(trim.command).toContain(`"footage/Priya's take (2) – final.mp4"`);
   });
 
-  it.fails("[BUG-34] drawtext text with newlines, percent signs and backslashes is escaped so ffmpeg does not misparse", () => {
+  it("drawtext text with newlines, percent signs and backslashes is escaped so ffmpeg does not misparse", () => {
     const escaped = escapeDrawtext("Line one\nLine two 100% C:\\path");
     expect(escaped).not.toContain("\n");
     expect(escaped).toContain("\\%");
     expect(escaped).toContain("\\:");
   });
 
-  it.fails("[BUG-35] a music mood that slugs to nothing still produces a usable music file name", () => {
+  it("a music mood that slugs to nothing still produces a usable music file name", () => {
     const edl = buildEdl(script, selectClipsHeuristically(script, clips), clips, { brandName: "X", music: { mood: "!!!" } });
     const plan = buildFfmpegPlan(edl, clips);
     const music = plan.find((s) => s.name === "music bed with ducking")!;
@@ -119,7 +119,7 @@ describe("D3 · clip selection and EDL with bad or odd inputs", () => {
     expect(musicArg).not.toMatch(/music-\.m4a$/);
   });
 
-  it.fails("[BUG-36] an EDL with no selectable footage still builds a renderable plan of text cards", () => {
+  it("an EDL with no selectable footage still builds a renderable plan of text cards", () => {
     const edl = buildEdl(script, { selections: [], unmatchedBeats: script.beats.map((b) => b.name) }, [], { brandName: "X" });
     const plan = buildFfmpegPlan(edl, []);
     expect(plan.filter((s) => s.name.startsWith("text card"))).toHaveLength(script.beats.length);

@@ -31,7 +31,7 @@ describe("G1 · landing page compliance edge cases", () => {
     expect(html).toContain(brief.client.charityNumber!);
   });
 
-  it.fails("[BUG-23] a form action pointing at a third-party domain is flagged", () => {
+  it("a form action pointing at a third-party domain is flagged", () => {
     const spec = buildMockLandingSpec(brief, idea, copy, "A");
     const html = renderLandingPage(spec, brief.client, { formAction: "https://evil.example/steal" });
     expect(checkLandingPage(spec, html, brief).issues.map((i) => i.rule)).toContain("form.action");
@@ -44,7 +44,7 @@ describe("G1 · landing page compliance edge cases", () => {
     expect(report.issues.filter((i) => i.rule === "facts.unverified").length).toBeGreaterThan(0);
   });
 
-  it.fails("[BUG-24] a website URL with a javascript: scheme is rejected by the brief schema", () => {
+  it("a website URL with a javascript: scheme is rejected by the brief schema", () => {
     const raw = JSON.parse(JSON.stringify(brief));
     raw.client.website = "javascript:alert(1)";
     expect(() => parseBrief(raw)).toThrow();
@@ -105,7 +105,7 @@ describe("G2 · the model misbehaves mid-pipeline", () => {
     expect(pkg.launchPlan).toBeNull();
   });
 
-  it.fails("[BUG-25] requesting zero creatives still produces a launch plan that marks creatives pending", async () => {
+  it("requesting zero creatives still produces a launch plan that marks creatives pending", async () => {
     const pkg = await runCampaignPipeline({ brief, provider: provider(), formats: [] });
     expect(pkg.status).toBe("complete");
     expect(pkg.launchPlan?.adsets.every((a) => a.ads.every((ad) => ad.creativeId === "pending"))).toBe(true);
@@ -113,7 +113,7 @@ describe("G2 · the model misbehaves mid-pipeline", () => {
 });
 
 describe("G3 · reviewers misbehave", () => {
-  it.fails("[BUG-26] a reviewer that throws does not lose the work done so far", async () => {
+  it("a reviewer that throws does not lose the work done so far", async () => {
     class Boom implements Reviewer {
       readonly name = "boom";
       async review<T>(req: ReviewRequest<T>): Promise<ReviewDecision<T>> {
@@ -130,7 +130,7 @@ describe("G3 · reviewers misbehave", () => {
     }
   });
 
-  it.fails("[BUG-27] a reviewer approving an artefact the guardrails blocked is overridden", async () => {
+  it("a reviewer approving an artefact the guardrails blocked is overridden", async () => {
     class RubberStamp implements Reviewer {
       readonly name = "rubber-stamp";
       async review<T>(req: ReviewRequest<T>): Promise<ReviewDecision<T>> {

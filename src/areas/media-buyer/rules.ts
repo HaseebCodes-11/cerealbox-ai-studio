@@ -1,4 +1,4 @@
-import { addDays, derive, sumMetrics, type AdMetricsDaily, type AdsDataset, type Derived } from "../../core/ads";
+import { addDays, dedupeMetrics, derive, sumMetrics, type AdMetricsDaily, type AdsDataset, type Derived } from "../../core/ads";
 import type { RiskTier } from "../../core/review";
 import type { Recommendation, RulesConfig } from "./types";
 
@@ -33,9 +33,10 @@ export function buildWindows(data: AdsDataset, asOf: string, config: RulesConfig
 
   const inRange = (r: AdMetricsDaily, start: string, end: string) => r.date >= start && r.date <= end;
   const clientsById = new Map(data.clients.map((c) => [c.id, c]));
+  const metrics = dedupeMetrics(data.metrics);
 
   return data.adsets.map((adset) => {
-    const rows = data.metrics.filter((m) => m.adsetId === adset.id);
+    const rows = metrics.filter((m) => m.adsetId === adset.id);
     const client = clientsById.get(adset.clientId);
     const ads = data.ads
       .filter((a) => a.adsetId === adset.id)
@@ -262,7 +263,8 @@ export function evaluateRules(windows: AdsetWindow[], config: RulesConfig, asOf:
     if (found.some((r) => r.rule === "tracking-break")) {
       out.push(...found.filter((r) => r.rule === "tracking-break"));
     } else {
-      out.push(...dedupeByEntityAndType(found));
+      // A budget step that rounds to the current value is not a change; do not propose it.
+      out.push(...dedupeByEntityAndType(found).filter((r) => !r.proposedChange || String(r.proposedChange.from) !== String(r.proposedChange.to)));
     }
   }
   return out.sort((a, b) => riskOrder(b.risk) - riskOrder(a.risk) || b.confidence - a.confidence || a.id.localeCompare(b.id));

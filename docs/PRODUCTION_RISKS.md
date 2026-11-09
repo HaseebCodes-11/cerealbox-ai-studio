@@ -10,6 +10,8 @@ npx vitest run tests/edge-cases web/src/views/edge.test.tsx
 
 Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41 distinct bugs.
 
+**Update (fix pass):** all 41 bugs have since been fixed in product code with no test changes; the catalogue below is kept as the record of what was found. Each row's status reads **fixed** where it previously read a bug id.
+
 ---
 
 ## Severity key
@@ -31,15 +33,15 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 | A1.2 | Zero, negative or string amounts and budgets rejected | covered |
 | A1.3 | Invalid website URL and 3-digit hex colours rejected | covered |
 | A1.4 | Minimal brief (one tier, no objections, no match, no deadline, no charity number) parses with defaults | covered |
-| A1.5 | Whole pipeline completes on the minimal brief | **BUG-01** S3 |
+| A1.5 | Whole pipeline completes on the minimal brief | fixed (BUG-01, S3) |
 | A2.1 | Client name and campaign containing `<script>`, quotes, ampersands and emoji are escaped in SVG and HTML | covered |
 | A2.2 | Emoji in copy does not crash limit checks | covered (but see BUG-21) |
 | A2.3 | Hostile names produce filesystem-safe ids and file names | covered |
-| A3.1 | Decimal and seven-figure amounts format correctly | **BUG-02** S4 |
+| A3.1 | Decimal and seven-figure amounts format correctly | fixed (BUG-02, S4) |
 | A3.2 | Six tiers (schema max) render a valid form | covered |
 | A3.3 | Seven tiers fail clearly at the landing spec rather than silently | covered |
-| A3.4 | One-word impact line still yields a valid landing spec | **BUG-01** S3 |
-| A3.5 | Very long client and campaign names keep creatives inside the canvas | **BUG-03** S2 (and BUG-13) |
+| A3.4 | One-word impact line still yields a valid landing spec | fixed (BUG-01, S3) |
+| A3.5 | Very long client and campaign names keep creatives inside the canvas | fixed (BUG-03, S2; and BUG-13) |
 | A3.6 | Over-long creative seeds degrade to warnings, never blocked scripts | covered |
 | A3.7 | Banned words that are regex metacharacters do not throw | covered |
 
@@ -47,22 +49,22 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 
 | # | Scenario | Status |
 |---|---|---|
-| B1.1 | Claim variants with different casing and double spaces | **BUG-14** S2 |
+| B1.1 | Claim variants with different casing and double spaces | fixed (BUG-14, S2) |
 | B1.2 | Guilt framing in its common phrasings | covered |
-| B1.3 | UK mobile in every spacing; freephone and landline numbers | **BUG-15** S2 (mobiles covered; 0800/landline not) |
-| B1.4 | Curly-quoted placeholders, `{{ }}`, single-brace `{name}`, "goes here" | **BUG-16** S2 (brackets and double braces covered) |
-| B1.5 | Invented statistics as `4k`, `1.2m`, "nine in ten" | **BUG-17** S1 |
-| B1.6 | A number not adjacent to a unit word ("42,000 older people") escapes the fact check | **BUG-18** S1 |
+| B1.3 | UK mobile in every spacing; freephone and landline numbers | fixed (BUG-15, S2; mobiles covered; 0800/landline not) |
+| B1.4 | Curly-quoted placeholders, `{{ }}`, single-brace `{name}`, "goes here" | fixed (BUG-16, S2; brackets and double braces covered) |
+| B1.5 | Invented statistics as `4k`, `1.2m`, "nine in ten" | fixed (BUG-17, S1) |
+| B1.6 | A number not adjacent to a unit word ("42,000 older people") escapes the fact check | fixed (BUG-18, S1) |
 | B2.1 | Numbers inside URLs, dates and times are not flagged | covered |
 | B2.2 | Social handles are not treated as email | covered |
 | B2.3 | Banned words respect word boundaries | covered |
-| B2.4 | Stage directions like `[music swells]` are flagged as placeholders in scripts | **BUG-19** S4 |
+| B2.4 | Stage directions like `[music swells]` are flagged as placeholders in scripts | fixed (BUG-19, S4) |
 | B2.5 | Standard Gift Aid declaration passes clean | covered |
-| B2.6 | "We cannot guarantee" is hard-blocked | **BUG-20** S4 |
+| B2.6 | "We cannot guarantee" is hard-blocked | fixed (BUG-20, S4) |
 | B3.1 | 100 KB of text checks in under 500 ms | covered |
 | B3.2 | Punctuation-only and control-character text | covered |
-| B3.3 | Character limits count UTF-16 units, not graphemes (emoji count double) | **BUG-21** S4 |
-| B3.4 | `maxChars: 0` blocks everything instead of meaning "no limit" | **BUG-22** S4 |
+| B3.3 | Character limits count UTF-16 units, not graphemes (emoji count double) | fixed (BUG-21, S4) |
+| B3.4 | `maxChars: 0` blocks everything instead of meaning "no limit" | fixed (BUG-22, S4) |
 
 ## C · Static creative renderer
 
@@ -70,9 +72,9 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 |---|---|---|
 | C1.1 | 90-character headline on landscape never overlaps the CTA | covered |
 | C1.2 | 90-char headline plus 140-char subline is flagged, not silently overlapped | covered |
-| C1.3 | 12-character stat value (`£1,000,000.0`) overflows the canvas | **BUG-12** S2 |
+| C1.3 | 12-character stat value (`£1,000,000.0`) overflows the canvas | fixed (BUG-12, S2) |
 | C1.4 | 40-char badge and 30-char CTA fit without touching the logo | covered |
-| C2.1 | 60-character brand name pushes the wordmark off the left edge | **BUG-13** S2 |
+| C2.1 | 60-character brand name pushes the wordmark off the left edge | fixed (BUG-13, S2) |
 | C2.2 | Light-on-light palette blocked; mid-grey warns | covered |
 | C2.3 | Accent equal to text colour flags the CTA | covered |
 | C2.4 | Quoted font-family escaped in SVG attributes | covered |
@@ -83,40 +85,40 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 
 | # | Scenario | Status |
 |---|---|---|
-| D1.1 | Unsupported target duration (45s) throws a TypeError instead of a clear error | **BUG-09** S3 |
-| D1.2 | A beat with 0 seconds passes validation | **BUG-32** S2 |
+| D1.1 | Unsupported target duration (45s) throws a TypeError instead of a clear error | fixed (BUG-09, S3) |
+| D1.2 | A beat with 0 seconds passes validation | fixed (BUG-32, S2) |
 | D1.3 | Newlines and double spaces in voiceover time correctly | covered |
 | D2.1 | A single over-long word is never dropped | covered |
 | D2.2 | Start after end yields monotonic cues | covered |
 | D2.3 | Blank lines inside voiceover never terminate an SRT cue early | covered |
 | D2.4 | `wrapLines` never returns an empty line | covered |
-| D3.1 | Clip selection past the end of a clip yields a negative trim | **BUG-33** S3 |
+| D3.1 | Clip selection past the end of a clip yields a negative trim | fixed (BUG-33, S3) |
 | D3.2 | Unknown clip id falls back to a text card | covered |
 | D3.3 | Zero-length or overlapping transcript segments | covered |
 | D3.4 | File names with spaces, apostrophes and unicode pass through verbatim | covered |
-| D3.5 | Newlines inside drawtext are not escaped | **BUG-34** S3 |
-| D3.6 | A music mood that slugs to nothing produces `music-.m4a` | **BUG-35** S4 |
-| D3.7 | Gap-filler text cards are dropped from the ffmpeg plan, so a beat with no footage disappears from the cut | **BUG-36** S2 |
+| D3.5 | Newlines inside drawtext are not escaped | fixed (BUG-34, S3) |
+| D3.6 | A music mood that slugs to nothing produces `music-.m4a` | fixed (BUG-35, S4) |
+| D3.7 | Gap-filler text cards are dropped from the ffmpeg plan, so a beat with no footage disappears from the cut | fixed (BUG-36, S2) |
 
 ## E · Media buyer agent (moves money)
 
 | # | Scenario | Status |
 |---|---|---|
-| E1.1 | Duplicate daily rows from a re-synced day double-count spend and conversions | **BUG-28** S1 |
+| E1.1 | Duplicate daily rows from a re-synced day double-count spend and conversions | fixed (BUG-28, S1) |
 | E1.2 | Rows dated after as-of are ignored | covered |
 | E1.3 | Ad set with no rows: no NaN, no metric-based recommendations | covered |
 | E1.4 | As-of before the data starts: empty run, no crash | covered |
 | E1.5 | Paused ad set never receives budget changes | covered |
 | E2.1 | Nonsense thresholds rejected by the config schema | covered |
-| E2.2 | A £1 budget step that rounds to no change is still proposed | **BUG-29** S4 |
+| E2.2 | A £1 budget step that rounds to no change is still proposed | fixed (BUG-29, S4) |
 | E2.3 | Target CPA of zero does not flag every ad as dead | covered |
-| E2.4 | Unknown autonomy level is silently treated as assist | **BUG-10** S1 |
+| E2.4 | Unknown autonomy level is silently treated as assist | fixed (BUG-10, S1) |
 | E2.5 | Approval id not in today's run is ignored | covered |
 | E2.6 | Yesterday's approval does not execute today's regenerated recommendation | covered |
 | E3.1 | Ads client throwing marks the item failed and continues | covered |
-| E3.2 | A hanging ads client blocks the daily run forever | **BUG-30** S1 |
+| E3.2 | A hanging ads client blocks the daily run forever | fixed (BUG-30, S1) |
 | E3.3 | Two runs on the same day: identical ids, no duplicate actions | covered |
-| E4.1 | Ad set names containing Slack control sequences (`<!channel>`) pass into alerts | **BUG-31** S2 |
+| E4.1 | Ad set names containing Slack control sequences (`<!channel>`) pass into alerts | fixed (BUG-31, S2) |
 
 ## F · Toast (read by non-technical people)
 
@@ -124,18 +126,18 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 |---|---|---|
 | F1.1 | Insights on an empty account | covered |
 | F1.2 | Dashboard with no metrics shows no NaN or Infinity | covered |
-| F1.3 | Two days of history shows "+100%" against an empty previous period | **BUG-37** S2 |
+| F1.3 | Two days of history shows "+100%" against an empty previous period | fixed (BUG-37, S2) |
 | F1.4 | Anomaly detection with too little history or a flat zero series | covered |
 | F1.5 | Metric rows for a deleted ad aggregate under the id | covered |
 | F2.1 | Empty or whitespace question gets the help answer | covered |
-| F2.2 | "top 0 clients" / "top 500 clients" fails schema validation instead of clamping | **BUG-38** S3 |
+| F2.2 | "top 0 clients" / "top 500 clients" fails schema validation instead of clamping | fixed (BUG-38, S3) |
 | F2.3 | 5,000-character question | covered |
 | F2.4 | Client names matched case-insensitively and with possessives | covered |
-| F2.5 | Two clients in one question silently picks the first | **BUG-39** S4 |
+| F2.5 | Two clients in one question silently picks the first | fixed (BUG-39, S4) |
 | F2.6 | HTML in a question is escaped in the static dashboard | covered |
 | F2.7 | "last 90 days" is capped to the data held | covered |
 | F2.8 | Hostile question cannot precede the instructions in the intent prompt | covered |
-| F3.1 | Client names from the ad account are embedded unescaped in the dashboard's JSON script block | **BUG-40** S2 |
+| F3.1 | Client names from the ad account are embedded unescaped in the dashboard's JSON script block | fixed (BUG-40, S2) |
 
 ## G · Landing pages and pipeline resilience
 
@@ -143,16 +145,16 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 |---|---|---|
 | G1.1 | Non-Gift-Aid brief renders no declaration and passes | covered |
 | G1.2 | Charity number is guaranteed by the footer even if the model omits it from trust signals | covered |
-| G1.3 | Form action pointing at a third-party domain is not flagged | **BUG-23** S1 |
+| G1.3 | Form action pointing at a third-party domain is not flagged | fixed (BUG-23, S1) |
 | G1.4 | FAQ answers with invented statistics are flagged | covered |
-| G1.5 | `javascript:` website URL accepted by the brief schema | **BUG-24** S1 |
+| G1.5 | `javascript:` website URL accepted by the brief schema | fixed (BUG-24, S1) |
 | G2.1 | Provider error mid-pipeline surfaces with the task named | covered |
 | G2.2 | A refusal is distinguishable from a network error | covered |
 | G2.3 | Every idea on the same angle still yields a primary idea | covered |
 | G2.4 | Every headline blocked stops the pipeline at copy with a reason | covered |
-| G2.5 | Zero creative formats crashes the static stage instead of skipping it | **BUG-25** S3 |
-| G3.1 | A reviewer that throws loses all work done so far | **BUG-26** S3 |
-| G3.2 | A rubber-stamp reviewer can approve a guardrail-blocked artefact | **BUG-27** S1 |
+| G2.5 | Zero creative formats crashes the static stage instead of skipping it | fixed (BUG-25, S3) |
+| G3.1 | A reviewer that throws loses all work done so far | fixed (BUG-26, S3) |
+| G3.2 | A rubber-stamp reviewer can approve a guardrail-blocked artefact | fixed (BUG-27, S1) |
 
 ## H · Client comms, reports and CLI
 
@@ -161,17 +163,17 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 | H1.1 | Complaint mixed with a results question is treated as a complaint | covered |
 | H1.2 | Prompt injection in an email does not change facts or tier | covered |
 | H1.3 | Email in another language is escalated | covered |
-| H1.4 | Multi-line questions and markdown fences break the review markdown | **BUG-04** S4 |
-| H1.5 | Zero-spend client gets "£0 raised" instead of a holding reply | **BUG-05** S1 |
-| H1.6 | "we are cancelling" is not recognised as a complaint | **BUG-06** S2 |
-| H2.1 | Zero-activity client report does not say the account was paused | **BUG-07** S2 |
+| H1.4 | Multi-line questions and markdown fences break the review markdown | fixed (BUG-04, S4) |
+| H1.5 | Zero-spend client gets "£0 raised" instead of a holding reply | fixed (BUG-05, S1) |
+| H1.6 | "we are cancelling" is not recognised as a complaint | fixed (BUG-06, S2) |
+| H2.1 | Zero-activity client report does not say the account was paused | fixed (BUG-07, S2) |
 | H2.2 | Audience names containing HTML are escaped in reports | covered |
-| H2.3 | Verifier accepts any number whose digits appear in the as-of date | **BUG-08** S2 |
+| H2.3 | Verifier accepts any number whose digits appear in the as-of date | fixed (BUG-08, S2) |
 | H3.1 | Missing brief file exits non-zero naming the path | covered |
 | H3.2 | Invalid LLM_PROVIDER names the allowed values | covered |
-| H3.3 | `--seconds 45` crashes with a TypeError | **BUG-09** S3 |
-| H3.4 | `--autonomy yolo` exits 0 and runs as assist | **BUG-10** S1 |
-| H3.5 | `--as-of 08/11/2026` crashes with RangeError | **BUG-11** S3 |
+| H3.3 | `--seconds 45` crashes with a TypeError | fixed (BUG-09, S3) |
+| H3.4 | `--autonomy yolo` exits 0 and runs as assist | fixed (BUG-10, S1) |
+| H3.5 | `--as-of 08/11/2026` crashes with RangeError | fixed (BUG-11, S3) |
 
 ## I · Web app
 
@@ -180,7 +182,7 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 | I1.1 | localStorage throwing (private mode) still updates the screen | covered |
 | I1.2 | Corrupt stored decisions are ignored | covered |
 | I2.1 | Unknown preview kind renders the summary | covered |
-| I2.2 | Preview with `data: null` crashes the review queue | **BUG-41** S3 |
+| I2.2 | Preview with `data: null` crashes the review queue | fixed (BUG-41, S3) |
 | I2.3 | Toast view with zero clients | covered |
 | I2.4 | Narrative with no paragraphs or actions | covered |
 | I3.1 | Whitespace-only question is a no-op | covered |
@@ -190,9 +192,9 @@ Result at time of writing: 120 scenarios, 76 covered, 44 known-failing across 41
 
 ---
 
-## Known bugs, ordered by severity
+## Bugs found, ordered by severity (all fixed)
 
-Fix direction is a note for the next phase, not a commitment to that exact change.
+The fix column records what was done.
 
 | Bug | Severity | Area | What happens | Fix direction |
 |---|---|---|---|---|

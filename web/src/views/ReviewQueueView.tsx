@@ -108,10 +108,15 @@ export function ReviewQueueView({ queue, dir }: { queue: ReviewQueue; dir: strin
 }
 
 function Preview({ item, dir }: { item: ReviewItem; dir: string }) {
-  const { kind, data } = item.preview;
+  const kind = item.preview?.kind;
+  const raw = item.preview?.data;
+  // Data files can be stale or half-written; render what we can and say so instead of crashing the queue.
+  const data: unknown = Array.isArray(raw) ? raw : raw && typeof raw === "object" ? raw : kind === "copy" || kind === "ugc" ? {} : [];
+  const missing = raw === null || raw === undefined;
   return (
     <div className="grid gap-4">
       <p className="text-sm text-[var(--muted)]">{item.summary}</p>
+      {missing && <Empty>No preview data was saved for this gate.</Empty>}
       {kind === "ideas" && (
         <ul className="grid gap-2">
           {(data as Array<{ rank: number; title: string; angle: string; hook: string; total: number; whyItWorks: string }>).map((i) => (

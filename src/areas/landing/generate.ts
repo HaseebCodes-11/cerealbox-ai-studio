@@ -56,9 +56,16 @@ export function buildMockLandingSpec(brief: CampaignBrief, idea: Idea, copy: Cop
     question: truncate(objectionToQuestion(objection), 120),
     answer: truncate(objectionToAnswer(objection, brief), 400),
   }));
-  if (faq.length < 2) {
-    faq.push({ question: "Is my donation secure?", answer: `Yes. Payments are processed by our regulated payment provider and ${c.name} never stores your card details.` });
-  }
+  // A brief with few or no listed objections still needs a useful FAQ; pad with the questions every donor asks.
+  const generic = [
+    { question: "Is my donation secure?", answer: `Yes. Payments are processed by our regulated payment provider and ${c.name} never stores your card details.` },
+    { question: "Can I give monthly instead?", answer: `Yes. Choose "Give monthly" on the form; you can change or stop your gift at any time by contacting ${c.name}.` },
+    { question: "Will I get a receipt?", answer: `Yes. You will receive an email confirmation straight away, and ${c.name} will write to tell you what your gift made possible.` },
+  ];
+  for (const g of generic) if (faq.length < 2 && !faq.some((f) => f.question === g.question)) faq.push(g);
+
+  const metaBase = `${a0} ${t0.impact}. ${match ? `${match}. ` : ""}Donate to ${c.name} today and help ${who}.`;
+  const metaDescription = truncate(metaBase.length >= 50 ? metaBase : `${metaBase} ${c.cause}.`, 155);
 
   return {
     id: `landing-${idea.id}-${variant}`,
@@ -67,7 +74,7 @@ export function buildMockLandingSpec(brief: CampaignBrief, idea: Idea, copy: Cop
     variantHypothesis: variant === "A" ? "Control: impact-led headline from the approved copy pack." : "Test: urgency/match-led headline lifts conversion rate without lowering average gift.",
     slug: slugify(`${brief.campaignName}-${variant}`),
     title: truncate(`${brief.offer.ask} | ${c.name}`, 60),
-    metaDescription: truncate(`${a0} ${t0.impact}. ${match ? `${match}. ` : ""}Donate to ${c.name} today and help ${who}.`, 155).padEnd(50, " ").trim(),
+    metaDescription,
     hero: {
       headline,
       subheadline: truncate(`${a0} ${t0.impact}.${match ? ` ${match}.` : ""} Give in two minutes.`, 180),
@@ -84,7 +91,7 @@ export function buildMockLandingSpec(brief: CampaignBrief, idea: Idea, copy: Cop
     story: {
       heading: `What your gift changes for ${who}`,
       body: cc.caseStudy,
-      attribution: `${c.name} team`,
+      attribution: truncate(`${c.name} team`, 60),
     },
     faq,
     trust: [

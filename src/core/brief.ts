@@ -52,7 +52,8 @@ export const ClientSchema = z.object({
   cause: z.string().min(1),
   region: z.string().default("UK"),
   charityNumber: z.string().optional(),
-  website: z.string().url(),
+  // Only web URLs: a javascript: or data: "URL" would otherwise reach landing-page footers and creatives.
+  website: z.string().url().refine((u) => /^https?:\/\//i.test(u), "website must start with http:// or https://"),
   brand: BrandPaletteSchema,
   voice: BrandVoiceSchema,
   proofPoints: z.array(z.string()).min(1),
@@ -129,5 +130,6 @@ export function parseBrief(input: unknown): CampaignBrief {
 
 export function formatCurrency(amount: number, currency: DonationTier["currency"] = "GBP"): string {
   const symbol = currency === "GBP" ? "£" : currency === "USD" ? "$" : "€";
-  return `${symbol}${Number.isInteger(amount) ? amount : amount.toFixed(2)}`;
+  const digits = Number.isInteger(amount) ? 0 : 2;
+  return `${symbol}${amount.toLocaleString("en-GB", { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
 }

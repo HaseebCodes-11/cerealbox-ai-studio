@@ -9,11 +9,11 @@ import { MockMetaAdsClient, runMediaBuyerAgent } from "../areas/media-buyer";
 import { buildClientReportInput, clientReportMarkdown, clientReportTask, renderClientReport, verifyReportNumbers } from "../areas/reporting";
 import { buildCommsContext, draftClientReply, draftsToMarkdown, type ClientQuestion } from "../areas/comms";
 import { generateInsights, generateMockDataset } from "../areas/toast";
-import { arg, heading, json, outDir, writeOut } from "./shared";
+import { dateArg, heading, json, outDir, writeOut } from "./shared";
 
 async function main(): Promise<void> {
   const provider = await getProvider();
-  const asOf = arg("as-of", "2026-11-08")!;
+  const asOf = dateArg("as-of", "2026-11-08");
   const data = generateMockDataset({ asOf });
   const insights = generateInsights(data, asOf);
   const agent = await runMediaBuyerAgent({ data, asOf, provider, adsClient: new MockMetaAdsClient(), autonomy: "assist", dryRun: true });

@@ -13,14 +13,14 @@ import { ideaGenerationTask, rankIdeas, selectIdeas } from "../areas/ideas";
 import { copyGenerationTask } from "../areas/copy";
 import { scriptGenerationTask, type ScriptStyle } from "../areas/scripts";
 import { analysePacing, buildEdl, buildFfmpegPlan, clipSelectionTask, detectFfmpegFeatures, executeRenderPlan, ffmpegAvailable, generateSyntheticFootage, probeDurationSeconds, resolveFfmpeg, toSrt } from "../areas/video";
-import { arg, heading, json, loadBrief, loadClips, outDir, writeOut } from "./shared";
+import { arg, choiceArg, heading, json, loadBrief, loadClips, outDir, writeOut } from "./shared";
 
 async function main(): Promise<void> {
   const provider = await getProvider();
   const brief = loadBrief(arg("brief"));
   const clips = loadClips();
-  const seconds = Number(arg("seconds", "30")) as 15 | 30 | 60;
-  const style = (arg("style", "ugc-testimonial") as ScriptStyle) ?? "ugc-testimonial";
+  const seconds = Number(choiceArg("seconds", ["15", "30", "60"] as const, "30")) as 15 | 30 | 60;
+  const style = choiceArg<ScriptStyle>("style", ["ugc-testimonial", "founder-direct", "problem-solution", "explainer", "story"], "ugc-testimonial");
   const ffmpeg = resolveFfmpeg();
 
   heading(`Video render · ${brief.campaignName} · ${style} ${seconds}s`);

@@ -20,7 +20,7 @@ import { buildMetaLaunchBundle } from "../areas/media-buyer";
 import { scriptToMarkdown } from "../areas/scripts";
 import { generateMockDataset, generateInsights, insightsToMarkdown, narrativeTask, renderDashboard, askToast } from "../areas/toast";
 import { runMediaBuyerAgent, MockMetaAdsClient, recommendationsToMarkdown, formatSlackAlert } from "../areas/media-buyer";
-import { arg, flag, heading, json, loadBrief, loadClips, outDir, writeOut } from "./shared";
+import { arg, dateArg, flag, heading, json, loadBrief, loadClips, outDir, writeOut } from "./shared";
 
 async function main(): Promise<void> {
   const provider = await getProvider();
@@ -174,7 +174,7 @@ async function main(): Promise<void> {
   const totals = pkg.audit.totals();
 
   // Toast + agent
-  const asOf = arg("as-of", "2026-11-08")!;
+  const asOf = dateArg("as-of", "2026-11-08");
   const data = generateMockDataset({ asOf });
   const insights = generateInsights(data, asOf);
   const narrative = (await provider.run(narrativeTask, { asOf, days: 7, insights })).output;

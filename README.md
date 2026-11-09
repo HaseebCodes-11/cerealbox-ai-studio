@@ -9,13 +9,13 @@ One campaign brief flows through nine stages (ideas → copy → statics → scr
 - **Roadmap (2 weeks / 30 / 60 / 90 days):** [docs/ROADMAP.md](docs/ROADMAP.md)
 - **20-minute demo script:** [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)
 - **How it fits Supabase / React / Vercel / n8n:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
-- **Production risk catalogue (120 edge-case scenarios, 41 known bugs with tests):** [docs/PRODUCTION_RISKS.md](docs/PRODUCTION_RISKS.md)
+- **Production risk catalogue (120 edge-case scenarios; 41 bugs found and fixed, each pinned by a test):** [docs/PRODUCTION_RISKS.md](docs/PRODUCTION_RISKS.md)
 
 ## Quick start
 
 ```bash
 npm install
-npm run verify        # typecheck (node + web) · 382 tests · demo for both briefs · client reports · evals · web build
+npm run verify        # typecheck (node + web) · 384 tests · demo for both briefs · client reports · evals · web build
 ```
 
 Or step by step:
@@ -99,8 +99,8 @@ src/orchestrator  end-to-end pipeline with gates
 src/evals         red team · scorecard · agent recall
 src/cli           demo · toast · agent · eval · video · reports
 web               Vite + React app: Toast · review queue · ads agent · client reports (+ jsdom tests)
-tests             vitest (382 tests: 335 pass, 44 known-bug expected failures, 3 live tests skip without a key)
-tests/edge-cases  production failure scenarios; known bugs marked it.fails("[BUG-nn] …") and catalogued in docs/PRODUCTION_RISKS.md
+tests             vitest (384 tests: 381 pass, 3 live tests skip without a key)
+tests/edge-cases  120 production failure scenarios; the 41 bugs they found are fixed and catalogued in docs/PRODUCTION_RISKS.md
 .github           CI workflow: verify on every push, live smoke test when a key is present
 automations/n8n   toast-daily-digest.json · ads-agent-approval.json
 supabase          migrations/0001_ai_studio_schema.sql (tables, RLS, pg_cron) · functions/ (4 Edge Functions)

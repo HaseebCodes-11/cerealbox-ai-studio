@@ -99,11 +99,14 @@ export function buildEdl(script: Script, selection: ClipSelection, clips: RawCli
     const end = round(cursor + beat.seconds);
     if (sel && clipById.has(sel.clipId)) {
       const clip = clipById.get(sel.clipId)!;
-      const srcOut = Math.min(sel.outSec, sel.inSec + beat.seconds, clip.durationSec);
-      timeline.push({ track: clip.kind === "broll" ? "broll" : "video", clipId: sel.clipId, startSec: start, endSec: end, sourceInSec: sel.inSec, sourceOutSec: round(srcOut), beatName: beat.name });
+      // Clamp a selection the model placed past the end of the clip so the trim is never empty or negative.
+      const need = Math.min(beat.seconds, clip.durationSec);
+      const srcIn = Math.max(0, Math.min(sel.inSec, clip.durationSec - need));
+      const srcOut = Math.max(srcIn + Math.min(need, 0.5), Math.min(Math.max(sel.outSec, srcIn + need), srcIn + beat.seconds, clip.durationSec));
+      timeline.push({ track: clip.kind === "broll" ? "broll" : "video", clipId: sel.clipId, startSec: start, endSec: end, sourceInSec: round(srcIn), sourceOutSec: round(srcOut), beatName: beat.name });
     } else {
       // Gap filler: a branded text card so the cut is still watchable while footage is sourced.
-      timeline.push({ track: "text", startSec: start, endSec: end, text: beat.onScreenText || beat.voiceover, beatName: beat.name });
+      timeline.push({ track: "text", card: true, startSec: start, endSec: end, text: beat.onScreenText || beat.voiceover, beatName: beat.name });
     }
     if (beat.onScreenText) {
       timeline.push({ track: "text", startSec: start, endSec: end, text: beat.onScreenText, beatName: beat.name });

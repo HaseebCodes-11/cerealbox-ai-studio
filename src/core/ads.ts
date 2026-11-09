@@ -98,6 +98,16 @@ export interface Derived extends Totals {
 
 export const EMPTY_TOTALS: Totals = { spend: 0, impressions: 0, reach: 0, clicks: 0, linkClicks: 0, conversions: 0, revenue: 0 };
 
+/**
+ * A re-synced day arrives as duplicate (date, adId) rows. Keep the last one so
+ * nothing is counted twice; the sync's most recent values win.
+ */
+export function dedupeMetrics(rows: AdMetricsDaily[]): AdMetricsDaily[] {
+  const byKey = new Map<string, AdMetricsDaily>();
+  for (const row of rows) byKey.set(`${row.date}|${row.adId}`, row);
+  return [...byKey.values()];
+}
+
 export function sumMetrics(rows: Iterable<AdMetricsDaily>): Totals {
   const t: Totals = { ...EMPTY_TOTALS };
   for (const r of rows) {

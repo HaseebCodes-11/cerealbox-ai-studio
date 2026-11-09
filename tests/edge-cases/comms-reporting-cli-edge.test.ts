@@ -40,7 +40,7 @@ describe("H1 · client emails", () => {
     expect(d.risk).toBe("human");
   });
 
-  it.fails("[BUG-04] markdown fences and HTML in a question do not break the review markdown or leak as markup", async () => {
+  it("markdown fences and HTML in a question do not break the review markdown or leak as markup", async () => {
     const d = await draftClientReply({ id: "m4", clientId: "hearthline", from: "Marie <marie@example.org>", receivedAt: asOf, text: "How are results?\n```\nrm -rf /\n```\n<b>thanks</b>" }, ctx("hearthline"), provider());
     const md = draftsToMarkdown([d]);
     // The question is quoted line by line, so a fence inside it cannot close the reply's code block.
@@ -49,7 +49,7 @@ describe("H1 · client emails", () => {
     expect(md.split("\n").filter((l) => l.startsWith(">")).length).toBeGreaterThanOrEqual(3);
   });
 
-  it.fails("[BUG-05] a client with zero spend in the period gets a holding reply rather than '£0 raised, 0x return'", async () => {
+  it("a client with zero spend in the period gets a holding reply rather than '£0 raised, 0x return'", async () => {
     const silent: AdsDataset = { ...data, metrics: data.metrics.filter((m) => m.clientId !== "paws") };
     const silentAgent = await runMediaBuyerAgent({ data: silent, asOf, provider: provider(), adsClient: new MockMetaAdsClient(), autonomy: "assist", dryRun: true });
     const c = buildCommsContext(silent, silentAgent.recommendations, "paws", asOf, { contactFirstName: "Georgia", accountManager: "Haseeb" });
@@ -58,7 +58,7 @@ describe("H1 · client emails", () => {
     expect(d.risk).toBe("human");
   });
 
-  it.fails("[BUG-06] categorise is stable for the obvious phrasings of each category", () => {
+  it("categorise is stable for the obvious phrasings of each category", () => {
     expect(categorise("Please can you pause everything, we are cancelling")).toBe("complaint");
     expect(categorise("What's our cost per donation right now?")).toBe("performance");
     expect(categorise("Can you send the dashboard link again?")).toBe("reporting");
@@ -66,7 +66,7 @@ describe("H1 · client emails", () => {
 });
 
 describe("H2 · client reports", () => {
-  it.fails("[BUG-07] a client with zero activity gets a report that says so, with verified zeros", async () => {
+  it("a client with zero activity gets a report that says so, with verified zeros", async () => {
     const silent: AdsDataset = { ...data, metrics: data.metrics.filter((m) => m.clientId !== "brightstart") };
     const input = buildClientReportInput(silent, generateInsights(silent, asOf), [], "brightstart", asOf);
     const narrative = (await provider().run(clientReportTask, input)).output;
@@ -83,7 +83,7 @@ describe("H2 · client reports", () => {
     expect(html).not.toContain("<img src=x");
   });
 
-  it.fails("[BUG-08] the verifier does not accept a number merely because the year or day contains the same digits", () => {
+  it("the verifier does not accept a number merely because the year or day contains the same digits", () => {
     const input = buildClientReportInput(data, insights, [], "hearthline", asOf);
     const narrative = { headline: "x", summary: ["We helped 2026 people and 11 towns and 8 regions."], highlights: [], concerns: [], nextSteps: ["y"] };
     const check = verifyReportNumbers(narrative, input);
@@ -124,19 +124,19 @@ describe("H3 · CLI misuse", () => {
     expect(r.out).toMatch(/mock.*anthropic|anthropic.*mock/);
   }, 60_000);
 
-  it.fails("[BUG-09] an unsupported --seconds value for the video CLI exits non-zero with the allowed values", () => {
+  it("an unsupported --seconds value for the video CLI exits non-zero with the allowed values", () => {
     const r = run("video.ts", "--seconds", "45");
     expect(r.code).not.toBe(0);
     expect(`${r.stdout}${r.stderr}`).toMatch(/15.*30.*60/);
   }, 90_000);
 
-  it.fails("[BUG-10] an unknown --autonomy value for the agent CLI exits non-zero", () => {
+  it("an unknown --autonomy value for the agent CLI exits non-zero", () => {
     const r = run("agent.ts", "--autonomy", "yolo");
     expect(r.code).not.toBe(0);
     expect(`${r.stdout}${r.stderr}`).toMatch(/assist.*copilot.*autopilot/);
   }, 60_000);
 
-  it.fails("[BUG-11] an as-of date in the wrong format is rejected", () => {
+  it("an as-of date in the wrong format is rejected", () => {
     const r = run("toast.ts", "--as-of", "08/11/2026");
     expect(r.code).not.toBe(0);
     expect(`${r.stdout}${r.stderr}`).toMatch(/YYYY-MM-DD/);

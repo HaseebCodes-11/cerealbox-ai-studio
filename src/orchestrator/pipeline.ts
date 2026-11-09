@@ -104,7 +104,24 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
   };
 
   const gate = async <T>(name: string, area: string, artefact: T, report: GuardrailReport | undefined, risk: RiskTier, summary: string): Promise<boolean> => {
-    const decision = await reviewer.review({ gate: name, area, artefact, guardrails: report, risk, summary });
+    // A hard guardrail block is not a reviewer's call to overturn: it can only be regenerated or rejected.
+    if (report && !report.ok) {
+      const blockers = report.issues.filter((i) => i.severity === "block").map((i) => `${i.rule}: ${i.message}`);
+      gates.push({ gate: name, area, risk, guardrailScore: report.score, decision: "rejected", reviewer: "guardrails", reason: `Blocked before review: ${blockers.join("; ")}` });
+      audit.record("review", area, name, { decision: "rejected", score: report.score, reason: blockers.join("; ") });
+      pkg.status = "blocked";
+      pkg.stoppedAt = name;
+      return false;
+    }
+    let decision: ReviewDecision<T>;
+    try {
+      decision = await reviewer.review({ gate: name, area, artefact, guardrails: report, risk, summary });
+    } catch (err) {
+      // The review screen failing must not throw away the work: leave the gate pending with the error.
+      const reason = `Reviewer error: ${err instanceof Error ? err.message : String(err)}`;
+      decision = { status: "pending", reason };
+      audit.record("error", area, name, { reason });
+    }
     gates.push({
       gate: name,
       area,
@@ -160,11 +177,11 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
   if (!(await gate("copy.approve", "copy", validation.cleaned, { ...validation.overall, ok: true }, "human", `${validation.cleaned.primaryTexts.length} primary texts, ${validation.cleaned.headlines.length} headlines; ${validation.removed.length} removed by guardrails`))) return pkg;
   const copy = validation.cleaned;
 
-  // 3. Static creatives
+  // 3. Static creatives (skipped entirely when no formats are requested)
   const formats = options.formats ?? ["square", "story", "landscape"];
-  const specResult = await provider.run(creativeConceptTask, { brief, idea, copy, formats });
-  audit.record("llm_call", "static", "concept", { formats }, specResult.usage);
-  for (const spec of specResult.output.specs) {
+  const specs = formats.length ? (await provider.run(creativeConceptTask, { brief, idea, copy, formats }).then((r) => (audit.record("llm_call", "static", "concept", { formats }, r.usage), r.output.specs))) : [];
+  if (!formats.length) audit.record("note", "static", "skipped", { reason: "no formats requested" });
+  for (const spec of specs) {
     let background: string | undefined;
     if (options.imageProvider && spec.imageStyle === "photo") {
       const { width, height } = CREATIVE_FORMATS[spec.format];
@@ -177,8 +194,15 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
     audit.record("render", "static", spec.id, { format: spec.format, layout: spec.layout, score: report.score, ok: report.ok, background: Boolean(background) });
     pkg.creatives.push({ rendered, report });
   }
+  // Only creatives that pass QA are put forward; a failing one is dropped and noted, not approvable.
   const passingCreatives = pkg.creatives.filter((c) => c.report.ok);
-  if (!(await gate("static.approve", "static", passingCreatives.map((c) => c.rendered.spec), mergeReports(pkg.creatives.map((c) => c.report)), "human", `${passingCreatives.length}/${pkg.creatives.length} creatives pass automated QA`))) return pkg;
+  if (pkg.creatives.length && !passingCreatives.length) {
+    gates.push({ gate: "static.approve", area: "static", risk: "human", guardrailScore: mergeReports(pkg.creatives.map((c) => c.report)).score, decision: "rejected", reviewer: "guardrails", reason: "No creative passed automated QA" });
+    pkg.status = "blocked";
+    pkg.stoppedAt = "static.approve";
+    return pkg;
+  }
+  if (!(await gate("static.approve", "static", passingCreatives.map((c) => c.rendered.spec), mergeReports(passingCreatives.map((c) => c.report)), "human", `${passingCreatives.length}/${pkg.creatives.length} creatives pass automated QA`))) return pkg;
 
   // 4. Scripts
   const scriptRequests = options.scriptRequests ?? [
@@ -194,7 +218,13 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
     pkg.scripts.push({ script, report });
   }
   const passingScripts = pkg.scripts.filter((s) => s.report.ok);
-  if (!(await gate("scripts.approve", "scripts", passingScripts.map((s) => s.script), mergeReports(pkg.scripts.map((s) => s.report)), "human", `${passingScripts.length}/${pkg.scripts.length} scripts pass QA`))) return pkg;
+  if (pkg.scripts.length && !passingScripts.length) {
+    gates.push({ gate: "scripts.approve", area: "scripts", risk: "human", guardrailScore: mergeReports(pkg.scripts.map((s) => s.report)).score, decision: "rejected", reviewer: "guardrails", reason: "No script passed QA" });
+    pkg.status = "blocked";
+    pkg.stoppedAt = "scripts.approve";
+    return pkg;
+  }
+  if (!(await gate("scripts.approve", "scripts", passingScripts.map((s) => s.script), mergeReports(passingScripts.map((s) => s.report)), "human", `${passingScripts.length}/${pkg.scripts.length} scripts pass QA`))) return pkg;
 
   // 5. UGC manifest (from the first UGC-style script that passed, else the first passing script)
   const ugcScript = passingScripts.find((s) => s.script.style === "ugc-testimonial")?.script ?? passingScripts[0]?.script;
@@ -228,7 +258,14 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
     pkg.landing.push({ spec: specResultLp.output, html, report });
   }
   if (pkg.landing.length === 2) pkg.landingDiff = variantDiff(pkg.landing[0]!.spec, pkg.landing[1]!.spec);
-  if (!(await gate("landing.approve", "landing", pkg.landing.map((l) => l.spec), mergeReports(pkg.landing.map((l) => l.report)), "human", `${pkg.landing.filter((l) => l.report.ok).length}/2 variants pass QA; diff: ${pkg.landingDiff.length} field(s)`))) return pkg;
+  const passingLanding = pkg.landing.filter((l) => l.report.ok);
+  if (!passingLanding.length) {
+    gates.push({ gate: "landing.approve", area: "landing", risk: "human", guardrailScore: mergeReports(pkg.landing.map((l) => l.report)).score, decision: "rejected", reviewer: "guardrails", reason: "No landing page variant passed QA" });
+    pkg.status = "blocked";
+    pkg.stoppedAt = "landing.approve";
+    return pkg;
+  }
+  if (!(await gate("landing.approve", "landing", passingLanding.map((l) => l.spec), mergeReports(passingLanding.map((l) => l.report)), "human", `${passingLanding.length}/2 variants pass QA; diff: ${pkg.landingDiff.length} field(s)`))) return pkg;
 
   // 8. Launch plan for the media buyer
   pkg.launchPlan = buildLaunchPlan(brief, idea.id, copy, passingCreatives.map((c) => c.rendered.spec.id));

@@ -8,7 +8,8 @@ import { z } from "zod";
  * rather than on a blob of markup.
  */
 export const DonationFormSchema = z.object({
-  amounts: z.array(z.number().positive()).min(2).max(6),
+  // A single-tier appeal is valid; the brief allows one tier and the form mirrors it.
+  amounts: z.array(z.number().positive()).min(1).max(6),
   defaultAmount: z.number().positive(),
   frequencies: z.array(z.enum(["one-off", "monthly"])).min(1),
   giftAid: z.boolean(),
@@ -32,7 +33,7 @@ export const LandingPageSpecSchema = z.object({
     imageAlt: z.string().min(5).max(125),
   }),
   problem: z.object({ heading: z.string().min(5).max(80), body: z.string().min(40) }),
-  impact: z.array(z.object({ amount: z.number().positive(), label: z.string().min(5).max(90) })).min(2),
+  impact: z.array(z.object({ amount: z.number().positive(), label: z.string().min(5).max(90) })).min(1),
   proof: z.array(z.object({ text: z.string().min(5).max(160) })).min(2).max(4),
   story: z.object({ heading: z.string().min(5).max(80), body: z.string().min(60), attribution: z.string().max(60).optional() }),
   faq: z.array(z.object({ question: z.string().min(5).max(120), answer: z.string().min(20).max(400) })).min(2).max(6),

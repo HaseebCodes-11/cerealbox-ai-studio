@@ -35,6 +35,7 @@ export function validateScript(script: Script, brief: CampaignBrief): GuardrailR
   }
 
   for (const beat of beats) {
+    if (!(beat.seconds > 0) || !Number.isFinite(beat.seconds)) issues.push({ rule: "beat.seconds", severity: "block", message: `Beat ${beat.name} has a duration of ${beat.seconds}s; every beat needs positive time.` });
     if (!beat.visual.trim()) issues.push({ rule: "beat.visual", severity: "block", message: `Beat ${beat.name} has no visual direction.` });
     if (beat.onScreenText.length > 80) issues.push({ rule: "beat.text-length", severity: "warn", message: `On-screen text in ${beat.name} is over 80 characters.` });
   }

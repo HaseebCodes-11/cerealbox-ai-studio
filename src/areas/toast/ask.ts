@@ -14,9 +14,11 @@ import { aggregate, comparePeriods, dailySeries, detectAnomalies, lastNDays, top
  */
 
 export const IntentSchema = z.object({
-  intent: z.enum(["rank_clients", "biggest_change", "client_summary", "creative_type_comparison", "anomalies", "portfolio_total", "unknown"]),
+  intent: z.enum(["rank_clients", "biggest_change", "client_summary", "compare_clients", "creative_type_comparison", "anomalies", "portfolio_total", "unknown"]),
   metric: z.enum(["roas", "cpa", "spend", "revenue", "ctr", "conversions", "cpm"]).default("roas"),
   clientName: z.string().optional(),
+  /** Every client the question named; two or more means a comparison. */
+  clientNames: z.array(z.string()).optional(),
   direction: z.enum(["up", "down"]).default("down"),
   days: z.number().int().min(1).max(56).default(7),
   limit: z.number().int().min(1).max(20).default(5),
@@ -36,6 +38,7 @@ export const intentTask = defineTask<IntentInput, Intent>({
 - rank_clients: "which clients have the best/worst X"
 - biggest_change: "who dropped/improved most on X", "biggest ROAS drop"
 - client_summary: a question about one named client
+- compare_clients: two or more named clients side by side (fill clientNames)
 - creative_type_comparison: video vs static vs UGC
 - anomalies: "anything unusual", "spikes", "drops"
 - portfolio_total: "how much did we spend/raise"
@@ -63,12 +66,15 @@ export function parseIntentHeuristically(question: string, clientNames: string[]
               : "roas";
   const days = /\blast month|28 days|four weeks\b/.test(q) ? 28 : /\b14 days|two weeks|fortnight\b/.test(q) ? 14 : /\byesterday\b/.test(q) ? 1 : /\b3 days\b/.test(q) ? 3 : 7;
   const direction: Intent["direction"] = /\bdrop|fell|fall|worst|lowest|down|declin|worse\b/.test(q) ? "down" : /\bimprov|best|highest|up|rose|grow|better|top\b/.test(q) ? "up" : "down";
-  const clientName = clientNames.find((n) => q.includes(n.toLowerCase()));
+  const mentioned = clientNames.filter((n) => q.includes(n.toLowerCase()));
+  const clientName = mentioned[0];
   const limitMatch = q.match(/\btop (\d+)\b/);
-  const limit = limitMatch ? Math.min(20, Number(limitMatch[1])) : 5;
+  // Clamp into the schema's range: "top 0" means "a few", "top 500" means "all we show".
+  const limit = limitMatch ? Math.max(1, Math.min(20, Number(limitMatch[1]) || 1)) : 5;
 
   let intent: Intent["intent"] = "unknown";
-  if (clientName) intent = "client_summary";
+  if (mentioned.length >= 2) intent = "compare_clients";
+  else if (clientName) intent = "client_summary";
   else if (/\bvideo|static|ugc|carousel|creative type|format\b/.test(q)) intent = "creative_type_comparison";
   else if (/\bunusual|anomal|spike|weird|odd|wrong\b/.test(q)) intent = "anomalies";
   else if (/\bbiggest|most|largest|dropped|improved|change|moved\b/.test(q)) intent = "biggest_change";
@@ -76,7 +82,7 @@ export function parseIntentHeuristically(question: string, clientNames: string[]
   else if (/\bhow much|total|overall|in total|altogether\b/.test(q)) intent = "portfolio_total";
   if (intent === "unknown" && metric === "spend") intent = "portfolio_total";
 
-  return { intent, metric, direction, days, limit, ...(clientName ? { clientName } : {}) };
+  return { intent, metric, direction, days, limit, clientNames: mentioned, ...(clientName ? { clientName } : {}) };
 }
 
 export interface Answer {
@@ -160,6 +166,21 @@ export function answerIntent(question: string, intent: Intent, data: AdsDataset,
         table: { columns: ["Ad set", "Spend", "Revenue", "ROAS", "CPA", "CTR"], rows: adsets.map((a) => [a.name, a.spend, a.revenue, a.roas, a.cpa, `${a.ctr}%`]) },
         chart: { label: "Daily revenue", labels: series.map((p) => p.date.slice(5)), values: series.map((p) => p.value) },
         sources: ["comparePeriods", "aggregate(adset)", "dailySeries(revenue)"],
+      };
+    }
+    case "compare_clients": {
+      const named = intent.clientNames ?? [];
+      const wanted = new Set((named.length ? named : [intent.clientName ?? ""]).map((n) => n.toLowerCase()));
+      const rows = aggregate(data, "client", period).filter((r) => wanted.has(r.name.toLowerCase()));
+      if (rows.length < 2) return { question, intent, text: `I need two or more client names to compare. Known clients: ${data.clients.map((c) => c.name).join(", ")}.`, sources: [] };
+      const sorted = [...rows].sort((a, b) => (LOWER_IS_BETTER[m] ? a[m] - b[m] : b[m] - a[m]));
+      return {
+        question,
+        intent,
+        text: `${label}, by ${m.toUpperCase()}: ${sorted.map((r) => `${r.name} ${fmtMetric(m, r[m])} (spend ${money(r.spend)}, ${r.conversions} donations)`).join("; ")}. ${sorted[0]!.name} leads.`,
+        table: { columns: ["Client", m.toUpperCase(), "Spend", "Revenue", "Donations", "CPA"], rows: sorted.map((r) => [r.name, r[m], r.spend, r.revenue, r.conversions, r.cpa]) },
+        chart: { label: m.toUpperCase(), labels: sorted.map((r) => r.name), values: sorted.map((r) => r[m]) },
+        sources: ["aggregate(metrics, client, period)"],
       };
     }
     case "creative_type_comparison": {

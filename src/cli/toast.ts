@@ -6,11 +6,11 @@
 import { join } from "node:path";
 import { getProvider } from "../core/llm";
 import { askToast, generateInsights, generateMockDataset, insightsToMarkdown, narrativeTask, renderDashboard } from "../areas/toast";
-import { arg, heading, json, outDir, writeOut } from "./shared";
+import { arg, dateArg, heading, json, outDir, writeOut } from "./shared";
 
 async function main(): Promise<void> {
   const provider = await getProvider();
-  const asOf = arg("as-of", "2026-11-08")!;
+  const asOf = dateArg("as-of", "2026-11-08");
   const data = generateMockDataset({ asOf, seed: arg("seed") });
   const [, , command, ...rest] = process.argv;
 

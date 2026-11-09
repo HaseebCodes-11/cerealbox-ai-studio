@@ -37,6 +37,8 @@ export type ClipSelection = z.infer<typeof ClipSelectionSchema>;
 
 export interface TimelineItem {
   track: "video" | "broll" | "text" | "logo";
+  /** A text item that stands in for missing footage (rendered as a card), as opposed to an overlay. */
+  card?: boolean;
   clipId?: string;
   startSec: number;
   endSec: number;

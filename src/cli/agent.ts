@@ -8,12 +8,12 @@ import { join } from "node:path";
 import { getProvider } from "../core/llm";
 import { MockMetaAdsClient, formatSlackAlert, recommendationsToMarkdown, runMediaBuyerAgent, type AutonomyLevel } from "../areas/media-buyer";
 import { generateMockDataset } from "../areas/toast";
-import { arg, flag, heading, json, outDir, writeOut } from "./shared";
+import { arg, choiceArg, dateArg, flag, heading, json, outDir, writeOut } from "./shared";
 
 async function main(): Promise<void> {
   const provider = await getProvider();
-  const asOf = arg("as-of", "2026-11-08")!;
-  const autonomy = (arg("autonomy", "assist") as AutonomyLevel) ?? "assist";
+  const asOf = dateArg("as-of", "2026-11-08");
+  const autonomy = choiceArg<AutonomyLevel>("autonomy", ["assist", "copilot", "autopilot"], "assist");
   const dryRun = !flag("live");
   const approvedIds = (arg("approve") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
   const data = generateMockDataset({ asOf, seed: arg("seed") });

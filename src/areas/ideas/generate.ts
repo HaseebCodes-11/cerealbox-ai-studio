@@ -86,6 +86,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
   const id = `idea-${index + 1}-${angle}`;
   const base = { id, riskFlags: [] as string[] };
   const hook = (text: string) => truncate(text, 160);
+  const title = (text: string) => truncate(text, 80);
 
   switch (angle) {
     case "contrast":
@@ -104,7 +105,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
     case "stat-led":
       return {
         ...base,
-        title: "The number behind the ask",
+        title: title("The number behind the ask"),
         angle,
         hook: hook(`${amount}. That is what it takes: ${tier.impact}.`),
         concept: `A single oversized number fills the frame with a short line underneath: "${tier.impact}". Supporting line cites: ${proof}.`,
@@ -117,7 +118,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
     case "testimonial":
       return {
         ...base,
-        title: "In their own words",
+        title: title("In their own words"),
         angle,
         hook: hook(`"${cc.storySeed}" A supporter on why they give.`),
         concept: `A short first-person line from a supporter or someone ${c.name} helped, read aloud or shown as text over a quiet ${setting} scene. Ends with: ${proof}.`,
@@ -144,7 +145,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
     case "behind-the-scenes":
       return {
         ...base,
-        title: `Ride along with the ${c.name} team`,
+        title: title(`Ride along with the ${c.name} team`),
         angle,
         hook: hook(`We filmed one Tuesday with the ${c.name} team. This is what ${amount} looks like in real life.`),
         concept: `Documentary-style footage of the team doing the work the donation funds (${tier.impact}). No actors, no music swells, just the work.`,
@@ -157,7 +158,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
     case "urgency-match":
       return {
         ...base,
-        title: "Doubled until the deadline",
+        title: title("Doubled until the deadline"),
         angle,
         hook: hook(brief.offer.matchFunding ? `${brief.offer.matchFunding}.` : `Give before ${brief.offer.deadline ?? "the deadline"} and your gift goes further.`),
         concept: `A countdown-led creative built around the match offer. ${amount} becomes ${formatCurrency(tier.amount * 2, tier.currency)} and the copy states exactly what that pays for twice over.`,
@@ -171,7 +172,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
     case "founder-direct":
       return {
         ...base,
-        title: "Thirty seconds from our director",
+        title: title("Thirty seconds from our director"),
         angle,
         hook: hook(`I run ${c.name}. I want to tell you exactly where your ${amount} goes.`),
         concept: `A single unedited take of the charity director speaking plainly about the weeks ahead and the offer. No b-roll, captions only.`,
@@ -186,7 +187,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
         ...base,
         title: truncate(`From your gift to ${who}`, 80),
         angle,
-        hook: hook(`What happens in the 48 hours after you give ${amount}?`),
+        hook: hook(`What happens in the first two days after you give ${amount}?`),
         concept: `A three-step explainer: you give, we act, ${who} gets what they need. Each step shows the real person or system involved, ending with "${tier.impact}".`,
         whyItWorks: "Transparency about process is a direct response to the fear that money disappears into admin.",
         audienceInsight: objection,
@@ -224,7 +225,7 @@ export function buildMockIdea(brief: CampaignBrief, angle: IdeaAngle, index: num
     case "letter":
       return {
         ...base,
-        title: "A letter you will not get",
+        title: title("A letter you will not get"),
         angle,
         hook: hook(`Most people we help never write to thank anyone. This is the letter they would send.`),
         concept: `A handwritten-style letter from ${who} describing an ordinary good day, revealed line by line. Signed with a first name only. Closes with the ${amount} ask.`,

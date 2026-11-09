@@ -45,6 +45,17 @@ export function checkLandingPage(spec: LandingPageSpec, html: string, brief: Cam
   if (!/name="utm_source"/.test(html)) issues.push({ rule: "tracking.utm", severity: "warn", message: "UTM passthrough fields missing; attribution to the ad will be lost." });
   if (!/<form[^>]*method="post"/.test(html)) issues.push({ rule: "form.present", severity: "block", message: "No donation form found." });
 
+  // Donation details must only ever post to the charity's own domain (or a relative handler).
+  const clientHost = safeHost(brief.client.website);
+  for (const form of html.match(/<form\b[^>]*>/g) ?? []) {
+    const action = form.match(/\baction="([^"]*)"/)?.[1] ?? "";
+    if (!/^https?:\/\//i.test(action)) continue;
+    const host = safeHost(action);
+    if (!host || !clientHost || !(host === clientHost || host.endsWith(`.${clientHost}`) || clientHost.endsWith(`.${host}`))) {
+      issues.push({ rule: "form.action", severity: "block", message: `Donation form posts to ${host ?? action}, not the charity's domain.`, excerpt: action });
+    }
+  }
+
   const objections = brief.audience.objections.length;
   if (spec.faq.length < Math.min(objections, 2)) issues.push({ rule: "faq.coverage", severity: "warn", message: `FAQ has ${spec.faq.length} entries for ${objections} known objections.` });
 
@@ -64,6 +75,14 @@ export function checkLandingPage(spec: LandingPageSpec, html: string, brief: Cam
   if (/\[hero image\]/.test(html) === false) issues.push({ rule: "hero.image", severity: "info", message: "Hero has no image placeholder or asset." });
 
   return { ok: !issues.some((i) => i.severity === "block"), issues, score: scoreIssues(issues) };
+}
+
+function safeHost(url: string): string | null {
+  try {
+    return new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return null;
+  }
 }
 
 /** Human-readable diff of what changed between variant A and B. */

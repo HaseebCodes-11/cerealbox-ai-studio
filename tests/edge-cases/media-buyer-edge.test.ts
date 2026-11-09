@@ -14,7 +14,7 @@ const data = generateMockDataset({ asOf });
 const config = RulesConfigSchema.parse({});
 
 describe("E1 · data quality from the Meta sync", () => {
-  it.fails("[BUG-28] duplicate daily rows (a re-synced day) do not double count spend or conversions", () => {
+  it("duplicate daily rows (a re-synced day) do not double count spend or conversions", () => {
     const dup: AdsDataset = { ...data, metrics: [...data.metrics, ...data.metrics.filter((m) => m.date === asOf)] };
     const clean = buildWindows(data, asOf, config).find((w) => w.adsetId === "hearthline-c1-as1")!;
     const dirty = buildWindows(dup, asOf, config).find((w) => w.adsetId === "hearthline-c1-as1")!;
@@ -60,7 +60,7 @@ describe("E2 · configuration humans type", () => {
     expect(() => RulesConfigSchema.parse({ maxDailyBudgetGbp: "lots" })).toThrow();
   });
 
-  it.fails("[BUG-29] a budget step that rounds to no change is not proposed", () => {
+  it("a budget step that rounds to no change is not proposed", () => {
     const tiny: AdsDataset = { ...data, adsets: data.adsets.map((a) => (a.id === "kindred-c1-as1" ? { ...a, dailyBudgetGbp: 1 } : a)) };
     const recs = evaluateRules(buildWindows(tiny, asOf, config), config, asOf).filter((r) => r.entity.id === "kindred-c1-as1" && r.proposedChange?.field === "daily_budget_gbp");
     for (const r of recs) expect(r.proposedChange!.from, r.rule).not.toBe(r.proposedChange!.to);
@@ -72,7 +72,7 @@ describe("E2 · configuration humans type", () => {
     expect(recs.filter((r) => r.rule === "zero-conversion-ad" && r.entity.clientId === "hearthline")).toHaveLength(0);
   });
 
-  it.fails("[BUG-10] an unknown autonomy level is rejected rather than silently treated as assist", async () => {
+  it("an unknown autonomy level is rejected rather than silently treated as assist", async () => {
     await expect(runMediaBuyerAgent({ data, asOf, provider: provider(), adsClient: new MockMetaAdsClient(), autonomy: "yolo" as never })).rejects.toThrow(/autonomy/);
   });
 
@@ -109,7 +109,7 @@ describe("E3 · the ads API misbehaves", () => {
     expect(run.recommendations.find((r) => r.rule === "zero-conversion-ad")?.status).toBe("auto_executed");
   });
 
-  it.fails("[BUG-30] a client that hangs is bounded by a timeout rather than blocking the daily run forever", async () => {
+  it("a client that hangs is bounded by a timeout rather than blocking the daily run forever", async () => {
     const hanging: MetaAdsClient = {
       name: "hanging",
       updateAdsetBudget: () => new Promise(() => {}),
@@ -133,7 +133,7 @@ describe("E3 · the ads API misbehaves", () => {
 });
 
 describe("E4 · untrusted text from the ad account", () => {
-  it.fails("[BUG-31] entity names containing Slack markup or HTML do not break alerts or the dashboard", async () => {
+  it("entity names containing Slack markup or HTML do not break alerts or the dashboard", async () => {
     const hostile: AdsDataset = { ...data, adsets: data.adsets.map((a) => (a.id === "bluewater-c1-as1" ? { ...a, name: "OC <script>alert(1)</script> *bold* _it_ <!channel>" } : a)) };
     const run = await runMediaBuyerAgent({ data: hostile, asOf, provider: provider(), adsClient: new MockMetaAdsClient(), autonomy: "assist" });
     const alert = run.alerts.find((a) => a.entityIds.includes("bluewater-c1-as1"))!;

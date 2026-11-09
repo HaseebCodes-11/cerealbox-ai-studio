@@ -56,7 +56,8 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
 
   let i = 0;
   for (const item of edl.timeline) {
-    if (item.track !== "video" && item.track !== "broll") continue;
+    // Shots and stand-in cards become segments; on-screen text overlays and the logo are handled elsewhere.
+    if (item.track !== "video" && item.track !== "broll" && !(item.track === "text" && item.card)) continue;
     const clip = item.clipId ? clipById.get(item.clipId) : undefined;
     const out = `${workDir}/seg-${String(i).padStart(2, "0")}.mp4`;
     const duration = round(item.endSec - item.startSec);
@@ -102,7 +103,7 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
   }
   if (edl.music) {
     const mixed = `${workDir}/${edl.id}-mixed.mp4`;
-    const musicPath = options.musicPath ?? `${workDir}/music-${slug(edl.music.mood)}.m4a`;
+    const musicPath = options.musicPath ?? `${workDir}/music-${slug(edl.music.mood) || "default"}.m4a`;
     steps.push(
       step(
         "music bed with ducking",
@@ -157,7 +158,8 @@ export function captionStyle(width: number, height: number): string {
 }
 
 export function escapeDrawtext(text: string): string {
-  return text.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/:/g, "\\:").replace(/%/g, "\\%");
+  // drawtext reads a literal newline as the end of the option; collapse line breaks to spaces first.
+  return text.replace(/\r?\n/g, " ").replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/:/g, "\\:").replace(/%/g, "\\%");
 }
 
 /** The subtitles filter parses ':' and '\' specially; Windows drive letters need escaping. */

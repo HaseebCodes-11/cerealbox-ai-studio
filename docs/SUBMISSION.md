@@ -7,7 +7,7 @@
 
 ## 1. The one-paragraph answer
 
-CerealBox does not need nine AI tools. It needs **one campaign brief that flows through nine stages**, with the same guardrails, the same review screen and the same audit trail at every step, sitting inside the platform the team already uses (True ROAS). Ideas feed copy, copy feeds statics and scripts, scripts feed UGC and editing, everything feeds landing pages and a launch plan, and the ad data that comes back (Toast) feeds the Media Buyer agent and the next round of ideas. AI generates and proposes; deterministic code checks; humans approve anything that touches a client's brand, money or a real person. I have built a working prototype of that whole loop, offline and reproducible, with 382 automated tests, and this document explains the reasoning behind each piece.
+CerealBox does not need nine AI tools. It needs **one campaign brief that flows through nine stages**, with the same guardrails, the same review screen and the same audit trail at every step, sitting inside the platform the team already uses (True ROAS). Ideas feed copy, copy feeds statics and scripts, scripts feed UGC and editing, everything feeds landing pages and a launch plan, and the ad data that comes back (Toast) feeds the Media Buyer agent and the next round of ideas. AI generates and proposes; deterministic code checks; humans approve anything that touches a client's brand, money or a real person. I have built a working prototype of that whole loop, offline and reproducible, with 384 automated tests, and this document explains the reasoning behind each piece.
 
 ```mermaid
 flowchart LR
@@ -41,8 +41,8 @@ Every arrow passes through three things: a **typed schema** (the model must retu
 | Quality controls, maintenance, scale and cost | Sections 6, 7, 8 |
 | Milestones: 2 weeks / 30 / 60 / 90 days | `docs/ROADMAP.md` |
 | How it fits the stack (Supabase, React, Vercel, n8n) | `docs/ARCHITECTURE.md`, `supabase/migrations/`, `automations/n8n/` |
-| Proof it works | `npm test` (382 tests, node + browser), `npm run eval` (red team, scorecard, agent recall, LLM-as-judge), CI on every push |
-| Where it still breaks | `docs/PRODUCTION_RISKS.md`: 120 production scenarios tested, 76 handled, 41 known bugs each pinned by a failing-by-design test |
+| Proof it works | `npm test` (384 tests, node + browser), `npm run eval` (red team, scorecard, agent recall, LLM-as-judge), CI on every push |
+| How it was hardened | `docs/PRODUCTION_RISKS.md`: 120 production scenarios tested, 41 bugs found, every one fixed with its test kept as a regression guard |
 | Interview slides | `docs/deck.html` (open in a browser, arrow keys to move) |
 
 ---
@@ -130,7 +130,7 @@ How I reduce bad outputs, hallucinations and poor creative:
 
 ### Knowing where the edges are
 
-Before calling anything production-ready I ran a deliberate breakage pass: 120 scenarios across hostile brief input, guardrail false negatives and false positives, renderer limits, bad footage and model mistakes, re-synced ad data, misbehaving reviewers, client emails and CLI misuse. 76 are handled today; 41 bugs are catalogued by severity in `docs/PRODUCTION_RISKS.md`, each with a test that asserts the right behaviour and is marked as a known failure, so fixing one flips its marker. The S1 items (money and trust) are the first fixes on the roadmap: duplicate-row double counting, an ads client with no timeout, an unvalidated autonomy flag, two guardrail gaps on invented statistics, a third-party form action, `javascript:` URLs, a rubber-stamp approval path and a zero-data client reply.
+Before calling anything production-ready I ran a deliberate breakage pass: 120 scenarios across hostile brief input, guardrail false negatives and false positives, renderer limits, bad footage and model mistakes, re-synced ad data, misbehaving reviewers, client emails and CLI misuse. 76 passed first time; 41 bugs were found, catalogued by severity in `docs/PRODUCTION_RISKS.md`, and then fixed in product code without touching the tests, so the 120 scenarios now stand as regression guards. The S1 items (money and trust) were fixed first: duplicate-row double counting, an ads client with no timeout, an unvalidated autonomy flag, two guardrail gaps on invented statistics, a third-party form action, `javascript:` URLs, a rubber-stamp approval path and a zero-data client reply.
 
 ## 7. Maintenance
 
