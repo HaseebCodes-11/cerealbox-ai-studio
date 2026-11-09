@@ -9,7 +9,7 @@ const queue: ReviewQueue = {
   campaign: "Winter Warmth",
   status: "complete",
   quality: { meanOverall: 7.8, verdictCounts: { ship: 3, revise: 1, reject: 0 } },
-  cost: { llmCalls: 8, costUsd: 0.15 },
+  cost: { llmCalls: 8, costUsd: 0.15, byArea: { ideas: 0.042, copy: 0.013, landing: 0.04 } },
   items: [
     { id: "g1", gate: "ideas.select", area: "ideas", risk: "human", guardrailScore: 100, decision: "approved", reviewer: "policy", summary: "3 ideas shortlisted", preview: { kind: "ideas", data: [{ rank: 1, title: "Two kitchens, one winter", angle: "contrast", hook: "Same street.", total: 8.2, whyItWorks: "Contrast works." }] } },
     { id: "g2", gate: "copy.approve", area: "copy", risk: "human", guardrailScore: 96, decision: "approved", summary: "3 primary texts", preview: { kind: "copy", data: { hooks: ["Hook one"], headlines: ["Headline one"], descriptions: ["Desc"], storyOverlays: ["Overlay"], primaryTexts: [{ variant: "short", text: "Short text. Donate." }] } } },
@@ -28,6 +28,9 @@ describe("ReviewQueueView", () => {
     expect(screen.getByText("Two kitchens, one winter", { exact: false })).toBeInTheDocument();
     expect(screen.getByText(/Mean 7.8\/10/)).toBeInTheDocument();
     expect(screen.getByText(/8 model calls/)).toBeInTheDocument();
+    const costs = screen.getByTestId("cost-by-area");
+    expect(costs.textContent).toMatch(/ideas.*\$0\.042/);
+    expect(costs.querySelectorAll("li")).toHaveLength(3);
   });
 
   it("approves with a note, persists to localStorage and can undo", () => {

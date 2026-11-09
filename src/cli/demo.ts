@@ -15,6 +15,8 @@ import { RecordingReviewer } from "../core/review";
 import { runCampaignPipeline } from "../orchestrator";
 import { getImageProvider, renderPng } from "../areas/static";
 import { judgePackage } from "../evals/judge";
+import { FileIdeaBank } from "../areas/ideas";
+import { buildMetaLaunchBundle } from "../areas/media-buyer";
 import { scriptToMarkdown } from "../areas/scripts";
 import { generateMockDataset, generateInsights, insightsToMarkdown, narrativeTask, renderDashboard, askToast } from "../areas/toast";
 import { runMediaBuyerAgent, MockMetaAdsClient, recommendationsToMarkdown, formatSlackAlert } from "../areas/media-buyer";
@@ -30,7 +32,11 @@ async function main(): Promise<void> {
   heading(`CerealBox AI Studio demo · provider=${provider.name} · brief=${brief.campaignName}`);
 
   const imageProvider = getImageProvider();
-  const pkg = await runCampaignPipeline({ brief, provider, reviewer, clips, allowSyntheticPresenter: flag("allow-synthetic"), imageProvider });
+  // The idea bank persists across runs: run the demo twice and the second run avoids last time's angles.
+  const ideaBank = new FileIdeaBank(join(process.env.OUT_DIR ?? "out", "idea-bank.json"));
+  const remembered = (await ideaBank.load(brief.client.id)).length;
+  if (remembered) console.log(`Idea bank: ${remembered} previous ideas for ${brief.client.name}; novelty scoring and angle rotation active`);
+  const pkg = await runCampaignPipeline({ brief, provider, reviewer, clips, allowSyntheticPresenter: flag("allow-synthetic"), imageProvider, ideaBank });
   const judgement = await judgePackage(pkg, provider);
 
   // Ideas
@@ -154,8 +160,15 @@ async function main(): Promise<void> {
   );
   console.log(`Quality: judge mean ${judgement.meanOverall}/10 (${judgement.verdictCounts.ship} ship, ${judgement.verdictCounts.revise} revise, ${judgement.verdictCounts.reject} reject)`);
 
-  // Launch plan + gates + audit
-  if (pkg.launchPlan) writeOut(join(root, "08-launch-plan.json"), json(pkg.launchPlan));
+  // Launch plan + Meta API payloads (all PAUSED) + gates + audit
+  if (pkg.launchPlan) {
+    writeOut(join(root, "08-launch-plan.json"), json(pkg.launchPlan));
+    if (pkg.copy) {
+      const bundle = buildMetaLaunchBundle(pkg.launchPlan, brief, pkg.copy.pack, { adAccountId: "act_<client>", pageId: "<page_id>", pixelId: "<pixel_id>", landingBaseUrl: `https://give.${brief.client.id}.example` });
+      writeOut(join(root, "08-meta-payloads.json"), json(bundle));
+      console.log(`Launch: ${bundle.summary.adsets} ad sets, ${bundle.creatives.length} creatives, ${bundle.summary.ads} ads as Meta API payloads, all paused, £${(bundle.summary.dailyBudgetPence / 100).toFixed(2)}/day`);
+    }
+  }
   writeOut(join(root, "09-review-gates.md"), [`# Review gates`, ``, `| Gate | Area | Risk | Guardrail score | Decision | Reviewer | Reason |`, `|---|---|---|---|---|---|---|`, ...pkg.gates.map((g) => `| ${g.gate} | ${g.area} | ${g.risk} | ${g.guardrailScore} | ${g.decision} | ${g.reviewer ?? "—"} | ${g.reason ?? "—"} |`)].join("\n"));
   writeOut(join(root, "10-audit.json"), json(pkg.audit.toJSON()));
   const totals = pkg.audit.totals();
@@ -241,7 +254,7 @@ async function main(): Promise<void> {
       campaign: brief.campaignName,
       status: pkg.status,
       quality: { meanOverall: judgement.meanOverall, verdictCounts: judgement.verdictCounts },
-      cost: { llmCalls: totals.llmCalls, costUsd: totals.costUsd },
+      cost: { llmCalls: totals.llmCalls, costUsd: totals.costUsd, byArea: totals.byArea },
       items: pkg.gates.map((g) => ({ id: `${brief.id}:${g.gate}`, ...g, summary: reviewer.requests.find((r) => r.gate === g.gate)?.summary ?? "", preview: previewFor(g.gate) })),
     }),
   );

@@ -49,7 +49,20 @@ export interface ReviewQueue {
   status: string;
   items: ReviewItem[];
   quality?: { meanOverall: number; verdictCounts: Record<string, number> };
-  cost?: { llmCalls: number; costUsd: number };
+  cost?: { llmCalls: number; costUsd: number; byArea?: Record<string, number> };
+}
+
+export interface ReportsIndex {
+  asOf: string;
+  reports: Array<{ clientId: string; clientName: string; headline: string; verified: boolean; html: string }>;
+}
+
+export interface CommsDraftRecord {
+  question: { id: string; clientId: string; from: string; receivedAt: string; text: string };
+  reply: { category: string; subject: string; reply: string; factsUsed: string[]; needsHumanInput: boolean; escalationReason?: string; confidence: number };
+  guardrails: { ok: boolean; issues: string[] };
+  numbers: { ok: boolean; unverified: string[] };
+  risk: "approve" | "human";
 }
 
 async function getJson<T>(path: string): Promise<T> {
@@ -63,6 +76,8 @@ export const loadDataset = () => getJson<AdsDataset>("/toast/dataset.json");
 export const loadToastBundle = () => getJson<ToastBundle>("/toast/insights.json");
 export const loadAgentRun = () => getJson<AgentRun>("/agent/run.json");
 export const loadReviewQueue = (dir: string) => getJson<ReviewQueue>(`/${dir}/review-queue.json`);
+export const loadReportsIndex = () => getJson<ReportsIndex>("/reports/index.json");
+export const loadCommsDrafts = () => getJson<CommsDraftRecord[]>("/comms/replies.json");
 
 /** Local decision store so the demo review queue remembers clicks; production writes review_gates. */
 const KEY = "ai-studio.decisions";

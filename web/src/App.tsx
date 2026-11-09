@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { loadAgentRun, loadDataset, loadManifest, loadReviewQueue, loadToastBundle } from "./lib/data";
+import { loadAgentRun, loadCommsDrafts, loadDataset, loadManifest, loadReportsIndex, loadReviewQueue, loadToastBundle } from "./lib/data";
 import { ToastView } from "./views/ToastView";
 import { ReviewQueueView } from "./views/ReviewQueueView";
 import { AgentView } from "./views/AgentView";
+import { ReportsView } from "./views/ReportsView";
 import { Empty } from "./components/ui";
 
-type Tab = "toast" | "review" | "agent";
+type Tab = "toast" | "review" | "agent" | "reports";
 
 export function App() {
   const [tab, setTab] = useState<Tab>("toast");
@@ -25,9 +26,9 @@ export function App() {
             <div className="text-xs text-[var(--muted)]">{manifest.data ? `Generated ${manifest.data.generatedAt.slice(0, 16).replace("T", " ")} · provider ${manifest.data.provider} · mock data` : "Loading…"}</div>
           </div>
           <nav className="flex gap-1" aria-label="Sections">
-            {(["toast", "review", "agent"] as Tab[]).map((t) => (
+            {(["toast", "review", "agent", "reports"] as Tab[]).map((t) => (
               <button key={t} type="button" aria-current={tab === t ? "page" : undefined} className={`rounded-md px-3 py-1.5 text-sm font-semibold ${tab === t ? "bg-[var(--accent)] text-black" : "text-[var(--muted)] hover:text-[var(--text)]"}`} onClick={() => setTab(t)}>
-                {t === "toast" ? "Toast" : t === "review" ? "Review queue" : "Ads agent"}
+                {t === "toast" ? "Toast" : t === "review" ? "Review queue" : t === "agent" ? "Ads agent" : "Client reports"}
               </button>
             ))}
           </nav>
@@ -47,9 +48,18 @@ export function App() {
         {tab === "toast" && <ToastTab />}
         {tab === "review" && dir && <ReviewTab dir={dir} />}
         {tab === "agent" && <AgentTab />}
+        {tab === "reports" && <ReportsTab />}
       </main>
     </div>
   );
+}
+
+function ReportsTab() {
+  const index = useQuery({ queryKey: ["reports"], queryFn: loadReportsIndex });
+  const drafts = useQuery({ queryKey: ["comms"], queryFn: loadCommsDrafts });
+  if (index.isLoading || drafts.isLoading) return <Empty>Loading client reports…</Empty>;
+  if (!index.data) return <Empty>No client reports found. Run `npm run reports`.</Empty>;
+  return <ReportsView index={index.data} drafts={drafts.data ?? []} />;
 }
 
 function ToastTab() {

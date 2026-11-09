@@ -89,12 +89,18 @@ The True ROAS "AI Studio" module, in the stack CerealBox already runs: Vite, Rea
 | Toast | `toast/dataset.json`, `toast/insights.json` | KPIs with deltas, spend vs revenue, ROAS vs target, creative types, insights, Ask Toast |
 | Review queue | `<brief>/review-queue.json` + artefact files | Lists every gate with guardrail score; previews ideas, copy, creative PNGs, scripts, UGC manifest, landing iframes, launch plan; approve / reject with a note (localStorage in the demo, `review_gates` in production) |
 | Ads agent | `agent/run.json` | Autonomy ladder, alerts, recommendations by risk tier with approve / reject, morning briefs |
+| Client reports | `reports/index.json`, `comms/replies.json` | Weekly report per client in an iframe with its verified-figures badge; drafted replies with risk tiers and approve-to-send |
 
 In production the JSON loaders become Supabase queries behind Row-Level Security and the approve button calls `run-pipeline-stage` / `ads-agent-execute`.
 
 ## Edge Functions (`supabase/functions/`)
 
 `toast-insights`, `ads-agent-run`, `ads-agent-execute` and `run-pipeline-stage` are Deno handlers that import the pipeline modules directly (sloppy imports enabled in `deno.json`), authenticate with the service-role key and keep every vendor secret server-side. See `supabase/functions/README.md`.
+
+## Learning loop and launch
+
+- **Idea bank** (`src/areas/ideas/bank.ts`): every idea generated for a client is stored (JSON locally, `idea_bank` table in production). The next brief for that client passes them in as previous ideas, so repeats score lower, and the angles selected last time are excluded from generation. A weekly job attaches ad performance so "what worked" is queryable.
+- **Meta launch payloads** (`src/areas/media-buyer/launch.ts`): the launch plan becomes Marketing API objects, all `PAUSED`, budgets in minor units, pixel-based conversion optimisation, placements mapped to positions, UTMs carrying ad name and landing variant. Creation runs from `ads-agent-execute`-style Edge Functions after a human approves the preview.
 
 ## Code layout in this repo
 
@@ -103,9 +109,10 @@ src/core        brief schema · LLM provider (mock/anthropic) · guardrails · r
 src/areas       one folder per area: types (zod) · generate (defineTask) · validate/checks · render
 src/orchestrator the end-to-end pipeline with gates
 src/evals       red team · scorecard · agent recall
-src/cli         demo · toast · agent · eval · video
-web             Vite + React app (Toast · review queue · ads agent) with jsdom tests
-tests           vitest: 229 tests across core, every area, orchestrator, evals, judge, images, video render, automations, CLI, web
+src/cli         demo · toast · agent · eval · video · reports
+web             Vite + React app (Toast · review queue · ads agent · client reports) with jsdom tests
+tests           vitest: 262 tests across core, every area, reporting, comms, idea bank, launch payloads, orchestrator, evals, judge, images, video render, automations, CLI, web; 3 live tests gated on a key
+.github         CI: verify on every push; live smoke test when ANTHROPIC_API_KEY is set
 automations/n8n two importable workflows
 supabase        migration with schema, RLS, pg_cron; four Edge Functions
 samples         two charity briefs and transcribed footage metadata

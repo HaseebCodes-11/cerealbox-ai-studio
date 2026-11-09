@@ -18,13 +18,14 @@
     "toast:ask": "tsx src/cli/toast.ts ask",
     "agent": "tsx src/cli/agent.ts",
     "eval": "tsx src/cli/eval.ts",
-    "verify": "npm run typecheck && npm run typecheck:web && npm test && npm run demo:all && npm run eval && npm run web:build",
+    "verify": "npm run typecheck && npm run typecheck:web && npm test && npm run demo:all && npm run reports && npm run eval && npm run web:build",
     "video": "tsx src/cli/video.ts",
     "web": "vite --config web/vite.config.ts",
     "web:build": "vite build --config web/vite.config.ts",
     "web:preview": "vite preview --config web/vite.config.ts --port 4173",
     "typecheck:web": "tsc -p web/tsconfig.json",
-    "demo:all": "tsx src/cli/demo.ts --brief samples/brief-winter-warmth.json && tsx src/cli/demo.ts --brief samples/brief-food-bank.json"
+    "demo:all": "tsx src/cli/demo.ts --brief samples/brief-winter-warmth.json && tsx src/cli/demo.ts --brief samples/brief-food-bank.json",
+    "reports": "tsx src/cli/reports.ts"
   },
   "keywords": [
     "ai",

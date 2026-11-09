@@ -55,7 +55,25 @@ export function ReviewQueueView({ queue, dir }: { queue: ReviewQueue; dir: strin
             </div>
           </div>
         )}
-        {queue.cost && <div className="mt-2 text-xs text-[var(--muted)]">{queue.cost.llmCalls} model calls · ${queue.cost.costUsd.toFixed(2)} estimated</div>}
+        {queue.cost && (
+          <div className="mt-2 text-xs text-[var(--muted)]">
+            <div>
+              {queue.cost.llmCalls} model calls · ${queue.cost.costUsd.toFixed(2)} estimated
+            </div>
+            {queue.cost.byArea && (
+              <ul className="mt-1 grid grid-cols-2 gap-x-3" data-testid="cost-by-area">
+                {Object.entries(queue.cost.byArea)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([area, usd]) => (
+                    <li key={area} className="flex justify-between">
+                      <span>{area}</span>
+                      <span className="num">${usd.toFixed(3)}</span>
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </div>
+        )}
       </Card>
 
       <Card

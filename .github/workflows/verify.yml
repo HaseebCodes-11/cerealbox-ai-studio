@@ -1,0 +1,39 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Typecheck (node + web), 229 tests incl. a real ffmpeg render, demo for both briefs, evals, web build.
+      - run: npm run verify
+        env:
+          LLM_PROVIDER: mock
+      # With ANTHROPIC_API_KEY set as a repository secret, the live smoke test runs instead of skipping.
+      - run: npx vitest run tests/live
+        if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        env:
+          LLM_PROVIDER: anthropic
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: demo-output
+          path: |
+            out/**/*.md
+            out/**/*.json
+            out/**/*.png
+            out/**/*.html
+            out/**/*.srt
+          retention-days: 14

@@ -5,7 +5,7 @@ import { mergeReports } from "../core/guardrails";
 import type { LLMProvider } from "../core/llm/provider";
 import { PolicyReviewer, type ReviewDecision, type Reviewer, type RiskTier } from "../core/review";
 import { copyGenerationTask, hasMinimumViableCopy, validateCopy, type CopyPack, type CopyValidation } from "../areas/copy";
-import { ideaGenerationTask, rankIdeas, selectIdeas, type IdeaAngle, type RankedIdea } from "../areas/ideas";
+import { ideaGenerationTask, previousIdeaTexts, rankIdeas, recentlyUsedAngles, selectIdeas, toBankEntries, type IdeaAngle, type IdeaBankStore, type RankedIdea } from "../areas/ideas";
 import { checkLandingPage, landingSpecTask, renderLandingPage, variantDiff, type LandingPageSpec } from "../areas/landing";
 import { scriptGenerationTask, validateScript, type Script, type ScriptStyle } from "../areas/scripts";
 import { checkCreative, creativeConceptTask, renderCreative, type CreativeFormatName, type ImageProvider, type RenderedCreative } from "../areas/static";
@@ -41,6 +41,10 @@ export interface PipelineOptions {
   clips?: RawClip[];
   /** Generates photo backgrounds for photo-style creatives; omitted = labelled placeholder. */
   imageProvider?: ImageProvider;
+  /** Remembers every idea per client so novelty scoring and angle rotation work across campaigns. */
+  ideaBank?: IdeaBankStore;
+  /** Date stamp for bank entries (defaults to today). */
+  today?: string;
 }
 
 export interface GateRecord {
@@ -117,17 +121,22 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
     return false;
   };
 
-  // 1. Ideas
+  // 1. Ideas (with memory: the bank supplies previous ideas and recently used angles)
+  const bankEntries = options.ideaBank ? await options.ideaBank.load(brief.client.id) : [];
+  const previousIdeas = [...(options.previousIdeas ?? []), ...previousIdeaTexts(bankEntries)];
+  const excludeAngles = [...new Set([...(options.excludeAngles ?? []), ...(recentlyUsedAngles(bankEntries) as IdeaAngle[])])];
+  if (bankEntries.length) audit.record("note", "ideas", "bank", { previous: bankEntries.length, excludeAngles });
   const ideaResult = await provider.run(ideaGenerationTask, {
     brief,
     count: options.ideaCount ?? 10,
-    previousIdeas: options.previousIdeas ?? [],
-    excludeAngles: options.excludeAngles ?? [],
+    previousIdeas,
+    excludeAngles,
   });
   audit.record("llm_call", "ideas", "generate", { count: ideaResult.output.ideas.length }, ideaResult.usage);
-  const ranked = rankIdeas(ideaResult.output.ideas, brief, { previousIdeas: options.previousIdeas ?? [] });
+  const ranked = rankIdeas(ideaResult.output.ideas, brief, { previousIdeas });
   const selected = selectIdeas(ranked, options.selectCount ?? 3, ["static", "video", "ugc", "landing"]);
   pkg.ideas = { ranked, selected, primary: selected[0] ?? null };
+  if (options.ideaBank) await options.ideaBank.save(toBankEntries(ranked, selected, brief.client.id, brief.id, options.today ?? new Date().toISOString().slice(0, 10)));
   if (!pkg.ideas.primary) {
     pkg.status = "blocked";
     pkg.stoppedAt = "ideas";

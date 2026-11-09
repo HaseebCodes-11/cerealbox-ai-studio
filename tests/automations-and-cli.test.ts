@@ -101,12 +101,18 @@ describe("documentation", () => {
     const roadmap = readFileSync(join(ROOT, "docs/ROADMAP.md"), "utf8");
     for (const milestone of ["2 weeks", "30 days", "60 days", "90 days"]) expect(roadmap, milestone).toContain(milestone);
     expect(readdirSync(join(ROOT, "docs/areas")).filter((f) => f.endsWith(".md"))).toHaveLength(9);
-    for (const f of ["README.md", "docs/DEMO_SCRIPT.md", "docs/ARCHITECTURE.md"]) expect(existsSync(join(ROOT, f)), f).toBe(true);
+    for (const f of ["README.md", "docs/DEMO_SCRIPT.md", "docs/ARCHITECTURE.md", "docs/deck.html", ".github/workflows/verify.yml"]) expect(existsSync(join(ROOT, f)), f).toBe(true);
+    const deck = readFileSync(join(ROOT, "docs/deck.html"), "utf8");
+    for (const area of AREAS) expect(deck, `deck mentions ${area}`).toContain(area);
+    expect((deck.match(/<section class="slide/g) ?? []).length).toBeGreaterThanOrEqual(10);
+    const ci = readFileSync(join(ROOT, ".github/workflows/verify.yml"), "utf8");
+    expect(ci).toContain("npm run verify");
+    expect(ci).toContain("ANTHROPIC_API_KEY");
   });
 
   it("package scripts referenced in the docs exist", () => {
     const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
-    for (const script of ["demo", "toast", "toast:ask", "agent", "eval", "test", "typecheck", "verify"]) expect(pkg.scripts[script], script).toBeTruthy();
+    for (const script of ["demo", "demo:all", "toast", "toast:ask", "agent", "eval", "video", "reports", "web", "web:build", "typecheck", "typecheck:web", "test", "verify"]) expect(pkg.scripts[script], script).toBeTruthy();
   });
 });
 
@@ -133,6 +139,34 @@ describe("CLI end to end", () => {
     for (const f of ["toast/dashboard.html", "toast/insights.md", "toast/ask-toast.md", "agent/recommendations.md", "agent/alerts.md", "agent/briefs.md"]) expect(existsSync(join(out, f)), f).toBe(true);
     const summary = readFileSync(join(brief, "SUMMARY.md"), "utf8");
     expect(summary).toContain("Pipeline status: **complete**");
+    for (const f of ["11-quality-judgement.md", "review-queue.json", "08-meta-payloads.json"]) expect(existsSync(join(brief, f)), f).toBe(true);
+    expect(existsSync(join(out, "manifest.json"))).toBe(true);
+    expect(existsSync(join(out, "idea-bank.json"))).toBe(true);
+    const payloads = JSON.parse(readFileSync(join(brief, "08-meta-payloads.json"), "utf8"));
+    expect(payloads.summary.allPaused).toBe(true);
+    const queue = JSON.parse(readFileSync(join(brief, "review-queue.json"), "utf8"));
+    expect(queue.items).toHaveLength(7);
+    expect(Object.keys(queue.cost.byArea).length).toBeGreaterThan(3);
+  }, 120_000);
+
+  it("a second demo run remembers the first through the idea bank", () => {
+    const stdout = run("demo.ts");
+    expect(stdout).toMatch(/Idea bank: \d+ previous ideas for Hearthline/);
+    const bank = JSON.parse(readFileSync(join(out, "idea-bank.json"), "utf8"));
+    expect(bank.length).toBeGreaterThanOrEqual(20);
+  }, 120_000);
+
+  it("reports CLI writes verified client reports and drafted replies", () => {
+    const stdout = run("reports.ts");
+    expect(stdout).not.toContain("UNVERIFIED");
+    expect(stdout).toContain("Client comms drafts");
+    const index = JSON.parse(readFileSync(join(out, "reports/index.json"), "utf8"));
+    expect(index.reports).toHaveLength(6);
+    expect(index.reports.every((r: { verified: boolean }) => r.verified)).toBe(true);
+    for (const r of index.reports) expect(existsSync(join(out, r.html)), r.html).toBe(true);
+    const drafts = JSON.parse(readFileSync(join(out, "comms/replies.json"), "utf8"));
+    expect(drafts).toHaveLength(7);
+    expect(drafts.filter((d: { risk: string }) => d.risk === "human")).toHaveLength(3);
   }, 120_000);
 
   it("toast ask answers from the command line", () => {

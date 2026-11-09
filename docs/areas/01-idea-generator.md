@@ -49,7 +49,8 @@ flowchart LR
 
 - `src/areas/ideas/` · tests in `tests/areas/ideas.test.ts`
 - `npm run demo` → `out/<brief>/01-ideas.md` (ranked table + the shortlist in full)
-- Mock generator writes one template per angle from the brief; with `LLM_PROVIDER=anthropic` the model writes them.
+- Mock generator writes one template per angle from the brief's creative context; with `LLM_PROVIDER=anthropic` the model writes them.
+- The idea bank (`bank.ts`) persists across runs (`out/idea-bank.json` locally, `idea_bank` table in production). Run the demo twice: the second run excludes the angles selected last time and marks down ideas that overlap stored ones.
 
 ## Improvements next
 

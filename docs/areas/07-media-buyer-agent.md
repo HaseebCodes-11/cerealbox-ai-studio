@@ -65,4 +65,4 @@ Every execution is idempotent (same change twice is a no-op), dry-run by default
 
 - Learn thresholds per client from historical outcomes of accepted vs rejected recommendations.
 - Creative-level attribution from True ROAS so "refresh creative" can say which angle to refresh with.
-- Launch assistant: build campaigns from the launch plan via the API with a diff preview.
+- Launch assistant: `launch.ts` already turns the launch plan into Marketing API payloads (campaign, ad sets, creatives, ads; all paused; budgets in pence; UTMs per landing variant). Next is the diff preview in the review screen and creation through an Edge Function after approval.

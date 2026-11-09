@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CerealBox · AI Automation Challenge · Haseeb Metla</title>
+<style>
+  :root { --bg:#0f1115; --panel:#171a21; --text:#e8eaf0; --muted:#9aa3b5; --accent:#f2b134; --good:#3ddc84; --bad:#ff6b6b; --info:#5aa9ff; --border:#2a2f3d; }
+  * { box-sizing:border-box; }
+  html, body { height:100%; margin:0; background:var(--bg); color:var(--text); font-family: Inter, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .deck { height:100%; display:flex; flex-direction:column; }
+  .slide { display:none; flex:1; padding:48px 64px; flex-direction:column; justify-content:center; max-width:1200px; margin:0 auto; width:100%; }
+  .slide.active { display:flex; }
+  h1 { font-size:44px; margin:0 0 12px; line-height:1.1; }
+  h2 { font-size:34px; margin:0 0 20px; line-height:1.15; }
+  h3 { font-size:18px; margin:18px 0 6px; color:var(--accent); text-transform:uppercase; letter-spacing:.6px; }
+  p, li { font-size:20px; line-height:1.5; }
+  li { margin:6px 0; }
+  .muted { color:var(--muted); }
+  .kicker { color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:14px; margin-bottom:12px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px 20px; }
+  .card b { display:block; font-size:16px; color:var(--accent); margin-bottom:6px; }
+  .card p { font-size:16px; margin:0; color:var(--text); }
+  table { width:100%; border-collapse:collapse; font-size:17px; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--muted); font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.5px; }
+  .pill { display:inline-block; border-radius:999px; padding:2px 10px; font-size:13px; font-weight:700; }
+  .ai { background:rgba(90,169,255,.18); color:var(--info);} .code { background:rgba(61,220,132,.18); color:var(--good);} .human { background:rgba(242,177,52,.2); color:var(--accent);}
+  .flow { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:16px 0; }
+  .flow span { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px 14px; font-size:16px; }
+  .flow em { color:var(--muted); font-style:normal; }
+  .big { font-size:72px; font-weight:800; color:var(--accent); line-height:1; }
+  footer { display:flex; justify-content:space-between; align-items:center; padding:12px 24px; border-top:1px solid var(--border); color:var(--muted); font-size:13px; }
+  footer button { background:none; border:1px solid var(--border); color:var(--text); border-radius:8px; padding:6px 12px; cursor:pointer; margin-left:8px; }
+  code { background:rgba(255,255,255,.08); padding:2px 6px; border-radius:6px; font-size:.9em; }
+  @media (max-width:900px) { .slide { padding:28px 20px; } .grid2, .grid3 { grid-template-columns:1fr; } h1 { font-size:32px; } h2 { font-size:26px; } p, li { font-size:17px; } }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide active">
+  <div class="kicker">CerealBox Agency · AI Automation &amp; Creative Workflow Challenge</div>
+  <h1>One brief in. Nine workflows out.<br>AI proposes, code checks, humans decide.</h1>
+  <p class="muted">Haseeb Metla · November 2026 · a working prototype, 260+ tests, and a plan for the first 90 days</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">The idea in one picture</div>
+  <h2>A campaign brief flows through every stage; every arrow has the same three things</h2>
+  <div class="flow">
+    <span>Brief</span><em>→</em><span>Ideas</span><em>→</em><span>Copy</span><em>→</em><span>Statics</span><em>·</em><span>Scripts</span><em>→</em><span>UGC</span><em>·</em><span>Video edit</span><em>→</em><span>Landing pages</span><em>→</em><span>Launch plan</span><em>→</em><span>Ads agent</span><em>⇄</em><span>Toast</span><em>→ back to Ideas</em>
+  </div>
+  <div class="grid3">
+    <div class="card"><b>Typed schema</b><p>Every model call returns JSON that matches a Zod schema (Claude structured outputs). Malformed output never reaches a person.</p></div>
+    <div class="card"><b>Deterministic guardrails</b><p>Claims, pressure language, placeholders, PII, banned words, limits, invented statistics. Block / warn / info.</p></div>
+    <div class="card"><b>Human gate</b><p>Auto · one-click approve · human decision. The pipeline stops at a pending gate. Everything is in the audit log with cost.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Principles</div>
+  <h2>How I decided what the machine does and what people do</h2>
+  <ul>
+    <li><span class="pill ai">AI</span> touches text and suggestions: ideas, copy, specs, scripts, captions, narratives, drafts.</li>
+    <li><span class="pill code">Code</span> touches numbers and structure: limits, contrast, pacing, every metric, every rule that moves budget.</li>
+    <li><span class="pill human">Humans</span> touch brand, money and people: shortlist, approve, pause, publish, send.</li>
+    <li>Deterministic mock first, real model second: offline, reproducible, free; switching to Claude is one environment variable.</li>
+    <li>Autonomy is earned per client: assist → copilot → autopilot, inside hard caps.</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <div class="kicker">Areas 1–4</div>
+  <h2>Ideas, copy, statics, scripts</h2>
+  <table>
+    <tr><th>Area</th><th>AI does</th><th>Code checks</th><th>Human decides</th></tr>
+    <tr><td><b>Idea Generator</b></td><td>10 ideas, each on a named angle (12 angles), grounded in objections and proof points</td><td>Novelty vs the idea bank, duplicates demoted, brand fit</td><td>Picks the shortlist</td></tr>
+    <tr><td><b>Copywriting</b></td><td>Hooks, headlines, 3 primary texts, descriptions, overlays, pillars</td><td>Meta limits, claims, PII, facts, voice; blocked variants removed</td><td>Approves the pack</td></tr>
+    <tr><td><b>Static Creative</b></td><td>Creative spec + image prompt; background image</td><td>Template render, WCAG contrast, text coverage, Stories safe zones, overflow</td><td>Approves, picks photo</td></tr>
+    <tr><td><b>Script Writing</b></td><td>Beats with voiceover, on-screen text, visuals, b-roll</td><td>Hook in 3s, VO fits at 150 wpm, structure, disclosure flag</td><td>Approves, picks styles</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <div class="kicker">Areas 5–8</div>
+  <h2>UGC, video editing, ads agent, landing pages</h2>
+  <table>
+    <tr><th>Area</th><th>AI does</th><th>Code checks</th><th>Human decides</th></tr>
+    <tr><td><b>UGC Video</b></td><td>Casts a persona, drafts shot list</td><td>Testimonials are never synthetic; disclosure; render blocked until gates pass</td><td>Persona, rough cut, final</td></tr>
+    <tr><td><b>Video Editing</b></td><td>Matches beats to transcribed clips</td><td>EDL, SRT captions, pacing, shell-free ffmpeg render (real MP4)</td><td>Reviews rough cut</td></tr>
+    <tr><td><b>Media Buyer / Ads Agent</b></td><td>Writes the morning brief; explains and prioritises</td><td>7 rules → risk-tiered recommendations; caps; idempotent execution; audit</td><td>Approves budget moves, decides pauses</td></tr>
+    <tr><td><b>Landing Pages</b></td><td>Page spec A/B with one hypothesis</td><td>1 H1, CTA above fold, alt text, amounts = tiers, Gift Aid, charity no., UTMs</td><td>Approves, picks the test</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <div class="kicker">Area 9 and beyond</div>
+  <h2>Toast: numbers from code, words from the model</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li>Aggregation layer: client, campaign, ad set, ad, creative type; period comparison; daily series; z-score anomalies; pacing.</li>
+        <li>Rule-based insights with exact figures → Claude narrates them, nothing else.</li>
+        <li><b>Ask Toast</b>: the model turns a question into a typed intent; code answers it with sources.</li>
+        <li>Daily digest to Slack via n8n; critical insights page the media buyer.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>From the job description</h3>
+      <ul>
+        <li><b>Client reports</b>: weekly client-safe report per charity; every figure verified against the data before it renders.</li>
+        <li><b>Client comms</b>: drafted replies from real figures; billing, complaints and off-topic questions escalate with a reason; a human sends.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Live demo</div>
+  <h2>What you will see</h2>
+  <div class="grid2">
+    <div class="card"><b>npm run demo:all</b><p>Two charity briefs → ideas, copy, PNG creatives, scripts, UGC manifest, edit plan, A/B landing pages, Meta launch payloads, review gates, judge scores, costs.</p></div>
+    <div class="card"><b>npm run web</b><p>The AI Studio module in your stack (Vite, React, Tailwind, TanStack Query): Toast, review queue with artefact previews, ads agent with the autonomy ladder, client reports.</p></div>
+    <div class="card"><b>npm run video</b><p>A real MP4: transcript-matched cuts, burned captions in the safe zone, ducked music, brand end card.</p></div>
+    <div class="card"><b>npm run eval</b><p>Red team 20/20, scorecards complete for both briefs, agent recall 100% with zero false positives, judge: no rejects.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Quality controls</div>
+  <h2>How bad outputs are stopped before a human sees them</h2>
+  <ul>
+    <li>Structured outputs + schema re-validation on every call; refusals and truncation raise typed errors.</li>
+    <li>Allowed-facts rule: the only numbers accepted are the brief's proof points, tiers, match line and statutory facts (Gift Aid 25%).</li>
+    <li>Guardrails for the Fundraising Regulator code: no guarantees, pressure or guilt framing, US tax framing, superlatives.</li>
+    <li>Visual and structural QA on creatives and pages; number verification on client reports and replies.</li>
+    <li>Evals in CI: red team, scorecards, agent scenario recall, LLM-as-judge. A regression does not merge.</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <div class="kicker">Maintenance · scale · cost</div>
+  <h2>Built to be kept, not demoed once</h2>
+  <div class="grid3">
+    <div class="card"><b>Maintenance</b><p>Every AI step is a named task with schema, prompt, mock and effort. Provider and model are environment variables. Telemetry tables record tokens, cost, latency, schema validity and gate rejection rates.</p></div>
+    <div class="card"><b>Scale</b><p>Everything keyed by client behind Row-Level Security; the brief carries voice, palette and compliance notes, so one pipeline serves 30 charities. Thresholds are per-client data, not code.</p></div>
+    <div class="card"><b>Cost</b><p>About $0.16 per campaign package and $0.02 per daily agent run at Opus list prices. Model cost is not the constraint; vendor media (£25–40 synthetic UGC vs £350 creator) and people time are.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Roadmap</div>
+  <h2>First 90 days, ordered by clean data and who feels the win first</h2>
+  <table>
+    <tr><th>When</th><th>Ship</th><th>Done when</th></tr>
+    <tr><td><b>2 weeks</b></td><td>Toast insights + Ask Toast in True ROAS on real data; agent in assist on 2 clients; CI with evals</td><td>Figures match existing reports to the penny; buyers rate digests ≥ 4/5</td></tr>
+    <tr><td><b>30 days</b></td><td>Brief form, idea bank, copy packs with the review screen; agent to copilot for pilots</td><td>3 campaigns launched from AI shortlists with zero compliance flags</td></tr>
+    <tr><td><b>60 days</b></td><td>Brand kits, statics on templates with one image vendor, landing pages on Vercel with A/B attribution, client reports</td><td>2 live A/B tests; AI-assisted statics within 10% of controls</td></tr>
+    <tr><td><b>90 days</b></td><td>Scripts, UGC with one creator and one avatar vendor, editing worker; autopilot for 2 clients inside caps</td><td>Editor time per video down ≥ 40%; zero cap breaches</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <div class="kicker">Next</div>
+  <h2>If I joined</h2>
+  <ul>
+    <li>Week one: wire Toast to the real metrics table and ship the digest; the media buyers feel it on day two.</li>
+    <li>Close the loop: creative performance writes back into the idea bank so "what worked" shapes the next brief automatically.</li>
+    <li>Internal assistant: Ask Toast that answers anything about any client, with tool-use chaining.</li>
+    <li>Honest limits today: offline content is template-seeded, image/avatar/voice/Meta are adapters with mocks, video renders on stand-in footage.</li>
+  </ul>
+  <p class="muted" style="margin-top:24px">Repository: <code>cerealbox-ai-studio</code> · <code>npm install &amp;&amp; npm run verify</code></p>
+</section>
+
+</div>
+<footer>
+  <span id="counter">1 / 11</span>
+  <span>← → or space to move · <button type="button" onclick="go(-1)">Prev</button><button type="button" onclick="go(1)">Next</button></span>
+</footer>
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = Math.max(0, Math.min(slides.length - 1, parseInt(location.hash.replace('#', ''), 10) - 1 || 0));
+  function show() {
+    slides.forEach(function (s, k) { s.classList.toggle('active', k === i); });
+    document.getElementById('counter').textContent = (i + 1) + ' / ' + slides.length;
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  function go(d) { i = Math.max(0, Math.min(slides.length - 1, i + d)); show(); }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
+  });
+  show();
+</script>
+</body>
+</html>
