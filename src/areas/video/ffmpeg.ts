@@ -22,8 +22,10 @@ export interface PlanOptions {
   srtPath?: string;
   /** Path of the music bed; defaults to <workDir>/music-<mood>.m4a. */
   musicPath?: string;
-  /** Replace the drawtext filter with plain colour cards (for ffmpeg builds without fontconfig). */
+  /** Replace the drawtext filter with plain colour cards (for ffmpeg builds without libfreetype). */
   noText?: boolean;
+  /** Skip burning captions (for ffmpeg builds without libass); the SRT sidecar still ships. */
+  noCaptions?: boolean;
 }
 
 const AUDIO = ["-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "128k"];
@@ -85,17 +87,19 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
     ]),
   );
 
-  const captioned = `${workDir}/${edl.id}-captioned.mp4`;
-  steps.push(
-    step(
-      "burn captions",
-      // SRT is converted to ASS with PlayRes 384x288, so style values are in those units and libass scales them to the frame.
-      ["-y", "-i", assembled, "-vf", `subtitles=${escapeFilterPath(srtPath)}:force_style='${captionStyle(width, height)}'`, "-c:v", "libx264", "-preset", "fast", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "copy", captioned],
-      [captioned],
-    ),
-  );
-
-  let current = captioned;
+  let current = assembled;
+  if (!options.noCaptions) {
+    const captioned = `${workDir}/${edl.id}-captioned.mp4`;
+    steps.push(
+      step(
+        "burn captions",
+        // SRT is converted to ASS with PlayRes 384x288, so style values are in those units and libass scales them to the frame.
+        ["-y", "-i", assembled, "-vf", `subtitles=${escapeFilterPath(srtPath)}:force_style='${captionStyle(width, height)}'`, "-c:v", "libx264", "-preset", "fast", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "copy", captioned],
+        [captioned],
+      ),
+    );
+    current = captioned;
+  }
   if (edl.music) {
     const mixed = `${workDir}/${edl.id}-mixed.mp4`;
     const musicPath = options.musicPath ?? `${workDir}/music-${slug(edl.music.mood)}.m4a`;

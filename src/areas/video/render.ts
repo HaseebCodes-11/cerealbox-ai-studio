@@ -35,6 +35,25 @@ export async function ffmpegAvailable(path = resolveFfmpeg()): Promise<boolean> 
   }
 }
 
+export interface FfmpegFeatures {
+  /** drawtext needs libfreetype; absent from some static Linux builds. */
+  drawtext: boolean;
+  /** subtitles needs libass; absent from some static Linux builds. */
+  subtitles: boolean;
+}
+
+/** Ask the binary which filters it was built with so plans can degrade gracefully. */
+export async function detectFfmpegFeatures(path = resolveFfmpeg()): Promise<FfmpegFeatures> {
+  if (!path) return { drawtext: false, subtitles: false };
+  try {
+    const { stdout } = await execFileAsync(path, ["-hide_banner", "-filters"], { windowsHide: true, maxBuffer: 10 * 1024 * 1024 });
+    const has = (name: string) => new RegExp(`\\s${name}\\s`).test(stdout);
+    return { drawtext: has("drawtext"), subtitles: has("subtitles") };
+  } catch {
+    return { drawtext: false, subtitles: false };
+  }
+}
+
 export interface ExecutedStep {
   name: string;
   ok: boolean;

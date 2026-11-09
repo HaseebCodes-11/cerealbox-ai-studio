@@ -12,7 +12,7 @@ import { getProvider } from "../core/llm";
 import { ideaGenerationTask, rankIdeas, selectIdeas } from "../areas/ideas";
 import { copyGenerationTask } from "../areas/copy";
 import { scriptGenerationTask, type ScriptStyle } from "../areas/scripts";
-import { analysePacing, buildEdl, buildFfmpegPlan, clipSelectionTask, executeRenderPlan, ffmpegAvailable, generateSyntheticFootage, probeDurationSeconds, resolveFfmpeg, toSrt } from "../areas/video";
+import { analysePacing, buildEdl, buildFfmpegPlan, clipSelectionTask, detectFfmpegFeatures, executeRenderPlan, ffmpegAvailable, generateSyntheticFootage, probeDurationSeconds, resolveFfmpeg, toSrt } from "../areas/video";
 import { arg, heading, json, loadBrief, loadClips, outDir, writeOut } from "./shared";
 
 async function main(): Promise<void> {
@@ -28,7 +28,8 @@ async function main(): Promise<void> {
     console.error("ffmpeg is not available. Install ffmpeg or `npm install` (ffmpeg-static).");
     process.exit(2);
   }
-  console.log(`ffmpeg: ${ffmpeg}`);
+  const features = await detectFfmpegFeatures(ffmpeg!);
+  console.log(`ffmpeg: ${ffmpeg} · drawtext ${features.drawtext ? "yes" : "no (plain cards)"} · subtitles ${features.subtitles ? "yes" : "no (SRT sidecar only)"}`);
 
   const ideas = await provider.run(ideaGenerationTask, { brief, count: 10, previousIdeas: [], excludeAngles: [] });
   const idea = selectIdeas(rankIdeas(ideas.output.ideas, brief), 1, ["ugc"])[0]!;
@@ -41,11 +42,11 @@ async function main(): Promise<void> {
   const srtPath = `${edl.id}.srt`;
   writeOut(join(dir, srtPath), toSrt(edl.captions));
   const musicPath = `music-${edl.music ? edl.music.mood.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "none"}.m4a`;
-  const plan = buildFfmpegPlan(edl, clips, { workDir: ".", srtPath, musicPath });
+  const plan = buildFfmpegPlan(edl, clips, { workDir: ".", srtPath, musicPath, noText: !features.drawtext, noCaptions: !features.subtitles });
   writeOut(join(dir, "plan.json"), json(plan));
 
   console.log(`Generating synthetic footage for ${clips.length} clips…`);
-  await generateSyntheticFootage(clips, { cwd: dir, ffmpegPath: ffmpeg!, musicPath, musicSeconds: Math.ceil(edl.durationSec) + 5 });
+  await generateSyntheticFootage(clips, { cwd: dir, ffmpegPath: ffmpeg!, musicPath, musicSeconds: Math.ceil(edl.durationSec) + 5, noText: !features.drawtext });
 
   console.log(`Executing ${plan.length} render steps…`);
   const result = await executeRenderPlan(plan, {
