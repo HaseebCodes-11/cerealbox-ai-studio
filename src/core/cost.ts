@@ -20,6 +20,32 @@ export function estimateCostUsd(inputTokens: number, outputTokens: number, model
   return (inputTokens * price.input + outputTokens * price.output) / 1_000_000;
 }
 
+/**
+ * Minimum prompt-prefix length the API will cache, per model (tokens). Below
+ * it `cache_control` is accepted and silently ignored. Source: Anthropic
+ * prompt-caching reference, "minimum cacheable prompt length" (512 on the
+ * current Opus/Sonnet/Haiku 5.x models).
+ */
+export const CACHE_MIN_TOKENS: Record<string, number> = {
+  "claude-opus-5-5": 512,
+  "claude-sonnet-5-5": 512,
+  "claude-haiku-5-5": 512,
+};
+export const DEFAULT_CACHE_MIN_TOKENS = 512;
+
+export interface Cacheability {
+  estimatedTokens: number;
+  minimumTokens: number;
+  cacheable: boolean;
+}
+
+/** Whether a system prompt is long enough for prompt caching to engage on the given model (COST-01). */
+export function promptCacheability(systemPrompt: string, model: string = DEFAULT_MODEL): Cacheability {
+  const estimatedTokens = estimateTokens(systemPrompt);
+  const minimumTokens = CACHE_MIN_TOKENS[model] ?? DEFAULT_CACHE_MIN_TOKENS;
+  return { estimatedTokens, minimumTokens, cacheable: estimatedTokens >= minimumTokens };
+}
+
 export function formatUsd(value: number): string {
   return `$${value.toFixed(value < 0.01 ? 4 : 2)}`;
 }

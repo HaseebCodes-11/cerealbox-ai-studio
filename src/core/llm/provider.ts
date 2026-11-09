@@ -23,6 +23,10 @@ export interface LLMTask<I, O> {
   prompt: (input: I) => string;
   mock: (input: I, ctx: MockContext) => O;
   effort?: "low" | "medium" | "high";
+  /** Pin this task to a model regardless of the environment's tier routing. */
+  model?: string;
+  /** Output ceiling for this task; defaults to DEFAULT_MAX_OUTPUT_TOKENS. Small tasks should set a small ceiling. */
+  maxOutputTokens?: number;
 }
 
 export interface LLMUsage {

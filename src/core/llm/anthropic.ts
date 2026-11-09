@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { DEFAULT_MODEL, estimateCostUsd } from "../cost";
+import { resolveMaxOutputTokens, resolveModel, routingFromEnv, type RoutingEnv } from "./routing";
 import { LLMOutputError, type LLMProvider, type LLMResult, type LLMTask } from "./provider";
 
 /**
@@ -14,17 +15,20 @@ export class AnthropicProvider implements LLMProvider {
   readonly name = "anthropic";
   private readonly client: Anthropic;
   private readonly model: string;
+  private readonly routing: RoutingEnv;
 
-  constructor(options: { model?: string; client?: Anthropic } = {}) {
+  constructor(options: { model?: string; client?: Anthropic; routing?: RoutingEnv } = {}) {
     this.client = options.client ?? new Anthropic();
     this.model = options.model ?? process.env.ANTHROPIC_MODEL ?? DEFAULT_MODEL;
+    this.routing = options.routing ?? routingFromEnv();
   }
 
   async run<I, O>(task: LLMTask<I, O>, input: I): Promise<LLMResult<O>> {
     const started = Date.now();
+    const model = resolveModel(task, this.routing, this.model);
     const response = await this.client.beta.messages.parse({
-      model: this.model,
-      max_tokens: 16000,
+      model,
+      max_tokens: resolveMaxOutputTokens(task),
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
       system: [{ type: "text", text: task.system, cache_control: { type: "ephemeral" } }],
@@ -67,7 +71,7 @@ export class AnthropicProvider implements LLMProvider {
         model: response.model,
         inputTokens,
         outputTokens,
-        costUsd: estimateCostUsd(inputTokens, outputTokens, this.model),
+        costUsd: estimateCostUsd(inputTokens, outputTokens, model),
         latencyMs: Date.now() - started,
       },
     };

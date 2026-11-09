@@ -3,6 +3,7 @@ import type { LLMProvider } from "./provider";
 
 export * from "./provider";
 export { MockProvider, stableStringify } from "./mock";
+export * from "./routing";
 
 /**
  * Pick the provider from the environment. Defaults to the deterministic mock

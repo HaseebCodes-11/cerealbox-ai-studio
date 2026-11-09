@@ -44,6 +44,8 @@ export interface PipelineOptions {
   /** Remembers every idea per client so novelty scoring and angle rotation work across campaigns. */
   ideaBank?: IdeaBankStore;
   /** Date stamp for bank entries (defaults to today). */
+  /** Stop (status "blocked", stoppedAt "budget") once estimated model spend exceeds this many USD. Unset: no limit. */
+  budgetUsd?: number;
   today?: string;
 }
 
@@ -104,6 +106,18 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
   };
 
   const gate = async <T>(name: string, area: string, artefact: T, report: GuardrailReport | undefined, risk: RiskTier, summary: string): Promise<boolean> => {
+    // Spend guard (COST-04): a runaway or mispriced run stops at the next gate instead of continuing to spend.
+    if (options.budgetUsd !== undefined) {
+      const spent = audit.totals().costUsd;
+      if (spent > options.budgetUsd) {
+        const reason = `Model spend $${spent.toFixed(4)} exceeded the $${options.budgetUsd.toFixed(2)} budget before ${name}`;
+        gates.push({ gate: name, area, risk, guardrailScore: report?.score ?? 100, decision: "rejected", reviewer: "budget", reason });
+        audit.record("error", area, name, { reason, spent, budgetUsd: options.budgetUsd });
+        pkg.status = "blocked";
+        pkg.stoppedAt = "budget";
+        return false;
+      }
+    }
     // A hard guardrail block is not a reviewer's call to overturn: it can only be regenerated or rejected.
     if (report && !report.ok) {
       const blockers = report.issues.filter((i) => i.severity === "block").map((i) => `${i.rule}: ${i.message}`);

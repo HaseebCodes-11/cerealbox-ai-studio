@@ -1,5 +1,6 @@
 import { Rng, hashString } from "../rng";
 import { DEFAULT_MODEL, estimateCostUsd, estimateTokens } from "../cost";
+import { resolveModel, routingFromEnv, type RoutingEnv } from "./routing";
 import { LLMOutputError, type LLMProvider, type LLMResult, type LLMTask } from "./provider";
 
 /**
@@ -12,10 +13,12 @@ export class MockProvider implements LLMProvider {
   readonly name = "mock";
   private readonly seed: string;
   private readonly pricingModel: string;
+  private readonly routing: RoutingEnv;
 
-  constructor(options: { seed?: string; pricingModel?: string } = {}) {
+  constructor(options: { seed?: string; pricingModel?: string; routing?: RoutingEnv } = {}) {
     this.seed = options.seed ?? "cerealbox";
     this.pricingModel = options.pricingModel ?? DEFAULT_MODEL;
+    this.routing = options.routing ?? routingFromEnv();
   }
 
   async run<I, O>(task: LLMTask<I, O>, input: I): Promise<LLMResult<O>> {
@@ -33,15 +36,16 @@ export class MockProvider implements LLMProvider {
     const promptText = `${task.system}\n${task.prompt(input)}`;
     const inputTokens = estimateTokens(promptText);
     const outputTokens = estimateTokens(JSON.stringify(parsed.data));
+    const model = resolveModel(task, this.routing, this.pricingModel);
     return {
       taskName: task.name,
       output: parsed.data,
       usage: {
         provider: this.name,
-        model: this.pricingModel,
+        model,
         inputTokens,
         outputTokens,
-        costUsd: estimateCostUsd(inputTokens, outputTokens, this.pricingModel),
+        costUsd: estimateCostUsd(inputTokens, outputTokens, model),
         latencyMs: Date.now() - started,
       },
     };
