@@ -10,13 +10,14 @@ One campaign brief flows through nine stages (ideas → copy → statics → scr
 - **20-minute demo script:** [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)
 - **How it fits Supabase / React / Vercel / n8n:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - **Production risk catalogue (120 edge-case scenarios; 41 bugs found and fixed, each pinned by a test):** [docs/PRODUCTION_RISKS.md](docs/PRODUCTION_RISKS.md)
+- **Production risk pass 2 (133 deeper scenarios: evasions, compliance gaps, tool disagreements, leaking state; 59 defects catalogued, open):** [docs/PRODUCTION_RISKS_2.md](docs/PRODUCTION_RISKS_2.md)
 - **Security, performance, cost and tech-debt audit (with proof, and every improvement guarded by golden-output tests):** [docs/AUDIT.md](docs/AUDIT.md)
 
 ## Quick start
 
 ```bash
 npm install
-npm run verify        # typecheck (node + web) · 466 tests · demo for both briefs · client reports · evals · web build + bundle budget
+npm run verify        # typecheck (node + web) · 599 tests · demo for both briefs · client reports · evals · web build + bundle budget
 ```
 
 Or step by step:

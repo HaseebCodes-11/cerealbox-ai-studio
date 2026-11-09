@@ -43,6 +43,7 @@ Every arrow passes through three things: a **typed schema** (the model must retu
 | How it fits the stack (Supabase, React, Vercel, n8n) | `docs/ARCHITECTURE.md`, `supabase/migrations/`, `automations/n8n/` |
 | Proof it works | `npm test` (384 tests, node + browser), `npm run eval` (red team, scorecard, agent recall, LLM-as-judge), CI on every push |
 | How it was hardened | `docs/PRODUCTION_RISKS.md`: 120 production scenarios tested, 41 bugs found, every one fixed with its test kept as a regression guard |
+| Second breakage pass | `docs/PRODUCTION_RISKS_2.md`: 133 further scenarios across every feature; 59 defects found and catalogued by severity, each pinned by a test that flips to a hard failure when fixed |
 | Security, performance, cost and tech-debt audit | `docs/AUDIT.md`: every finding with its proof; improvements landed behind golden-output tests that pin every generated artefact byte-for-byte |
 | Interview slides | `docs/deck.html` (open in a browser, arrow keys to move) |
 
