@@ -43,6 +43,7 @@ Every arrow passes through three things: a **typed schema** (the model must retu
 | How it fits the stack (Supabase, React, Vercel, n8n) | `docs/ARCHITECTURE.md`, `supabase/migrations/`, `automations/n8n/` |
 | Proof it works | `npm test` (384 tests, node + browser), `npm run eval` (red team, scorecard, agent recall, LLM-as-judge), CI on every push |
 | How it was hardened | `docs/PRODUCTION_RISKS.md`: 120 production scenarios tested, 41 bugs found, every one fixed with its test kept as a regression guard |
+| Security, performance, cost and tech-debt audit | `docs/AUDIT.md`: every finding with its proof; improvements landed behind golden-output tests that pin every generated artefact byte-for-byte |
 | Interview slides | `docs/deck.html` (open in a browser, arrow keys to move) |
 
 ---
@@ -131,6 +132,8 @@ How I reduce bad outputs, hallucinations and poor creative:
 ### Knowing where the edges are
 
 Before calling anything production-ready I ran a deliberate breakage pass: 120 scenarios across hostile brief input, guardrail false negatives and false positives, renderer limits, bad footage and model mistakes, re-synced ad data, misbehaving reviewers, client emails and CLI misuse. 76 passed first time; 41 bugs were found, catalogued by severity in `docs/PRODUCTION_RISKS.md`, and then fixed in product code without touching the tests, so the 120 scenarios now stand as regression guards. The S1 items (money and trust) were fixed first: duplicate-row double counting, an ads client with no timeout, an unvalidated autonomy flag, two guardrail gaps on invented statistics, a third-party form action, `javascript:` URLs, a rubber-stamp approval path and a zero-data client reply.
+
+A second pass audited the result for security, performance, cost and tech debt (`docs/AUDIT.md`). It found no critical defects and one production-breaking configuration gap (the scheduled jobs sent no auth header, so every Edge Function would have rejected them), plus hardening items (constant-time secret checks, a validated Meta write path, image-vendor response validation, sandboxed previews, atomic idea-bank writes, least-privilege CI), a render pipeline that was twice as slow as it needed to be, prompt caching that could never engage, and seventeen duplicated helpers. Every improvement landed behind a golden-output suite that pins every generated artefact byte-for-byte, so the proof that nothing changed is a passing test, not a claim.
 
 ## 7. Maintenance
 

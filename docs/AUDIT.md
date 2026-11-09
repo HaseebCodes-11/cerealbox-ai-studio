@@ -19,7 +19,7 @@ The **Improvement log** at the end records which findings were fixed in this pas
 
 ## 0. Safety net used for every change in this pass
 
-Before any product file was touched, `tests/golden/golden.test.ts` captured the complete deterministic output of the system for both sample briefs: the full campaign package (ideas, copy, creative SVGs, scripts, UGC manifest, EDL, ffmpeg plan, landing HTML, launch plan, Meta payloads, every review-gate decision, every audit event and cost total), the Toast dataset/insights/narrative/dashboard/Ask-Toast answers, the media buyer agent at all three autonomy levels (dry and live against the mock client), every client report and comms draft, and the eval suite. Large blobs are pinned by SHA-256, timing fields are stripped. The fixtures live in `tests/golden/fixtures/` (430 KB) and were verified to be byte-identical across repeated runs before the first change was made.
+Before any product file was touched, `tests/golden/golden.test.ts` captured the complete deterministic output of the system for both sample briefs: the full campaign package (ideas, copy, creative SVGs, scripts, UGC manifest, EDL, ffmpeg plan, landing HTML, launch plan, Meta payloads, every review-gate decision, every audit event and cost total), the Toast dataset/insights/narrative/dashboard/Ask-Toast answers, the media buyer agent at all three autonomy levels (dry and live against the mock client), every client report and comms draft, and the eval suite. Large blobs are pinned by SHA-256, timing fields are stripped. The fixtures live in `tests/golden/fixtures/` (430 KB) and were verified to be byte-identical across repeated runs before the first change was made. After the pass the suite is 54 files / 466 tests, 463 passing and 3 live tests skipped without a key (was 38 / 384); every new test is in `tests/audit/`, `tests/infra/`, `tests/perf/`, `tests/golden/` or `tests/core/num-text-helpers.test.ts`, and no pre-existing test file was modified.
 
 Any improvement that changed a single character of any artefact would fail that suite. Refreshing the fixtures requires an explicit `UPDATE_GOLDEN=1`, so a drift cannot be absorbed by accident.
 
@@ -69,7 +69,7 @@ while every function starts with `requireServiceRole(req)` (`supabase/functions/
 
 **Evidence.** `src/areas/toast/dashboard.ts:80` loads Chart.js 4.4.1 from cdnjs with `crossorigin="anonymous"` but no `integrity` attribute.
 
-**Fix.** The tag now carries the SHA-384 of the published file (computed from the CDN response: `sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD`). A test asserts the attribute is present and well-formed. The dashboard golden fixture was refreshed for this one deliberate change (see the log).
+**Fix (prepared, not landed).** The SHA-384 of the published file was computed from the CDN response during the audit: `sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD`. The change was implemented and then reverted, because the existing test `tests/areas/toast.test.ts` asserts the dashboard contains no `integrity=` attribute (that assertion was added when an unverifiable hash was removed in an earlier pass), and existing tests are only changed with the author's approval. Landing it is a one-attribute change plus flipping that assertion to require the verified hash.
 
 ### SEC-06 · Low · CI token runs with default permissions; no dependency update automation
 
@@ -124,7 +124,9 @@ while every function starts with `requireServiceRole(req)` (`supabase/functions/
 
 **Cause.** Every intermediate segment, the concat and the caption burn are encoded with `libx264 -preset fast -crf 20`; the three export steps carry no `-preset` at all, so ffmpeg uses `medium`, its slowest default; the three exports run one after another although they are independent; synthetic footage is generated at full export resolution.
 
-**Fix (behaviour-neutral).** Intermediate steps use `-preset veryfast` (the same `crf`, so the same quality target; the intermediates are re-encoded at concat anyway), exports get an explicit `-preset fast` (bitrate is fixed by `-b:v`, so file size and the player-visible result are unchanged), and `executeRenderPlan` runs steps whose inputs are all ready concurrently (bounded by `concurrency`, default 2). Plan shape, step names and outputs are unchanged; the EDL and plan goldens pass. The `ffmpeg` plan tests assert both presets.
+**Fix (behaviour-neutral).** Intermediate steps use `-preset veryfast` (the same `crf`, so the same quality target; the intermediates are re-encoded at concat anyway), exports get an explicit `-preset fast` (bitrate is fixed by `-b:v`, so file size and the player-visible result are unchanged), and `executeRenderPlan` runs steps whose inputs are all ready concurrently (bounded by `concurrency`, default 2). Plan shape, step names and outputs are unchanged; the pipeline goldens were refreshed once and every changed line is a `-preset` argument (verified with `git diff | grep -v preset`). Stand-in footage is generated with `-preset ultrafast`, three clips at a time.
+
+**Measured after.** Render steps 57 s → 28 s (concat 15.1 → 5.7 s, captions 14.8 → 7.7 s, export 13.3 → 9.6 s, the six trims now overlap); `npm run video` 1 m 55 s → 1 m 23 s; the ffmpeg-backed test file 56.5 s → 31.5 s, so the whole suite's wall time roughly halves. The remaining minute of `npm run video` is generating 1080×1920 stand-in footage, which is demo scaffolding, not product code; it is left at full resolution so the demo clips look like the real thing.
 
 ### PERF-02 · Medium · Web bundle ships as a single 782 KB chunk
 
@@ -140,7 +142,7 @@ while every function starts with `requireServiceRole(req)` (`supabase/functions/
 
 **Impact.** Linear in rows × calls. Extrapolated to 30 clients × 3 years of history (~350 k rows) the digest would take ~0.7 s; acceptable today, but it is the first thing that will hurt when the Toast dataset grows, and it runs inside an Edge Function with a CPU budget.
 
-**Fix.** `inPeriod` memoises the deduped, date-sorted view of a given `rows` array in a `WeakMap` keyed on the array identity, then slices by binary search. Results are identical (a property-style test compares the memoised and naive implementations across 200 random datasets and periods, including duplicates). Benchmark after: see appendix.
+**Fix.** `inPeriod` memoises the deduped, date-sorted view of a given `rows` array in a `WeakMap` keyed on the array identity, then slices by binary search. Results are identical (a property-style test compares the memoised and naive implementations across 200 random datasets and periods, including duplicates, and asserts the cache is invalidated when the array grows). Honest trade-off: the first Toast call now pays one full-table dedupe (~20 ms at 33 k rows) instead of a dedupe of its 7-day slice, and every later call is cheaper; a digest makes dozens of calls, so it nets out ahead and the advantage grows with history length. Numbers in Appendix B.
 
 ### PERF-04 · Low · Guardrails compile a `RegExp` per banned word per call
 
@@ -274,25 +276,25 @@ Every change in this pass is behaviour-neutral unless marked **(deliberate outpu
 | SEC-02 | `requireServiceRole` accepts dedicated secret, constant-time compare | `tests/infra/edge-http.test.ts` |
 | SEC-03 | `buildMetaExecutionRequest` validates field / id / value | `tests/areas/media-buyer-execute.test.ts` |
 | SEC-04 | `HttpImageProvider` validates MIME, base64, size; timeout | `tests/audit/images-hardening.test.ts` |
-| SEC-05 | Chart.js SRI hash **(deliberate output change: one attribute in dashboard HTML)** | `tests/audit/dashboard-sri.test.ts`; toast golden refreshed once |
+| SEC-05 | Chart.js SRI hash | **not landed**: blocked on changing an assertion in `tests/areas/toast.test.ts` (see finding) |
 | SEC-06 | CI `permissions`, Dependabot | `tests/infra/ci-config.test.ts` |
 | SEC-07 | iframe `sandbox` attributes **(deliberate output change: web only)** | `web/src/views/sandbox.test.tsx` |
 | SEC-08 | atomic idea-bank writes, corrupt-file backup | `tests/audit/idea-bank-durability.test.ts` |
 | SEC-09 | `requireEnv` in Edge Functions | `tests/infra/edge-http.test.ts` |
-| PERF-01 | ffmpeg presets, concurrent independent steps | `tests/audit/ffmpeg-plan-perf.test.ts`; pipeline goldens (plan args) refreshed once **(deliberate change: `-preset` flags in plan args)**; `video-render.test.ts` unchanged and passing |
+| PERF-01 | ffmpeg presets, dependency-aware concurrent executor, faster stand-in footage | `tests/audit/ffmpeg-plan-perf.test.ts` (presets, dependency inference, executor ordering/concurrency/failure semantics via a `runStep` seam); pipeline goldens refreshed once **(deliberate change: `-preset` flags in plan args only)**; `video-render.test.ts` unchanged and passing |
 | PERF-02 | vendor chunk split, bundle budget | `scripts/check-bundle.ts` in `npm run verify` |
 | PERF-03 | memoised period index | `tests/audit/metrics-equivalence.test.ts` (200 random datasets) + goldens |
 | PERF-04 | regex cache in guardrails | `tests/audit/guardrails-characterisation.test.ts` + goldens |
-| COST-01 | cacheability reported honestly | `tests/audit/cost-model.test.ts` |
+| COST-01 | `promptCacheability()` reports whether a prompt can cache; docs corrected | `tests/audit/cost-model.test.ts` pins every task as currently uncacheable |
 | COST-02 | opt-in model routing by effort | `tests/audit/model-routing.test.ts` (default path unchanged) |
 | COST-03 | per-task `maxOutputTokens` | `tests/audit/model-routing.test.ts` |
 | COST-04 | opt-in `budgetUsd` pipeline guard | `tests/audit/pipeline-budget.test.ts` |
 | COST-06 | `model_cost_monthly` view | SQL lint test checks the view exists |
 | DEBT-01 | helper consolidation | `tests/core/num-text-helpers.test.ts` + goldens |
-| DEBT-05 | `.nvmrc` | — |
+| DEBT-05 | `.nvmrc` (24) and CI reads it via `node-version-file` | `tests/infra/ci-config.test.ts` |
 | all | `tests/perf/perf.test.ts` regression thresholds (10× headroom over measured) | itself |
 
-Left as recommendations because they change behaviour or deployment layout: PERF-05 (parallel LLM calls), PERF-06 (mock grain), COST-01's brief-in-cache restructuring, DEBT-02 (build step for Deno), DEBT-03 (runtime validation in the web app).
+Left as recommendations because they change behaviour or deployment layout: PERF-05 (parallel LLM calls), PERF-06 (mock grain), COST-01's brief-in-cache restructuring, DEBT-02 (build step for Deno), DEBT-03 (runtime validation in the web app). Blocked on approval: SEC-05.
 
 ---
 
@@ -324,4 +326,25 @@ system prompt sizes (chars)    comms 653 · copy 836 · ideas 826 · landing 738
 cost per brief (mock @ Opus)   12 calls · $0.1699 (ideas .0473 landing .0407 scripts .0329 copy .0136 static .0128 evals .0121 video .0070 ugc .0035)
 ```
 
-Post-change numbers are appended in Appendix B after the improvements land.
+## Appendix B · Measurements after the improvements
+
+All numbers from the same machine as Appendix A, taken with nothing else running. Micro-benchmarks are noisy at the 10–30 ms level; where a claim depends on a small difference it was measured like-for-like in one process (best of 5) rather than read off two separate runs.
+
+```
+tests (vitest)                 54 files · 466 tests · 463 passed · 3 skipped (live) · full run inside `npm run verify` green; 23 s wall without the ffmpeg render file (was 57 s wall / 38 files / 384 tests)
+tests/areas/video-render       56.5 s → 31.5 s
+npm run video                  1 m 55 s → 1 m 23 s
+  render steps                 57 s → 28 s   (concat 15.1 → 5.7 · burn captions 14.8 → 7.7 · export 13.3 → 9.6 · six trims now 2-at-a-time)
+  stand-in footage (5 clips)   ultrafast, 3 concurrent: 48 s   (sequential: 111 s · at 540×960: 25 s, not adopted)
+web bundle                     one 782 KB chunk → charts 402 KB · react 202 KB · vendor 82 KB · app 44 KB · query 33 KB (total JS 763 KB, gzip 229 KB); budget check passes
+npm run bench 30 365           buildWindows 85 ms · evaluateRules 5 ms · agent 60 ms · generateInsights 51 ms · checkText×200 323 ms · pipeline 57 ms
+
+Toast metrics, one digest's query mix ×3, old vs memoised, best of 5 in one process (PERF-03)
+  30 clients × 365 days  (33,185 rows)   217 ms → 94 ms   (2.3×)
+  30 clients × 1095 days (98,885 rows)   383 ms → 237 ms  (1.6×)
+  6 clients × 56 days    (1,075 rows)      8 ms → 3 ms    (2.5×)
+
+cost model                     per-brief estimate unchanged at $0.1699 on Opus (routing is opt-in); with ANTHROPIC_MODEL_LOW=claude-haiku-5-5 the 7 low-tier tasks cost 1/40th
+```
+
+What did **not** change, by construction: every byte of every generated artefact for both sample briefs, the Toast outputs, the agent at all autonomy levels, every client report and comms draft, and the eval results (`tests/golden`, 6 fixtures, only two deliberate refreshes: the `-preset` arguments in the ffmpeg plan). No pre-existing test file was edited.

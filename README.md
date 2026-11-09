@@ -10,12 +10,13 @@ One campaign brief flows through nine stages (ideas → copy → statics → scr
 - **20-minute demo script:** [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)
 - **How it fits Supabase / React / Vercel / n8n:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - **Production risk catalogue (120 edge-case scenarios; 41 bugs found and fixed, each pinned by a test):** [docs/PRODUCTION_RISKS.md](docs/PRODUCTION_RISKS.md)
+- **Security, performance, cost and tech-debt audit (with proof, and every improvement guarded by golden-output tests):** [docs/AUDIT.md](docs/AUDIT.md)
 
 ## Quick start
 
 ```bash
 npm install
-npm run verify        # typecheck (node + web) · 384 tests · demo for both briefs · client reports · evals · web build
+npm run verify        # typecheck (node + web) · 466 tests · demo for both briefs · client reports · evals · web build + bundle budget
 ```
 
 Or step by step:
@@ -29,6 +30,7 @@ npm run eval          # guardrail red team · pipeline scorecard · agent recall
 npm run video         # render a real MP4 with the bundled ffmpeg (synthetic stand-in footage)
 npm run web           # React app: Toast · review queue · ads agent · client reports (http://localhost:5173)
 npm run reports       # client-safe weekly report per charity (every figure verified) + drafted replies to client emails
+npm run bench -- 30 365   # hot-path timings at 30 clients × 1 year (numbers in docs/AUDIT.md)
 npm test
 ```
 
