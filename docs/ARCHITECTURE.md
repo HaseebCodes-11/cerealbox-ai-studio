@@ -111,7 +111,7 @@ src/orchestrator the end-to-end pipeline with gates
 src/evals       red team · scorecard · agent recall
 src/cli         demo · toast · agent · eval · video · reports
 web             Vite + React app (Toast · review queue · ads agent · client reports) with jsdom tests
-tests           vitest: 262 tests across core, every area, reporting, comms, idea bank, launch payloads, orchestrator, evals, judge, images, video render, automations, CLI, web; 3 live tests gated on a key
+tests           vitest: 382 tests across core, every area, reporting, comms, idea bank, launch payloads, orchestrator, evals, judge, images, video render, automations, CLI, web; tests/edge-cases holds 120 production scenarios with 44 known-bug expected failures; 3 live tests gated on a key
 .github         CI: verify on every push; live smoke test when ANTHROPIC_API_KEY is set
 automations/n8n two importable workflows
 supabase        migration with schema, RLS, pg_cron; four Edge Functions
