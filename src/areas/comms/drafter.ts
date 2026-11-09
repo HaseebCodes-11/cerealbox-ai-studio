@@ -100,7 +100,8 @@ export function mockReply(question: ClientQuestion, ctx: CommsContext): ClientRe
   const f = ctx.figures;
   const hi = `Hi ${ctx.contactFirstName},`;
   const signoff = `\n\nBest wishes,\n${ctx.accountManager}`;
-  const money = (n: number) => `£${Number.isInteger(n) ? n.toLocaleString("en-GB") : n.toLocaleString("en-GB", { maximumFractionDigits: 2 })}`;
+  // Clients read whole pounds; the verifier accepts rounded forms of every context figure.
+  const money = (n: number) => `£${Math.round(n).toLocaleString("en-GB")}`;
   const onTarget = f.roas >= f.targetRoas;
 
   switch (category) {
@@ -189,7 +190,9 @@ export async function draftClientReply(question: ClientQuestion, context: CommsC
 
 export function contextNumbers(ctx: CommsContext): string[] {
   const f = ctx.figures;
+  const rounded = [f.spend, f.revenue, f.cpa, f.avgGift, ctx.dailyBudgetGbp].map((n) => `£${Math.round(n)}`);
   return [
+    ...rounded,
     `£${f.spend}`,
     `£${f.revenue}`,
     `${f.roas}x`,
