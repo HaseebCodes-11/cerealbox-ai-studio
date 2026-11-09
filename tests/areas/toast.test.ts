@@ -1,27 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { AdMetricsDailySchema } from "../../src/core/ads";
-import {
-  CLIENT_PROFILES,
-  aggregate,
-  answerIntent,
-  askToast,
-  comparePeriods,
-  dailySeries,
-  detectAnomalies,
-  generateInsights,
-  generateMockDataset,
-  insightsToMarkdown,
-  intentTask,
-  lastNDays,
-  narrativeTask,
-  pacing,
-  parseIntentHeuristically,
-  pctChange,
-  previousPeriod,
-  renderDashboard,
-  topMovers,
-  totals,
-} from "../../src/areas/toast";
+import { CHART_JS_SRI, CLIENT_PROFILES, aggregate, answerIntent, askToast, comparePeriods, dailySeries, detectAnomalies, generateInsights, generateMockDataset, insightsToMarkdown, intentTask, lastNDays, narrativeTask, pacing, parseIntentHeuristically, pctChange, previousPeriod, renderDashboard, topMovers, totals } from "../../src/areas/toast";
 import { provider } from "../helpers";
 
 const asOf = "2026-11-08";
@@ -228,7 +207,9 @@ describe("dashboard", () => {
     expect(withoutScripts).not.toMatch(/undefined|NaN/);
     expect(html).toContain("How is Hearthline doing?");
     expect(html).not.toContain("Media Buyer agent · recommendations");
-    expect(html).not.toContain("integrity=");
+    // The CDN script carries the verified SHA-384 from the audit (SEC-05), never an unverifiable hash.
+    expect(html).toContain(`integrity="${CHART_JS_SRI}"`);
+    expect(CHART_JS_SRI).toMatch(/^sha384-[A-Za-z0-9+/]{64}$/);
   });
 
   it("includes the agent table when recommendations are passed", async () => {

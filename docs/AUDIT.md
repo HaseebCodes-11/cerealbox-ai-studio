@@ -19,7 +19,7 @@ The **Improvement log** at the end records which findings were fixed in this pas
 
 ## 0. Safety net used for every change in this pass
 
-Before any product file was touched, `tests/golden/golden.test.ts` captured the complete deterministic output of the system for both sample briefs: the full campaign package (ideas, copy, creative SVGs, scripts, UGC manifest, EDL, ffmpeg plan, landing HTML, launch plan, Meta payloads, every review-gate decision, every audit event and cost total), the Toast dataset/insights/narrative/dashboard/Ask-Toast answers, the media buyer agent at all three autonomy levels (dry and live against the mock client), every client report and comms draft, and the eval suite. Large blobs are pinned by SHA-256, timing fields are stripped. The fixtures live in `tests/golden/fixtures/` (430 KB) and were verified to be byte-identical across repeated runs before the first change was made. After the pass the suite is 54 files / 466 tests, 463 passing and 3 live tests skipped without a key (was 38 / 384); every new test is in `tests/audit/`, `tests/infra/`, `tests/perf/`, `tests/golden/` or `tests/core/num-text-helpers.test.ts`, and no pre-existing test file was modified.
+Before any product file was touched, `tests/golden/golden.test.ts` captured the complete deterministic output of the system for both sample briefs: the full campaign package (ideas, copy, creative SVGs, scripts, UGC manifest, EDL, ffmpeg plan, landing HTML, launch plan, Meta payloads, every review-gate decision, every audit event and cost total), the Toast dataset/insights/narrative/dashboard/Ask-Toast answers, the media buyer agent at all three autonomy levels (dry and live against the mock client), every client report and comms draft, and the eval suite. Large blobs are pinned by SHA-256, timing fields are stripped. The fixtures live in `tests/golden/fixtures/` (430 KB) and were verified to be byte-identical across repeated runs before the first change was made. After the pass the suite is 54 files / 466 tests, 463 passing and 3 live tests skipped without a key (was 38 / 384); every new test is in `tests/audit/`, `tests/infra/`, `tests/perf/`, `tests/golden/` or `tests/core/num-text-helpers.test.ts`, and the only pre-existing test file modified is `tests/areas/toast.test.ts` (one assertion, with approval, for SEC-05).
 
 Any improvement that changed a single character of any artefact would fail that suite. Refreshing the fixtures requires an explicit `UPDATE_GOLDEN=1`, so a drift cannot be absorbed by accident.
 
@@ -67,9 +67,9 @@ while every function starts with `requireServiceRole(req)` (`supabase/functions/
 
 ### SEC-05 · Low · Third-party script loaded without Subresource Integrity
 
-**Evidence.** `src/areas/toast/dashboard.ts:80` loads Chart.js 4.4.1 from cdnjs with `crossorigin="anonymous"` but no `integrity` attribute.
+**Evidence.** `src/areas/toast/dashboard.ts:80` loaded Chart.js 4.4.1 from cdnjs with `crossorigin="anonymous"` but no `integrity` attribute.
 
-**Fix (prepared, not landed).** The SHA-384 of the published file was computed from the CDN response during the audit: `sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD`. The change was implemented and then reverted, because the existing test `tests/areas/toast.test.ts` asserts the dashboard contains no `integrity=` attribute (that assertion was added when an unverifiable hash was removed in an earlier pass), and existing tests are only changed with the author's approval. Landing it is a one-attribute change plus flipping that assertion to require the verified hash.
+**Fix.** The tag now carries the SHA-384 computed from the CDN response during the audit (`sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD`), exported as `CHART_JS_SRI`. The existing dashboard test, which until now asserted that no `integrity` attribute was present (added when an unverifiable hash was removed in an earlier pass), was changed with the author's approval to require exactly this verified hash. The Toast golden fixture was refreshed once for this one attribute.
 
 ### SEC-06 · Low · CI token runs with default permissions; no dependency update automation
 
@@ -276,7 +276,7 @@ Every change in this pass is behaviour-neutral unless marked **(deliberate outpu
 | SEC-02 | `requireServiceRole` accepts dedicated secret, constant-time compare | `tests/infra/edge-http.test.ts` |
 | SEC-03 | `buildMetaExecutionRequest` validates field / id / value | `tests/areas/media-buyer-execute.test.ts` |
 | SEC-04 | `HttpImageProvider` validates MIME, base64, size; timeout | `tests/audit/images-hardening.test.ts` |
-| SEC-05 | Chart.js SRI hash | **not landed**: blocked on changing an assertion in `tests/areas/toast.test.ts` (see finding) |
+| SEC-05 | Chart.js SRI hash **(deliberate output change: one attribute in dashboard HTML)** | `tests/areas/toast.test.ts` requires the verified hash (assertion flipped with approval); toast golden refreshed once |
 | SEC-06 | CI `permissions`, Dependabot | `tests/infra/ci-config.test.ts` |
 | SEC-07 | iframe `sandbox` attributes **(deliberate output change: web only)** | `web/src/views/sandbox.test.tsx` |
 | SEC-08 | atomic idea-bank writes, corrupt-file backup | `tests/audit/idea-bank-durability.test.ts` |
@@ -294,7 +294,7 @@ Every change in this pass is behaviour-neutral unless marked **(deliberate outpu
 | DEBT-05 | `.nvmrc` (24) and CI reads it via `node-version-file` | `tests/infra/ci-config.test.ts` |
 | all | `tests/perf/perf.test.ts` regression thresholds (10× headroom over measured) | itself |
 
-Left as recommendations because they change behaviour or deployment layout: PERF-05 (parallel LLM calls), PERF-06 (mock grain), COST-01's brief-in-cache restructuring, DEBT-02 (build step for Deno), DEBT-03 (runtime validation in the web app). Blocked on approval: SEC-05.
+Left as recommendations because they change behaviour or deployment layout: PERF-05 (parallel LLM calls), PERF-06 (mock grain), COST-01's brief-in-cache restructuring, DEBT-02 (build step for Deno), DEBT-03 (runtime validation in the web app).
 
 ---
 
@@ -347,4 +347,4 @@ Toast metrics, one digest's query mix ×3, old vs memoised, best of 5 in one pro
 cost model                     per-brief estimate unchanged at $0.1699 on Opus (routing is opt-in); with ANTHROPIC_MODEL_LOW=claude-haiku-5-5 the 7 low-tier tasks cost 1/40th
 ```
 
-What did **not** change, by construction: every byte of every generated artefact for both sample briefs, the Toast outputs, the agent at all autonomy levels, every client report and comms draft, and the eval results (`tests/golden`, 6 fixtures, only two deliberate refreshes: the `-preset` arguments in the ffmpeg plan). No pre-existing test file was edited.
+What did **not** change, by construction: every byte of every generated artefact for both sample briefs, the Toast outputs, the agent at all autonomy levels, every client report and comms draft, and the eval results (`tests/golden`, 6 fixtures, only three deliberate refreshes: the `-preset` arguments in the ffmpeg plan and the SRI attribute in the dashboard). One pre-existing test assertion was changed, with approval.
