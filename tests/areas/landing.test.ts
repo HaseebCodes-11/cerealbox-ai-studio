@@ -27,7 +27,7 @@ describe("landing page spec", () => {
     expect(spec.impact.map((i) => i.amount)).toEqual([30, 75, 150]);
     expect(spec.faq.length).toBeGreaterThanOrEqual(brief.audience.objections.length);
     expect(spec.faq.map((f) => f.question)).toContain("How much of my donation goes on admin?");
-    expect(spec.faq.map((f) => f.question)).toContain("Doesn't the government cover heating costs?");
+    expect(spec.faq.map((f) => f.question)).toContain("Doesn't the government already cover this?");
     expect(spec.form.giftAid).toBe(true);
     expect(spec.trust.some((t) => t.includes(brief.client.charityNumber!))).toBe(true);
     expect(spec.title.length).toBeLessThanOrEqual(60);

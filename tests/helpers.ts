@@ -15,6 +15,14 @@ export function sampleBrief(): CampaignBrief {
   return parseBrief(JSON.parse(readFileSync(join(ROOT, "samples/brief-winter-warmth.json"), "utf8")));
 }
 
+export function foodBankBrief(): CampaignBrief {
+  return parseBrief(JSON.parse(readFileSync(join(ROOT, "samples/brief-food-bank.json"), "utf8")));
+}
+
+export function allSampleBriefs(): CampaignBrief[] {
+  return [sampleBrief(), foodBankBrief()];
+}
+
 export function sampleClips(): RawClip[] {
   return z.array(RawClipSchema).parse(JSON.parse(readFileSync(join(ROOT, "samples/raw-clips.json"), "utf8")));
 }

@@ -1,0 +1,92 @@
+{
+  "id": "brief-2026-hungry-half-term",
+  "client": {
+    "id": "kindred",
+    "name": "Kindred Kitchens",
+    "cause": "Ending child food poverty in the UK",
+    "region": "UK",
+    "charityNumber": "1188888",
+    "website": "https://www.kindredkitchens.example.org",
+    "brand": {
+      "primary": "#2F7D4F",
+      "secondary": "#1F2D3D",
+      "accent": "#F5C451",
+      "text": "#17201A",
+      "background": "#F7F4EC",
+      "fontFamily": "Inter, Arial, sans-serif"
+    },
+    "voice": {
+      "tone": ["practical", "warm", "respectful", "plain English"],
+      "avoid": ["the poor", "needy", "handouts", "hungry kids"],
+      "exampleLines": [
+        "No child should start the day on an empty stomach.",
+        "A full plate changes a whole week."
+      ]
+    },
+    "proofPoints": [
+      "Last year Kindred Kitchens provided 310,000 meals across 14 towns",
+      "£20 fills a family food parcel for a week",
+      "£45 stocks a school breakfast club for a week",
+      "£90 funds a week of fresh fruit and veg for a community fridge",
+      "9 in 10 families we support have at least one adult in work",
+      "Kindred Kitchens has run community kitchens since 2014"
+    ],
+    "complianceNotes": [
+      "Never photograph children without written parental consent",
+      "Gift Aid statement must appear on every donation page",
+      "Do not describe families as 'poor' or 'needy'"
+    ]
+  },
+  "campaignName": "Hungry Half Term 2026",
+  "objective": "donations",
+  "audience": {
+    "name": "Parents who give",
+    "description": "UK parents aged 30-50 who already give to children's causes and recognise how fast a tight week becomes an empty cupboard",
+    "ageRange": "30-50",
+    "motivations": [
+      "Cannot stand the thought of a child going without",
+      "Responds to local, concrete impact",
+      "Wants to know a gift is used well"
+    ],
+    "objections": [
+      "Thinks food banks are only for people out of work",
+      "Worried the money goes on admin",
+      "Assumes supermarkets already donate enough"
+    ]
+  },
+  "offer": {
+    "ask": "Help a family eat well this half term",
+    "donationTiers": [
+      { "amount": 20, "currency": "GBP", "impact": "fills a family food parcel for a week" },
+      { "amount": 45, "currency": "GBP", "impact": "stocks a school breakfast club for a week" },
+      { "amount": 90, "currency": "GBP", "impact": "funds a week of fresh fruit and veg for a community fridge" }
+    ],
+    "matchFunding": "Every gift matched by Fairfield Foods until 28 February",
+    "deadline": "28 February 2027",
+    "giftAidEligible": true
+  },
+  "keyMessage": "When school stops, free school meals stop too. Your gift keeps a family fed through half term, and right now it goes twice as far.",
+  "channels": ["meta_feed", "meta_stories", "meta_reels"],
+  "constraints": {
+    "dailyBudgetGbp": 180,
+    "targetRoas": 3.5,
+    "targetCpaGbp": 12,
+    "startDate": "2027-02-08",
+    "endDate": "2027-02-28"
+  },
+  "creativeContext": {
+    "beneficiarySingular": "a family",
+    "beneficiaryPlural": "families",
+    "problemInDailyLife": "Parents skip meals so their children can eat, and say nothing.",
+    "storySeed": "My neighbour skipped dinner most nights so her kids could eat, and never told anyone.",
+    "openingQuestion": "Do you know which family on your street skipped dinner last night?",
+    "everydayComparison": "two coffees",
+    "settingNoun": "kitchen table",
+    "whatWeDo": "runs community kitchens and school breakfast clubs so no child starts the day hungry.",
+    "caseStudy": "Last February a dad of three in Oldham was working nights and still running out of food by Wednesday. Kindred Kitchens' community fridge and a weekly parcel got the family through half term, and the breakfast club meant the kids ate before school every day. Names and details changed to protect privacy; the case is real.",
+    "brollKeywords": ["kitchen table", "empty cupboard", "school gates", "breakfast club", "volunteers packing parcels", "community fridge", "fresh fruit and veg", "delivery van", "family meal", "end card"]
+  },
+  "references": [
+    "Previous appeal: UGC from a volunteer packing parcels outperformed studio video on ROAS"
+  ]
+}

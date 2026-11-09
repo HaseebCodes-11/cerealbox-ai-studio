@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { BEAT_SHARES, SCRIPT_STYLES, ScriptSchema, buildMockScript, scriptGenerationTask, scriptToMarkdown, validateScript } from "../../src/areas/scripts";
 import { spokenSeconds } from "../../src/core/text";
-import { provider, sampleBrief, sampleCopy, sampleIdea } from "../helpers";
+import { IDEA_ANGLES, buildMockIdea } from "../../src/areas/ideas";
+import { allSampleBriefs, provider, sampleBrief, sampleCopy, sampleIdea } from "../helpers";
 
 const brief = sampleBrief();
 const idea = sampleIdea(brief);
@@ -24,17 +25,23 @@ describe("script generation", () => {
     }
   });
 
-  it("every style at every duration passes QA with no blockers", () => {
-    for (const style of SCRIPT_STYLES) {
-      for (const target of [15, 30, 60] as const) {
-        const script = buildMockScript(brief, idea, style, target, 0);
-        const report = validateScript(script, brief);
-        expect(report.ok, `${style}/${target}: ${report.issues.map((i) => i.message).join("; ")}`).toBe(true);
-        expect(report.issues.filter((i) => i.severity === "warn"), `${style}/${target}`).toHaveLength(0);
-        const planned = script.beats.reduce((s, b) => s + b.seconds, 0);
-        expect(Math.abs(planned - target)).toBeLessThanOrEqual(target * 0.15);
-        const spoken = script.beats.reduce((s, b) => s + spokenSeconds(b.voiceover), 0);
-        expect(spoken).toBeLessThanOrEqual(target * 1.1);
+  it("every style at every duration passes QA with no warnings, for every angle and every sample brief", () => {
+    for (const b of allSampleBriefs()) {
+      for (const angle of IDEA_ANGLES) {
+        const i = buildMockIdea(b, angle, 0);
+        for (const style of SCRIPT_STYLES) {
+          for (const target of [15, 30, 60] as const) {
+            const script = buildMockScript(b, i, style, target, 0);
+            const report = validateScript(script, b);
+            const label = `${b.client.name}/${angle}/${style}/${target}`;
+            expect(report.ok, `${label}: ${report.issues.map((x) => x.message).join("; ")}`).toBe(true);
+            expect(report.issues.filter((x) => x.severity === "warn"), `${label}: ${report.issues.map((x) => x.message).join("; ")}`).toHaveLength(0);
+            const planned = script.beats.reduce((s, bt) => s + bt.seconds, 0);
+            expect(Math.abs(planned - target)).toBeLessThanOrEqual(target * 0.15);
+            const spoken = script.beats.reduce((s, bt) => s + spokenSeconds(bt.voiceover), 0);
+            expect(spoken, label).toBeLessThanOrEqual(target * 1.1);
+          }
+        }
       }
     }
   });

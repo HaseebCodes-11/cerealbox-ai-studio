@@ -2,7 +2,6 @@ import type { CampaignBrief } from "../../core/brief";
 import { formatCurrency } from "../../core/brief";
 import { defineTask } from "../../core/llm/provider";
 import { spokenSeconds, truncate } from "../../core/text";
-
 import type { CopyPack } from "../copy/types";
 import type { Idea } from "../ideas/types";
 import { ScriptBatchSchema, type Beat, type Script, type ScriptBatch, type ScriptStyle } from "./types";
@@ -34,6 +33,7 @@ export const scriptGenerationTask = defineTask<ScriptGenerationInput, ScriptBatc
       `Audience: ${brief.audience.description}. Objections: ${brief.audience.objections.join("; ")}.`,
       `Offer: ${brief.offer.donationTiers.map((t) => `${formatCurrency(t.amount, t.currency)} ${t.impact}`).join("; ")}.${brief.offer.matchFunding ? ` ${brief.offer.matchFunding}.` : ""}`,
       `Proof points: ${brief.client.proofPoints.join(" | ")}`,
+      `Creative context: problem day to day: "${brief.creativeContext.problemInDailyLife}" · supporter line: "${brief.creativeContext.storySeed}" · opening question: "${brief.creativeContext.openingQuestion}" · setting: ${brief.creativeContext.settingNoun} · footage available: ${brief.creativeContext.brollKeywords.join(", ")}.`,
       `Approved messaging pillars: ${copy.messagingPillars.join(" | ")}`,
       `Banned words: ${brief.client.voice.avoid.join(", ") || "none"}.`,
       `Scripts to write: ${requests.map((r) => `${r.style} at ${r.targetSeconds}s`).join("; ")}.`,
@@ -52,36 +52,56 @@ export const BEAT_SHARES: Record<15 | 30 | 60, Record<Beat["name"], number>> = {
 
 type Size = "short" | "medium" | "long";
 
+/** Pick b-roll keywords for a beat from the brief's footage list, spreading them across beats. */
+function brollFor(keywords: string[], beatIndex: number, per = 3): string[] {
+  if (keywords.length === 0) return [];
+  const start = (beatIndex * per) % keywords.length;
+  const out: string[] = [];
+  for (let i = 0; i < per; i++) out.push(keywords[(start + i) % keywords.length]!);
+  return [...new Set(out)];
+}
+
 /**
- * Deterministic script copy per beat, written at three lengths so the word
- * count fits the target duration without mid-sentence truncation.
+ * Deterministic script copy per beat, written at three lengths from the
+ * brief's creative context so the word count fits the target duration.
  */
 function beatLines(brief: CampaignBrief, idea: Idea, style: ScriptStyle, size: Size): Record<Beat["name"], { vo: string; text: string; visual: string; broll: string[] }> {
   const c = brief.client;
+  const cc = brief.creativeContext;
   const tier = brief.offer.donationTiers[0]!;
   const amount = formatCurrency(tier.amount, tier.currency);
   const proof = c.proofPoints[0]!;
+  const proof2 = c.proofPoints[c.proofPoints.length - 1] ?? proof;
   const match = brief.offer.matchFunding;
   const firstPerson = style === "ugc-testimonial" || style === "founder-direct";
   const founder = style === "founder-direct";
+  const who = cc.beneficiarySingular;
+  const whoPlural = cc.beneficiaryPlural;
+  const kw = cc.brollKeywords;
 
-  // Hooks must land in ~3 seconds: use the idea's hook only if it is short enough.
   const ideaHookWords = idea.hook.trim().split(/\s+/).length;
   const firstSentence = idea.hook.split(/(?<=[.!?])\s+/)[0] ?? idea.hook;
-  const compactHook = ideaHookWords <= 12 ? idea.hook : firstSentence.split(/\s+/).length <= 12 ? firstSentence : `Here is what ${amount} does this winter.`;
+  const compactHook = ideaHookWords <= 12 ? idea.hook : firstSentence.split(/\s+/).length <= 12 ? firstSentence : `Here is what ${amount} does right now.`;
+
+  // Short cuts need very tight lines: first clause of the problem, shortest proof point that is not a tier line.
+  const problemShort = cc.problemInDailyLife.split(/,|;/)[0]!.replace(/[.!?]*$/, ".");
+  const tierImpacts = new Set(brief.offer.donationTiers.map((t) => t.impact.toLowerCase()));
+  const proofShort = [...c.proofPoints]
+    .filter((p) => !tierImpacts.has(p.replace(/^£\d+\s+/, "").toLowerCase()))
+    .sort((a, b) => a.split(/\s+/).length - b.split(/\s+/).length)[0] ?? proof;
 
   const hookVo = {
-    short: founder ? `I run ${c.name}. Here's where your money goes.` : firstPerson ? `Checked your mum's heating lately?` : ideaHookWords <= 8 ? idea.hook : `What does ${amount} do this winter?`,
-    medium: founder ? `I run ${c.name}. I want to tell you exactly where ${amount} goes.` : firstPerson ? `Honest question. When did you last check how warm your mum's house is?` : compactHook,
-    long: founder ? `I run ${c.name}. I want to tell you exactly where ${amount} goes this winter.` : firstPerson ? `Honest question. When did you last check how warm your mum's house actually is?` : compactHook,
+    short: founder ? `I run ${c.name}. Here's where ${amount} goes.` : firstPerson ? `Quick one about ${whoPlural} near you.` : ideaHookWords <= 8 ? idea.hook : `What does ${amount} actually do?`,
+    medium: founder ? `I run ${c.name}. I want to tell you exactly where ${amount} goes.` : firstPerson ? `Honest question. ${cc.openingQuestion}` : compactHook,
+    long: founder ? `I run ${c.name}. I want to tell you exactly where ${amount} goes.` : firstPerson ? `Honest question. ${cc.openingQuestion}` : compactHook,
   }[size];
 
   const problemVo = {
-    short: firstPerson && !founder ? `My nan heated one room last winter and told nobody.` : `Older people heat one room and tell nobody.`,
-    medium: firstPerson ? `My nan heated one room last winter and told nobody. ${c.name} says that's common.` : `Across the UK, older people heat one room and skip meals to pay the bill. Most never tell their family.`,
-    long: firstPerson
-      ? `My nan heated one room last winter and told nobody. She put on a second coat indoors and said she was fine. ${c.name} told me that is one of the most common things they see, and families usually find out last.`
-      : `Across the UK, older people are heating one room, going to bed early to save on the bill, and telling nobody. Families usually find out last, and by then the cold has already done its damage to health and confidence.`,
+    short: problemShort,
+    medium: firstPerson && !founder ? `${cc.storySeed} ${c.name} says that's common.` : `${cc.problemInDailyLife} Most never tell anyone.`,
+    long: firstPerson && !founder
+      ? `${cc.storySeed} ${c.name} told me that is one of the most common things they see, and the people closest usually find out last.`
+      : `${cc.problemInDailyLife} The people closest to them usually find out last, and by then the damage to health and confidence is already done.`,
   }[size];
 
   const turnVo = {
@@ -91,53 +111,53 @@ function beatLines(brief: CampaignBrief, idea: Idea, style: ScriptStyle, size: S
   }[size];
 
   const proofVo = {
-    short: `${proof}.`,
-    medium: `${proof}. They've been doing this since 2009.`,
-    long: `${proof}. The team has worked in local communities since 2009, visiting homes, fixing boilers and sorting insulation, so the money turns into warmth within days, not months.`,
+    short: `${proofShort}.`,
+    medium: `${proof}.`,
+    long: `${proof}. ${proof2}. The team ${cc.whatWeDo} So the money turns into help within days, not months.`,
   }[size];
 
   const offerVo = {
     short: `${amount} ${tier.impact}.`,
     medium: `${amount} ${tier.impact}.${match ? " And right now, every gift is doubled." : ""}`,
-    long: `${amount} ${tier.impact}.${match ? ` And right now, ${match.toLowerCase()}, so your ${amount} becomes ${formatCurrency(tier.amount * 2, tier.currency)} of heating.` : ""} It is a small amount with a very direct result.`,
+    long: `${amount} ${tier.impact}.${match ? ` And right now, ${match.toLowerCase()}, so your ${amount} becomes ${formatCurrency(tier.amount * 2, tier.currency)}.` : ""} It is a small amount with a very direct result.`,
   }[size];
 
   const ctaVo = {
     short: `Donate ${amount} today.`,
-    medium: firstPerson ? `Tap the link, give ${amount}, and someone's heating goes on this week.` : `Donate ${amount} today and help someone stay warm this winter.`,
-    long: firstPerson ? `Tap the link, give ${amount}, and someone's heating goes on this week. It took me two minutes.` : `Donate ${amount} today and help an older person stay warm this winter. Two minutes, and the heating goes on.`,
+    medium: firstPerson ? `Tap the link, give ${amount}, and ${who} gets help this week.` : `Donate ${amount} today and help ${who}.`,
+    long: firstPerson ? `Tap the link, give ${amount}, and ${who} gets help this week. It took me two minutes.` : `Donate ${amount} today and help ${who}. Two minutes, and it is done.`,
   }[size];
 
   return {
     hook: {
       vo: hookVo,
       text: truncate(idea.hook, 60),
-      visual: firstPerson ? "Presenter to camera, phone held at eye level, kitchen background" : "Fast cut: cold kitchen, breath visible, kettle not on",
-      broll: ["kettle", "kitchen", "frost on window"],
+      visual: firstPerson ? `Presenter to camera, phone held at eye level, ${cc.settingNoun} background` : `Fast cut: a ${cc.settingNoun} that shows the problem, no people`,
+      broll: brollFor(kw, 0),
     },
     problem: {
       vo: problemVo,
-      text: "Heating one room. Telling no one.",
-      visual: "Slow push on a single lit window in a dark terrace",
-      broll: ["terrace street at dusk", "one lit window", "radiator"],
+      text: truncate(cc.problemInDailyLife, 80),
+      visual: `Slow push on a quiet ${cc.settingNoun}, natural light`,
+      broll: brollFor(kw, 1),
     },
     turn: {
       vo: turnVo,
       text: `${amount} changes that`,
-      visual: "Hard cut to warm light; hands wrap around a mug",
-      broll: ["hands around mug", "warm light", "radiator warming"],
+      visual: "Hard cut to warm light; the thing the gift buys enters frame",
+      broll: brollFor(kw, 2),
     },
     proof: {
       vo: proofVo,
       text: truncate(proof, 70),
-      visual: "Documentary footage of the home visit team with captions",
-      broll: ["home visit", "team in branded jackets", "insulation kit"],
+      visual: `Documentary footage of the ${c.name} team with captions`,
+      broll: brollFor(kw, 3),
     },
     offer: {
       vo: offerVo,
       text: truncate(`${amount} ${tier.impact}${match ? " · Doubled" : ""}`, 70),
       visual: "Tier card animates in over warm footage",
-      broll: ["heating dial", "thermostat"],
+      broll: brollFor(kw, 4),
     },
     cta: {
       vo: ctaVo,

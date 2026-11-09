@@ -74,6 +74,18 @@
     "startDate": "2026-12-01",
     "endDate": "2027-01-31"
   },
+  "creativeContext": {
+    "beneficiarySingular": "an older person",
+    "beneficiaryPlural": "older people",
+    "problemInDailyLife": "Older people heat one room and tell nobody.",
+    "storySeed": "My nan heated one room last winter and told nobody.",
+    "openingQuestion": "When did you last check how warm your mum's house is?",
+    "everydayComparison": "one takeaway",
+    "settingNoun": "kitchen",
+    "whatWeDo": "finds them, fixes the immediate problem and helps them claim the support they are entitled to.",
+    "caseStudy": "Last winter a retired postman in Leeds was heating his kitchen with the oven door open. A Hearthline home visit fixed his boiler timer, fitted draught excluders and sorted a grant he did not know existed. He told the team he had stopped dreading the postman. Names and details changed to protect privacy; the case is real.",
+    "brollKeywords": ["kettle", "kitchen", "frost on window", "terrace street at dusk", "one lit window", "radiator", "hands around mug", "warm light", "home visit", "team in branded jackets", "insulation kit", "heating dial", "thermostat", "end card"]
+  },
   "references": [
     "Previous winter appeal: best performing creative was a stat-led static with a single older person's hands around a mug"
   ]

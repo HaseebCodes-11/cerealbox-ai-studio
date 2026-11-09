@@ -61,6 +61,37 @@ export const ClientSchema = z.object({
 
 export const ChannelSchema = z.enum(["meta_feed", "meta_stories", "meta_reels"]);
 
+/**
+ * Creative context: the handful of plain-English seeds a strategist writes
+ * into a brief so generation is grounded in this cause rather than generic.
+ * Every field has a safe default; the better these are, the better the output.
+ * Word-count guidance keeps generated scripts inside their time budgets.
+ */
+export const CreativeContextSchema = z.object({
+  /** "an older person", "a family", "a rescued dog" */
+  beneficiarySingular: z.string().min(1).default("someone"),
+  /** "older people", "families", "rescued dogs" */
+  beneficiaryPlural: z.string().min(1).default("people"),
+  /** One sentence, 8-14 words: what the problem looks like day to day. */
+  problemInDailyLife: z.string().min(1).default("People are struggling quietly and most never ask for help."),
+  /** One first-person line a supporter might say, 8-14 words. */
+  storySeed: z.string().min(1).default("I did not realise how close to home this was until it happened to someone I know."),
+  /** A question the audience is already half-asking, under 12 words. */
+  openingQuestion: z.string().min(1).default("What would you do if this was someone you knew?"),
+  /** An everyday spend to anchor the first tier against: "a takeaway", "two coffees". */
+  everydayComparison: z.string().min(1).default("a takeaway"),
+  /** Where the problem shows up on camera: "kitchen", "classroom", "beach". */
+  settingNoun: z.string().min(1).default("home"),
+  /** One sentence finishing "<Charity> ...": what the charity does about it. */
+  whatWeDo: z.string().min(1).default("finds the people who need help and acts quickly."),
+  /** 2-3 anonymised sentences for the landing page story. */
+  caseStudy: z.string().min(1).default("Last year one of the people we support was coping alone. A visit from our team changed that within days. Names and details are changed to protect privacy; the case is real."),
+  /** Footage keywords for scripts and clip matching. */
+  brollKeywords: z.array(z.string()).min(3).default(["community", "volunteers", "hands", "front door", "team at work", "end card"]),
+});
+
+export type CreativeContext = z.infer<typeof CreativeContextSchema>;
+
 export const CampaignBriefSchema = z.object({
   id: z.string().min(1),
   client: ClientSchema,
@@ -79,6 +110,7 @@ export const CampaignBriefSchema = z.object({
       endDate: z.string().optional(),
     })
     .default({}),
+  creativeContext: CreativeContextSchema.prefault({}),
   references: z.array(z.string()).default([]),
 });
 

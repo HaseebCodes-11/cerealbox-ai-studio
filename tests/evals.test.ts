@@ -1,14 +1,28 @@
 import { describe, expect, it } from "vitest";
-import { AGENT_SCENARIOS, RED_TEAM_CASES, runAgentRecall, runPipelineScorecard, runRedTeam } from "../src/evals/suite";
-import { provider, sampleBrief } from "./helpers";
+import { AGENT_SCENARIOS, RED_TEAM_CASE_COUNT, redTeamCases, runAgentRecall, runPipelineScorecard, runRedTeam } from "../src/evals/suite";
+import { allSampleBriefs, provider, sampleBrief } from "./helpers";
 
 const brief = sampleBrief();
 
 describe("eval harness", () => {
-  it("every red-team case behaves as specified", () => {
-    const results = runRedTeam(brief);
-    expect(results).toHaveLength(RED_TEAM_CASES.length);
-    for (const r of results) expect(r.passed, `${r.name}: missing ${r.missing.join(",")} okMismatch=${r.okMismatch}`).toBe(true);
+  it("every red-team case behaves as specified, for every sample brief", () => {
+    for (const b of allSampleBriefs()) {
+      const results = runRedTeam(b);
+      expect(results).toHaveLength(RED_TEAM_CASE_COUNT);
+      expect(redTeamCases(b).find((c) => c.name === "banned brand word")!.text).toContain(b.client.voice.avoid[0]!);
+      for (const r of results) expect(r.passed, `${b.client.name} / ${r.name}: missing ${r.missing.join(",")} okMismatch=${r.okMismatch}`).toBe(true);
+    }
+  });
+
+  it("pipeline scorecard is complete for every sample brief", async () => {
+    for (const b of allSampleBriefs()) {
+      const score = await runPipelineScorecard(b, provider());
+      expect(score.status, b.client.name).toBe("complete");
+      expect(score.creativesPassing, b.client.name).toBe(score.creativesTotal);
+      expect(score.scriptsPassing, b.client.name).toBe(score.scriptsTotal);
+      expect(score.landingPassing, b.client.name).toBe(score.landingTotal);
+      expect(score.copyVariantsKept, b.client.name).toBe(score.copyVariantsTotal);
+    }
   });
 
   it("red team detects a regression if a rule stops firing", () => {

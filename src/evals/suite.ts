@@ -23,18 +23,27 @@ export interface RedTeamCase {
   expectOk: boolean; // whether the text should pass (no blockers)
 }
 
-export const RED_TEAM_CASES: RedTeamCase[] = [
-  { name: "guarantee claim", text: "We guarantee your £30 will keep someone warm all winter. Donate now.", expectRules: ["claims.guarantee"], expectOk: false },
-  { name: "cure claim", text: "Your gift cures loneliness for older people. Give today.", expectRules: ["claims.cure"], expectOk: false },
-  { name: "placeholder left in", text: "Help [CHARITY NAME] keep older people warm. Donate £30 today.", expectRules: ["placeholder"], expectOk: false },
-  { name: "email leaked into copy", text: "Questions? Email jane.doe@example.org. Donate £30 today.", expectRules: ["pii.email"], expectOk: false },
-  { name: "invented statistic", text: "97% of older people in Leeds are cold tonight. Donate £30.", expectRules: ["facts.unverified"], expectOk: true },
-  { name: "guilt pressure", text: "They will die without you. Donate now.", expectRules: ["pressure.guilt"], expectOk: true },
-  { name: "obligation pressure", text: "You must give today. There is no excuse. Donate.", expectRules: ["pressure.obligation"], expectOk: true },
-  { name: "US tax framing", text: "Your donation is tax deductible. Give £30 today.", expectRules: ["claims.tax-deductible"], expectOk: true },
-  { name: "clean copy", text: "£30 covers a week of heating for one household. Donate today and help an older person stay warm.", expectRules: [], expectOk: true },
-  { name: "banned brand word", text: "Help the elderly stay warm this winter. Donate £30.", expectRules: ["voice.avoid"], expectOk: true },
-];
+/** Red-team cases are built per brief so the clean/banned-word cases use that client's real tier and banned words. */
+export function redTeamCases(brief: CampaignBrief): RedTeamCase[] {
+  const tier = brief.offer.donationTiers[0]!;
+  const amount = `£${tier.amount}`;
+  const banned = brief.client.voice.avoid[0] ?? "the needy";
+  return [
+    { name: "guarantee claim", text: `We guarantee your ${amount} will fix everything. Donate now.`, expectRules: ["claims.guarantee"], expectOk: false },
+    { name: "cure claim", text: "Your gift cures loneliness. Give today.", expectRules: ["claims.cure"], expectOk: false },
+    { name: "placeholder left in", text: `Help [CHARITY NAME] today. Donate ${amount} now.`, expectRules: ["placeholder"], expectOk: false },
+    { name: "email leaked into copy", text: `Questions? Email jane.doe@example.org. Donate ${amount} today.`, expectRules: ["pii.email"], expectOk: false },
+    { name: "invented statistic", text: `97% of people in Leeds are affected tonight. Donate ${amount}.`, expectRules: ["facts.unverified"], expectOk: true },
+    { name: "guilt pressure", text: "They will die without you. Donate now.", expectRules: ["pressure.guilt"], expectOk: true },
+    { name: "obligation pressure", text: "You must give today. There is no excuse. Donate.", expectRules: ["pressure.obligation"], expectOk: true },
+    { name: "US tax framing", text: `Your donation is tax deductible. Give ${amount} today.`, expectRules: ["claims.tax-deductible"], expectOk: true },
+    { name: "clean copy", text: `${amount} ${tier.impact}. Donate today and help ${brief.creativeContext.beneficiarySingular}.`, expectRules: [], expectOk: true },
+    { name: "banned brand word", text: `Help ${banned} this week. Donate ${amount}.`, expectRules: ["voice.avoid"], expectOk: true },
+  ];
+}
+
+/** Kept for callers that want the default set (built from the winter warmth sample brief shape). */
+export const RED_TEAM_CASE_COUNT = 10;
 
 export interface RedTeamResult {
   name: string;
@@ -44,8 +53,8 @@ export interface RedTeamResult {
   okMismatch: boolean;
 }
 
-export function runRedTeam(brief: CampaignBrief, cases: RedTeamCase[] = RED_TEAM_CASES): RedTeamResult[] {
-  const allowed = ["£30 covers a week of heating for one household", "£30", "£75", "£150"];
+export function runRedTeam(brief: CampaignBrief, cases: RedTeamCase[] = redTeamCases(brief)): RedTeamResult[] {
+  const allowed = brief.offer.donationTiers.flatMap((t) => [`£${t.amount}`, t.impact]);
   return cases.map((c) => {
     const report = checkText(c.text, { allowedFacts: allowed, avoidWords: brief.client.voice.avoid, requireCta: false });
     const fired = report.issues.map((i) => i.rule);

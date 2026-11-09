@@ -28,18 +28,24 @@ export const personaTask = defineTask<PersonaInput, CreatorPersona>({
       `Synthetic presenter allowed: ${allowSynthetic ? "yes" : "no"}.`,
       `Brand tone: ${brief.client.voice.tone.join(", ")}.`,
     ].join("\n"),
-  mock: ({ brief, script, allowSynthetic }) => {
+  mock: ({ brief, script, allowSynthetic }, { rng }) => {
     const testimonial = script.style === "ugc-testimonial";
     const synthetic = allowSynthetic && !testimonial;
+    const range = brief.audience.ageRange ?? "35-55";
+    const [lo, hi] = range.split("-").map((n) => Number(n));
+    const age = Number.isFinite(lo) && Number.isFinite(hi) ? rng.int(lo!, hi!) : 45;
+    const names = ["Priya", "Sam", "Jo", "Amina", "Chris", "Dee", "Tom", "Leah"];
+    const name = rng.pick(names);
+    const setting = brief.creativeContext.settingNoun;
     return {
-      name: testimonial ? "Priya, 48, daughter and part-time carer" : "Sam, 52, long-time volunteer",
-      ageRange: brief.audience.ageRange ?? "45-60",
+      name: testimonial ? `${name}, ${age}, supporter who has seen it first-hand` : `${name}, ${age}, long-time volunteer`,
+      ageRange: range,
       description: testimonial
-        ? "Warm, slightly rushed energy of someone filming between school run and work; natural kitchen setting, no make-up artist, hair tied back."
-        : "Calm, plain-spoken volunteer in a branded fleece, filmed at the depot; explains rather than performs.",
+        ? `Warm, slightly rushed energy of someone filming between errands; natural ${setting} setting, no make-up artist, phone propped on a shelf.`
+        : "Calm, plain-spoken volunteer in a branded fleece, filmed where the work happens; explains rather than performs.",
       voiceStyle: testimonial ? "conversational, regional UK accent, small pauses, no script-reading cadence" : "steady, clear, reassuring",
       synthetic,
-      whyThisPersona: `The audience (${brief.audience.name}) trusts peers over institutions; ${testimonial ? "a daughter talking about her own mum mirrors their situation" : "a volunteer can explain the operation credibly"}.${synthetic ? " Synthetic presenter acceptable because the script is informational, not a testimonial." : ""}`,
+      whyThisPersona: `The audience (${brief.audience.name}) trusts peers over institutions; ${testimonial ? `someone who can honestly say "${brief.creativeContext.storySeed}" mirrors their situation` : "a volunteer can explain the operation credibly"}.${synthetic ? " Synthetic presenter acceptable because the script is informational, not a testimonial." : ""}`,
     };
   },
 });

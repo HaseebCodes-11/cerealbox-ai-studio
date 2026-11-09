@@ -33,7 +33,8 @@ export const copyGenerationTask = defineTask<CopyGenerationInput, CopyPack>({
       brief.offer.matchFunding ? `Match funding: ${brief.offer.matchFunding}.` : "",
       brief.offer.deadline ? `Deadline: ${brief.offer.deadline}.` : "",
       `Proof points (cite only these): ${brief.client.proofPoints.join(" | ")}`,
-      `Voice: ${brief.client.voice.tone.join(", ")}. Banned words: ${brief.client.voice.avoid.join(", ") || "none"}.`,
+      `Creative context: ${brief.creativeContext.problemInDailyLife} Beneficiary: ${brief.creativeContext.beneficiarySingular} / ${brief.creativeContext.beneficiaryPlural}.`,
+      `Voice: ${brief.client.voice.tone.join(", ")}. Banned words: ${brief.client.voice.avoid.join(", ") || "none"}. Example lines: ${brief.client.voice.exampleLines.join(" | ") || "none"}.`,
       `Deliver: 5 hooks, 5 headlines, 3 primary texts (short/medium/long), 3 descriptions, 3 story overlays, the CTA button, and 3 messaging pillars.`,
     ]
       .filter(Boolean)
@@ -43,6 +44,7 @@ export const copyGenerationTask = defineTask<CopyGenerationInput, CopyPack>({
 
 export function buildMockCopy(brief: CampaignBrief, idea: Idea, seed = 0): CopyPack {
   const c = brief.client;
+  const cc = brief.creativeContext;
   const tiers = brief.offer.donationTiers;
   const t0 = tiers[0]!;
   const t1 = tiers[Math.min(1, tiers.length - 1)]!;
@@ -51,33 +53,35 @@ export function buildMockCopy(brief: CampaignBrief, idea: Idea, seed = 0): CopyP
   const match = brief.offer.matchFunding;
   const deadline = brief.offer.deadline;
   const proof = c.proofPoints[seed % c.proofPoints.length] ?? c.proofPoints[0]!;
-  const who = "an older person";
+  const who = cc.beneficiarySingular;
+  const exampleLine = c.voice.exampleLines[0];
+  const shortImpact = t0.impact.split(" ").slice(0, 4).join(" ");
 
   const hooks = [
     truncate(idea.hook, META_TEXT_LIMITS.hook.recommended),
-    `${a0} ${t0.impact}. That is the whole ask.`,
-    `Right now, a cold home is a daily reality for ${who} near you.`,
-    match ? `${truncate(match, 80)}.` : `${a1} ${t1.impact}.`,
-    `Nobody should choose between heating and eating. You can change that today.`,
+    truncate(`${a0} ${t0.impact}. That is the whole ask.`, META_TEXT_LIMITS.hook.recommended),
+    truncate(`Right now, ${lowerFirst(cc.problemInDailyLife)}`, META_TEXT_LIMITS.hook.recommended),
+    truncate(match ? `${match}.` : `${a1} ${t1.impact}.`, META_TEXT_LIMITS.hook.recommended),
+    truncate(exampleLine ? `${exampleLine} You can change that today.` : `${cc.openingQuestion} You can change the answer today.`, META_TEXT_LIMITS.hook.recommended),
   ];
 
   const headlines = [
-    `${a0} keeps ${who} warm`,
-    `Your gift, doubled this winter`,
-    `A warm home is not a luxury`,
+    `${a0} helps ${who} today`,
+    match ? `Your gift, doubled` : `${a0} ${shortImpact}`,
+    exampleLine ?? `Help ${who} this week`,
     `${a1} ${t1.impact.split(" ").slice(0, 4).join(" ")}`,
-    `Help ${who} stay warm`,
+    `Help ${who} now`,
   ].map((h) => truncate(h, META_TEXT_LIMITS.headline.recommended));
 
-  const shortText = truncate(`${a0} ${t0.impact}. ${match ? "Doubled right now. " : ""}Donate today and help ${who} stay warm.`, META_TEXT_LIMITS.primaryText.recommended);
-  const mediumText = `${idea.hook} ${c.name} works in local communities so ${who} is not left choosing between heating and eating. ${a0} ${t0.impact}; ${a1} ${t1.impact}.${match ? ` ${match}.` : ""} Donate now.`;
-  const longText = `${idea.hook}\n\n${proof}. This winter the need is greater than ever, and ${c.name} is ready to respond, but only with your help.\n\n${a0} ${t0.impact}. ${a1} ${t1.impact}.${match ? ` ${match}, so every gift goes twice as far.` : ""}${deadline ? ` Please give before ${deadline}.` : ""}\n\nDonate today and help ${who} feel safe at home.`;
+  const shortText = truncate(`${a0} ${t0.impact}. ${match ? "Doubled right now. " : ""}Donate today and help ${who}.`, META_TEXT_LIMITS.primaryText.recommended);
+  const mediumText = `${idea.hook} ${c.name} ${cc.whatWeDo} ${a0} ${t0.impact}; ${a1} ${t1.impact}.${match ? ` ${match}.` : ""} Donate now.`;
+  const longText = `${idea.hook}\n\n${proof}. ${cc.problemInDailyLife} ${c.name} ${cc.whatWeDo} But only with your help.\n\n${a0} ${t0.impact}. ${a1} ${t1.impact}.${match ? ` ${match}, so every gift goes twice as far.` : ""}${deadline ? ` Please give before ${deadline}.` : ""}\n\nDonate today and help ${who}.`;
 
-  const descriptions = [`${a0} = a week of warmth`, `Gift Aid adds 25% at no cost`, match ? `Every gift doubled` : `Give today`].map((d) => truncate(d, META_TEXT_LIMITS.description.recommended));
+  const descriptions = [`${a0} = ${shortImpact}`, `Gift Aid adds 25% at no cost`, match ? `Every gift doubled` : `Give today`].map((d) => truncate(d, META_TEXT_LIMITS.description.recommended));
 
   const storyOverlays = [
     truncate(`${a0} ${t0.impact}`, META_TEXT_LIMITS.storyOverlay.recommended),
-    truncate(match ? `Your gift doubled until ${deadline ?? "the deadline"}` : `Help ${who} stay warm this winter`, META_TEXT_LIMITS.storyOverlay.recommended),
+    truncate(match ? `Your gift doubled until ${deadline ?? "the deadline"}` : `Help ${who} today`, META_TEXT_LIMITS.storyOverlay.recommended),
     truncate(`Swipe up to donate ${a0}`, META_TEXT_LIMITS.storyOverlay.recommended),
   ];
 
@@ -94,8 +98,12 @@ export function buildMockCopy(brief: CampaignBrief, idea: Idea, seed = 0): CopyP
     ctaButton: brief.objective === "donations" || brief.objective === "regular_giving" ? "DONATE_NOW" : brief.objective === "leads" ? "SIGN_UP" : "LEARN_MORE",
     messagingPillars: [
       `Concrete impact: ${a0} ${t0.impact}`,
-      match ? `Urgency: ${match}` : `Urgency: winter is here now`,
+      match ? `Urgency: ${match}` : `Urgency: the need is now`,
       `Trust: ${proof}`,
     ],
   };
+}
+
+function lowerFirst(s: string): string {
+  return s.charAt(0).toLowerCase() + s.slice(1);
 }

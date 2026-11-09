@@ -57,8 +57,14 @@ describe("clip selection", () => {
     const hook = sel.selections.find((s) => s.beatName === "hook")!;
     expect(hook.clipId).toBe("clip-01");
     expect(hook.inSec).toBe(0);
+    // The presenter said the "turn" line on camera, so the transcript match should win over b-roll.
     const turn = sel.selections.find((s) => s.beatName === "turn")!;
-    expect(turn.clipId).toBe("clip-03");
+    expect(turn.clipId).toBe("clip-01");
+    expect(turn.inSec).toBe(12);
+    // A visual beat with no spoken match should land on b-roll.
+    const byId = new Map(clips.map((c) => [c.id, c]));
+    const problem = sel.selections.find((s) => s.beatName === "problem")!;
+    expect(byId.get(problem.clipId)!.kind).toBe("broll");
     for (const s of sel.selections) {
       const beat = script.beats.find((b) => b.name === s.beatName)!;
       expect(s.outSec - s.inSec).toBeLessThanOrEqual(beat.seconds + 1e-9);
