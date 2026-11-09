@@ -9,7 +9,7 @@ import { getProvider } from "../../../src/core/llm/index";
 import { runMediaBuyerAgent } from "../../../src/areas/media-buyer/index";
 import type { MetaAdsClient } from "../../../src/areas/media-buyer/types";
 import type { AdsDataset } from "../../../src/core/ads";
-import { error, json, readJson, requireServiceRole } from "../_shared/http";
+import { error, json, readJson, requireEnv, requireServiceRole } from "../_shared/http";
 
 declare const Deno: { env: { get(k: string): string | undefined }; serve(handler: (req: Request) => Promise<Response> | Response): void };
 
@@ -62,7 +62,7 @@ Deno.serve(async (req) => {
   const asOf = body.asOf ?? new Date(Date.now() - 86_400_000).toISOString().slice(0, 10);
   const autonomy = body.autonomy ?? "assist";
   const dryRun = body.dryRun ?? true;
-  const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const supabase = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"));
   try {
     const data = await loadDataset(supabase, asOf);
     const approved = await supabase.from("agent_recommendations").select("id").eq("status", "approved");

@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import type { RankedIdea } from "./types";
 
@@ -39,12 +39,25 @@ export class InMemoryIdeaBank implements IdeaBankStore {
 }
 
 export class FileIdeaBank implements IdeaBankStore {
-  constructor(private readonly path: string) {}
+  /** Set when the last read found an unparsable file; the original is preserved at this path. */
+  lastBackup: string | null = null;
+  constructor(
+    private readonly path: string,
+    private readonly warn: (message: string) => void = (m) => console.warn(m),
+  ) {}
   private read(): IdeaBankEntry[] {
     if (!existsSync(this.path)) return [];
+    const text = readFileSync(this.path, "utf8");
     try {
-      return JSON.parse(readFileSync(this.path, "utf8")) as IdeaBankEntry[];
-    } catch {
+      const parsed = JSON.parse(text) as unknown;
+      if (!Array.isArray(parsed)) throw new Error("idea bank is not an array");
+      return parsed as IdeaBankEntry[];
+    } catch (err) {
+      // Never silently discard the client's memory: keep the bytes next to the file and tell the operator.
+      const backup = `${this.path}.corrupt-${new Date().toISOString().replace(/[:.]/g, "-")}`;
+      copyFileSync(this.path, backup);
+      this.lastBackup = backup;
+      this.warn(`Idea bank at ${this.path} could not be parsed (${err instanceof Error ? err.message : String(err)}); the original was kept at ${backup} and the bank restarts empty.`);
       return [];
     }
   }
@@ -54,7 +67,10 @@ export class FileIdeaBank implements IdeaBankStore {
   async save(entries: IdeaBankEntry[]): Promise<void> {
     const all = [...this.read(), ...entries];
     mkdirSync(dirname(this.path), { recursive: true });
-    writeFileSync(this.path, JSON.stringify(all, null, 2));
+    // Write-then-rename is atomic on NTFS and POSIX, so a crash or a concurrent reader never sees a half-written file.
+    const tmp = `${this.path}.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2, 8)}.tmp`;
+    writeFileSync(tmp, JSON.stringify(all, null, 2));
+    renameSync(tmp, this.path);
   }
 }
 

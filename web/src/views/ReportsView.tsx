@@ -47,7 +47,7 @@ export function ReportsView({ index, drafts }: { index: ReportsIndex; drafts: Co
                 </li>
               ))}
             </ul>
-            <iframe title={`Report for ${report.clientName}`} src={`/${report.html}`} className="h-[640px] w-full rounded border border-[var(--border)] bg-white" />
+            <iframe title={`Report for ${report.clientName}`} src={`/${report.html}`} sandbox="allow-same-origin" className="h-[640px] w-full rounded border border-[var(--border)] bg-white" />
           </div>
         )}
       </Card>

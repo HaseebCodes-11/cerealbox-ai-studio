@@ -8,12 +8,12 @@ import { createClient } from "@supabase/supabase-js";
 import { getProvider } from "../../../src/core/llm/index";
 import { generateInsights, narrativeTask } from "../../../src/areas/toast/index";
 import type { AdsDataset } from "../../../src/core/ads";
-import { error, json, readJson, requireServiceRole } from "../_shared/http";
+import { error, json, readJson, requireEnv, requireServiceRole } from "../_shared/http";
 
 declare const Deno: { env: { get(k: string): string | undefined }; serve(handler: (req: Request) => Promise<Response> | Response): void };
 
 async function loadDataset(asOf: string, days: number): Promise<AdsDataset> {
-  const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const supabase = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"));
   const start = new Date(`${asOf}T00:00:00Z`);
   start.setUTCDate(start.getUTCDate() - (days * 2 + 28)); // enough history for anomalies and period comparison
   const since = start.toISOString().slice(0, 10);
@@ -46,7 +46,7 @@ Deno.serve(async (req) => {
     const insights = generateInsights(data, asOf, days);
     const provider = await getProvider({ LLM_PROVIDER: Deno.env.get("LLM_PROVIDER") ?? "anthropic", ANTHROPIC_API_KEY: Deno.env.get("ANTHROPIC_API_KEY"), ANTHROPIC_MODEL: Deno.env.get("ANTHROPIC_MODEL") });
     const narrative = (await provider.run(narrativeTask, { asOf, days, insights })).output;
-    const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+    const supabase = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"));
     const { error: dbError } = await supabase.from("toast_digests").upsert({ as_of: asOf, insights, narrative }, { onConflict: "as_of" });
     if (dbError) return error(dbError.message, 500);
     return json({ asOf, days, insights, narrative });

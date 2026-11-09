@@ -82,6 +82,31 @@ export interface HttpImageProviderOptions {
   apiKey?: string;
   fetchImpl?: typeof fetch;
   name?: string;
+  /** Abort the vendor call after this long (default 60 s). */
+  timeoutMs?: number;
+  /** Reject images whose decoded size exceeds this (default 12 MB). */
+  maxBytes?: number;
+}
+
+/** Raster types a browser, resvg and Meta all accept; anything else is refused. */
+export const ALLOWED_IMAGE_MIME_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
+const BASE64 = /^[A-Za-z0-9+/]+={0,2}$/;
+export const DEFAULT_IMAGE_TIMEOUT_MS = 60_000;
+export const DEFAULT_IMAGE_MAX_BYTES = 12 * 1024 * 1024;
+
+/**
+ * Validate a vendor response before it is embedded. Exported so the checks
+ * are testable without the provider; returns the data URI or throws.
+ */
+export function validateImagePayload(body: { imageBase64?: unknown; mimeType?: unknown }, providerName: string, maxBytes = DEFAULT_IMAGE_MAX_BYTES): { dataUri: string; mimeType: string } {
+  const mimeType = body.mimeType === undefined ? "image/png" : String(body.mimeType).trim().toLowerCase();
+  if (!ALLOWED_IMAGE_MIME_TYPES.has(mimeType)) throw new Error(`Image provider ${providerName} returned unsupported type "${mimeType}"`);
+  const b64 = typeof body.imageBase64 === "string" ? body.imageBase64.replace(/\s+/g, "") : "";
+  if (!b64) throw new Error(`Image provider ${providerName} returned no image`);
+  if (!BASE64.test(b64)) throw new Error(`Image provider ${providerName} returned malformed base64`);
+  const decodedBytes = Math.floor((b64.length * 3) / 4) - (b64.endsWith("==") ? 2 : b64.endsWith("=") ? 1 : 0);
+  if (decodedBytes > maxBytes) throw new Error(`Image provider ${providerName} returned ${decodedBytes} bytes, above the ${maxBytes} byte limit`);
+  return { dataUri: `data:${mimeType};base64,${b64}`, mimeType };
 }
 
 /**
@@ -98,15 +123,26 @@ export class HttpImageProvider implements ImageProvider {
   }
 
   async generate(request: ImageRequest): Promise<GeneratedImage> {
-    const res = await this.fetchImpl(this.options.endpoint, {
-      method: "POST",
-      headers: { "content-type": "application/json", ...(this.options.apiKey ? { authorization: `Bearer ${this.options.apiKey}` } : {}) },
-      body: JSON.stringify({ prompt: request.prompt, width: request.width, height: request.height }),
-    });
+    const timeoutMs = this.options.timeoutMs ?? DEFAULT_IMAGE_TIMEOUT_MS;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    let res: Response;
+    try {
+      res = await this.fetchImpl(this.options.endpoint, {
+        method: "POST",
+        headers: { "content-type": "application/json", ...(this.options.apiKey ? { authorization: `Bearer ${this.options.apiKey}` } : {}) },
+        body: JSON.stringify({ prompt: request.prompt, width: request.width, height: request.height }),
+        signal: controller.signal,
+      });
+    } catch (err) {
+      if (controller.signal.aborted) throw new Error(`Image provider ${this.name} timed out after ${timeoutMs} ms`);
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
     if (!res.ok) throw new Error(`Image provider ${this.name} returned ${res.status}`);
-    const body = (await res.json()) as { imageBase64?: string; mimeType?: string };
-    if (!body.imageBase64) throw new Error(`Image provider ${this.name} returned no image`);
-    const dataUri = `data:${body.mimeType ?? "image/png"};base64,${body.imageBase64}`;
+    const body = (await res.json()) as { imageBase64?: unknown; mimeType?: unknown };
+    const { dataUri } = validateImagePayload(body, this.name, this.options.maxBytes);
     return {
       provider: this.name,
       prompt: request.prompt,

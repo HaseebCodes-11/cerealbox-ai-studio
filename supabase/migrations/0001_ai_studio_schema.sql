@@ -207,20 +207,39 @@ create policy idea_bank_read on idea_bank for select using (is_agency_staff() or
 create policy idea_bank_write on idea_bank for all using (is_agency_staff()) with check (is_agency_staff());
 
 -- ---------------------------------------------------------------------------
+-- Cost visibility: spend per client, area and month straight from model_calls.
+-- ---------------------------------------------------------------------------
+create or replace view model_cost_monthly as
+select
+  client_id,
+  area,
+  date_trunc('month', created_at)::date as month,
+  count(*)                               as calls,
+  sum(input_tokens)                      as input_tokens,
+  sum(output_tokens)                     as output_tokens,
+  round(sum(cost_usd)::numeric, 4)       as cost_usd
+from model_calls
+group by client_id, area, date_trunc('month', created_at);
+
+-- ---------------------------------------------------------------------------
 -- Scheduled jobs (pg_cron). Edge Functions do the work; cron just triggers them.
+-- Every function requires `Authorization: Bearer <FUNCTIONS_SHARED_SECRET>`; the deploy step stores that
+-- secret as a database setting so the jobs can present it:
+--   alter database postgres set app.functions_secret = '<same value as the FUNCTIONS_SHARED_SECRET function secret>';
+--   alter database postgres set app.functions_url = 'https://<project-ref>.supabase.co/functions/v1';
 -- ---------------------------------------------------------------------------
 -- 06:30 daily: pull yesterday's Meta insights into ad_metrics_daily (True ROAS already has this sync).
 select cron.schedule('meta-insights-sync', '30 6 * * *',
-  $$ select net.http_post(url := current_setting('app.functions_url') || '/meta-insights-sync', headers := '{"Content-Type":"application/json"}'::jsonb, body := '{}'::jsonb); $$);
+  $$ select net.http_post(url := current_setting('app.functions_url') || '/meta-insights-sync', headers := jsonb_build_object('Content-Type', 'application/json', 'Authorization', 'Bearer ' || current_setting('app.functions_secret')), body := '{}'::jsonb); $$);
 
 -- 07:00 weekdays: run the media buyer agent in the configured autonomy level and write recommendations.
 select cron.schedule('ads-agent-daily', '0 7 * * 1-5',
-  $$ select net.http_post(url := current_setting('app.functions_url') || '/ads-agent-run', headers := '{"Content-Type":"application/json"}'::jsonb, body := '{"autonomy":"copilot","dryRun":false}'::jsonb); $$);
+  $$ select net.http_post(url := current_setting('app.functions_url') || '/ads-agent-run', headers := jsonb_build_object('Content-Type', 'application/json', 'Authorization', 'Bearer ' || current_setting('app.functions_secret')), body := '{"autonomy":"copilot","dryRun":false}'::jsonb); $$);
 
 -- 07:15 weekdays: compute Toast insights + narrative and store the digest (Slack post handled by n8n or the function).
 select cron.schedule('toast-digest', '15 7 * * 1-5',
-  $$ select net.http_post(url := current_setting('app.functions_url') || '/toast-insights', headers := '{"Content-Type":"application/json"}'::jsonb, body := '{"days":7}'::jsonb); $$);
+  $$ select net.http_post(url := current_setting('app.functions_url') || '/toast-insights', headers := jsonb_build_object('Content-Type', 'application/json', 'Authorization', 'Bearer ' || current_setting('app.functions_secret')), body := '{"days":7}'::jsonb); $$);
 
 -- Sunday 02:00: re-score idea_bank.performance from ad metrics so novelty + "what worked" improve over time.
 select cron.schedule('idea-bank-performance', '0 2 * * 0',
-  $$ select net.http_post(url := current_setting('app.functions_url') || '/idea-bank-performance', headers := '{"Content-Type":"application/json"}'::jsonb, body := '{}'::jsonb); $$);
+  $$ select net.http_post(url := current_setting('app.functions_url') || '/idea-bank-performance', headers := jsonb_build_object('Content-Type', 'application/json', 'Authorization', 'Bearer ' || current_setting('app.functions_secret')), body := '{}'::jsonb); $$);

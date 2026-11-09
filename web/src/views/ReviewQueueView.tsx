@@ -220,7 +220,7 @@ function Preview({ item, dir }: { item: ReviewItem; dir: string }) {
               </div>
               <div className="mt-1">{l.headline}</div>
               <div className="mt-1 text-xs text-[var(--muted)]">{l.hypothesis}</div>
-              <iframe title={`Landing variant ${l.variant}`} src={`/${dir}/${l.html}`} className="mt-2 h-72 w-full rounded border border-[var(--border)] bg-white" />
+              <iframe title={`Landing variant ${l.variant}`} src={`/${dir}/${l.html}`} sandbox="allow-same-origin allow-forms allow-scripts" className="mt-2 h-72 w-full rounded border border-[var(--border)] bg-white" />
             </div>
           ))}
         </div>

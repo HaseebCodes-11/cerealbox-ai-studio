@@ -12,7 +12,7 @@ import { ideaGenerationTask, rankIdeas, selectIdeas } from "../../../src/areas/i
 import { copyGenerationTask, validateCopy } from "../../../src/areas/copy/index";
 import { scriptGenerationTask, validateScript } from "../../../src/areas/scripts/index";
 import { checkLandingPage, landingSpecTask, renderLandingPage } from "../../../src/areas/landing/index";
-import { error, json, readJson, requireServiceRole } from "../_shared/http";
+import { error, json, readJson, requireEnv, requireServiceRole } from "../_shared/http";
 
 declare const Deno: { env: { get(k: string): string | undefined }; serve(handler: (req: Request) => Promise<Response> | Response): void };
 
@@ -21,7 +21,7 @@ Deno.serve(async (req) => {
   if (denied) return denied;
   const body = await readJson<{ briefId?: string; stage?: string; ideaId?: string }>(req);
   if (!body.briefId || !body.stage) return error("briefId and stage required");
-  const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const supabase = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"));
   const { data: row, error: briefError } = await supabase.from("campaign_briefs").select("brief").eq("id", body.briefId).single();
   if (briefError || !row) return error("brief not found", 404);
   const brief = parseBrief(row.brief);
