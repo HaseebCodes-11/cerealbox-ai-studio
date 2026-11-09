@@ -37,7 +37,7 @@ Layouts: bold-statement, stat-led, split-contrast, quote. The angle picks the la
 
 - `src/areas/static/` · tests `tests/areas/static.test.ts`
 - `npm run demo` → `out/<brief>/03-creatives/*.svg|png` and `03-creatives.md`
-- Photo areas are placeholders labelled with the image prompt; wiring an image API is a provider adapter.
+- Backgrounds come from an `ImageProvider`: the mock draws a deterministic abstract scene in brand tints under the legibility gradient; `HttpImageProvider` posts the prompt to any image API that returns PNG bytes (set `IMAGE_PROVIDER_URL`). The composite, text layer and checks are identical either way.
 
 ## Improvements next
 

@@ -80,6 +80,22 @@ Two exports in `automations/n8n/`:
 
 n8n is for human-facing glue. Anything that touches money or a vendor token is an Edge Function.
 
+## The web app (`web/`)
+
+The True ROAS "AI Studio" module, in the stack CerealBox already runs: Vite, React 19, TypeScript, Tailwind v4, TanStack Query, Recharts, shadcn-style primitives. It imports the same pure TypeScript as the pipeline (`@src/areas/toast/metrics`, `@src/areas/toast/ask`) so the browser computes KPIs and answers questions with the exact functions the CLI and Edge Functions use. Three views:
+
+| View | Reads | Does |
+|---|---|---|
+| Toast | `toast/dataset.json`, `toast/insights.json` | KPIs with deltas, spend vs revenue, ROAS vs target, creative types, insights, Ask Toast |
+| Review queue | `<brief>/review-queue.json` + artefact files | Lists every gate with guardrail score; previews ideas, copy, creative PNGs, scripts, UGC manifest, landing iframes, launch plan; approve / reject with a note (localStorage in the demo, `review_gates` in production) |
+| Ads agent | `agent/run.json` | Autonomy ladder, alerts, recommendations by risk tier with approve / reject, morning briefs |
+
+In production the JSON loaders become Supabase queries behind Row-Level Security and the approve button calls `run-pipeline-stage` / `ads-agent-execute`.
+
+## Edge Functions (`supabase/functions/`)
+
+`toast-insights`, `ads-agent-run`, `ads-agent-execute` and `run-pipeline-stage` are Deno handlers that import the pipeline modules directly (sloppy imports enabled in `deno.json`), authenticate with the service-role key and keep every vendor secret server-side. See `supabase/functions/README.md`.
+
 ## Code layout in this repo
 
 ```
@@ -87,11 +103,12 @@ src/core        brief schema · LLM provider (mock/anthropic) · guardrails · r
 src/areas       one folder per area: types (zod) · generate (defineTask) · validate/checks · render
 src/orchestrator the end-to-end pipeline with gates
 src/evals       red team · scorecard · agent recall
-src/cli         demo · toast · agent · eval
-tests           vitest: 196 tests across core, every area, orchestrator, evals, automations, CLI
+src/cli         demo · toast · agent · eval · video
+web             Vite + React app (Toast · review queue · ads agent) with jsdom tests
+tests           vitest: 229 tests across core, every area, orchestrator, evals, judge, images, video render, automations, CLI, web
 automations/n8n two importable workflows
-supabase        migration with schema, RLS, pg_cron
-samples         a charity brief and transcribed footage metadata
+supabase        migration with schema, RLS, pg_cron; four Edge Functions
+samples         two charity briefs and transcribed footage metadata
 ```
 
 ## Switching the model

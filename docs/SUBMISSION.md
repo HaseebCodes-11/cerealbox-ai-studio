@@ -7,7 +7,7 @@
 
 ## 1. The one-paragraph answer
 
-CerealBox does not need nine AI tools. It needs **one campaign brief that flows through nine stages**, with the same guardrails, the same review screen and the same audit trail at every step, sitting inside the platform the team already uses (True ROAS). Ideas feed copy, copy feeds statics and scripts, scripts feed UGC and editing, everything feeds landing pages and a launch plan, and the ad data that comes back (Toast) feeds the Media Buyer agent and the next round of ideas. AI generates and proposes; deterministic code checks; humans approve anything that touches a client's brand, money or a real person. I have built a working prototype of that whole loop, offline and reproducible, with 196 automated tests, and this document explains the reasoning behind each piece.
+CerealBox does not need nine AI tools. It needs **one campaign brief that flows through nine stages**, with the same guardrails, the same review screen and the same audit trail at every step, sitting inside the platform the team already uses (True ROAS). Ideas feed copy, copy feeds statics and scripts, scripts feed UGC and editing, everything feeds landing pages and a launch plan, and the ad data that comes back (Toast) feeds the Media Buyer agent and the next round of ideas. AI generates and proposes; deterministic code checks; humans approve anything that touches a client's brand, money or a real person. I have built a working prototype of that whole loop, offline and reproducible, with 229 automated tests, and this document explains the reasoning behind each piece.
 
 ```mermaid
 flowchart LR
@@ -36,12 +36,12 @@ Every arrow passes through three things: a **typed schema** (the model must retu
 | What you want | Where |
 |---|---|
 | The approach for every area, end to end | Section 4 below, then one file per area in `docs/areas/` |
-| The working demo | `npm run demo` writes everything to `out/`; `docs/DEMO_SCRIPT.md` is the 20-minute walkthrough |
+| The working demo | `npm run demo:all` writes everything to `out/` for two briefs; `npm run web` opens the React app; `npm run video` renders a real MP4; `docs/DEMO_SCRIPT.md` is the 20-minute walkthrough |
 | Where AI is used vs. where humans decide | Section 5 and the "AI vs human" table in each area doc |
 | Quality controls, maintenance, scale and cost | Sections 6, 7, 8 |
 | Milestones: 2 weeks / 30 / 60 / 90 days | `docs/ROADMAP.md` |
 | How it fits the stack (Supabase, React, Vercel, n8n) | `docs/ARCHITECTURE.md`, `supabase/migrations/`, `automations/n8n/` |
-| Proof it works | `npm test` (196 tests), `npm run eval` (red team, scorecard, agent recall) |
+| Proof it works | `npm test` (229 tests, node + browser), `npm run eval` (red team, scorecard, agent recall, LLM-as-judge) |
 
 ---
 
@@ -118,7 +118,7 @@ How I reduce bad outputs, hallucinations and poor creative:
 - **Angle enforcement and novelty scoring** against the idea bank, which is the actual fix for "generic ideas".
 - **Review gates with an audit trail.** Nothing ships from a gate marked pending or rejected; every decision is stored with who and why.
 - **Evals in CI.** Red team (known-bad must be caught, known-good must pass), pipeline scorecard (what share survives QA), agent scenario recall (every injected account problem must be detected, nothing else flagged). A prompt or model change that regresses any of these does not merge.
-- **LLM-as-judge for creative quality (next).** The mock judge today is heuristic; in production a cheaper model (Haiku 5.5) scores clarity, specificity and emotional pull on a rubric, sampled nightly, with human spot checks to calibrate it.
+- **LLM-as-judge for creative quality.** Every package's primary idea, short copy, first script and landing hero are scored 1-10 on clarity, specificity, emotional pull and brand fit with a ship / revise / reject verdict (`src/evals/judge.ts`). The eval run fails on any reject. Offline the judge is a heuristic baseline; with the Anthropic provider it is Claude on the same rubric, and the baseline is what we calibrate it against with human spot checks.
 
 ---
 
@@ -140,8 +140,9 @@ How I reduce bad outputs, hallucinations and poor creative:
 **Multi-client by construction.** Everything is keyed by client, protected by Row-Level Security, and the brief carries the client's voice, palette and compliance notes, so one pipeline serves 30 charities with 30 different voices.
 
 **Limitations to be honest about:**
-- Mock templates in this repo are tuned to the sample fuel-poverty brief; with real briefs the Anthropic provider writes the content.
-- Image, avatar and voice vendors are integrated as interfaces with mock renderers; live keys are a configuration step, not a code change, but they are not wired here.
+- Offline, content comes from the brief's `creativeContext` seeds through deterministic templates; it reads well for both sample briefs (fuel poverty and food bank) but it is a stand-in for Claude, not a substitute.
+- Image generation is a deterministic abstract scene offline; a real image API plugs in through one environment variable, but no live vendor was called here. Avatar and voice vendors and the Meta API are adapters with mocks; the Edge Functions show the live wiring and were not run against Supabase.
+- Video renders for real with the bundled ffmpeg, but on synthetic stand-in footage generated from the clip manifest.
 - Meta's Marketing API rate limits and review delays mean "autopilot" is a throttled, batched job, not real-time.
 - Synthetic UGC still reads as synthetic to some audiences; we test it, we do not assume it.
 

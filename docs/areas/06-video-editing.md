@@ -38,10 +38,10 @@ flowchart LR
 
 - `src/areas/video/` · tests `tests/areas/video.test.ts`
 - `npm run demo` → `out/<brief>/06-video/edl.json`, `captions.srt`, `render-plan.sh`, `pacing.json`
-- Sample footage metadata in `samples/raw-clips.json`; the render plan is generated and verified but not executed (no footage files in the repo).
+- `npm run video` renders for real with the bundled ffmpeg (`ffmpeg-static`): synthetic stand-in footage is generated from `samples/raw-clips.json`, every plan step runs as an argument list (no shell), and the output duration is checked against the EDL. Captions are burned in the Reels safe zone; the music bed ducks under the voice; the brand end card closes.
 
 ## Improvements next
 
-- Run the plan on real footage in a worker (Supabase Edge Function + Fly/Modal GPU box for speed).
+- Run the plan on real creator footage in a worker (the executor is already shell-free and argument-based; a Fly/Modal box adds speed).
 - Scene detection and silence trimming before selection.
 - Auto-reframe 16:9 to 9:16 with subject tracking.

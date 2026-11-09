@@ -59,7 +59,7 @@ Every execution is idempotent (same change twice is a no-op), dry-run by default
 
 - `src/areas/media-buyer/` · tests `tests/areas/media-buyer.test.ts` (each rule, suppression, dedupe, policy matrix, live/dry runs, failures, idempotency)
 - `npm run agent -- --autonomy autopilot --live` runs against the mock ads client; `npm run eval` proves 100 percent recall of the injected scenarios with zero extra findings.
-- Output: `out/agent/recommendations.md`, `alerts.md`, `briefs.md`.
+- Output: `out/agent/recommendations.md`, `alerts.md`, `briefs.md`; the React app's Ads agent view (`npm run web`) shows the ladder, alerts, recommendations by risk tier with approve/reject, and the briefs.
 
 ## Improvements next
 

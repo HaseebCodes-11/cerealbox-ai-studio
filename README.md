@@ -14,7 +14,7 @@ One campaign brief flows through nine stages (ideas → copy → statics → scr
 
 ```bash
 npm install
-npm run verify        # typecheck + 196 tests + full demo + evals
+npm run verify        # typecheck (node + web) · 229 tests · demo for both briefs · evals · web build
 ```
 
 Or step by step:
@@ -24,9 +24,13 @@ npm run demo          # brief → ideas, copy, creatives (PNG), scripts, UGC man
 npm run toast         # build out/toast/dashboard.html
 npm run toast:ask -- "Which client had the biggest ROAS drop last week?"
 npm run agent -- --autonomy autopilot --live
-npm run eval          # guardrail red team · pipeline scorecard · agent scenario recall
+npm run eval          # guardrail red team · pipeline scorecard · agent recall · LLM-as-judge
+npm run video         # render a real MP4 with the bundled ffmpeg (synthetic stand-in footage)
+npm run web           # React app: Toast dashboard · review queue · ads agent (http://localhost:5173)
 npm test
 ```
+
+`npm run demo:all` runs both sample briefs (fuel poverty and food bank) so the same pipeline is shown working for two different causes.
 
 Everything runs offline with a deterministic mock LLM provider, so results are reproducible and free. To use Claude:
 
@@ -50,8 +54,21 @@ LLM_PROVIDER=anthropic npm run demo
 | `brief-…/07-landing/` | Variant A and B HTML, spec, A/B diff |
 | `brief-…/08-launch-plan.json` | Campaign → ad sets → ads mapping creatives, copy and landing variants |
 | `brief-…/09-review-gates.md`, `10-audit.json`, `SUMMARY.md` | Decisions, full audit, costs |
-| `toast/dashboard.html` | KPIs, trends, client table, insights, Ask Toast, agent recommendations |
-| `agent/` | Recommendations, Slack-formatted alerts, morning briefs |
+| `brief-…/11-quality-judgement.md` | LLM-as-judge scores (clarity, specificity, emotion, brand fit) with verdicts |
+| `brief-…/review-queue.json`, `manifest.json` | Data the React review queue reads |
+| `brief-…/06-video/render/*.mp4` | Real rendered video (`npm run video`) |
+| `toast/dashboard.html`, `toast/insights.json` | Static dashboard, and the data the React Toast view reads |
+| `agent/`, `agent/run.json` | Recommendations, Slack-formatted alerts, morning briefs; data for the agent view |
+
+## The web app
+
+`web/` is the True ROAS "AI Studio" module in CerealBox's stack: Vite, React 19, TypeScript, Tailwind v4, TanStack Query, Recharts, with hand-rolled shadcn-style primitives. Three views read the demo output (in production, Supabase):
+
+- **Toast**: KPIs with week-on-week deltas, spend vs revenue, ROAS vs target, creative types, insights, and Ask Toast answering typed questions in the browser.
+- **Review queue**: every pipeline gate with its guardrail score and an artefact preview (ideas, copy, creative PNGs, scripts, UGC manifest, landing page iframes, launch plan); approve or reject with a note.
+- **Ads agent**: the autonomy ladder, alerts, recommendations filtered by risk tier with approve/reject, and the morning briefs.
+
+Component tests run in jsdom as a second Vitest project.
 
 ## Design in one paragraph
 
@@ -64,19 +81,21 @@ src/core          brief · llm (mock + anthropic) · guardrails · review · aud
 src/areas         ideas · copy · static · scripts · ugc · video · media-buyer · landing · toast
 src/orchestrator  end-to-end pipeline with gates
 src/evals         red team · scorecard · agent recall
-src/cli           demo · toast · agent · eval
-tests             vitest (196 tests)
+src/cli           demo · toast · agent · eval · video
+web               Vite + React app: Toast · review queue · ads agent (+ jsdom tests)
+tests             vitest (229 tests across node and web projects)
 automations/n8n   toast-daily-digest.json · ads-agent-approval.json
-supabase          migrations/0001_ai_studio_schema.sql (tables, RLS, pg_cron)
-samples           brief-winter-warmth.json · raw-clips.json
+supabase          migrations/0001_ai_studio_schema.sql (tables, RLS, pg_cron) · functions/ (4 Edge Functions)
+samples           brief-winter-warmth.json · brief-food-bank.json · raw-clips.json
 docs              SUBMISSION · areas/ · ROADMAP · DEMO_SCRIPT · ARCHITECTURE
 ```
 
 ## Honest limits
 
-- Mock content templates are tuned to the sample fuel-poverty brief; with `LLM_PROVIDER=anthropic` the model writes for any brief.
-- Image, avatar, voice and Meta API vendors are integrated as interfaces with mock implementations; live keys are configuration, not code changes, but they are not wired here.
-- The ffmpeg render plan is generated and tested, not executed (no footage files in the repo).
+- Offline, the mock provider writes content from the brief's `creativeContext` seeds (beneficiary, the problem in daily life, a story seed, an opening question). It reads well for both sample briefs; with `LLM_PROVIDER=anthropic` Claude writes it from the full brief.
+- Images: a deterministic abstract background is generated per creative; a real image API plugs in through `IMAGE_PROVIDER_URL` (the HTTP adapter is tested with a stub, not against a live vendor).
+- Avatar and voice vendors and the Meta Marketing API are adapters with mock implementations; the Edge Functions show the live wiring but were not run against Supabase here.
+- Video renders for real with the bundled ffmpeg, using synthetic stand-in footage generated from the clip manifest; no real footage ships in the repo.
 - No live CerealBox systems or ad accounts were accessed; all data is synthetic.
 
-Built with TypeScript, Zod, Vitest, the Anthropic TypeScript SDK, resvg, Chart.js. Node 20+.
+Built with TypeScript, Zod, Vitest, the Anthropic TypeScript SDK, resvg, ffmpeg-static, React, Vite, Tailwind, TanStack Query, Recharts. Node 20+.

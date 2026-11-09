@@ -1,6 +1,6 @@
 # 20-minute walkthrough script
 
-Before the call: `npm run demo` (writes `out/`), open `out/toast/dashboard.html`, `out/brief-2026-winter-warmth/07-landing/variant-A.html` and the `03-creatives` PNGs in tabs. Have `docs/SUBMISSION.md` open.
+Before the call: `npm run demo:all` (writes `out/` for both briefs), `npm run video` (renders the MP4), then `npm run web` and open http://localhost:5173. Have `docs/SUBMISSION.md` open and the rendered MP4 ready to play.
 
 ## 0:00 – 2:00 · The idea in one slide
 - Show the ecosystem diagram in `docs/SUBMISSION.md`.
@@ -18,16 +18,20 @@ Before the call: `npm run demo` (writes `out/`), open `out/toast/dashboard.html`
 - Open `variant-A.html` and `ab-diff.md`: "Spec-driven page: Gift Aid declaration, charity number, UTM passthrough, amounts match the ad. B changes one thing and says why."
 - Open `09-review-gates.md`: "Seven gates, all approved by a policy reviewer here; in production this is a screen in True ROAS."
 
-## 7:00 – 12:00 · Toast and the ads agent
-- Open the dashboard: KPIs with week-on-week deltas, spend vs revenue, client table vs targets, creative types, insights sorted by severity, Ask Toast answers, agent recommendations.
+## 7:00 – 12:00 · Toast and the ads agent, in the React app
+- Switch to the web app (`npm run web`): this is the AI Studio module inside True ROAS, same stack as yours: Vite, React, Tailwind, TanStack Query.
+- **Toast tab**: KPIs with week-on-week deltas, spend vs revenue, client table vs targets, creative types, insights sorted by severity. Type a question into Ask Toast live.
+- **Review queue tab**: every gate from the pipeline with its guardrail score; click through ideas, copy, the creative PNGs, scripts, the UGC manifest and the landing pages in iframes; approve one with a note. "In production this row is `review_gates` in Supabase and Approve calls the `run-pipeline-stage` Edge Function."
+- **Ads agent tab**: the autonomy ladder with the current level highlighted, alerts, recommendations by risk tier, approve or reject, morning briefs.
 - Point at the critical insight: "Zero donations for three days despite 453 clicks. That's a tracking break, not a performance problem, and the agent suppresses every other signal on that ad set so nobody cuts budget for the wrong reason."
 - Run `npm run toast:ask -- "Which client had the biggest ROAS drop last week?"` then `"Do video or static creatives perform better?"`. "The model turns the question into a typed query; code answers it; sources are listed. It can't make up a number."
 - Run `npm run agent -- --autonomy autopilot --live`. Show: human-tier items untouched, approve-tier budget moves executed inside the 20 percent cap, the fatigued creative *not* auto-paused. "Autonomy is earned per client: assist, copilot, autopilot."
 - Show `automations/n8n/ads-agent-approval.json` in n8n (import it) or just the Slack-approval node: "Human workflow lives in n8n; money lives in an Edge Function with the Meta token."
 
 ## 12:00 – 15:00 · Quality, maintenance, cost
-- Run `npm run eval`: red team 10/10, scorecard, agent recall 100 percent with zero extra findings. "This runs in CI; a prompt or model change that regresses it doesn't merge."
-- Run `npm test`: 196 tests. Mention the stubbed Anthropic provider tests (refusal, truncation, schema failure).
+- Play the rendered MP4 from `out/brief-2026-winter-warmth/06-video/render/`: real cuts from the clip selection, burned captions in the safe zone, music ducked under the voice, brand end card. "Synthetic stand-in footage, real pipeline: swap in the creator's files and the same plan runs."
+- Run `npm run eval`: red team 20/20 across two briefs, scorecards complete, agent recall 100 percent with zero extra findings, judge: no rejects. "This runs in CI; a prompt or model change that regresses it doesn't merge."
+- Run `npm test`: 229 tests across the pipeline and the React app. Mention the stubbed Anthropic provider tests (refusal, truncation, schema failure) and the real ffmpeg render test.
 - Cost line from the demo: "$0.15 per campaign package, $0.02 per daily agent run at Opus list prices. Model cost is not the constraint; vendor media cost and people time are."
 - `supabase/migrations/0001_ai_studio_schema.sql`: briefs, artefacts, review gates, model calls, agent tables, idea bank, RLS, four pg_cron jobs.
 
@@ -39,10 +43,11 @@ Before the call: `npm run demo` (writes `out/`), open `out/toast/dashboard.html`
 - Internal assistant: Ask Toast that answers anything about any client.
 - Client-comms drafts from the same guardrails.
 - Close the loop: creative performance writes back into the idea bank automatically.
-- Honest limits: mock templates are tuned to the sample brief; image/avatar/voice vendors are interfaces with mock renderers; Meta autopilot is a throttled batch job.
+- Honest limits: offline content comes from brief seeds through templates, not from Claude; the image API, avatar/voice vendors and Meta API are adapters with mocks; video renders on synthetic stand-in footage; Meta autopilot is a throttled batch job.
 
 ## Likely questions and short answers
 - **"Why not let the model decide budgets?"** Auditability and tuning. A media buyer can read and change a threshold; nobody can tune a paragraph.
 - **"What if Claude changes?"** Pinned model id, provider abstraction, eval gate. Switch, run evals, compare, roll forward or back.
 - **"Can clients see this?"** Row-Level Security keys everything by client; client users see their own briefs, assets and recommendations only.
-- **"What did you use to build it?"** TypeScript, Zod, Vitest, the Anthropic SDK with structured outputs, resvg for rendering, Chart.js for the dashboard, n8n exports, a Supabase migration. Claude Code as the pair programmer.
+- **"What did you use to build it?"** TypeScript, Zod, Vitest, the Anthropic SDK with structured outputs, resvg for rendering, ffmpeg for video, React/Vite/Tailwind/TanStack Query/Recharts for the app, n8n exports, a Supabase migration and Edge Functions. Claude Code as the pair programmer.
+- **"Does it only work for this one charity?"** No: run `npm run demo -- --brief samples/brief-food-bank.json`. Same pipeline, a food-bank brief, every check passes; the brief carries the creative seeds and the brand.

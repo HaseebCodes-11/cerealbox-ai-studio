@@ -42,7 +42,7 @@ Intents: rank clients by a metric, biggest change, client summary, creative-type
 ## In the prototype
 
 - `src/areas/toast/` · tests `tests/areas/toast.test.ts`
-- `npm run toast` builds `out/toast/dashboard.html`; `npm run toast:ask -- "Which client had the biggest ROAS drop last week?"`
+- `npm run toast` builds `out/toast/dashboard.html`; `npm run toast:ask -- "Which client had the biggest ROAS drop last week?"`; `npm run web` opens the React Toast view with the same metrics functions running in the browser and a live Ask Toast box.
 - Mock dataset: 6 charity clients, 56 days, with injected scenarios so the insights and the agent have something real to find (`src/areas/toast/mock-data.ts`).
 
 ## Improvements next
