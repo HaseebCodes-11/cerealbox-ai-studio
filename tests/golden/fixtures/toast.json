@@ -522,7 +522,7 @@
       "sources": []
     }
   ],
-  "dashboard": "sha256:c2e688a09b857a9228c257bff03501130d6a92245d0e5b2df869611e61ba5cb8",
+  "dashboard": "sha256:1df0228b58d821820810d6339f6fe2c0a050937c6e25bfa0206448dd5455030b",
   "agent": {
     "asOf": "2026-11-08",
     "recommendations": [

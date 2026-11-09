@@ -151,7 +151,7 @@ export function checkText(text: string, options: GuardrailOptions = {}): Guardra
 
   if (options.avoidWords?.length) {
     for (const word of options.avoidWords) {
-      const re = new RegExp(`\\b${escapeRegExp(word)}\\b`, "i");
+      const re = avoidWordPattern(word);
       const match = trimmed.match(re);
       if (match) issues.push({ rule: "voice.avoid", severity: "warn", message: `Brand voice avoids "${word}".`, excerpt: match[0] });
     }
@@ -231,6 +231,17 @@ export function scoreIssues(issues: GuardrailIssue[]): number {
 export function mergeReports(reports: GuardrailReport[]): GuardrailReport {
   const issues = reports.flatMap((r) => r.issues);
   return { ok: reports.every((r) => r.ok), issues, score: reports.length ? Math.round(reports.reduce((s, r) => s + r.score, 0) / reports.length) : 100 };
+}
+
+/** Brand-voice words are the same for every piece of copy in a brief; compile each pattern once. */
+const avoidWordPatterns = new Map<string, RegExp>();
+function avoidWordPattern(word: string): RegExp {
+  let re = avoidWordPatterns.get(word);
+  if (!re) {
+    re = new RegExp(`\\b${escapeRegExp(word)}\\b`, "i");
+    avoidWordPatterns.set(word, re);
+  }
+  return re;
 }
 
 export function escapeRegExp(text: string): string {

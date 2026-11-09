@@ -29,6 +29,14 @@ export interface PlanOptions {
 }
 
 const AUDIO = ["-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "128k"];
+/**
+ * x264 speed presets. Intermediate segments are re-encoded again at the
+ * caption/export stage, so they only need to be fast at the same CRF quality
+ * target; exports carry a fixed bitrate (`-b:v`), so their preset changes
+ * encode time, not the delivered file's size or look.
+ */
+export const INTERMEDIATE_PRESET = "veryfast";
+export const EXPORT_PRESET = "fast";
 
 export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions = {}): RenderStep[] {
   const workDir = options.workDir ?? "render";
@@ -49,7 +57,7 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
     if (!options.noText && text) filters.push(`drawtext=text='${escapeDrawtext(text)}':fontcolor=white:fontsize=${Math.round(width * 0.06)}:x=(w-text_w)/2:y=(h-text_h)/2`);
     return step(
       label,
-      ["-y", "-f", "lavfi", "-i", `color=c=${colour}:s=${width}x${height}:d=${duration}:r=${edl.fps}`, "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo", "-vf", filters.join(","), "-t", String(duration), "-c:v", "libx264", "-preset", "fast", "-pix_fmt", "yuv420p", ...AUDIO, "-shortest", out],
+      ["-y", "-f", "lavfi", "-i", `color=c=${colour}:s=${width}x${height}:d=${duration}:r=${edl.fps}`, "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo", "-vf", filters.join(","), "-t", String(duration), "-c:v", "libx264", "-preset", INTERMEDIATE_PRESET, "-pix_fmt", "yuv420p", ...AUDIO, "-shortest", out],
       [out],
     );
   };
@@ -65,7 +73,7 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
       steps.push(
         step(
           `trim ${item.beatName ?? i} from ${clip.id}`,
-          ["-y", "-ss", String(item.sourceInSec), "-t", String(duration), "-i", clip.filename, "-vf", `scale=${width}:${height}:force_original_aspect_ratio=increase,crop=${width}:${height},fps=${edl.fps}`, "-c:v", "libx264", "-preset", "fast", "-crf", "20", "-pix_fmt", "yuv420p", ...AUDIO, out],
+          ["-y", "-ss", String(item.sourceInSec), "-t", String(duration), "-i", clip.filename, "-vf", `scale=${width}:${height}:force_original_aspect_ratio=increase,crop=${width}:${height},fps=${edl.fps}`, "-c:v", "libx264", "-preset", INTERMEDIATE_PRESET, "-crf", "20", "-pix_fmt", "yuv420p", ...AUDIO, out],
           [out],
         ),
       );
@@ -83,7 +91,7 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
   const concatList = `${workDir}/concat.txt`;
   const assembled = `${workDir}/${edl.id}-assembled.mp4`;
   steps.push(
-    step("concat", ["-y", "-f", "concat", "-safe", "0", "-i", concatList, "-c:v", "libx264", "-preset", "fast", "-crf", "20", "-pix_fmt", "yuv420p", ...AUDIO, assembled], [concatList, assembled], [
+    step("concat", ["-y", "-f", "concat", "-safe", "0", "-i", concatList, "-c:v", "libx264", "-preset", INTERMEDIATE_PRESET, "-crf", "20", "-pix_fmt", "yuv420p", ...AUDIO, assembled], [concatList, assembled], [
       { path: concatList, content: segmentFiles.map((f) => `file '${basename(f)}'`).join("\n") + "\n" },
     ]),
   );
@@ -95,7 +103,7 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
       step(
         "burn captions",
         // SRT is converted to ASS with PlayRes 384x288, so style values are in those units and libass scales them to the frame.
-        ["-y", "-i", assembled, "-vf", `subtitles=${escapeFilterPath(srtPath)}:force_style='${captionStyle(width, height)}'`, "-c:v", "libx264", "-preset", "fast", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "copy", captioned],
+        ["-y", "-i", assembled, "-vf", `subtitles=${escapeFilterPath(srtPath)}:force_style='${captionStyle(width, height)}'`, "-c:v", "libx264", "-preset", INTERMEDIATE_PRESET, "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "copy", captioned],
         [captioned],
       ),
     );
@@ -135,7 +143,7 @@ export function buildFfmpegPlan(edl: Edl, clips: RawClip[], options: PlanOptions
 
   for (const preset of edl.exportPresets) {
     const out = `${workDir}/${edl.id}-${preset.name}.mp4`;
-    steps.push(step(`export ${preset.name}`, ["-y", "-i", current, "-vf", `scale=${preset.width}:${preset.height}`, "-c:v", "libx264", "-b:v", `${preset.bitrateKbps}k`, "-pix_fmt", "yuv420p", "-movflags", "+faststart", ...AUDIO, out], [out]));
+    steps.push(step(`export ${preset.name}`, ["-y", "-i", current, "-vf", `scale=${preset.width}:${preset.height}`, "-c:v", "libx264", "-preset", EXPORT_PRESET, "-b:v", `${preset.bitrateKbps}k`, "-pix_fmt", "yuv420p", "-movflags", "+faststart", ...AUDIO, out], [out]));
   }
 
   return steps;

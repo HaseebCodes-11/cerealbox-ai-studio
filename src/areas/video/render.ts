@@ -67,14 +67,55 @@ export interface ExecuteOptions {
   /** Stop at the first failing step (default true). */
   failFast?: boolean;
   onStep?: (result: ExecutedStep) => void;
+  /** How many independent steps may encode at once (default 2; ffmpeg is already multi-threaded). */
+  concurrency?: number;
+  /** Test seam: replaces the ffmpeg invocation. */
+  runStep?: (ffmpeg: string, args: string[], cwd: string) => Promise<{ stderr: string }>;
+}
+
+/**
+ * Which earlier steps each step must wait for. A step depends on every earlier
+ * step whose output it references (by path or basename) in its args or in a
+ * file it writes, and a concat step depends on everything before it. Steps
+ * with no dependencies between them may run concurrently.
+ */
+export function planDependencies(plan: RenderStep[]): number[][] {
+  const deps: number[][] = [];
+  for (let i = 0; i < plan.length; i++) {
+    const step = plan[i]!;
+    const refs = [...step.args, ...(step.files ?? []).map((f) => f.content)].join("\n");
+    const isConcat = step.args.includes("concat");
+    const mine: number[] = [];
+    for (let j = 0; j < i; j++) {
+      if (isConcat) {
+        mine.push(j);
+        continue;
+      }
+      const outputs = plan[j]!.outputs;
+      if (outputs.some((o) => refs.includes(o) || refs.includes(o.split(/[\\/]/).pop() ?? o))) mine.push(j);
+    }
+    deps.push(mine);
+  }
+  return deps;
 }
 
 export async function executeRenderPlan(plan: RenderStep[], options: ExecuteOptions): Promise<{ ok: boolean; steps: ExecutedStep[] }> {
   const ffmpeg = options.ffmpegPath ?? resolveFfmpeg();
   if (!ffmpeg) throw new Error("ffmpeg not available");
-  const results: ExecutedStep[] = [];
+  const run = options.runStep ?? ((bin: string, args: string[], cwd: string) => execFileAsync(bin, args, { cwd, maxBuffer: 50 * 1024 * 1024, windowsHide: true }));
+  const failFast = options.failFast ?? true;
+  const concurrency = Math.max(1, Math.floor(options.concurrency ?? 2));
+  const deps = planDependencies(plan);
   mkdirSync(options.cwd, { recursive: true });
-  for (const step of plan) {
+
+  // Results are reported in plan order whatever order the steps finish in.
+  const results: Array<ExecutedStep | undefined> = new Array(plan.length);
+  const done = new Set<number>();
+  let failed = false;
+  let next = 0;
+
+  const execute = async (index: number): Promise<void> => {
+    const step = plan[index]!;
     for (const file of step.files ?? []) {
       const target = resolveIn(options.cwd, file.path);
       mkdirSync(dirname(target), { recursive: true });
@@ -83,19 +124,44 @@ export async function executeRenderPlan(plan: RenderStep[], options: ExecuteOpti
     for (const out of step.outputs) mkdirSync(dirname(resolveIn(options.cwd, out)), { recursive: true });
     const started = Date.now();
     try {
-      const { stderr } = await execFileAsync(ffmpeg, step.args, { cwd: options.cwd, maxBuffer: 50 * 1024 * 1024, windowsHide: true });
-      const result = { name: step.name, ok: true, ms: Date.now() - started, stderrTail: tail(stderr) };
-      results.push(result);
-      options.onStep?.(result);
+      const { stderr } = await run(ffmpeg, step.args, options.cwd);
+      results[index] = { name: step.name, ok: true, ms: Date.now() - started, stderrTail: tail(stderr) };
     } catch (err) {
       const stderr = (err as { stderr?: string }).stderr ?? (err instanceof Error ? err.message : String(err));
-      const result = { name: step.name, ok: false, ms: Date.now() - started, stderrTail: tail(stderr) };
-      results.push(result);
-      options.onStep?.(result);
-      if (options.failFast ?? true) return { ok: false, steps: results };
+      results[index] = { name: step.name, ok: false, ms: Date.now() - started, stderrTail: tail(stderr) };
+      failed = true;
     }
+    done.add(index);
+    options.onStep?.(results[index]!);
+  };
+
+  // Steps are started strictly in plan order; a step starts once every step it depends on has finished.
+  const running = new Map<number, Promise<void>>();
+  while (next < plan.length || running.size > 0) {
+    if (failed && failFast) break;
+    while (next < plan.length && running.size < concurrency && deps[next]!.every((d) => done.has(d)) && !(failed && failFast)) {
+      const index = next++;
+      const p = execute(index).then(() => {
+        running.delete(index);
+      });
+      running.set(index, p);
+    }
+    if (running.size === 0) {
+      if (next < plan.length && !(failed && failFast)) {
+        // A dependency can never be satisfied (it failed with failFast off); run the step anyway so the failure is visible in order.
+        const index = next++;
+        const p = execute(index).then(() => {
+          running.delete(index);
+        });
+        running.set(index, p);
+      } else break;
+    }
+    await Promise.race(running.values());
   }
-  return { ok: results.every((r) => r.ok), steps: results };
+  await Promise.all(running.values());
+
+  const steps = results.filter((r): r is ExecutedStep => r !== undefined);
+  return { ok: steps.length === plan.length && steps.every((r) => r.ok), steps };
 }
 
 /**
@@ -104,27 +170,32 @@ export async function executeRenderPlan(plan: RenderStep[], options: ExecuteOpti
  * with a quiet tone, exactly the clip's duration. Also writes the music bed
  * the plan expects.
  */
-export async function generateSyntheticFootage(clips: RawClip[], options: { cwd: string; ffmpegPath?: string; musicPath?: string; musicSeconds?: number; width?: number; height?: number; noText?: boolean }): Promise<string[]> {
+export async function generateSyntheticFootage(clips: RawClip[], options: { cwd: string; ffmpegPath?: string; musicPath?: string; musicSeconds?: number; width?: number; height?: number; noText?: boolean; concurrency?: number }): Promise<string[]> {
   const ffmpeg = options.ffmpegPath ?? resolveFfmpeg();
   if (!ffmpeg) throw new Error("ffmpeg not available");
   const width = options.width ?? 1080;
   const height = options.height ?? 1920;
   const written: string[] = [];
-  for (const [index, clip] of clips.entries()) {
-    const target = resolveIn(options.cwd, clip.filename);
-    mkdirSync(dirname(target), { recursive: true });
-    const hue = (index * 67) % 360;
-    const colour = `hsl(${hue},45%,35%)`;
-    const vf = [`drawbox=x=0:y=0:w=iw:h=ih:color=${hslToHex(hue)}:t=fill`];
-    if (!options.noText) vf.push(`drawtext=text='${clip.id}':fontcolor=white:fontsize=${Math.round(width * 0.08)}:x=(w-text_w)/2:y=(h-text_h)/2`);
-    void colour;
-    await execFileAsync(
-      ffmpeg,
-      ["-y", "-f", "lavfi", "-i", `testsrc2=s=${width}x${height}:r=30:d=${clip.durationSec}`, "-f", "lavfi", "-i", `sine=frequency=${220 + index * 40}:sample_rate=48000:duration=${clip.durationSec}`, "-vf", vf.join(","), "-c:v", "libx264", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-c:a", "aac", "-ar", "48000", "-ac", "2", "-af", "volume=0.2", "-shortest", target],
-      { cwd: options.cwd, windowsHide: true, maxBuffer: 50 * 1024 * 1024 },
-    );
-    written.push(target);
-  }
+  // Stand-in footage only needs to exist and be the right length: encode it as fast as x264 allows, a few clips at a time.
+  const concurrency = Math.max(1, options.concurrency ?? 3);
+  const queue = [...clips.entries()];
+  const worker = async () => {
+    for (let item = queue.shift(); item; item = queue.shift()) {
+      const [index, clip] = item;
+      const target = resolveIn(options.cwd, clip.filename);
+      mkdirSync(dirname(target), { recursive: true });
+      const hue = (index * 67) % 360;
+      const vf = [`drawbox=x=0:y=0:w=iw:h=ih:color=${hslToHex(hue)}:t=fill`];
+      if (!options.noText) vf.push(`drawtext=text='${clip.id}':fontcolor=white:fontsize=${Math.round(width * 0.08)}:x=(w-text_w)/2:y=(h-text_h)/2`);
+      await execFileAsync(
+        ffmpeg,
+        ["-y", "-f", "lavfi", "-i", `testsrc2=s=${width}x${height}:r=30:d=${clip.durationSec}`, "-f", "lavfi", "-i", `sine=frequency=${220 + index * 40}:sample_rate=48000:duration=${clip.durationSec}`, "-vf", vf.join(","), "-c:v", "libx264", "-preset", "ultrafast", "-pix_fmt", "yuv420p", "-c:a", "aac", "-ar", "48000", "-ac", "2", "-af", "volume=0.2", "-shortest", target],
+        { cwd: options.cwd, windowsHide: true, maxBuffer: 50 * 1024 * 1024 },
+      );
+      written[index] = target;
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(concurrency, clips.length) }, worker));
   if (options.musicPath) {
     const target = resolveIn(options.cwd, options.musicPath);
     mkdirSync(dirname(target), { recursive: true });

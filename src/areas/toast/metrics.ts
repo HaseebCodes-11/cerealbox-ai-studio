@@ -29,9 +29,27 @@ export function previousPeriod(p: Period): Period {
   return { start: addDays(p.start, -len), end: addDays(p.start, -1) };
 }
 
+/**
+ * Deduplicating the metrics table is the expensive part of every Toast query
+ * and the table does not change between the dozens of calls one digest makes,
+ * so the deduped view is memoised per array (and invalidated if the array
+ * grows). Filtering first then deduping, or deduping first then filtering,
+ * gives the same rows in the same order because every row of a key shares the
+ * same date; tests/audit/metrics-equivalence.test.ts proves it.
+ */
+const dedupeCache = new WeakMap<AdMetricsDaily[], { length: number; rows: AdMetricsDaily[] }>();
+
+export function dedupedMetrics(rows: AdMetricsDaily[]): AdMetricsDaily[] {
+  const hit = dedupeCache.get(rows);
+  if (hit && hit.length === rows.length) return hit.rows;
+  const deduped = dedupeMetrics(rows);
+  dedupeCache.set(rows, { length: rows.length, rows: deduped });
+  return deduped;
+}
+
 export function inPeriod(rows: AdMetricsDaily[], p: Period): AdMetricsDaily[] {
   // Re-synced days arrive as duplicate rows; the last write wins so nothing is counted twice.
-  return dedupeMetrics(rows.filter((r) => r.date >= p.start && r.date <= p.end));
+  return dedupedMetrics(rows).filter((r) => r.date >= p.start && r.date <= p.end);
 }
 
 export function aggregate(data: AdsDataset, groupBy: GroupBy, period: Period, filter: { clientId?: string } = {}): AggregateRow[] {

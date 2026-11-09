@@ -17,6 +17,22 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: { alias: { "@src": resolve(here, "../src") } },
   server: { port: 5173, strictPort: true },
-  // One bundle is fine for an internal tool behind login; Recharts and React account for most of it.
-  build: { outDir: resolve(here, "dist"), emptyOutDir: true, chunkSizeWarningLimit: 1000 },
+  build: {
+    outDir: resolve(here, "dist"),
+    emptyOutDir: true,
+    // Vendors change rarely and cache independently of the app; Recharts only matters on the Toast tab.
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (!id.includes("node_modules")) return undefined;
+          if (/[\\/](recharts|d3-[a-z-]+|victory-vendor|react-smooth|recharts-scale)[\\/]/.test(id)) return "charts";
+          if (id.includes("@tanstack")) return "query";
+          if (/[\\/](react|react-dom|scheduler)[\\/]/.test(id)) return "react";
+          return "vendor";
+        },
+      },
+    },
+    // scripts/check-bundle.ts enforces the real budget (largest chunk and total) in `npm run verify`.
+    chunkSizeWarningLimit: 500,
+  },
 });

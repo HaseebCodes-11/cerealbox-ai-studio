@@ -1664,7 +1664,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1679,7 +1679,7 @@
             "128k",
             "render/seg-00.mp4"
           ],
-          "command": "ffmpeg -y -ss 0 -t 3.6 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-00.mp4",
+          "command": "ffmpeg -y -ss 0 -t 3.6 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-00.mp4",
           "outputs": [
             "render/seg-00.mp4"
           ]
@@ -1699,7 +1699,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1714,7 +1714,7 @@
             "128k",
             "render/seg-01.mp4"
           ],
-          "command": "ffmpeg -y -ss 0 -t 6 -i footage/broll-terrace-dusk.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-01.mp4",
+          "command": "ffmpeg -y -ss 0 -t 6 -i footage/broll-terrace-dusk.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-01.mp4",
           "outputs": [
             "render/seg-01.mp4"
           ]
@@ -1734,7 +1734,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1749,7 +1749,7 @@
             "128k",
             "render/seg-02.mp4"
           ],
-          "command": "ffmpeg -y -ss 12 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-02.mp4",
+          "command": "ffmpeg -y -ss 12 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-02.mp4",
           "outputs": [
             "render/seg-02.mp4"
           ]
@@ -1769,7 +1769,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1784,7 +1784,7 @@
             "128k",
             "render/seg-03.mp4"
           ],
-          "command": "ffmpeg -y -ss 9 -t 6 -i footage/home-visit-team.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-03.mp4",
+          "command": "ffmpeg -y -ss 9 -t 6 -i footage/home-visit-team.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-03.mp4",
           "outputs": [
             "render/seg-03.mp4"
           ]
@@ -1804,7 +1804,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1819,7 +1819,7 @@
             "128k",
             "render/seg-04.mp4"
           ],
-          "command": "ffmpeg -y -ss 0 -t 5.4 -i footage/broll-thermostat.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-04.mp4",
+          "command": "ffmpeg -y -ss 0 -t 5.4 -i footage/broll-thermostat.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-04.mp4",
           "outputs": [
             "render/seg-04.mp4"
           ]
@@ -1839,7 +1839,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1854,7 +1854,7 @@
             "128k",
             "render/seg-05.mp4"
           ],
-          "command": "ffmpeg -y -ss 26 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-05.mp4",
+          "command": "ffmpeg -y -ss 26 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-05.mp4",
           "outputs": [
             "render/seg-05.mp4"
           ]
@@ -1878,7 +1878,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-pix_fmt",
             "yuv420p",
             "-c:a",
@@ -1892,7 +1892,7 @@
             "-shortest",
             "render/end-card.mp4"
           ],
-          "command": "ffmpeg -y -f lavfi -i color=c=0xC8442B:s=1080x1920:d=2:r=30 -f lavfi -i anullsrc=r=48000:cl=stereo -vf \"drawbox=x=0:y=0:w=iw:h=ih:color=0xC8442B:t=fill,drawtext=text='Hearthline · Donate today':fontcolor=white:fontsize=65:x=(w-text_w)/2:y=(h-text_h)/2\" -t 2 -c:v libx264 -preset fast -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k -shortest render/end-card.mp4",
+          "command": "ffmpeg -y -f lavfi -i color=c=0xC8442B:s=1080x1920:d=2:r=30 -f lavfi -i anullsrc=r=48000:cl=stereo -vf \"drawbox=x=0:y=0:w=iw:h=ih:color=0xC8442B:t=fill,drawtext=text='Hearthline · Donate today':fontcolor=white:fontsize=65:x=(w-text_w)/2:y=(h-text_h)/2\" -t 2 -c:v libx264 -preset veryfast -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k -shortest render/end-card.mp4",
           "outputs": [
             "render/end-card.mp4"
           ]
@@ -1910,7 +1910,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1925,7 +1925,7 @@
             "128k",
             "render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4"
           ],
-          "command": "ffmpeg -y -f concat -safe 0 -i render/concat.txt -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4",
+          "command": "ffmpeg -y -f concat -safe 0 -i render/concat.txt -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4",
           "outputs": [
             "render/concat.txt",
             "render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4"
@@ -1948,7 +1948,7 @@
             "-c:v",
             "libx264",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
             "20",
             "-pix_fmt",
@@ -1957,7 +1957,7 @@
             "copy",
             "render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4"
           ],
-          "command": "ffmpeg -y -i render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4 -vf \"subtitles=render/edl-script-idea-1-question-ugc-testimonial-30s-0.srt:force_style='FontName=Arial,FontSize=9,Bold=1,Outline=2,Shadow=0,Alignment=2,MarginV=40,MarginL=23,MarginR=23'\" -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a copy render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4",
+          "command": "ffmpeg -y -i render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4 -vf \"subtitles=render/edl-script-idea-1-question-ugc-testimonial-30s-0.srt:force_style='FontName=Arial,FontSize=9,Bold=1,Outline=2,Shadow=0,Alignment=2,MarginV=40,MarginL=23,MarginR=23'\" -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a copy render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4",
           "outputs": [
             "render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4"
           ]
@@ -2006,6 +2006,8 @@
             "scale=1080:1920",
             "-c:v",
             "libx264",
+            "-preset",
+            "fast",
             "-b:v",
             "8000k",
             "-pix_fmt",
@@ -2022,7 +2024,7 @@
             "128k",
             "render/edl-script-idea-1-question-ugc-testimonial-30s-0-reels.mp4"
           ],
-          "command": "ffmpeg -y -i render/edl-script-idea-1-question-ugc-testimonial-30s-0-mixed.mp4 -vf scale=1080:1920 -c:v libx264 -b:v 8000k -pix_fmt yuv420p -movflags +faststart -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-1-question-ugc-testimonial-30s-0-reels.mp4",
+          "command": "ffmpeg -y -i render/edl-script-idea-1-question-ugc-testimonial-30s-0-mixed.mp4 -vf scale=1080:1920 -c:v libx264 -preset fast -b:v 8000k -pix_fmt yuv420p -movflags +faststart -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-1-question-ugc-testimonial-30s-0-reels.mp4",
           "outputs": [
             "render/edl-script-idea-1-question-ugc-testimonial-30s-0-reels.mp4"
           ]

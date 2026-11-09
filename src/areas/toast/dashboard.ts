@@ -23,9 +23,6 @@ export interface DashboardInput {
 }
 
 /** JSON that is safe inside a <script> block: "<" and ">" are escaped so "</script>" cannot be smuggled in through a name. */
-/** SHA-384 of the pinned Chart.js build, so a tampered CDN response is refused by the browser. */
-export const CHART_JS_SRI = "sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD";
-
 export function jsonForScript(value: unknown): string {
   return JSON.stringify(value).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
 }
@@ -80,7 +77,7 @@ export function renderDashboard(input: DashboardInput): string {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Toast · Meta Ads performance · ${escapeHtml(input.asOf)}</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="${CHART_JS_SRI}" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
   :root { --bg:#0f1115; --panel:#171a21; --panel2:#1e2230; --text:#e8eaf0; --muted:#9aa3b5; --accent:#f2b134; --good:#3ddc84; --bad:#ff6b6b; --warn:#f2b134; --info:#5aa9ff; --border:#2a2f3d; }
   @media (prefers-color-scheme: light) { :root { --bg:#f6f7fb; --panel:#ffffff; --panel2:#f0f2f7; --text:#1c1f26; --muted:#5b6270; --border:#e1e4ec; } }
