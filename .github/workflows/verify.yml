@@ -9,6 +9,9 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      # The secrets context is not allowed in a step-level `if`, so expose a flag here.
+      HAS_ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,7 +25,7 @@ jobs:
           LLM_PROVIDER: mock
       # With ANTHROPIC_API_KEY set as a repository secret, the live smoke test runs instead of skipping.
       - run: npx vitest run tests/live
-        if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        if: env.HAS_ANTHROPIC_KEY == 'true'
         env:
           LLM_PROVIDER: anthropic
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
