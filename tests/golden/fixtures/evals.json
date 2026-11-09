@@ -1,0 +1,285 @@
+{
+  "red": [
+    {
+      "name": "guarantee claim",
+      "passed": true,
+      "firedRules": [
+        "claims.guarantee"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "cure claim",
+      "passed": true,
+      "firedRules": [
+        "claims.cure"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "placeholder left in",
+      "passed": true,
+      "firedRules": [
+        "placeholder"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "email leaked into copy",
+      "passed": true,
+      "firedRules": [
+        "pii.email"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "invented statistic",
+      "passed": true,
+      "firedRules": [
+        "facts.unverified"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "guilt pressure",
+      "passed": true,
+      "firedRules": [
+        "pressure.guilt"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "obligation pressure",
+      "passed": true,
+      "firedRules": [
+        "pressure.obligation"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "US tax framing",
+      "passed": true,
+      "firedRules": [
+        "claims.tax-deductible"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "clean copy",
+      "passed": true,
+      "firedRules": [],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "banned brand word",
+      "passed": true,
+      "firedRules": [
+        "voice.avoid"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Kindred Kitchens"
+    },
+    {
+      "name": "guarantee claim",
+      "passed": true,
+      "firedRules": [
+        "claims.guarantee"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "cure claim",
+      "passed": true,
+      "firedRules": [
+        "claims.cure"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "placeholder left in",
+      "passed": true,
+      "firedRules": [
+        "placeholder"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "email leaked into copy",
+      "passed": true,
+      "firedRules": [
+        "pii.email"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "invented statistic",
+      "passed": true,
+      "firedRules": [
+        "facts.unverified"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "guilt pressure",
+      "passed": true,
+      "firedRules": [
+        "pressure.guilt"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "obligation pressure",
+      "passed": true,
+      "firedRules": [
+        "pressure.obligation"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "US tax framing",
+      "passed": true,
+      "firedRules": [
+        "claims.tax-deductible"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "clean copy",
+      "passed": true,
+      "firedRules": [],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    },
+    {
+      "name": "banned brand word",
+      "passed": true,
+      "firedRules": [
+        "voice.avoid"
+      ],
+      "missing": [],
+      "okMismatch": false,
+      "client": "Hearthline"
+    }
+  ],
+  "scorecards": [
+    {
+      "status": "complete",
+      "copyScore": 100,
+      "copyVariantsKept": 22,
+      "copyVariantsTotal": 22,
+      "creativesPassing": 3,
+      "creativesTotal": 3,
+      "scriptsPassing": 3,
+      "scriptsTotal": 3,
+      "landingPassing": 2,
+      "landingTotal": 2,
+      "ideaAngles": 10,
+      "duplicateIdeas": 0,
+      "gatesApproved": 7,
+      "gatesTotal": 7,
+      "estimatedCostUsd": 0.14774800000000002
+    },
+    {
+      "status": "complete",
+      "copyScore": 100,
+      "copyVariantsKept": 22,
+      "copyVariantsTotal": 22,
+      "creativesPassing": 3,
+      "creativesTotal": 3,
+      "scriptsPassing": 3,
+      "scriptsTotal": 3,
+      "landingPassing": 2,
+      "landingTotal": 2,
+      "ideaAngles": 10,
+      "duplicateIdeas": 0,
+      "gatesApproved": 7,
+      "gatesTotal": 7,
+      "estimatedCostUsd": 0.144396
+    }
+  ],
+  "recall": {
+    "detected": [
+      {
+        "rule": "scale-winner",
+        "entityId": "hearthline-c1-as1",
+        "label": "winner to scale",
+        "found": true
+      },
+      {
+        "rule": "creative-fatigue",
+        "entityId": "hearthline-c1-as2-ad1",
+        "label": "fatigued static",
+        "found": true
+      },
+      {
+        "rule": "tracking-break",
+        "entityId": "bluewater-c1-as1",
+        "label": "tracking break",
+        "found": true
+      },
+      {
+        "rule": "cpa-spike",
+        "entityId": "kindred-c1-as1",
+        "label": "CPA spike",
+        "found": true
+      },
+      {
+        "rule": "roas-floor",
+        "entityId": "northlight-c1-as1",
+        "label": "ROAS below floor",
+        "found": true
+      },
+      {
+        "rule": "zero-conversion-ad",
+        "entityId": "paws-c1-as1-ad2",
+        "label": "dead ad",
+        "found": true
+      },
+      {
+        "rule": "learning-limited",
+        "entityId": "brightstart-c1-as1",
+        "label": "learning limited",
+        "found": true
+      }
+    ],
+    "recall": 1,
+    "falsePositives": 0,
+    "totalRecommendations": 7
+  }
+}

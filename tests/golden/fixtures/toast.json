@@ -1,0 +1,1035 @@
+{
+  "dataset": "sha256:499408ffa2c3911f6871bf39572ca33fcfafc9fda4fbec0719254c99b39cfe4e",
+  "rows": 1075,
+  "insights": [
+    {
+      "id": "tracking-break:bluewater-c1-as1",
+      "severity": "critical",
+      "scope": "adset",
+      "clientId": "bluewater",
+      "title": "Zero donations recorded on OC - Interests Marine for 3 days despite 453 clicks",
+      "detail": "Previous 3 days had 20 donations. This pattern usually means the pixel, Conversions API or donation-platform webhook stopped firing, not that donors stopped giving.",
+      "metrics": {
+        "linkClicks3d": 453,
+        "conversions3d": 0,
+        "conversionsPrev3d": 20
+      },
+      "suggestedAction": "Check Events Manager and the fundraising platform webhook log before changing any budgets."
+    },
+    {
+      "id": "anomaly-revenue:2026-10-31",
+      "severity": "warning",
+      "scope": "portfolio",
+      "title": "Portfolio revenue dropped on 2026-10-31",
+      "detail": "£2,090 vs an expected ~£2,677 (z=-2.84).",
+      "metrics": {
+        "value": 2090.4,
+        "expected": 2676.66,
+        "z": -2.84
+      }
+    },
+    {
+      "id": "anomaly-revenue:2026-11-06",
+      "severity": "warning",
+      "scope": "portfolio",
+      "title": "Portfolio revenue dropped on 2026-11-06",
+      "detail": "£1,826 vs an expected ~£2,533 (z=-2.54).",
+      "metrics": {
+        "value": 1825.58,
+        "expected": 2532.99,
+        "z": -2.54
+      }
+    },
+    {
+      "id": "client-revenue-swing:bluewater",
+      "severity": "warning",
+      "scope": "client",
+      "clientId": "bluewater",
+      "title": "Bluewater Trust revenue down 27.3% week on week",
+      "detail": "£2,506 -> £1,822 with spend -1.16% and CPA +44.11%.",
+      "metrics": {
+        "revenueDeltaPct": -27.3,
+        "spendDeltaPct": -1.16,
+        "cpaDeltaPct": 44.11
+      }
+    },
+    {
+      "id": "client-revenue-swing:paws",
+      "severity": "warning",
+      "scope": "client",
+      "clientId": "paws",
+      "title": "Paws & Place revenue down 29.76% week on week",
+      "detail": "£2,485 -> £1,745 with spend +0.47% and CPA +33.55%.",
+      "metrics": {
+        "revenueDeltaPct": -29.76,
+        "spendDeltaPct": 0.47,
+        "cpaDeltaPct": 33.55
+      }
+    },
+    {
+      "id": "client-roas-miss:northlight",
+      "severity": "warning",
+      "scope": "client",
+      "clientId": "northlight",
+      "title": "Northlight Hospice is below ROAS target (1.94 vs 3)",
+      "detail": "£822 spent for £1,591 raised. CPA £22.82 against a £15 target. ROAS moved -2.51% week on week.",
+      "metrics": {
+        "roas": 1.94,
+        "targetRoas": 3,
+        "cpa": 22.82,
+        "roasDeltaPct": -2.51
+      },
+      "suggestedAction": "Review ad-set level recommendations; consider pausing the weakest ad set and refreshing creative."
+    },
+    {
+      "id": "cpa-mover:kindred",
+      "severity": "warning",
+      "scope": "client",
+      "clientId": "kindred",
+      "title": "Kindred Kitchens CPA up 60.53% week on week (£10.11 -> £16.23)",
+      "detail": "Conversions -37.04% on spend +1.14%.",
+      "metrics": {
+        "cpaRecent": 16.23,
+        "cpaPrevious": 10.11,
+        "cpaDeltaPct": 60.53
+      }
+    },
+    {
+      "id": "client-roas-beat:hearthline",
+      "severity": "positive",
+      "scope": "client",
+      "clientId": "hearthline",
+      "title": "Hearthline is beating ROAS target (4.23 vs 3)",
+      "detail": "£5,853 raised on £1,383 with CPA £9.41. There is headroom to scale budget in 20% steps.",
+      "metrics": {
+        "roas": 4.23,
+        "targetRoas": 3,
+        "cpa": 9.41
+      },
+      "suggestedAction": "Approve the scale recommendation on the top ad set."
+    },
+    {
+      "id": "client-pacing:brightstart",
+      "severity": "info",
+      "scope": "client",
+      "clientId": "brightstart",
+      "title": "Bright Start Literacy spend pacing at 58.01% of budget",
+      "detail": "£142 delivered against £245 budgeted over 7 days.",
+      "metrics": {
+        "pacePct": 58.01,
+        "budgeted": 245,
+        "actual": 142.13
+      },
+      "suggestedAction": "Check for learning-limited ad sets or audience saturation."
+    },
+    {
+      "id": "creative-type-comparison",
+      "severity": "info",
+      "scope": "creative",
+      "title": "Ugc creatives lead on ROAS (3.94) vs carousel (1.6)",
+      "detail": "static: ROAS 3.12, CPA £12.57, CTR 1.44% on £2,450 · video: ROAS 2, CPA £21.96, CTR 1.53% on £1,559 · ugc: ROAS 3.94, CPA £8.7, CTR 1.92% on £966 · carousel: ROAS 1.6, CPA £21, CTR 1.23% on £294",
+      "metrics": {
+        "staticRoas": 3.12,
+        "videoRoas": 2,
+        "ugcRoas": 3.94,
+        "carouselRoas": 1.6
+      },
+      "suggestedAction": "Brief more ugc variants from the idea bank."
+    },
+    {
+      "id": "portfolio-summary",
+      "severity": "info",
+      "scope": "portfolio",
+      "title": "Portfolio ROAS 2.86 on £5,269 spend",
+      "detail": "6 clients raised £15,051 from 391 donations in the last 7 days (ROAS 2.86, CPA £13.48). Previous 7 days: ROAS 3.39, £17,824 raised.",
+      "metrics": {
+        "spend": 5268.93,
+        "revenue": 15051.35,
+        "roas": 2.86,
+        "cpa": 13.48,
+        "conversions": 391,
+        "prevRoas": 3.39
+      }
+    }
+  ],
+  "narrative": {
+    "headline": "1 urgent item and 6 to watch",
+    "paragraphs": [
+      "6 clients raised £15,051 from 391 donations in the last 7 days (ROAS 2.86, CPA £13.48). Previous 7 days: ROAS 3.39, £17,824 raised.",
+      "Urgent: zero donations recorded on oc - interests marine for 3 days despite 453 clicks. Check Events Manager and the fundraising platform webhook log before changing any budgets.",
+      "Watch: Portfolio revenue dropped on 2026-10-31; Portfolio revenue dropped on 2026-11-06; Bluewater Trust revenue down 27.3% week on week; Paws & Place revenue down 29.76% week on week; Northlight Hospice is below ROAS target (1.94 vs 3); Kindred Kitchens CPA up 60.53% week on week (£10.11 -> £16.23).",
+      "Good news: Hearthline is beating ROAS target (4.23 vs 3)."
+    ],
+    "actionsToday": [
+      "Check Events Manager and the fundraising platform webhook log before changing any budgets.",
+      "Review ad-set level recommendations; consider pausing the weakest ad set and refreshing creative.",
+      "Approve the scale recommendation on the top ad set."
+    ]
+  },
+  "answers": [
+    {
+      "question": "Which client had the biggest ROAS drop last week?",
+      "intent": {
+        "intent": "biggest_change",
+        "metric": "roas",
+        "clientNames": [],
+        "direction": "down",
+        "days": 7,
+        "limit": 5
+      },
+      "text": "Paws & Place had the biggest ROAS deterioration: 3.74 -> 2.62 (-29.95%) comparing the last 7 days with the 7 before.",
+      "table": {
+        "columns": [
+          "Client",
+          "ROAS before",
+          "ROAS now",
+          "Change %"
+        ],
+        "rows": [
+          [
+            "Paws & Place",
+            3.74,
+            2.62,
+            -29.95
+          ],
+          [
+            "Bluewater Trust",
+            2.83,
+            2.08,
+            -26.5
+          ],
+          [
+            "Kindred Kitchens",
+            3.44,
+            2.66,
+            -22.67
+          ],
+          [
+            "Bright Start Literacy",
+            3.13,
+            2.6,
+            -16.93
+          ],
+          [
+            "Hearthline",
+            4.47,
+            4.23,
+            -5.37
+          ]
+        ]
+      },
+      "chart": {
+        "label": "ROAS change %",
+        "labels": [
+          "Paws & Place",
+          "Bluewater Trust",
+          "Kindred Kitchens",
+          "Bright Start Literacy",
+          "Hearthline"
+        ],
+        "values": [
+          -29.95,
+          -26.5,
+          -22.67,
+          -16.93,
+          -5.37
+        ]
+      },
+      "sources": [
+        "comparePeriods(metrics, client)",
+        "topMovers"
+      ]
+    },
+    {
+      "question": "How is Hearthline doing?",
+      "intent": {
+        "intent": "client_summary",
+        "metric": "roas",
+        "clientName": "Hearthline",
+        "clientNames": [
+          "Hearthline"
+        ],
+        "direction": "down",
+        "days": 7,
+        "limit": 5
+      },
+      "text": "Hearthline, 7-day window ending 2026-11-08: spend £1,383, raised £5,853, ROAS 4.23 (on or above the 3 target), 147 donations at £9 CPA; ROAS -5.37% vs the previous period. Top ad set by spend: WW - Lookalike 1% Donors (ROAS 4.9).",
+      "table": {
+        "columns": [
+          "Ad set",
+          "Spend",
+          "Revenue",
+          "ROAS",
+          "CPA",
+          "CTR"
+        ],
+        "rows": [
+          [
+            "WW - Lookalike 1% Donors",
+            820.54,
+            4020.25,
+            4.9,
+            8.21,
+            "1.78%"
+          ],
+          [
+            "WW - Interests Older Parents",
+            562.63,
+            1832.98,
+            3.26,
+            11.97,
+            "1.03%"
+          ]
+        ]
+      },
+      "chart": {
+        "label": "Daily revenue",
+        "labels": [
+          "11-02",
+          "11-03",
+          "11-04",
+          "11-05",
+          "11-06",
+          "11-07",
+          "11-08"
+        ],
+        "values": [
+          865.2,
+          874.11,
+          864,
+          877.95,
+          782.31,
+          820.54,
+          769.12
+        ]
+      },
+      "sources": [
+        "comparePeriods",
+        "aggregate(adset)",
+        "dailySeries(revenue)"
+      ]
+    },
+    {
+      "question": "Do video or static creatives perform better?",
+      "intent": {
+        "intent": "creative_type_comparison",
+        "metric": "roas",
+        "clientNames": [],
+        "direction": "up",
+        "days": 7,
+        "limit": 5
+      },
+      "text": "By creative type in the 7-day window ending 2026-11-08: ugc ROAS 3.94 / CPA £9 / CTR 1.92% on £966; static ROAS 3.12 / CPA £13 / CTR 1.44% on £2,450; video ROAS 2 / CPA £22 / CTR 1.53% on £1,559; carousel ROAS 1.6 / CPA £21 / CTR 1.23% on £294. ugc leads on ROAS.",
+      "table": {
+        "columns": [
+          "Type",
+          "Spend",
+          "Revenue",
+          "ROAS",
+          "CPA",
+          "CTR"
+        ],
+        "rows": [
+          [
+            "ugc",
+            965.7,
+            3801.31,
+            3.94,
+            8.7,
+            "1.92%"
+          ],
+          [
+            "static",
+            2450.24,
+            7655.42,
+            3.12,
+            12.57,
+            "1.44%"
+          ],
+          [
+            "video",
+            1559.06,
+            3123.39,
+            2,
+            21.96,
+            "1.53%"
+          ],
+          [
+            "carousel",
+            293.93,
+            471.23,
+            1.6,
+            21,
+            "1.23%"
+          ]
+        ]
+      },
+      "chart": {
+        "label": "ROAS",
+        "labels": [
+          "ugc",
+          "static",
+          "video",
+          "carousel"
+        ],
+        "values": [
+          3.94,
+          3.12,
+          2,
+          1.6
+        ]
+      },
+      "sources": [
+        "aggregate(metrics, creativeType, period)"
+      ]
+    },
+    {
+      "question": "Anything unusual this week?",
+      "intent": {
+        "intent": "anomalies",
+        "metric": "roas",
+        "clientNames": [],
+        "direction": "down",
+        "days": 7,
+        "limit": 5
+      },
+      "text": "1 ad set recorded zero donations for 3 days despite clicks: OC - Interests Marine (likely tracking). Daily donation anomalies: 2026-10-31 low (57 vs ~72.79); 2026-11-06 low (48 vs ~67.86).",
+      "table": {
+        "columns": [
+          "Ad set",
+          "Clicks (3d)",
+          "Donations (3d)",
+          "Donations (prev 3d)"
+        ],
+        "rows": [
+          [
+            "OC - Interests Marine",
+            453,
+            0,
+            20
+          ]
+        ]
+      },
+      "sources": [
+        "detectAnomalies(dailySeries(conversions))",
+        "comparePeriods(adset, 3)"
+      ]
+    },
+    {
+      "question": "How much did we spend in total last 28 days?",
+      "intent": {
+        "intent": "portfolio_total",
+        "metric": "spend",
+        "clientNames": [],
+        "direction": "down",
+        "days": 28,
+        "limit": 5
+      },
+      "text": "Across 6 clients in the 28-day window ending 2026-11-08: spend £21,282, raised £71,221 (ROAS 3.35) from 1915 donations at £11 CPA.",
+      "table": {
+        "columns": [
+          "Spend",
+          "Revenue",
+          "ROAS",
+          "Donations",
+          "CPA",
+          "CTR"
+        ],
+        "rows": [
+          [
+            21281.62,
+            71221.17,
+            3.35,
+            1915,
+            11.11,
+            "1.57%"
+          ]
+        ]
+      },
+      "sources": [
+        "aggregate(metrics, client, period)"
+      ]
+    },
+    {
+      "question": "Compare Hearthline and Paws & Place",
+      "intent": {
+        "intent": "compare_clients",
+        "metric": "roas",
+        "clientName": "Hearthline",
+        "clientNames": [
+          "Hearthline",
+          "Paws & Place"
+        ],
+        "direction": "down",
+        "days": 7,
+        "limit": 5
+      },
+      "text": "7-day window ending 2026-11-08, by ROAS: Hearthline 4.23 (spend £1,383, 147 donations); Paws & Place 2.62 (spend £667, 64 donations). Hearthline leads.",
+      "table": {
+        "columns": [
+          "Client",
+          "ROAS",
+          "Spend",
+          "Revenue",
+          "Donations",
+          "CPA"
+        ],
+        "rows": [
+          [
+            "Hearthline",
+            4.23,
+            1383.17,
+            5853.23,
+            147,
+            9.41
+          ],
+          [
+            "Paws & Place",
+            2.62,
+            667.22,
+            1745.13,
+            64,
+            10.43
+          ]
+        ]
+      },
+      "chart": {
+        "label": "ROAS",
+        "labels": [
+          "Hearthline",
+          "Paws & Place"
+        ],
+        "values": [
+          4.23,
+          2.62
+        ]
+      },
+      "sources": [
+        "aggregate(metrics, client, period)"
+      ]
+    },
+    {
+      "question": "What is the meaning of life?",
+      "intent": {
+        "intent": "unknown",
+        "metric": "roas",
+        "clientNames": [],
+        "direction": "down",
+        "days": 7,
+        "limit": 5
+      },
+      "text": "I can answer questions about ROAS, CPA, spend, revenue, CTR and donations by client, creative type, biggest changes, anomalies and totals. Try: \"Which client had the biggest ROAS drop last week?\"",
+      "sources": []
+    }
+  ],
+  "dashboard": "sha256:1df0228b58d821820810d6339f6fe2c0a050937c6e25bfa0206448dd5455030b",
+  "agent": {
+    "asOf": "2026-11-08",
+    "recommendations": [
+      {
+        "id": "tracking-break:bluewater-c1-as1:2026-11-08",
+        "status": "proposed",
+        "createdOn": "2026-11-08",
+        "rule": "tracking-break",
+        "type": "investigate_tracking",
+        "title": "Possible tracking break on OC - Interests Marine",
+        "rationale": "£254.74 spent and 453 link clicks in 3 days with zero recorded donations, after 49 last week. Check the pixel/CAPI and the donation platform webhook before touching budgets.",
+        "evidence": {
+          "spend3d": 254.74,
+          "linkClicks3d": 453,
+          "conversions3d": 0,
+          "conversionsPrevWeek": 49
+        },
+        "risk": "human",
+        "confidence": 0.85,
+        "entity": {
+          "level": "adset",
+          "id": "bluewater-c1-as1",
+          "name": "OC - Interests Marine",
+          "clientId": "bluewater"
+        }
+      },
+      {
+        "id": "roas-floor:northlight-c1-as1:2026-11-08",
+        "status": "proposed",
+        "createdOn": "2026-11-08",
+        "rule": "roas-floor",
+        "type": "pause_adset",
+        "title": "ROAS 0.7 vs target 3 on HRG - Retargeting Engagers",
+        "rationale": "7-day ROAS is 0.7 against a floor of 2.1 on £457.47 spend. Recommend pausing the ad set.",
+        "evidence": {
+          "roasRecent": 0.7,
+          "roasFloor": 2.1,
+          "targetRoas": 3,
+          "spendRecent": 457.47
+        },
+        "risk": "human",
+        "confidence": 0.8,
+        "proposedChange": {
+          "field": "status",
+          "from": "ACTIVE",
+          "to": "PAUSED"
+        },
+        "entity": {
+          "level": "adset",
+          "id": "northlight-c1-as1",
+          "name": "HRG - Retargeting Engagers",
+          "clientId": "northlight"
+        }
+      },
+      {
+        "id": "learning-limited:brightstart-c1-as1:2026-11-08",
+        "status": "proposed",
+        "createdOn": "2026-11-08",
+        "rule": "learning-limited",
+        "type": "exit_learning_limited",
+        "title": "LA - Interests Parents is learning limited (11 donations/week)",
+        "rationale": "Meta needs ~50 conversions a week per ad set to optimise. Options: consolidate ad sets, broaden the audience, or optimise for a higher-volume event (e.g. landing page view or add payment info) while keeping ROAS reporting on donations.",
+        "evidence": {
+          "weeklyConversions": 11,
+          "learningStatus": "learning_limited",
+          "spendRecent": 142.13
+        },
+        "risk": "human",
+        "confidence": 0.6,
+        "entity": {
+          "level": "adset",
+          "id": "brightstart-c1-as1",
+          "name": "LA - Interests Parents",
+          "clientId": "brightstart"
+        }
+      },
+      {
+        "id": "zero-conversion-ad:paws-c1-as1-ad2:2026-11-08",
+        "status": "proposed",
+        "createdOn": "2026-11-08",
+        "rule": "zero-conversion-ad",
+        "type": "pause_ad",
+        "entity": {
+          "level": "ad",
+          "id": "paws-c1-as1-ad2",
+          "name": "RA - Video Puppy",
+          "clientId": "paws"
+        },
+        "title": "No donations from RA - Video Puppy after £224.58",
+        "rationale": "£224.58 spent (over 3x the £10 target CPA) with zero donations while sibling ads convert. Recommend pausing and reallocating.",
+        "evidence": {
+          "spendRecent": 224.58,
+          "threshold": 30,
+          "adsetConversions": 64
+        },
+        "risk": "approve",
+        "confidence": 0.8,
+        "proposedChange": {
+          "field": "status",
+          "from": "ACTIVE",
+          "to": "PAUSED"
+        }
+      },
+      {
+        "id": "scale-winner:hearthline-c1-as1:2026-11-08",
+        "status": "proposed",
+        "createdOn": "2026-11-08",
+        "rule": "scale-winner",
+        "type": "increase_budget",
+        "title": "Scale WW - Lookalike 1% Donors: ROAS 4.9 at CPA £8.21",
+        "rationale": "ROAS 4.9 is 63.3% above target with CPA inside target over 100 donations. Recommend +20% budget (£120 -> £144); a single step avoids resetting learning.",
+        "evidence": {
+          "roasRecent": 4.9,
+          "targetRoas": 3,
+          "cpaRecent": 8.21,
+          "conversions": 100
+        },
+        "risk": "approve",
+        "confidence": 0.75,
+        "proposedChange": {
+          "field": "daily_budget_gbp",
+          "from": 120,
+          "to": 144
+        },
+        "entity": {
+          "level": "adset",
+          "id": "hearthline-c1-as1",
+          "name": "WW - Lookalike 1% Donors",
+          "clientId": "hearthline"
+        }
+      },
+      {
+        "id": "cpa-spike:kindred-c1-as1:2026-11-08",
+        "status": "proposed",
+        "createdOn": "2026-11-08",
+        "rule": "cpa-spike",
+        "type": "decrease_budget",
+        "title": "CPA up 80.9% on FB - Broad UK 35+",
+        "rationale": "CPA moved from £7.92 to £14.33 (target £9) over the last 7 days on £989.11 spend. Recommend trimming budget 20% while creative is refreshed.",
+        "evidence": {
+          "cpaRecent": 14.33,
+          "cpaPrevious": 7.92,
+          "targetCpa": 9,
+          "spendRecent": 989.11
+        },
+        "risk": "approve",
+        "confidence": 0.7,
+        "proposedChange": {
+          "field": "daily_budget_gbp",
+          "from": 150,
+          "to": 120
+        },
+        "entity": {
+          "level": "adset",
+          "id": "kindred-c1-as1",
+          "name": "FB - Broad UK 35+",
+          "clientId": "kindred"
+        }
+      },
+      {
+        "id": "creative-fatigue:hearthline-c1-as2-ad1:2026-11-08",
+        "status": "proposed",
+        "createdOn": "2026-11-08",
+        "rule": "creative-fatigue",
+        "type": "refresh_creative",
+        "entity": {
+          "level": "ad",
+          "id": "hearthline-c1-as2-ad1",
+          "name": "WW - Static Hands Mug",
+          "clientId": "hearthline"
+        },
+        "title": "Creative fatigue: WW - Static Hands Mug",
+        "rationale": "Frequency 4.35 (cap 3.5) and CTR down 50% week on week (1.26% -> 0.63%). Queue a refresh from the idea bank and pause this ad once the replacement is live.",
+        "evidence": {
+          "frequency": 4.35,
+          "ctrRecent": 0.63,
+          "ctrPrevious": 1.26,
+          "ctrDropPct": 50
+        },
+        "risk": "approve",
+        "confidence": 0.7,
+        "proposedChange": {
+          "field": "status",
+          "from": "ACTIVE",
+          "to": "PAUSED"
+        }
+      }
+    ],
+    "alerts": [
+      {
+        "id": "alert:tracking-break:bluewater-c1-as1:2026-11-08",
+        "severity": "critical",
+        "title": "Possible tracking break on OC - Interests Marine",
+        "message": "£254.74 spent and 453 link clicks in 3 days with zero recorded donations, after 49 last week. Check the pixel/CAPI and the donation platform webhook before touching budgets.",
+        "entityIds": [
+          "bluewater-c1-as1"
+        ],
+        "clientId": "bluewater",
+        "channel": "slack"
+      },
+      {
+        "id": "alert:roas-floor:northlight-c1-as1:2026-11-08",
+        "severity": "warning",
+        "title": "ROAS 0.7 vs target 3 on HRG - Retargeting Engagers",
+        "message": "7-day ROAS is 0.7 against a floor of 2.1 on £457.47 spend. Recommend pausing the ad set.",
+        "entityIds": [
+          "northlight-c1-as1"
+        ],
+        "clientId": "northlight",
+        "channel": "slack"
+      },
+      {
+        "id": "alert:learning-limited:brightstart-c1-as1:2026-11-08",
+        "severity": "warning",
+        "title": "LA - Interests Parents is learning limited (11 donations/week)",
+        "message": "Meta needs ~50 conversions a week per ad set to optimise. Options: consolidate ad sets, broaden the audience, or optimise for a higher-volume event (e.g. landing page view or add payment info) while keeping ROAS reporting on donations.",
+        "entityIds": [
+          "brightstart-c1-as1"
+        ],
+        "clientId": "brightstart",
+        "channel": "slack"
+      }
+    ],
+    "briefs": [
+      {
+        "clientId": "hearthline",
+        "clientName": "Hearthline",
+        "brief": {
+          "headline": "2 quick wins ready to approve for Hearthline",
+          "summary": "Last 7 days: £1383.17 spent, £5853.23 raised (ROAS 4.23) from 147 donations at £9.41 CPA.  2 budget or creative changes are ready for one-click approval.",
+          "priorities": [
+            {
+              "recommendationId": "scale-winner:hearthline-c1-as1:2026-11-08",
+              "why": "ROAS 4.9 is 63.3% above target with CPA inside target over 100 donations"
+            },
+            {
+              "recommendationId": "creative-fatigue:hearthline-c1-as2-ad1:2026-11-08",
+              "why": "Frequency 4.35 (cap 3.5) and CTR down 50% week on week (1.26% -> 0.63%)"
+            }
+          ],
+          "watchlist": []
+        }
+      },
+      {
+        "clientId": "bluewater",
+        "clientName": "Bluewater Trust",
+        "brief": {
+          "headline": "1 decision needed for Bluewater Trust today",
+          "summary": "Last 7 days: £874.94 spent, £1821.67 raised (ROAS 2.08) from 48 donations at £18.23 CPA. Start with possible tracking break on oc - interests marine.",
+          "priorities": [
+            {
+              "recommendationId": "tracking-break:bluewater-c1-as1:2026-11-08",
+              "why": "£254.74 spent and 453 link clicks in 3 days with zero recorded donations, after 49 last week"
+            }
+          ],
+          "watchlist": []
+        }
+      },
+      {
+        "clientId": "kindred",
+        "clientName": "Kindred Kitchens",
+        "brief": {
+          "headline": "1 quick win ready to approve for Kindred Kitchens",
+          "summary": "Last 7 days: £1379.8 spent, £3670.44 raised (ROAS 2.66) from 85 donations at £16.23 CPA.  1 budget or creative change are ready for one-click approval.",
+          "priorities": [
+            {
+              "recommendationId": "cpa-spike:kindred-c1-as1:2026-11-08",
+              "why": "CPA moved from £7.92 to £14.33 (target £9) over the last 7 days on £989.11 spend"
+            }
+          ],
+          "watchlist": []
+        }
+      },
+      {
+        "clientId": "northlight",
+        "clientName": "Northlight Hospice",
+        "brief": {
+          "headline": "1 decision needed for Northlight Hospice today",
+          "summary": "Last 7 days: £821.67 spent, £1591.44 raised (ROAS 1.94) from 36 donations at £22.82 CPA. Start with roas 0.7 vs target 3 on hrg - retargeting engagers.",
+          "priorities": [
+            {
+              "recommendationId": "roas-floor:northlight-c1-as1:2026-11-08",
+              "why": "7-day ROAS is 0.7 against a floor of 2.1 on £457.47 spend"
+            }
+          ],
+          "watchlist": []
+        }
+      },
+      {
+        "clientId": "paws",
+        "clientName": "Paws & Place",
+        "brief": {
+          "headline": "1 quick win ready to approve for Paws & Place",
+          "summary": "Last 7 days: £667.22 spent, £1745.13 raised (ROAS 2.62) from 64 donations at £10.43 CPA.  1 budget or creative change are ready for one-click approval.",
+          "priorities": [
+            {
+              "recommendationId": "zero-conversion-ad:paws-c1-as1-ad2:2026-11-08",
+              "why": "£224.58 spent (over 3x the £10 target CPA) with zero donations while sibling ads convert"
+            }
+          ],
+          "watchlist": []
+        }
+      },
+      {
+        "clientId": "brightstart",
+        "clientName": "Bright Start Literacy",
+        "brief": {
+          "headline": "1 decision needed for Bright Start Literacy today",
+          "summary": "Last 7 days: £142.13 spent, £369.44 raised (ROAS 2.6) from 11 donations at £12.92 CPA. Start with la - interests parents is learning limited (11 donations/week).",
+          "priorities": [
+            {
+              "recommendationId": "learning-limited:brightstart-c1-as1:2026-11-08",
+              "why": "Meta needs ~50 conversions a week per ad set to optimise"
+            }
+          ],
+          "watchlist": []
+        }
+      }
+    ],
+    "actions": [],
+    "audit": {
+      "events": [
+        {
+          "seq": 1,
+          "type": "note",
+          "area": "media-buyer",
+          "step": "rules",
+          "detail": {
+            "asOf": "2026-11-08",
+            "adsets": 10,
+            "recommendations": 7
+          }
+        },
+        {
+          "seq": 2,
+          "type": "llm_call",
+          "area": "media-buyer",
+          "step": "dailyBrief",
+          "detail": {
+            "clientId": "hearthline"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 265,
+            "outputTokens": 139,
+            "costUsd": 0.00384
+          }
+        },
+        {
+          "seq": 3,
+          "type": "llm_call",
+          "area": "media-buyer",
+          "step": "dailyBrief",
+          "detail": {
+            "clientId": "bluewater"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 204,
+            "outputTokens": 105,
+            "costUsd": 0.002916
+          }
+        },
+        {
+          "seq": 4,
+          "type": "llm_call",
+          "area": "media-buyer",
+          "step": "dailyBrief",
+          "detail": {
+            "clientId": "kindred"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 191,
+            "outputTokens": 102,
+            "costUsd": 0.002804
+          }
+        },
+        {
+          "seq": 5,
+          "type": "llm_call",
+          "area": "media-buyer",
+          "step": "dailyBrief",
+          "detail": {
+            "clientId": "northlight"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 183,
+            "outputTokens": 96,
+            "costUsd": 0.002652
+          }
+        },
+        {
+          "seq": 6,
+          "type": "llm_call",
+          "area": "media-buyer",
+          "step": "dailyBrief",
+          "detail": {
+            "clientId": "paws"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 193,
+            "outputTokens": 105,
+            "costUsd": 0.002872
+          }
+        },
+        {
+          "seq": 7,
+          "type": "llm_call",
+          "area": "media-buyer",
+          "step": "dailyBrief",
+          "detail": {
+            "clientId": "brightstart"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 225,
+            "outputTokens": 101,
+            "costUsd": 0.00292
+          }
+        },
+        {
+          "seq": 8,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "policy",
+          "detail": {
+            "recommendationId": "tracking-break:bluewater-c1-as1:2026-11-08",
+            "risk": "human",
+            "decision": "skip"
+          }
+        },
+        {
+          "seq": 9,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "policy",
+          "detail": {
+            "recommendationId": "roas-floor:northlight-c1-as1:2026-11-08",
+            "risk": "human",
+            "decision": "skip"
+          }
+        },
+        {
+          "seq": 10,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "policy",
+          "detail": {
+            "recommendationId": "learning-limited:brightstart-c1-as1:2026-11-08",
+            "risk": "human",
+            "decision": "skip"
+          }
+        },
+        {
+          "seq": 11,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "policy",
+          "detail": {
+            "recommendationId": "zero-conversion-ad:paws-c1-as1-ad2:2026-11-08",
+            "risk": "approve",
+            "decision": "skip"
+          }
+        },
+        {
+          "seq": 12,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "policy",
+          "detail": {
+            "recommendationId": "scale-winner:hearthline-c1-as1:2026-11-08",
+            "risk": "approve",
+            "decision": "skip"
+          }
+        },
+        {
+          "seq": 13,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "policy",
+          "detail": {
+            "recommendationId": "cpa-spike:kindred-c1-as1:2026-11-08",
+            "risk": "approve",
+            "decision": "skip"
+          }
+        },
+        {
+          "seq": 14,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "policy",
+          "detail": {
+            "recommendationId": "creative-fatigue:hearthline-c1-as2-ad1:2026-11-08",
+            "risk": "approve",
+            "decision": "skip"
+          }
+        }
+      ]
+    }
+  }
+}

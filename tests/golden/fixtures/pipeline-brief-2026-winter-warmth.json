@@ -1,0 +1,3937 @@
+{
+  "pkg": {
+    "brief": {
+      "id": "brief-2026-winter-warmth",
+      "client": {
+        "id": "hearthline",
+        "name": "Hearthline",
+        "cause": "Ending fuel poverty for older people in the UK",
+        "region": "UK",
+        "charityNumber": "1199999",
+        "website": "https://www.hearthline.example.org",
+        "brand": {
+          "primary": "#C8442B",
+          "secondary": "#2B3A4A",
+          "accent": "#F2B134",
+          "text": "#1C1C1C",
+          "background": "#FFF8F0",
+          "fontFamily": "Inter, Arial, sans-serif"
+        },
+        "voice": {
+          "tone": [
+            "warm",
+            "direct",
+            "hopeful",
+            "plain English"
+          ],
+          "avoid": [
+            "vulnerable",
+            "the elderly",
+            "victims",
+            "beneficiaries"
+          ],
+          "exampleLines": [
+            "Nobody should have to choose between heating and eating.",
+            "A warm home is not a luxury."
+          ]
+        },
+        "proofPoints": [
+          "Last winter Hearthline helped 4,200 older people stay warm",
+          "£30 covers a week of heating for one household",
+          "£75 pays for an emergency boiler repair callout",
+          "£150 funds a home energy visit and insulation kit",
+          "92% of the people we helped said they felt less anxious about bills",
+          "Hearthline has worked in local communities since 2009"
+        ],
+        "complianceNotes": [
+          "Never show real service users' faces without written consent",
+          "Gift Aid statement must appear on every donation page",
+          "Avoid implying 100% of donations go to direct services"
+        ]
+      },
+      "campaignName": "Winter Warmth Appeal 2026",
+      "objective": "donations",
+      "audience": {
+        "name": "Warm-hearted 45-65s",
+        "description": "UK adults aged 45-65 with ageing parents, who already give to at least one charity and worry about older relatives in winter",
+        "ageRange": "45-65",
+        "motivations": [
+          "Wants to protect older people like their own parents",
+          "Responds to concrete, local impact",
+          "Likes to see exactly what a gift pays for"
+        ],
+        "objections": [
+          "Worried the money goes on admin",
+          "Donation fatigue after Christmas",
+          "Assumes the government covers heating support"
+        ]
+      },
+      "offer": {
+        "ask": "Help an older person stay warm this winter",
+        "donationTiers": [
+          {
+            "amount": 30,
+            "currency": "GBP",
+            "impact": "covers a week of heating for one household"
+          },
+          {
+            "amount": 75,
+            "currency": "GBP",
+            "impact": "pays for an emergency boiler repair callout"
+          },
+          {
+            "amount": 150,
+            "currency": "GBP",
+            "impact": "funds a home energy visit and insulation kit"
+          }
+        ],
+        "matchFunding": "Every gift doubled by the Ashby Foundation until 31 January",
+        "deadline": "31 January 2027",
+        "giftAidEligible": true
+      },
+      "keyMessage": "This winter, a warm home for an older person costs less than you think, and right now your gift goes twice as far.",
+      "channels": [
+        "meta_feed",
+        "meta_stories",
+        "meta_reels"
+      ],
+      "constraints": {
+        "dailyBudgetGbp": 250,
+        "targetRoas": 3,
+        "targetCpaGbp": 25,
+        "startDate": "2026-12-01",
+        "endDate": "2027-01-31"
+      },
+      "creativeContext": {
+        "beneficiarySingular": "an older person",
+        "beneficiaryPlural": "older people",
+        "problemInDailyLife": "Older people heat one room and tell nobody.",
+        "storySeed": "My nan heated one room last winter and told nobody.",
+        "openingQuestion": "When did you last check how warm your mum's house is?",
+        "everydayComparison": "one takeaway",
+        "settingNoun": "kitchen",
+        "whatWeDo": "finds them, fixes the immediate problem and helps them claim the support they are entitled to.",
+        "caseStudy": "Last winter a retired postman in Leeds was heating his kitchen with the oven door open. A Hearthline home visit fixed his boiler timer, fitted draught excluders and sorted a grant he did not know existed. He told the team he had stopped dreading the postman. Names and details changed to protect privacy; the case is real.",
+        "brollKeywords": [
+          "kettle",
+          "kitchen",
+          "frost on window",
+          "terrace street at dusk",
+          "one lit window",
+          "radiator",
+          "hands around mug",
+          "warm light",
+          "home visit",
+          "team in branded jackets",
+          "insulation kit",
+          "heating dial",
+          "thermostat",
+          "end card"
+        ]
+      },
+      "references": [
+        "Previous winter appeal: best performing creative was a stat-led static with a single older person's hands around a mug"
+      ]
+    },
+    "status": "complete",
+    "ideas": {
+      "ranked": [
+        {
+          "id": "idea-1-question",
+          "title": "When did you last check how warm your mum's house is",
+          "angle": "question",
+          "hook": "When did you last check how warm your mum's house is?",
+          "concept": "Opens with a question the audience is already half-asking, then widens it to ending fuel poverty for older people in the uk and the £150 ask.",
+          "whyItWorks": "A personal question earns the first second of attention without shock imagery.",
+          "audienceInsight": "Likes to see exactly what a gift pays for",
+          "formats": [
+            "ugc",
+            "video",
+            "static"
+          ],
+          "visualDirection": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 8.2,
+          "rank": 1
+        },
+        {
+          "id": "idea-7-contrast",
+          "title": "Two kitchens, one difference",
+          "angle": "contrast",
+          "hook": "Same street. Same week. One kitchen has what it needs. One doesn't.",
+          "concept": "A split-frame creative showing two near-identical kitchens: one with what it needs, one without. The only difference is a £30 gift. Copy explains that £30 covers a week of heating for one household.",
+          "whyItWorks": "Contrast makes an invisible problem visible in under two seconds, and the £30 price tag answers \"what does my money actually do\".",
+          "audienceInsight": "Wants to protect older people like their own parents",
+          "formats": [
+            "static",
+            "video",
+            "landing"
+          ],
+          "visualDirection": "Split screen of two kitchens, warm vs cold colour grade, one line of copy across the seam, logo bottom right.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 8.2,
+          "rank": 2
+        },
+        {
+          "id": "idea-2-stat-led",
+          "title": "The number behind the ask",
+          "angle": "stat-led",
+          "hook": "£150. That is what it takes: funds a home energy visit and insulation kit.",
+          "concept": "A single oversized number fills the frame with a short line underneath: \"funds a home energy visit and insulation kit\". Supporting line cites: £75 pays for an emergency boiler repair callout.",
+          "whyItWorks": "A specific, small number removes the 'drop in the ocean' feeling and makes the ask feel finishable.",
+          "audienceInsight": "Likes to see exactly what a gift pays for",
+          "formats": [
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Flat brand background, huge numeral in accent colour, a tight crop of the kitchen in the lower third.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 6,
+            "clarity": 10,
+            "emotionalPull": 7,
+            "brandFit": 9,
+            "feasibility": 10
+          },
+          "total": 8,
+          "rank": 3
+        },
+        {
+          "id": "idea-5-behind-the-scenes",
+          "title": "Ride along with the Hearthline team",
+          "angle": "behind-the-scenes",
+          "hook": "We filmed one Tuesday with the Hearthline team. This is what £30 looks like in real life.",
+          "concept": "Documentary-style footage of the team doing the work the donation funds (covers a week of heating for one household). No actors, no music swells, just the work.",
+          "whyItWorks": "Showing the operation answers the admin-cost worry better than any pie chart.",
+          "audienceInsight": "Worried the money goes on admin",
+          "formats": [
+            "video",
+            "ugc"
+          ],
+          "visualDirection": "Handheld, natural sound, captions throughout, team in branded jackets, end card with the tier.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 8,
+            "emotionalPull": 8,
+            "brandFit": 10,
+            "feasibility": 6
+          },
+          "total": 7.9,
+          "rank": 4
+        },
+        {
+          "id": "idea-6-myth-bust",
+          "title": "Myth: Donation fatigue after Christmas",
+          "angle": "myth-bust",
+          "hook": "\"Donation fatigue after Christmas.\" Here is what actually happens.",
+          "concept": "Directly tackles the objection \"Donation fatigue after Christmas\" in the first line, then explains the gap Hearthline fills and what £75 does about it.",
+          "whyItWorks": "Naming the objection first earns trust and pre-empts the scroll-past.",
+          "audienceInsight": "Donation fatigue after Christmas",
+          "formats": [
+            "video",
+            "ugc",
+            "static"
+          ],
+          "visualDirection": "Text-first creative: objection struck through, answer beneath, presenter to camera for video.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 8,
+            "clarity": 9,
+            "emotionalPull": 6,
+            "brandFit": 7.5,
+            "feasibility": 9
+          },
+          "total": 7.8,
+          "rank": 5
+        },
+        {
+          "id": "idea-8-founder-direct",
+          "title": "Thirty seconds from our director",
+          "angle": "founder-direct",
+          "hook": "I run Hearthline. I want to tell you exactly where your £75 goes.",
+          "concept": "A single unedited take of the charity director speaking plainly about the weeks ahead and the offer. No b-roll, captions only.",
+          "whyItWorks": "Low production, high trust. Direct accountability answers the admin objection head on.",
+          "audienceInsight": "Donation fatigue after Christmas",
+          "formats": [
+            "video",
+            "ugc"
+          ],
+          "visualDirection": "Phone camera, eye level, office or depot background, burned-in captions, 9:16.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 6,
+            "clarity": 9,
+            "emotionalPull": 7,
+            "brandFit": 9,
+            "feasibility": 10
+          },
+          "total": 7.8,
+          "rank": 6
+        },
+        {
+          "id": "idea-9-how-it-works",
+          "title": "From your gift to an older person",
+          "angle": "how-it-works",
+          "hook": "What happens in the first two days after you give £75?",
+          "concept": "A three-step explainer: you give, we act, an older person gets what they need. Each step shows the real person or system involved, ending with \"pays for an emergency boiler repair callout\".",
+          "whyItWorks": "Transparency about process is a direct response to the fear that money disappears into admin.",
+          "audienceInsight": "Donation fatigue after Christmas",
+          "formats": [
+            "video",
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Three-panel carousel or 15s animation with simple icons in brand colours, one sentence per panel.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 6,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 7.8,
+          "rank": 7
+        },
+        {
+          "id": "idea-3-letter",
+          "title": "A letter you will not get",
+          "angle": "letter",
+          "hook": "Most people we help never write to thank anyone. This is the letter they would send.",
+          "concept": "A handwritten-style letter from an older person describing an ordinary good day, revealed line by line. Signed with a first name only. Closes with the £75 ask.",
+          "whyItWorks": "The letter form slows the reader down and rewards attention with emotion rather than shock.",
+          "audienceInsight": "Responds to concrete, local impact",
+          "formats": [
+            "video",
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Paper texture, handwriting font animated as if being written, soft lamp light.",
+          "riskFlags": [
+            "Must be clearly labelled as representative, not a real letter, unless consent exists"
+          ],
+          "scores": {
+            "novelty": 8,
+            "clarity": 7,
+            "emotionalPull": 9,
+            "brandFit": 8,
+            "feasibility": 8
+          },
+          "total": 7.75,
+          "rank": 8
+        },
+        {
+          "id": "idea-10-urgency-match",
+          "title": "Doubled until the deadline",
+          "angle": "urgency-match",
+          "hook": "Every gift doubled by the Ashby Foundation until 31 January.",
+          "concept": "A countdown-led creative built around the match offer. £75 becomes £150 and the copy states exactly what that pays for twice over.",
+          "whyItWorks": "Match funding is the strongest proven conversion lever in charity paid social; the deadline gives a reason to act today rather than someday.",
+          "audienceInsight": "Responds to concrete, local impact",
+          "formats": [
+            "static",
+            "video",
+            "landing"
+          ],
+          "visualDirection": "Bold accent background, the two amounts side by side with an arrow, deadline date in a sticker element.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 5,
+            "clarity": 10,
+            "emotionalPull": 7,
+            "brandFit": 8,
+            "feasibility": 10
+          },
+          "total": 7.5,
+          "rank": 9
+        },
+        {
+          "id": "idea-4-local-pride",
+          "title": "Older people in your postcode",
+          "angle": "local-pride",
+          "hook": "Within two miles of you: older people heat one room and tell nobody.",
+          "concept": "Geo-personalised copy by region, with Hearthline's local track record (£75 pays for an emergency boiler repair callout). The ask stays national; the framing feels like a neighbour.",
+          "whyItWorks": "Proximity increases perceived responsibility and makes impact feel checkable.",
+          "audienceInsight": "Likes to see exactly what a gift pays for",
+          "formats": [
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Map-pin style graphic over a local street at dusk, one kitchen highlighted in accent colour.",
+          "riskFlags": [
+            "Needs region-level ad set split for the personalised line"
+          ],
+          "scores": {
+            "novelty": 7,
+            "clarity": 8,
+            "emotionalPull": 7,
+            "brandFit": 7.5,
+            "feasibility": 7
+          },
+          "total": 7.05,
+          "rank": 10
+        }
+      ],
+      "selected": [
+        {
+          "id": "idea-1-question",
+          "title": "When did you last check how warm your mum's house is",
+          "angle": "question",
+          "hook": "When did you last check how warm your mum's house is?",
+          "concept": "Opens with a question the audience is already half-asking, then widens it to ending fuel poverty for older people in the uk and the £150 ask.",
+          "whyItWorks": "A personal question earns the first second of attention without shock imagery.",
+          "audienceInsight": "Likes to see exactly what a gift pays for",
+          "formats": [
+            "ugc",
+            "video",
+            "static"
+          ],
+          "visualDirection": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 8.2,
+          "rank": 1
+        },
+        {
+          "id": "idea-7-contrast",
+          "title": "Two kitchens, one difference",
+          "angle": "contrast",
+          "hook": "Same street. Same week. One kitchen has what it needs. One doesn't.",
+          "concept": "A split-frame creative showing two near-identical kitchens: one with what it needs, one without. The only difference is a £30 gift. Copy explains that £30 covers a week of heating for one household.",
+          "whyItWorks": "Contrast makes an invisible problem visible in under two seconds, and the £30 price tag answers \"what does my money actually do\".",
+          "audienceInsight": "Wants to protect older people like their own parents",
+          "formats": [
+            "static",
+            "video",
+            "landing"
+          ],
+          "visualDirection": "Split screen of two kitchens, warm vs cold colour grade, one line of copy across the seam, logo bottom right.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 8.2,
+          "rank": 2
+        },
+        {
+          "id": "idea-2-stat-led",
+          "title": "The number behind the ask",
+          "angle": "stat-led",
+          "hook": "£150. That is what it takes: funds a home energy visit and insulation kit.",
+          "concept": "A single oversized number fills the frame with a short line underneath: \"funds a home energy visit and insulation kit\". Supporting line cites: £75 pays for an emergency boiler repair callout.",
+          "whyItWorks": "A specific, small number removes the 'drop in the ocean' feeling and makes the ask feel finishable.",
+          "audienceInsight": "Likes to see exactly what a gift pays for",
+          "formats": [
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Flat brand background, huge numeral in accent colour, a tight crop of the kitchen in the lower third.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 6,
+            "clarity": 10,
+            "emotionalPull": 7,
+            "brandFit": 9,
+            "feasibility": 10
+          },
+          "total": 8,
+          "rank": 3
+        }
+      ],
+      "primary": {
+        "id": "idea-1-question",
+        "title": "When did you last check how warm your mum's house is",
+        "angle": "question",
+        "hook": "When did you last check how warm your mum's house is?",
+        "concept": "Opens with a question the audience is already half-asking, then widens it to ending fuel poverty for older people in the uk and the £150 ask.",
+        "whyItWorks": "A personal question earns the first second of attention without shock imagery.",
+        "audienceInsight": "Likes to see exactly what a gift pays for",
+        "formats": [
+          "ugc",
+          "video",
+          "static"
+        ],
+        "visualDirection": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene.",
+        "riskFlags": [],
+        "scores": {
+          "novelty": 7,
+          "clarity": 9,
+          "emotionalPull": 8,
+          "brandFit": 9,
+          "feasibility": 9
+        },
+        "total": 8.2,
+        "rank": 1
+      }
+    },
+    "copy": {
+      "pack": {
+        "hooks": [
+          "When did you last check how warm your mum's house is?",
+          "£30 covers a week of heating for one household. That is the whole ask.",
+          "Right now, older people heat one room and tell nobody.",
+          "Every gift doubled by the Ashby Foundation until 31 January.",
+          "Nobody should have to choose between heating and eating. You can change that today."
+        ],
+        "headlines": [
+          "£30 helps an older person today",
+          "Your gift, doubled",
+          "Nobody should have to choose between he…",
+          "£75 pays for an emergency",
+          "Help an older person now"
+        ],
+        "primaryTexts": [
+          {
+            "variant": "short",
+            "text": "£30 covers a week of heating for one household. Doubled right now. Donate today and help an older person.",
+            "angle": "question"
+          },
+          {
+            "variant": "medium",
+            "text": "When did you last check how warm your mum's house is? Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. £30 covers a week of heating for one household; £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January. Donate now.",
+            "angle": "question"
+          },
+          {
+            "variant": "long",
+            "text": "When did you last check how warm your mum's house is?\n\n£30 covers a week of heating for one household. Older people heat one room and tell nobody. Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. But only with your help.\n\n£30 covers a week of heating for one household. £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January, so every gift goes twice as far. Please give before 31 January 2027.\n\nDonate today and help an older person.",
+            "angle": "question"
+          }
+        ],
+        "descriptions": [
+          "£30 = covers a week of",
+          "Gift Aid adds 25% at no cost",
+          "Every gift doubled"
+        ],
+        "storyOverlays": [
+          "£30 covers a week of heating for one household",
+          "Your gift doubled until 31 January 2027",
+          "Swipe up to donate £30"
+        ],
+        "ctaButton": "DONATE_NOW",
+        "messagingPillars": [
+          "Concrete impact: £30 covers a week of heating for one household",
+          "Urgency: Every gift doubled by the Ashby Foundation until 31 January",
+          "Trust: £30 covers a week of heating for one household"
+        ]
+      },
+      "validation": {
+        "overall": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        },
+        "fields": [
+          {
+            "field": "hook",
+            "index": 0,
+            "text": "When did you last check how warm your mum's house is?",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 1,
+            "text": "£30 covers a week of heating for one household. That is the whole ask.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 2,
+            "text": "Right now, older people heat one room and tell nobody.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 3,
+            "text": "Every gift doubled by the Ashby Foundation until 31 January.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 4,
+            "text": "Nobody should have to choose between heating and eating. You can change that today.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 0,
+            "text": "£30 helps an older person today",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 1,
+            "text": "Your gift, doubled",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 2,
+            "text": "Nobody should have to choose between he…",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 3,
+            "text": "£75 pays for an emergency",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 4,
+            "text": "Help an older person now",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "primaryText",
+            "index": 0,
+            "text": "£30 covers a week of heating for one household. Doubled right now. Donate today and help an older person.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "primaryText",
+            "index": 1,
+            "text": "When did you last check how warm your mum's house is? Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. £30 covers a week of heating for one household; £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January. Donate now.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "primaryText",
+            "index": 2,
+            "text": "When did you last check how warm your mum's house is?\n\n£30 covers a week of heating for one household. Older people heat one room and tell nobody. Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. But only with your help.\n\n£30 covers a week of heating for one household. £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January, so every gift goes twice as far. Please give before 31 January 2027.\n\nDonate today and help an older person.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "description",
+            "index": 0,
+            "text": "£30 = covers a week of",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "description",
+            "index": 1,
+            "text": "Gift Aid adds 25% at no cost",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "description",
+            "index": 2,
+            "text": "Every gift doubled",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "storyOverlay",
+            "index": 0,
+            "text": "£30 covers a week of heating for one household",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "storyOverlay",
+            "index": 1,
+            "text": "Your gift doubled until 31 January 2027",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "storyOverlay",
+            "index": 2,
+            "text": "Swipe up to donate £30",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "messagingPillars",
+            "index": 0,
+            "text": "Concrete impact: £30 covers a week of heating for one household",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "messagingPillars",
+            "index": 1,
+            "text": "Urgency: Every gift doubled by the Ashby Foundation until 31 January",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "messagingPillars",
+            "index": 2,
+            "text": "Trust: £30 covers a week of heating for one household",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          }
+        ],
+        "cleaned": {
+          "hooks": [
+            "When did you last check how warm your mum's house is?",
+            "£30 covers a week of heating for one household. That is the whole ask.",
+            "Right now, older people heat one room and tell nobody.",
+            "Every gift doubled by the Ashby Foundation until 31 January.",
+            "Nobody should have to choose between heating and eating. You can change that today."
+          ],
+          "headlines": [
+            "£30 helps an older person today",
+            "Your gift, doubled",
+            "Nobody should have to choose between he…",
+            "£75 pays for an emergency",
+            "Help an older person now"
+          ],
+          "primaryTexts": [
+            {
+              "variant": "short",
+              "text": "£30 covers a week of heating for one household. Doubled right now. Donate today and help an older person.",
+              "angle": "question"
+            },
+            {
+              "variant": "medium",
+              "text": "When did you last check how warm your mum's house is? Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. £30 covers a week of heating for one household; £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January. Donate now.",
+              "angle": "question"
+            },
+            {
+              "variant": "long",
+              "text": "When did you last check how warm your mum's house is?\n\n£30 covers a week of heating for one household. Older people heat one room and tell nobody. Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. But only with your help.\n\n£30 covers a week of heating for one household. £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January, so every gift goes twice as far. Please give before 31 January 2027.\n\nDonate today and help an older person.",
+              "angle": "question"
+            }
+          ],
+          "descriptions": [
+            "£30 = covers a week of",
+            "Gift Aid adds 25% at no cost",
+            "Every gift doubled"
+          ],
+          "storyOverlays": [
+            "£30 covers a week of heating for one household",
+            "Your gift doubled until 31 January 2027",
+            "Swipe up to donate £30"
+          ],
+          "ctaButton": "DONATE_NOW",
+          "messagingPillars": [
+            "Concrete impact: £30 covers a week of heating for one household",
+            "Urgency: Every gift doubled by the Ashby Foundation until 31 January",
+            "Trust: £30 covers a week of heating for one household"
+          ]
+        },
+        "removed": []
+      }
+    },
+    "creatives": [
+      {
+        "rendered": {
+          "spec": {
+            "id": "creative-idea-1-question-square",
+            "ideaId": "idea-1-question",
+            "layout": "bold-statement",
+            "format": "square",
+            "headline": "£30 helps an older person today",
+            "subline": "When did you last check how warm your mum's house is?",
+            "cta": "Donate £30",
+            "badge": "Doubled until 31 January 2027",
+            "imagePrompt": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene. Warm, natural light, documentary feel, shallow depth of field, no faces, no text, no logos. Crop for square.",
+            "imageStyle": "photo",
+            "colours": {
+              "background": "secondary",
+              "text": "background",
+              "accent": "accent"
+            },
+            "notes": "Generated from idea idea-1-question; idea marked static-friendly."
+          },
+          "svg": "sha256:648ab81ebf64f69ff1976aefb8c06bf0aba092077afa55452b02389432041253",
+          "width": 1080,
+          "height": 1080,
+          "textBoxes": [
+            {
+              "x": 76,
+              "y": 141,
+              "width": 562,
+              "height": 60.8,
+              "role": "badge"
+            },
+            {
+              "x": 76,
+              "y": 243,
+              "width": 772,
+              "height": 180,
+              "role": "headline"
+            },
+            {
+              "x": 76,
+              "y": 458,
+              "width": 875,
+              "height": 100,
+              "role": "subline"
+            },
+            {
+              "x": 76,
+              "y": 923,
+              "width": 292,
+              "height": 81,
+              "role": "cta"
+            },
+            {
+              "x": 774,
+              "y": 923,
+              "width": 230,
+              "height": 81,
+              "role": "logo"
+            }
+          ]
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "rendered": {
+          "spec": {
+            "id": "creative-idea-1-question-story",
+            "ideaId": "idea-1-question",
+            "layout": "bold-statement",
+            "format": "story",
+            "headline": "Your gift, doubled",
+            "subline": "£30 covers a week of heating for one household",
+            "cta": "Donate £30",
+            "badge": "Doubled until 31 January 2027",
+            "imagePrompt": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene. Warm, natural light, documentary feel, shallow depth of field, no faces, no text, no logos. Crop for story.",
+            "imageStyle": "photo",
+            "colours": {
+              "background": "secondary",
+              "text": "background",
+              "accent": "accent"
+            },
+            "notes": "Generated from idea idea-1-question; idea marked static-friendly."
+          },
+          "svg": "sha256:3ec64b7f14bf7ab02800d97f9376f92776c18418ecad9af18e5d4d9171902759",
+          "width": 1080,
+          "height": 1920,
+          "textBoxes": [
+            {
+              "x": 76,
+              "y": 334,
+              "width": 562,
+              "height": 60.8,
+              "role": "badge"
+            },
+            {
+              "x": 76,
+              "y": 436,
+              "width": 772,
+              "height": 90,
+              "role": "headline"
+            },
+            {
+              "x": 76,
+              "y": 561,
+              "width": 733,
+              "height": 100,
+              "role": "subline"
+            },
+            {
+              "x": 76,
+              "y": 1455,
+              "width": 292,
+              "height": 81,
+              "role": "cta"
+            },
+            {
+              "x": 774,
+              "y": 1455,
+              "width": 230,
+              "height": 81,
+              "role": "logo"
+            }
+          ]
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "rendered": {
+          "spec": {
+            "id": "creative-idea-1-question-landscape",
+            "ideaId": "idea-1-question",
+            "layout": "bold-statement",
+            "format": "landscape",
+            "headline": "Nobody should have to choose between he…",
+            "subline": "When did you last check how warm your mum's house is?",
+            "cta": "Donate £30",
+            "badge": "Doubled until 31 January 2027",
+            "imagePrompt": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene. Warm, natural light, documentary feel, shallow depth of field, no faces, no text, no logos. Crop for landscape.",
+            "imageStyle": "photo",
+            "colours": {
+              "background": "secondary",
+              "text": "background",
+              "accent": "accent"
+            },
+            "notes": "Generated from idea idea-1-question; idea marked static-friendly."
+          },
+          "svg": "sha256:d369a046d4acad64ecbac383098ebfd04995122890b022ea3936b3c56e47c836",
+          "width": 1200,
+          "height": 628,
+          "textBoxes": [
+            {
+              "x": 44,
+              "y": 82,
+              "width": 333,
+              "height": 36.1,
+              "role": "badge"
+            },
+            {
+              "x": 44,
+              "y": 143,
+              "width": 990,
+              "height": 52,
+              "role": "headline"
+            },
+            {
+              "x": 44,
+              "y": 215,
+              "width": 612,
+              "height": 28,
+              "role": "subline"
+            },
+            {
+              "x": 44,
+              "y": 538,
+              "width": 166,
+              "height": 46,
+              "role": "cta"
+            },
+            {
+              "x": 1019,
+              "y": 538,
+              "width": 137,
+              "height": 46,
+              "role": "logo"
+            }
+          ]
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      }
+    ],
+    "scripts": [
+      {
+        "script": {
+          "id": "script-idea-1-question-ugc-testimonial-30s-0",
+          "ideaId": "idea-1-question",
+          "title": "When did you last check how warm your mum's house is (ugc-testimonial, 30s)",
+          "style": "ugc-testimonial",
+          "targetSeconds": 30,
+          "aspect": "9:16",
+          "beats": [
+            {
+              "name": "hook",
+              "voiceover": "Honest question. When did you last check how warm your mum's house is?",
+              "onScreenText": "When did you last check how warm your mum's house is?",
+              "visual": "Presenter to camera, phone held at eye level, kitchen background",
+              "brollKeywords": [
+                "kettle",
+                "kitchen",
+                "frost on window"
+              ],
+              "seconds": 3.6
+            },
+            {
+              "name": "problem",
+              "voiceover": "My nan heated one room last winter and told nobody. Hearthline says that's common.",
+              "onScreenText": "Older people heat one room and tell nobody.",
+              "visual": "Slow push on a quiet kitchen, natural light",
+              "brollKeywords": [
+                "terrace street at dusk",
+                "one lit window",
+                "radiator"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "turn",
+              "voiceover": "Then I found out what £30 actually does.",
+              "onScreenText": "£30 changes that",
+              "visual": "Hard cut to warm light; the thing the gift buys enters frame",
+              "brollKeywords": [
+                "hands around mug",
+                "warm light",
+                "home visit"
+              ],
+              "seconds": 4.5
+            },
+            {
+              "name": "proof",
+              "voiceover": "Last winter Hearthline helped 4,200 older people stay warm.",
+              "onScreenText": "Last winter Hearthline helped 4,200 older people stay warm",
+              "visual": "Documentary footage of the Hearthline team with captions",
+              "brollKeywords": [
+                "team in branded jackets",
+                "insulation kit",
+                "heating dial"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "offer",
+              "voiceover": "£30 covers a week of heating for one household. And right now, every gift is doubled.",
+              "onScreenText": "£30 covers a week of heating for one household · Doubled",
+              "visual": "Tier card animates in over warm footage",
+              "brollKeywords": [
+                "thermostat",
+                "end card",
+                "kettle"
+              ],
+              "seconds": 5.4
+            },
+            {
+              "name": "cta",
+              "voiceover": "Tap the link, give £30, and an older person gets help this week.",
+              "onScreenText": "Donate £30 today",
+              "visual": "End card: logo, CTA, donation URL",
+              "brollKeywords": [
+                "end card"
+              ],
+              "seconds": 4.5
+            }
+          ],
+          "captionStyle": "burned-in-bold",
+          "musicMood": "none or very low acoustic bed",
+          "disclosureRequired": true,
+          "estimatedSeconds": 33.3
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "script": {
+          "id": "script-idea-1-question-founder-direct-15s-1",
+          "ideaId": "idea-1-question",
+          "title": "When did you last check how warm your mum's house is (founder-direct, 15s)",
+          "style": "founder-direct",
+          "targetSeconds": 15,
+          "aspect": "9:16",
+          "beats": [
+            {
+              "name": "hook",
+              "voiceover": "I run Hearthline. Here's where £30 goes.",
+              "onScreenText": "When did you last check how warm your mum's house is?",
+              "visual": "Presenter to camera, phone held at eye level, kitchen background",
+              "brollKeywords": [
+                "kettle",
+                "kitchen",
+                "frost on window"
+              ],
+              "seconds": 3
+            },
+            {
+              "name": "problem",
+              "voiceover": "Older people heat one room and tell nobody.",
+              "onScreenText": "Older people heat one room and tell nobody.",
+              "visual": "Slow push on a quiet kitchen, natural light",
+              "brollKeywords": [
+                "terrace street at dusk",
+                "one lit window",
+                "radiator"
+              ],
+              "seconds": 3
+            },
+            {
+              "name": "turn",
+              "voiceover": "£30 changes that.",
+              "onScreenText": "£30 changes that",
+              "visual": "Hard cut to warm light; the thing the gift buys enters frame",
+              "brollKeywords": [
+                "hands around mug",
+                "warm light",
+                "home visit"
+              ],
+              "seconds": 2.3
+            },
+            {
+              "name": "proof",
+              "voiceover": "Hearthline has worked in local communities since 2009.",
+              "onScreenText": "Last winter Hearthline helped 4,200 older people stay warm",
+              "visual": "Documentary footage of the Hearthline team with captions",
+              "brollKeywords": [
+                "team in branded jackets",
+                "insulation kit",
+                "heating dial"
+              ],
+              "seconds": 2.3
+            },
+            {
+              "name": "offer",
+              "voiceover": "£30 covers a week of heating for one household.",
+              "onScreenText": "£30 covers a week of heating for one household · Doubled",
+              "visual": "Tier card animates in over warm footage",
+              "brollKeywords": [
+                "thermostat",
+                "end card",
+                "kettle"
+              ],
+              "seconds": 2.3
+            },
+            {
+              "name": "cta",
+              "voiceover": "Donate £30 today.",
+              "onScreenText": "Donate £30 today",
+              "visual": "End card: logo, CTA, donation URL",
+              "brollKeywords": [
+                "end card"
+              ],
+              "seconds": 2.3
+            }
+          ],
+          "captionStyle": "burned-in-bold",
+          "musicMood": "none or very low acoustic bed",
+          "disclosureRequired": false,
+          "estimatedSeconds": 17.6
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "script": {
+          "id": "script-idea-1-question-problem-solution-30s-2",
+          "ideaId": "idea-1-question",
+          "title": "When did you last check how warm your mum's house is (problem-solution, 30s)",
+          "style": "problem-solution",
+          "targetSeconds": 30,
+          "aspect": "9:16",
+          "beats": [
+            {
+              "name": "hook",
+              "voiceover": "When did you last check how warm your mum's house is?",
+              "onScreenText": "When did you last check how warm your mum's house is?",
+              "visual": "Fast cut: a kitchen that shows the problem, no people",
+              "brollKeywords": [
+                "kettle",
+                "kitchen",
+                "frost on window"
+              ],
+              "seconds": 3.6
+            },
+            {
+              "name": "problem",
+              "voiceover": "Older people heat one room and tell nobody. Most never tell anyone.",
+              "onScreenText": "Older people heat one room and tell nobody.",
+              "visual": "Slow push on a quiet kitchen, natural light",
+              "brollKeywords": [
+                "terrace street at dusk",
+                "one lit window",
+                "radiator"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "turn",
+              "voiceover": "It does not take much to change that.",
+              "onScreenText": "£30 changes that",
+              "visual": "Hard cut to warm light; the thing the gift buys enters frame",
+              "brollKeywords": [
+                "hands around mug",
+                "warm light",
+                "home visit"
+              ],
+              "seconds": 4.5
+            },
+            {
+              "name": "proof",
+              "voiceover": "Last winter Hearthline helped 4,200 older people stay warm.",
+              "onScreenText": "Last winter Hearthline helped 4,200 older people stay warm",
+              "visual": "Documentary footage of the Hearthline team with captions",
+              "brollKeywords": [
+                "team in branded jackets",
+                "insulation kit",
+                "heating dial"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "offer",
+              "voiceover": "£30 covers a week of heating for one household. And right now, every gift is doubled.",
+              "onScreenText": "£30 covers a week of heating for one household · Doubled",
+              "visual": "Tier card animates in over warm footage",
+              "brollKeywords": [
+                "thermostat",
+                "end card",
+                "kettle"
+              ],
+              "seconds": 5.4
+            },
+            {
+              "name": "cta",
+              "voiceover": "Donate £30 today and help an older person.",
+              "onScreenText": "Donate £30 today",
+              "visual": "End card: logo, CTA, donation URL",
+              "brollKeywords": [
+                "end card"
+              ],
+              "seconds": 4.5
+            }
+          ],
+          "captionStyle": "burned-in-bold",
+          "musicMood": "warm, understated piano",
+          "disclosureRequired": false,
+          "estimatedSeconds": 31.8
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      }
+    ],
+    "ugc": {
+      "id": "ugc-script-idea-1-question-ugc-testimonial-30s-0",
+      "scriptId": "script-idea-1-question-ugc-testimonial-30s-0",
+      "persona": {
+        "name": "Chris, 63, supporter who has seen it first-hand",
+        "ageRange": "45-65",
+        "description": "Warm, slightly rushed energy of someone filming between errands; natural kitchen setting, no make-up artist, phone propped on a shelf.",
+        "voiceStyle": "conversational, regional UK accent, small pauses, no script-reading cadence",
+        "synthetic": false,
+        "whyThisPersona": "The audience (Warm-hearted 45-65s) trusts peers over institutions; someone who can honestly say \"My nan heated one room last winter and told nobody.\" mirrors their situation."
+      },
+      "shots": [
+        {
+          "beatName": "hook",
+          "camera": "Handheld selfie, eye level, slight movement",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Presenter to camera, phone held at eye level, kitchen background",
+          "dialogue": "Honest question. When did you last check how warm your mum's house is?",
+          "onScreenText": "When did you last check how warm your mum's house is?",
+          "props": [
+            "kettle",
+            "kitchen",
+            "frost on window"
+          ],
+          "durationSec": 3.6
+        },
+        {
+          "beatName": "problem",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Slow push on a quiet kitchen, natural light",
+          "dialogue": "My nan heated one room last winter and told nobody. Hearthline says that's common.",
+          "onScreenText": "Older people heat one room and tell nobody.",
+          "props": [
+            "terrace street at dusk",
+            "one lit window",
+            "radiator"
+          ],
+          "durationSec": 6
+        },
+        {
+          "beatName": "turn",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Hard cut to warm light; the thing the gift buys enters frame",
+          "dialogue": "Then I found out what £30 actually does.",
+          "onScreenText": "£30 changes that",
+          "props": [
+            "hands around mug",
+            "warm light",
+            "home visit"
+          ],
+          "durationSec": 4.5
+        },
+        {
+          "beatName": "proof",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Documentary footage of the Hearthline team with captions",
+          "dialogue": "Last winter Hearthline helped 4,200 older people stay warm.",
+          "onScreenText": "Last winter Hearthline helped 4,200 older people stay warm",
+          "props": [
+            "team in branded jackets",
+            "insulation kit",
+            "heating dial"
+          ],
+          "durationSec": 6
+        },
+        {
+          "beatName": "offer",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Tier card animates in over warm footage",
+          "dialogue": "£30 covers a week of heating for one household. And right now, every gift is doubled.",
+          "onScreenText": "£30 covers a week of heating for one household · Doubled",
+          "props": [
+            "thermostat",
+            "end card",
+            "kettle"
+          ],
+          "durationSec": 5.4
+        },
+        {
+          "beatName": "cta",
+          "camera": "Static, presenter centred, end card overlay",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "End card: logo, CTA, donation URL",
+          "dialogue": "Tap the link, give £30, and an older person gets help this week.",
+          "onScreenText": "Donate £30 today",
+          "props": [
+            "end card"
+          ],
+          "durationSec": 4.5
+        }
+      ],
+      "voice": {
+        "provider": "real-creator",
+        "settings": {
+          "direction": "conversational, regional UK accent, small pauses, no script-reading cadence"
+        }
+      },
+      "avatar": {
+        "provider": "real-creator",
+        "settings": {
+          "briefDeliveryFormat": "PDF shot list + script",
+          "usageRights": "paid social, 12 months, UK"
+        }
+      },
+      "captions": "burned-in-bold",
+      "aspect": "9:16",
+      "deliverables": [
+        {
+          "format": "mp4 1080x1920 h264",
+          "filename": "script-idea-1-question-ugc-testimonial-30s-0-9x16.mp4",
+          "placement": "meta_reels, meta_stories"
+        },
+        {
+          "format": "mp4 1080x1080 h264",
+          "filename": "script-idea-1-question-ugc-testimonial-30s-0-1x1.mp4",
+          "placement": "meta_feed"
+        },
+        {
+          "format": "srt",
+          "filename": "script-idea-1-question-ugc-testimonial-30s-0.srt",
+          "placement": "captions"
+        }
+      ],
+      "disclosure": {
+        "aiGenerated": false,
+        "label": "Real creator. No synthetic media.",
+        "metaAiDisclosureFlag": false
+      },
+      "approvals": [
+        {
+          "gate": "script",
+          "owner": "creative-lead",
+          "status": "approved"
+        },
+        {
+          "gate": "persona",
+          "owner": "client-services",
+          "status": "pending"
+        },
+        {
+          "gate": "rough-cut",
+          "owner": "creative-lead",
+          "status": "pending"
+        },
+        {
+          "gate": "final",
+          "owner": "client",
+          "status": "pending"
+        }
+      ],
+      "estimatedCostGbp": 350,
+      "estimatedTurnaroundHours": 120
+    },
+    "video": {
+      "edl": {
+        "id": "edl-script-idea-1-question-ugc-testimonial-30s-0",
+        "scriptId": "script-idea-1-question-ugc-testimonial-30s-0",
+        "aspect": "9:16",
+        "fps": 30,
+        "durationSec": 32,
+        "timeline": [
+          {
+            "track": "video",
+            "clipId": "clip-01",
+            "startSec": 0,
+            "endSec": 3.6,
+            "sourceInSec": 0,
+            "sourceOutSec": 3.6,
+            "beatName": "hook"
+          },
+          {
+            "track": "text",
+            "startSec": 0,
+            "endSec": 3.6,
+            "text": "When did you last check how warm your mum's house is?",
+            "beatName": "hook"
+          },
+          {
+            "track": "broll",
+            "clipId": "clip-02",
+            "startSec": 3.6,
+            "endSec": 9.6,
+            "sourceInSec": 0,
+            "sourceOutSec": 6,
+            "beatName": "problem"
+          },
+          {
+            "track": "text",
+            "startSec": 3.6,
+            "endSec": 9.6,
+            "text": "Older people heat one room and tell nobody.",
+            "beatName": "problem"
+          },
+          {
+            "track": "video",
+            "clipId": "clip-01",
+            "startSec": 9.6,
+            "endSec": 14.1,
+            "sourceInSec": 12,
+            "sourceOutSec": 16.5,
+            "beatName": "turn"
+          },
+          {
+            "track": "text",
+            "startSec": 9.6,
+            "endSec": 14.1,
+            "text": "£30 changes that",
+            "beatName": "turn"
+          },
+          {
+            "track": "broll",
+            "clipId": "clip-04",
+            "startSec": 14.1,
+            "endSec": 20.1,
+            "sourceInSec": 9,
+            "sourceOutSec": 15,
+            "beatName": "proof"
+          },
+          {
+            "track": "text",
+            "startSec": 14.1,
+            "endSec": 20.1,
+            "text": "Last winter Hearthline helped 4,200 older people stay warm",
+            "beatName": "proof"
+          },
+          {
+            "track": "broll",
+            "clipId": "clip-05",
+            "startSec": 20.1,
+            "endSec": 25.5,
+            "sourceInSec": 0,
+            "sourceOutSec": 5.4,
+            "beatName": "offer"
+          },
+          {
+            "track": "text",
+            "startSec": 20.1,
+            "endSec": 25.5,
+            "text": "£30 covers a week of heating for one household · Doubled",
+            "beatName": "offer"
+          },
+          {
+            "track": "video",
+            "clipId": "clip-01",
+            "startSec": 25.5,
+            "endSec": 30,
+            "sourceInSec": 26,
+            "sourceOutSec": 30.5,
+            "beatName": "cta"
+          },
+          {
+            "track": "text",
+            "startSec": 25.5,
+            "endSec": 30,
+            "text": "Donate £30 today",
+            "beatName": "cta"
+          },
+          {
+            "track": "logo",
+            "startSec": 30,
+            "endSec": 32,
+            "text": "Hearthline"
+          }
+        ],
+        "captions": [
+          {
+            "index": 1,
+            "startSec": 0,
+            "endSec": 3.6,
+            "lines": [
+              "Honest question. When did you last check",
+              "how warm your mum's house is?"
+            ]
+          },
+          {
+            "index": 2,
+            "startSec": 3.6,
+            "endSec": 9.6,
+            "lines": [
+              "My nan heated one room last winter and",
+              "told nobody. Hearthline says that's"
+            ]
+          },
+          {
+            "index": 3,
+            "startSec": 9.6,
+            "endSec": 14.1,
+            "lines": [
+              "Then I found out what £30 actually does."
+            ]
+          },
+          {
+            "index": 4,
+            "startSec": 14.1,
+            "endSec": 20.1,
+            "lines": [
+              "Last winter Hearthline helped 4,200 older",
+              "people stay warm."
+            ]
+          },
+          {
+            "index": 5,
+            "startSec": 20.1,
+            "endSec": 25.163,
+            "lines": [
+              "£30 covers a week of heating for one",
+              "household. And right now, every gift is"
+            ]
+          },
+          {
+            "index": 6,
+            "startSec": 25.163,
+            "endSec": 26.163,
+            "lines": [
+              "doubled."
+            ]
+          },
+          {
+            "index": 7,
+            "startSec": 25.5,
+            "endSec": 30,
+            "lines": [
+              "Tap the link, give £30, and an older",
+              "person gets help this week."
+            ]
+          }
+        ],
+        "music": {
+          "mood": "none or very low acoustic bed",
+          "duckDb": -12,
+          "fadeOutSec": 1.5
+        },
+        "branding": {
+          "introLogoSec": 0,
+          "endCardSec": 2,
+          "endCardText": "Hearthline · Donate today"
+        },
+        "exportPresets": [
+          {
+            "name": "reels",
+            "width": 1080,
+            "height": 1920,
+            "bitrateKbps": 8000
+          }
+        ]
+      },
+      "srt": "sha256:dd1ce9b004a5ee831045ca64affecc70f10c088c6eb18872dba24eb9522bacb8",
+      "plan": [
+        {
+          "name": "trim hook from clip-01",
+          "args": [
+            "-y",
+            "-ss",
+            "0",
+            "-t",
+            "3.6",
+            "-i",
+            "footage/priya-kitchen-take2.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-00.mp4"
+          ],
+          "command": "ffmpeg -y -ss 0 -t 3.6 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-00.mp4",
+          "outputs": [
+            "render/seg-00.mp4"
+          ]
+        },
+        {
+          "name": "trim problem from clip-02",
+          "args": [
+            "-y",
+            "-ss",
+            "0",
+            "-t",
+            "6",
+            "-i",
+            "footage/broll-terrace-dusk.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-01.mp4"
+          ],
+          "command": "ffmpeg -y -ss 0 -t 6 -i footage/broll-terrace-dusk.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-01.mp4",
+          "outputs": [
+            "render/seg-01.mp4"
+          ]
+        },
+        {
+          "name": "trim turn from clip-01",
+          "args": [
+            "-y",
+            "-ss",
+            "12",
+            "-t",
+            "4.5",
+            "-i",
+            "footage/priya-kitchen-take2.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-02.mp4"
+          ],
+          "command": "ffmpeg -y -ss 12 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-02.mp4",
+          "outputs": [
+            "render/seg-02.mp4"
+          ]
+        },
+        {
+          "name": "trim proof from clip-04",
+          "args": [
+            "-y",
+            "-ss",
+            "9",
+            "-t",
+            "6",
+            "-i",
+            "footage/home-visit-team.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-03.mp4"
+          ],
+          "command": "ffmpeg -y -ss 9 -t 6 -i footage/home-visit-team.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-03.mp4",
+          "outputs": [
+            "render/seg-03.mp4"
+          ]
+        },
+        {
+          "name": "trim offer from clip-05",
+          "args": [
+            "-y",
+            "-ss",
+            "0",
+            "-t",
+            "5.4",
+            "-i",
+            "footage/broll-thermostat.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-04.mp4"
+          ],
+          "command": "ffmpeg -y -ss 0 -t 5.4 -i footage/broll-thermostat.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-04.mp4",
+          "outputs": [
+            "render/seg-04.mp4"
+          ]
+        },
+        {
+          "name": "trim cta from clip-01",
+          "args": [
+            "-y",
+            "-ss",
+            "26",
+            "-t",
+            "4.5",
+            "-i",
+            "footage/priya-kitchen-take2.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-05.mp4"
+          ],
+          "command": "ffmpeg -y -ss 26 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-05.mp4",
+          "outputs": [
+            "render/seg-05.mp4"
+          ]
+        },
+        {
+          "name": "end card",
+          "args": [
+            "-y",
+            "-f",
+            "lavfi",
+            "-i",
+            "color=c=0xC8442B:s=1080x1920:d=2:r=30",
+            "-f",
+            "lavfi",
+            "-i",
+            "anullsrc=r=48000:cl=stereo",
+            "-vf",
+            "drawbox=x=0:y=0:w=iw:h=ih:color=0xC8442B:t=fill,drawtext=text='Hearthline · Donate today':fontcolor=white:fontsize=65:x=(w-text_w)/2:y=(h-text_h)/2",
+            "-t",
+            "2",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "-shortest",
+            "render/end-card.mp4"
+          ],
+          "command": "ffmpeg -y -f lavfi -i color=c=0xC8442B:s=1080x1920:d=2:r=30 -f lavfi -i anullsrc=r=48000:cl=stereo -vf \"drawbox=x=0:y=0:w=iw:h=ih:color=0xC8442B:t=fill,drawtext=text='Hearthline · Donate today':fontcolor=white:fontsize=65:x=(w-text_w)/2:y=(h-text_h)/2\" -t 2 -c:v libx264 -preset fast -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k -shortest render/end-card.mp4",
+          "outputs": [
+            "render/end-card.mp4"
+          ]
+        },
+        {
+          "name": "concat",
+          "args": [
+            "-y",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            "render/concat.txt",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4"
+          ],
+          "command": "ffmpeg -y -f concat -safe 0 -i render/concat.txt -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4",
+          "outputs": [
+            "render/concat.txt",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4"
+          ],
+          "files": [
+            {
+              "path": "render/concat.txt",
+              "content": "file 'seg-00.mp4'\nfile 'seg-01.mp4'\nfile 'seg-02.mp4'\nfile 'seg-03.mp4'\nfile 'seg-04.mp4'\nfile 'seg-05.mp4'\nfile 'end-card.mp4'\n"
+            }
+          ]
+        },
+        {
+          "name": "burn captions",
+          "args": [
+            "-y",
+            "-i",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4",
+            "-vf",
+            "subtitles=render/edl-script-idea-1-question-ugc-testimonial-30s-0.srt:force_style='FontName=Arial,FontSize=9,Bold=1,Outline=2,Shadow=0,Alignment=2,MarginV=40,MarginL=23,MarginR=23'",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "copy",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4"
+          ],
+          "command": "ffmpeg -y -i render/edl-script-idea-1-question-ugc-testimonial-30s-0-assembled.mp4 -vf \"subtitles=render/edl-script-idea-1-question-ugc-testimonial-30s-0.srt:force_style='FontName=Arial,FontSize=9,Bold=1,Outline=2,Shadow=0,Alignment=2,MarginV=40,MarginL=23,MarginR=23'\" -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a copy render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4",
+          "outputs": [
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4"
+          ]
+        },
+        {
+          "name": "music bed with ducking",
+          "args": [
+            "-y",
+            "-i",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4",
+            "-stream_loop",
+            "-1",
+            "-i",
+            "render/music-none-or-very-low-acoustic-bed.m4a",
+            "-filter_complex",
+            "[1:a]volume=-12dB,afade=t=out:st=30.5:d=1.5[m];[m][0:a]sidechaincompress=threshold=0.05:ratio=6:attack=20:release=300[ducked];[0:a][ducked]amix=inputs=2:duration=first:dropout_transition=2[a]",
+            "-map",
+            "0:v",
+            "-map",
+            "[a]",
+            "-c:v",
+            "copy",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "-shortest",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-mixed.mp4"
+          ],
+          "command": "ffmpeg -y -i render/edl-script-idea-1-question-ugc-testimonial-30s-0-captioned.mp4 -stream_loop -1 -i render/music-none-or-very-low-acoustic-bed.m4a -filter_complex \"[1:a]volume=-12dB,afade=t=out:st=30.5:d=1.5[m];[m][0:a]sidechaincompress=threshold=0.05:ratio=6:attack=20:release=300[ducked];[0:a][ducked]amix=inputs=2:duration=first:dropout_transition=2[a]\" -map 0:v -map \"[a]\" -c:v copy -c:a aac -ar 48000 -ac 2 -b:a 128k -shortest render/edl-script-idea-1-question-ugc-testimonial-30s-0-mixed.mp4",
+          "outputs": [
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-mixed.mp4"
+          ]
+        },
+        {
+          "name": "export reels",
+          "args": [
+            "-y",
+            "-i",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-mixed.mp4",
+            "-vf",
+            "scale=1080:1920",
+            "-c:v",
+            "libx264",
+            "-b:v",
+            "8000k",
+            "-pix_fmt",
+            "yuv420p",
+            "-movflags",
+            "+faststart",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-reels.mp4"
+          ],
+          "command": "ffmpeg -y -i render/edl-script-idea-1-question-ugc-testimonial-30s-0-mixed.mp4 -vf scale=1080:1920 -c:v libx264 -b:v 8000k -pix_fmt yuv420p -movflags +faststart -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-1-question-ugc-testimonial-30s-0-reels.mp4",
+          "outputs": [
+            "render/edl-script-idea-1-question-ugc-testimonial-30s-0-reels.mp4"
+          ]
+        }
+      ],
+      "pacing": {
+        "averageShotSec": 5,
+        "firstCutAtSec": 3.6,
+        "shotCount": 6,
+        "issues": []
+      },
+      "unmatchedBeats": []
+    },
+    "landing": [
+      {
+        "spec": {
+          "id": "landing-idea-1-question-A",
+          "ideaId": "idea-1-question",
+          "variant": "A",
+          "variantHypothesis": "Control: impact-led headline from the approved copy pack.",
+          "slug": "winter-warmth-appeal-2026-a",
+          "title": "Help an older person stay warm this winter | Hearthline",
+          "metaDescription": "£30 covers a week of heating for one household. Every gift doubled by the Ashby Foundation until 31 January. Donate to Hearthline today and help an older…",
+          "hero": {
+            "headline": "£30 helps an older person today",
+            "subheadline": "£30 covers a week of heating for one household. Every gift doubled by the Ashby Foundation until 31 January. Give in two minutes.",
+            "ctaLabel": "Donate £30",
+            "imagePrompt": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene. Warm natural light, documentary feel, no identifiable faces, space on the left for text.",
+            "imageAlt": "Kitchen scene representing Hearthline's work"
+          },
+          "problem": {
+            "heading": "The problem, plainly",
+            "body": "This winter, a warm home for an older person costs less than you think, and right now your gift goes twice as far. Older people heat one room and tell nobody. Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to."
+          },
+          "impact": [
+            {
+              "amount": 30,
+              "label": "Covers a week of heating for one household"
+            },
+            {
+              "amount": 75,
+              "label": "Pays for an emergency boiler repair callout"
+            },
+            {
+              "amount": 150,
+              "label": "Funds a home energy visit and insulation kit"
+            }
+          ],
+          "proof": [
+            {
+              "text": "Last winter Hearthline helped 4,200 older people stay warm"
+            },
+            {
+              "text": "£30 covers a week of heating for one household"
+            },
+            {
+              "text": "£75 pays for an emergency boiler repair callout"
+            },
+            {
+              "text": "£150 funds a home energy visit and insulation kit"
+            }
+          ],
+          "story": {
+            "heading": "What your gift changes for an older person",
+            "body": "Last winter a retired postman in Leeds was heating his kitchen with the oven door open. A Hearthline home visit fixed his boiler timer, fitted draught excluders and sorted a grant he did not know existed. He told the team he had stopped dreading the postman. Names and details changed to protect privacy; the case is real.",
+            "attribution": "Hearthline team"
+          },
+          "faq": [
+            {
+              "question": "How much of my donation goes on admin?",
+              "answer": "Most of what you give funds direct help: covers a week of heating for one household, pays for an emergency boiler repair callout, funds a home energy visit and insulation kit. Hearthline publishes its accounts every year and we are happy to show you exactly how the appeal money was spent."
+            },
+            {
+              "question": "Why does this matter now, after Christmas?",
+              "answer": "The need does not stop when the giving season ends; for the people we support it usually peaks in the weeks after. That is exactly why this appeal runs now."
+            },
+            {
+              "question": "Doesn't the government already cover this?",
+              "answer": "Public support helps, but it does not reach everyone and it rarely covers emergencies. Hearthline fills the gap quickly and helps people claim everything they are entitled to. Last winter Hearthline helped 4,200 older people stay warm"
+            }
+          ],
+          "trust": [
+            "Registered charity no. 1199999",
+            "Registered with the Fundraising Regulator",
+            "Secure payments",
+            "Gift Aid adds 25% at no cost to you"
+          ],
+          "form": {
+            "amounts": [
+              30,
+              75,
+              150
+            ],
+            "defaultAmount": 75,
+            "frequencies": [
+              "one-off",
+              "monthly"
+            ],
+            "giftAid": true,
+            "currency": "GBP",
+            "buttonLabel": "Donate now"
+          },
+          "closingCta": {
+            "headline": "Give before 31 January 2027 and your gift is doubled",
+            "ctaLabel": "Donate £30"
+          }
+        },
+        "html": "sha256:7eb95dc4c13a8156bf96e29a971961a9d6cf5e7a8439c0cf608199e3697ccf1b",
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "spec": {
+          "id": "landing-idea-1-question-B",
+          "ideaId": "idea-1-question",
+          "variant": "B",
+          "variantHypothesis": "Test: urgency/match-led headline lifts conversion rate without lowering average gift.",
+          "slug": "winter-warmth-appeal-2026-b",
+          "title": "Help an older person stay warm this winter | Hearthline",
+          "metaDescription": "£30 covers a week of heating for one household. Every gift doubled by the Ashby Foundation until 31 January. Donate to Hearthline today and help an older…",
+          "hero": {
+            "headline": "Your gift goes twice as far right now",
+            "subheadline": "£30 covers a week of heating for one household. Every gift doubled by the Ashby Foundation until 31 January. Give in two minutes.",
+            "ctaLabel": "Donate £30",
+            "imagePrompt": "Presenter to camera for UGC; for static, the question in large type over a kitchen scene. Warm natural light, documentary feel, no identifiable faces, space on the left for text.",
+            "imageAlt": "Kitchen scene representing Hearthline's work"
+          },
+          "problem": {
+            "heading": "The problem, plainly",
+            "body": "This winter, a warm home for an older person costs less than you think, and right now your gift goes twice as far. Older people heat one room and tell nobody. Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to."
+          },
+          "impact": [
+            {
+              "amount": 30,
+              "label": "Covers a week of heating for one household"
+            },
+            {
+              "amount": 75,
+              "label": "Pays for an emergency boiler repair callout"
+            },
+            {
+              "amount": 150,
+              "label": "Funds a home energy visit and insulation kit"
+            }
+          ],
+          "proof": [
+            {
+              "text": "Last winter Hearthline helped 4,200 older people stay warm"
+            },
+            {
+              "text": "£30 covers a week of heating for one household"
+            },
+            {
+              "text": "£75 pays for an emergency boiler repair callout"
+            },
+            {
+              "text": "£150 funds a home energy visit and insulation kit"
+            }
+          ],
+          "story": {
+            "heading": "What your gift changes for an older person",
+            "body": "Last winter a retired postman in Leeds was heating his kitchen with the oven door open. A Hearthline home visit fixed his boiler timer, fitted draught excluders and sorted a grant he did not know existed. He told the team he had stopped dreading the postman. Names and details changed to protect privacy; the case is real.",
+            "attribution": "Hearthline team"
+          },
+          "faq": [
+            {
+              "question": "How much of my donation goes on admin?",
+              "answer": "Most of what you give funds direct help: covers a week of heating for one household, pays for an emergency boiler repair callout, funds a home energy visit and insulation kit. Hearthline publishes its accounts every year and we are happy to show you exactly how the appeal money was spent."
+            },
+            {
+              "question": "Why does this matter now, after Christmas?",
+              "answer": "The need does not stop when the giving season ends; for the people we support it usually peaks in the weeks after. That is exactly why this appeal runs now."
+            },
+            {
+              "question": "Doesn't the government already cover this?",
+              "answer": "Public support helps, but it does not reach everyone and it rarely covers emergencies. Hearthline fills the gap quickly and helps people claim everything they are entitled to. Last winter Hearthline helped 4,200 older people stay warm"
+            }
+          ],
+          "trust": [
+            "Registered charity no. 1199999",
+            "Registered with the Fundraising Regulator",
+            "Secure payments",
+            "Gift Aid adds 25% at no cost to you"
+          ],
+          "form": {
+            "amounts": [
+              30,
+              75,
+              150
+            ],
+            "defaultAmount": 75,
+            "frequencies": [
+              "one-off",
+              "monthly"
+            ],
+            "giftAid": true,
+            "currency": "GBP",
+            "buttonLabel": "Donate now"
+          },
+          "closingCta": {
+            "headline": "Give before 31 January 2027 and your gift is doubled",
+            "ctaLabel": "Donate £30"
+          }
+        },
+        "html": "sha256:39496d28abec7fd865119bdb2f5b51ef004d63d6ba891df7a3c3e9f5025f724b",
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      }
+    ],
+    "landingDiff": [
+      "hero.headline: \"£30 helps an older person today\" -> \"Your gift goes twice as far right now\""
+    ],
+    "launchPlan": {
+      "campaign": {
+        "name": "Winter Warmth Appeal 2026",
+        "objective": "donations",
+        "dailyBudgetGbp": 250,
+        "startDate": "2026-12-01",
+        "endDate": "2027-01-31"
+      },
+      "adsets": [
+        {
+          "name": "Winter Warmth Appeal 2026 · Feed · Lookalike 1% previous donors",
+          "placement": "Feed",
+          "audience": "Lookalike 1% previous donors",
+          "dailyBudgetGbp": 41.67,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-1-question · short · Feed",
+              "creativeId": "creative-idea-1-question-square",
+              "primaryTextVariant": "short",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-1-question · medium · Feed",
+              "creativeId": "creative-idea-1-question-square",
+              "primaryTextVariant": "medium",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Winter Warmth Appeal 2026 · Stories · Lookalike 1% previous donors",
+          "placement": "Stories",
+          "audience": "Lookalike 1% previous donors",
+          "dailyBudgetGbp": 41.67,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-1-question · short · Stories",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "short",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-1-question · medium · Stories",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "medium",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Winter Warmth Appeal 2026 · Reels · Lookalike 1% previous donors",
+          "placement": "Reels",
+          "audience": "Lookalike 1% previous donors",
+          "dailyBudgetGbp": 41.67,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-1-question · short · Reels",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "short",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-1-question · medium · Reels",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "medium",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Winter Warmth Appeal 2026 · Feed · Interests: Warm-hearted 45-65s",
+          "placement": "Feed",
+          "audience": "Interests: Warm-hearted 45-65s",
+          "dailyBudgetGbp": 41.67,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-1-question · short · Feed",
+              "creativeId": "creative-idea-1-question-square",
+              "primaryTextVariant": "short",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-1-question · medium · Feed",
+              "creativeId": "creative-idea-1-question-square",
+              "primaryTextVariant": "medium",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Winter Warmth Appeal 2026 · Stories · Interests: Warm-hearted 45-65s",
+          "placement": "Stories",
+          "audience": "Interests: Warm-hearted 45-65s",
+          "dailyBudgetGbp": 41.67,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-1-question · short · Stories",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "short",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-1-question · medium · Stories",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "medium",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Winter Warmth Appeal 2026 · Reels · Interests: Warm-hearted 45-65s",
+          "placement": "Reels",
+          "audience": "Interests: Warm-hearted 45-65s",
+          "dailyBudgetGbp": 41.67,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-1-question · short · Reels",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "short",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-1-question · medium · Reels",
+              "creativeId": "creative-idea-1-question-story",
+              "primaryTextVariant": "medium",
+              "headline": "£30 helps an older person today",
+              "landingVariant": "B"
+            }
+          ]
+        }
+      ],
+      "tracking": {
+        "utmTemplate": "utm_source=meta&utm_medium=paid_social&utm_campaign=Winter%20Warmth%20Appeal%202026&utm_content={{ad.name}}",
+        "conversionEvent": "Donate (Purchase) via Conversions API + pixel",
+        "attributionWindow": "7-day click, 1-day view"
+      },
+      "guardrailsForAgent": {
+        "targetRoas": 3,
+        "targetCpaGbp": 25,
+        "autonomy": "assist"
+      }
+    },
+    "gates": [
+      {
+        "gate": "ideas.select",
+        "area": "ideas",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "copy.approve",
+        "area": "copy",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "static.approve",
+        "area": "static",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "scripts.approve",
+        "area": "scripts",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "ugc.persona",
+        "area": "ugc",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "landing.approve",
+        "area": "landing",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "launch.approve",
+        "area": "media-buyer",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      }
+    ],
+    "audit": {
+      "events": [
+        {
+          "seq": 1,
+          "type": "llm_call",
+          "area": "ideas",
+          "step": "generate",
+          "detail": {
+            "count": 10
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 758,
+            "outputTokens": 1942,
+            "costUsd": 0.041872
+          }
+        },
+        {
+          "seq": 2,
+          "type": "review",
+          "area": "ideas",
+          "step": "ideas.select",
+          "detail": {
+            "decision": "approved",
+            "score": null
+          }
+        },
+        {
+          "seq": 3,
+          "type": "llm_call",
+          "area": "copy",
+          "step": "generate",
+          "detail": {
+            "idea": "idea-1-question"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 648,
+            "outputTokens": 533,
+            "costUsd": 0.013252
+          }
+        },
+        {
+          "seq": 4,
+          "type": "guardrail",
+          "area": "copy",
+          "step": "validate",
+          "detail": {
+            "score": 100,
+            "removed": 0
+          }
+        },
+        {
+          "seq": 5,
+          "type": "review",
+          "area": "copy",
+          "step": "copy.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 6,
+          "type": "llm_call",
+          "area": "static",
+          "step": "concept",
+          "detail": {
+            "formats": [
+              "square",
+              "story",
+              "landscape"
+            ]
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 567,
+            "outputTokens": 504,
+            "costUsd": 0.012348
+          }
+        },
+        {
+          "seq": 7,
+          "type": "render",
+          "area": "static",
+          "step": "creative-idea-1-question-square",
+          "detail": {
+            "format": "square",
+            "layout": "bold-statement",
+            "score": 100,
+            "ok": true,
+            "background": false
+          }
+        },
+        {
+          "seq": 8,
+          "type": "render",
+          "area": "static",
+          "step": "creative-idea-1-question-story",
+          "detail": {
+            "format": "story",
+            "layout": "bold-statement",
+            "score": 100,
+            "ok": true,
+            "background": false
+          }
+        },
+        {
+          "seq": 9,
+          "type": "render",
+          "area": "static",
+          "step": "creative-idea-1-question-landscape",
+          "detail": {
+            "format": "landscape",
+            "layout": "bold-statement",
+            "score": 100,
+            "ok": true,
+            "background": false
+          }
+        },
+        {
+          "seq": 10,
+          "type": "review",
+          "area": "static",
+          "step": "static.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 11,
+          "type": "llm_call",
+          "area": "scripts",
+          "step": "generate",
+          "detail": {
+            "requests": 3
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 693,
+            "outputTokens": 1512,
+            "costUsd": 0.033012
+          }
+        },
+        {
+          "seq": 12,
+          "type": "guardrail",
+          "area": "scripts",
+          "step": "script-idea-1-question-ugc-testimonial-30s-0",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 13,
+          "type": "guardrail",
+          "area": "scripts",
+          "step": "script-idea-1-question-founder-direct-15s-1",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 14,
+          "type": "guardrail",
+          "area": "scripts",
+          "step": "script-idea-1-question-problem-solution-30s-2",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 15,
+          "type": "review",
+          "area": "scripts",
+          "step": "scripts.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 16,
+          "type": "llm_call",
+          "area": "ugc",
+          "step": "persona",
+          "detail": {
+            "script": "script-idea-1-question-ugc-testimonial-30s-0"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 208,
+            "outputTokens": 134,
+            "costUsd": 0.003512
+          }
+        },
+        {
+          "seq": 17,
+          "type": "note",
+          "area": "ugc",
+          "step": "manifest",
+          "detail": {
+            "id": "ugc-script-idea-1-question-ugc-testimonial-30s-0",
+            "synthetic": false,
+            "costGbp": 350
+          }
+        },
+        {
+          "seq": 18,
+          "type": "review",
+          "area": "ugc",
+          "step": "ugc.persona",
+          "detail": {
+            "decision": "approved",
+            "score": null
+          }
+        },
+        {
+          "seq": 19,
+          "type": "llm_call",
+          "area": "video",
+          "step": "selectClips",
+          "detail": {
+            "selections": 6,
+            "unmatched": []
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 698,
+            "outputTokens": 214,
+            "costUsd": 0.007072
+          }
+        },
+        {
+          "seq": 20,
+          "type": "note",
+          "area": "video",
+          "step": "edl",
+          "detail": {
+            "durationSec": 32,
+            "cues": 7,
+            "pacingIssues": []
+          }
+        },
+        {
+          "seq": 21,
+          "type": "llm_call",
+          "area": "landing",
+          "step": "spec-A",
+          "detail": {},
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 755,
+            "outputTokens": 855,
+            "costUsd": 0.02012
+          }
+        },
+        {
+          "seq": 22,
+          "type": "guardrail",
+          "area": "landing",
+          "step": "check-A",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 23,
+          "type": "llm_call",
+          "area": "landing",
+          "step": "spec-B",
+          "detail": {},
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 755,
+            "outputTokens": 863,
+            "costUsd": 0.02028
+          }
+        },
+        {
+          "seq": 24,
+          "type": "guardrail",
+          "area": "landing",
+          "step": "check-B",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 25,
+          "type": "review",
+          "area": "landing",
+          "step": "landing.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 26,
+          "type": "note",
+          "area": "media-buyer",
+          "step": "launchPlan",
+          "detail": {
+            "adsets": 6
+          }
+        },
+        {
+          "seq": 27,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "launch.approve",
+          "detail": {
+            "decision": "approved",
+            "score": null
+          }
+        },
+        {
+          "seq": 28,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:idea",
+          "detail": {
+            "label": "When did you last check how warm your mum's house is"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 358,
+            "outputTokens": 63,
+            "costUsd": 0.002692
+          }
+        },
+        {
+          "seq": 29,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:copy",
+          "detail": {
+            "label": "primary text (short)"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 336,
+            "outputTokens": 63,
+            "costUsd": 0.002604
+          }
+        },
+        {
+          "seq": 30,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:script",
+          "detail": {
+            "label": "When did you last check how warm your mum's house is (ugc-testimonial, 30s)"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 411,
+            "outputTokens": 81,
+            "costUsd": 0.003264
+          }
+        },
+        {
+          "seq": 31,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:landing",
+          "detail": {
+            "label": "landing A hero"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 417,
+            "outputTokens": 80,
+            "costUsd": 0.003268
+          }
+        }
+      ]
+    }
+  },
+  "judgement": {
+    "items": [
+      {
+        "artefactType": "idea",
+        "label": "When did you last check how warm your mum's house is",
+        "judgement": {
+          "clarity": 8,
+          "specificity": 9,
+          "emotionalPull": 8,
+          "brandFit": 10,
+          "overall": 8.7,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      },
+      {
+        "artefactType": "copy",
+        "label": "primary text (short)",
+        "judgement": {
+          "clarity": 9,
+          "specificity": 8,
+          "emotionalPull": 7,
+          "brandFit": 10,
+          "overall": 8.4,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      },
+      {
+        "artefactType": "script",
+        "label": "When did you last check how warm your mum's house is (ugc-testimonial, 30s)",
+        "judgement": {
+          "clarity": 9,
+          "specificity": 10,
+          "emotionalPull": 10,
+          "brandFit": 10,
+          "overall": 9.8,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Grounded in a real-feeling moment rather than a mission statement.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      },
+      {
+        "artefactType": "landing",
+        "label": "landing A hero",
+        "judgement": {
+          "clarity": 9,
+          "specificity": 10,
+          "emotionalPull": 9,
+          "brandFit": 10,
+          "overall": 9.5,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Grounded in a real-feeling moment rather than a mission statement.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      }
+    ],
+    "meanOverall": 9.1,
+    "verdictCounts": {
+      "ship": 4,
+      "revise": 0,
+      "reject": 0
+    }
+  },
+  "launch": {
+    "adAccountId": "act_<client>",
+    "campaign": {
+      "name": "Winter Warmth Appeal 2026",
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "special_ad_categories": [],
+      "buying_type": "AUCTION"
+    },
+    "adsets": [
+      {
+        "name": "Winter Warmth Appeal 2026 · Feed · Lookalike 1% previous donors",
+        "campaign_ref": "campaign:winter-warmth-appeal-2026",
+        "daily_budget": 4167,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 45,
+          "age_max": 65,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "feed"
+          ],
+          "instagram_positions": [
+            "stream"
+          ],
+          "custom_audiences": [
+            {
+              "name": "Lookalike 1% previous donors"
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2026-12-01T00:00:00+00:00",
+        "end_time": "2027-01-31T23:59:59+00:00"
+      },
+      {
+        "name": "Winter Warmth Appeal 2026 · Stories · Lookalike 1% previous donors",
+        "campaign_ref": "campaign:winter-warmth-appeal-2026",
+        "daily_budget": 4167,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 45,
+          "age_max": 65,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "story"
+          ],
+          "instagram_positions": [
+            "story"
+          ],
+          "custom_audiences": [
+            {
+              "name": "Lookalike 1% previous donors"
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2026-12-01T00:00:00+00:00",
+        "end_time": "2027-01-31T23:59:59+00:00"
+      },
+      {
+        "name": "Winter Warmth Appeal 2026 · Reels · Lookalike 1% previous donors",
+        "campaign_ref": "campaign:winter-warmth-appeal-2026",
+        "daily_budget": 4167,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 45,
+          "age_max": 65,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "facebook_reels"
+          ],
+          "instagram_positions": [
+            "reels"
+          ],
+          "custom_audiences": [
+            {
+              "name": "Lookalike 1% previous donors"
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2026-12-01T00:00:00+00:00",
+        "end_time": "2027-01-31T23:59:59+00:00"
+      },
+      {
+        "name": "Winter Warmth Appeal 2026 · Feed · Interests: Warm-hearted 45-65s",
+        "campaign_ref": "campaign:winter-warmth-appeal-2026",
+        "daily_budget": 4167,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 45,
+          "age_max": 65,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "feed"
+          ],
+          "instagram_positions": [
+            "stream"
+          ],
+          "flexible_spec": [
+            {
+              "interests": [
+                {
+                  "name": "Warm-hearted 45-65s"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2026-12-01T00:00:00+00:00",
+        "end_time": "2027-01-31T23:59:59+00:00"
+      },
+      {
+        "name": "Winter Warmth Appeal 2026 · Stories · Interests: Warm-hearted 45-65s",
+        "campaign_ref": "campaign:winter-warmth-appeal-2026",
+        "daily_budget": 4167,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 45,
+          "age_max": 65,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "story"
+          ],
+          "instagram_positions": [
+            "story"
+          ],
+          "flexible_spec": [
+            {
+              "interests": [
+                {
+                  "name": "Warm-hearted 45-65s"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2026-12-01T00:00:00+00:00",
+        "end_time": "2027-01-31T23:59:59+00:00"
+      },
+      {
+        "name": "Winter Warmth Appeal 2026 · Reels · Interests: Warm-hearted 45-65s",
+        "campaign_ref": "campaign:winter-warmth-appeal-2026",
+        "daily_budget": 4167,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 45,
+          "age_max": 65,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "facebook_reels"
+          ],
+          "instagram_positions": [
+            "reels"
+          ],
+          "flexible_spec": [
+            {
+              "interests": [
+                {
+                  "name": "Warm-hearted 45-65s"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2026-12-01T00:00:00+00:00",
+        "end_time": "2027-01-31T23:59:59+00:00"
+      }
+    ],
+    "creatives": [
+      {
+        "name": "creative-idea-1-question-square · short · LP A",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "£30 covers a week of heating for one household. Doubled right now. Donate today and help an older person.",
+            "name": "£30 helps an older person today",
+            "description": "£30 = covers a week of",
+            "link": "https://give.hearthline.example/winter-warmth-appeal-2026-a",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.hearthline.example/winter-warmth-appeal-2026-a"
+              }
+            },
+            "image_hash": "<upload:creative-idea-1-question-square.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Winter%20Warmth%20Appeal%202026&utm_content={{ad.name}}&utm_term=lp-A",
+        "creative_ref": "creative:creative-idea-1-question-square-short-a"
+      },
+      {
+        "name": "creative-idea-1-question-square · medium · LP B",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "When did you last check how warm your mum's house is? Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. £30 covers a week of heating for one household; £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January. Donate now.",
+            "name": "£30 helps an older person today",
+            "description": "£30 = covers a week of",
+            "link": "https://give.hearthline.example/winter-warmth-appeal-2026-b",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.hearthline.example/winter-warmth-appeal-2026-b"
+              }
+            },
+            "image_hash": "<upload:creative-idea-1-question-square.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Winter%20Warmth%20Appeal%202026&utm_content={{ad.name}}&utm_term=lp-B",
+        "creative_ref": "creative:creative-idea-1-question-square-medium-b"
+      },
+      {
+        "name": "creative-idea-1-question-story · short · LP A",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "£30 covers a week of heating for one household. Doubled right now. Donate today and help an older person.",
+            "name": "£30 helps an older person today",
+            "description": "£30 = covers a week of",
+            "link": "https://give.hearthline.example/winter-warmth-appeal-2026-a",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.hearthline.example/winter-warmth-appeal-2026-a"
+              }
+            },
+            "image_hash": "<upload:creative-idea-1-question-story.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Winter%20Warmth%20Appeal%202026&utm_content={{ad.name}}&utm_term=lp-A",
+        "creative_ref": "creative:creative-idea-1-question-story-short-a"
+      },
+      {
+        "name": "creative-idea-1-question-story · medium · LP B",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "When did you last check how warm your mum's house is? Hearthline finds them, fixes the immediate problem and helps them claim the support they are entitled to. £30 covers a week of heating for one household; £75 pays for an emergency boiler repair callout. Every gift doubled by the Ashby Foundation until 31 January. Donate now.",
+            "name": "£30 helps an older person today",
+            "description": "£30 = covers a week of",
+            "link": "https://give.hearthline.example/winter-warmth-appeal-2026-b",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.hearthline.example/winter-warmth-appeal-2026-b"
+              }
+            },
+            "image_hash": "<upload:creative-idea-1-question-story.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Winter%20Warmth%20Appeal%202026&utm_content={{ad.name}}&utm_term=lp-B",
+        "creative_ref": "creative:creative-idea-1-question-story-medium-b"
+      }
+    ],
+    "ads": [
+      {
+        "name": "idea-1-question · short · Feed",
+        "adset_ref": "adset:winter-warmth-appeal-2026-feed-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-1-question-square-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · medium · Feed",
+        "adset_ref": "adset:winter-warmth-appeal-2026-feed-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-1-question-square-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · short · Stories",
+        "adset_ref": "adset:winter-warmth-appeal-2026-stories-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-1-question-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · medium · Stories",
+        "adset_ref": "adset:winter-warmth-appeal-2026-stories-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-1-question-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · short · Reels",
+        "adset_ref": "adset:winter-warmth-appeal-2026-reels-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-1-question-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · medium · Reels",
+        "adset_ref": "adset:winter-warmth-appeal-2026-reels-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-1-question-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · short · Feed",
+        "adset_ref": "adset:winter-warmth-appeal-2026-feed-interests-warm-hearted-45-65s",
+        "creative_ref": "creative:creative-idea-1-question-square-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · medium · Feed",
+        "adset_ref": "adset:winter-warmth-appeal-2026-feed-interests-warm-hearted-45-65s",
+        "creative_ref": "creative:creative-idea-1-question-square-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · short · Stories",
+        "adset_ref": "adset:winter-warmth-appeal-2026-stories-interests-warm-hearted-45-65s",
+        "creative_ref": "creative:creative-idea-1-question-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · medium · Stories",
+        "adset_ref": "adset:winter-warmth-appeal-2026-stories-interests-warm-hearted-45-65s",
+        "creative_ref": "creative:creative-idea-1-question-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · short · Reels",
+        "adset_ref": "adset:winter-warmth-appeal-2026-reels-interests-warm-hearted-45-65s",
+        "creative_ref": "creative:creative-idea-1-question-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-1-question · medium · Reels",
+        "adset_ref": "adset:winter-warmth-appeal-2026-reels-interests-warm-hearted-45-65s",
+        "creative_ref": "creative:creative-idea-1-question-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "adsets": 6,
+      "ads": 12,
+      "dailyBudgetPence": 25002,
+      "allPaused": true
+    }
+  },
+  "audit": {
+    "events": [
+      {
+        "seq": 1,
+        "type": "llm_call",
+        "area": "ideas",
+        "step": "generate",
+        "detail": {
+          "count": 10
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 758,
+          "outputTokens": 1942,
+          "costUsd": 0.041872
+        }
+      },
+      {
+        "seq": 2,
+        "type": "review",
+        "area": "ideas",
+        "step": "ideas.select",
+        "detail": {
+          "decision": "approved",
+          "score": null
+        }
+      },
+      {
+        "seq": 3,
+        "type": "llm_call",
+        "area": "copy",
+        "step": "generate",
+        "detail": {
+          "idea": "idea-1-question"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 648,
+          "outputTokens": 533,
+          "costUsd": 0.013252
+        }
+      },
+      {
+        "seq": 4,
+        "type": "guardrail",
+        "area": "copy",
+        "step": "validate",
+        "detail": {
+          "score": 100,
+          "removed": 0
+        }
+      },
+      {
+        "seq": 5,
+        "type": "review",
+        "area": "copy",
+        "step": "copy.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 6,
+        "type": "llm_call",
+        "area": "static",
+        "step": "concept",
+        "detail": {
+          "formats": [
+            "square",
+            "story",
+            "landscape"
+          ]
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 567,
+          "outputTokens": 504,
+          "costUsd": 0.012348
+        }
+      },
+      {
+        "seq": 7,
+        "type": "render",
+        "area": "static",
+        "step": "creative-idea-1-question-square",
+        "detail": {
+          "format": "square",
+          "layout": "bold-statement",
+          "score": 100,
+          "ok": true,
+          "background": false
+        }
+      },
+      {
+        "seq": 8,
+        "type": "render",
+        "area": "static",
+        "step": "creative-idea-1-question-story",
+        "detail": {
+          "format": "story",
+          "layout": "bold-statement",
+          "score": 100,
+          "ok": true,
+          "background": false
+        }
+      },
+      {
+        "seq": 9,
+        "type": "render",
+        "area": "static",
+        "step": "creative-idea-1-question-landscape",
+        "detail": {
+          "format": "landscape",
+          "layout": "bold-statement",
+          "score": 100,
+          "ok": true,
+          "background": false
+        }
+      },
+      {
+        "seq": 10,
+        "type": "review",
+        "area": "static",
+        "step": "static.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 11,
+        "type": "llm_call",
+        "area": "scripts",
+        "step": "generate",
+        "detail": {
+          "requests": 3
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 693,
+          "outputTokens": 1512,
+          "costUsd": 0.033012
+        }
+      },
+      {
+        "seq": 12,
+        "type": "guardrail",
+        "area": "scripts",
+        "step": "script-idea-1-question-ugc-testimonial-30s-0",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 13,
+        "type": "guardrail",
+        "area": "scripts",
+        "step": "script-idea-1-question-founder-direct-15s-1",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 14,
+        "type": "guardrail",
+        "area": "scripts",
+        "step": "script-idea-1-question-problem-solution-30s-2",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 15,
+        "type": "review",
+        "area": "scripts",
+        "step": "scripts.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 16,
+        "type": "llm_call",
+        "area": "ugc",
+        "step": "persona",
+        "detail": {
+          "script": "script-idea-1-question-ugc-testimonial-30s-0"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 208,
+          "outputTokens": 134,
+          "costUsd": 0.003512
+        }
+      },
+      {
+        "seq": 17,
+        "type": "note",
+        "area": "ugc",
+        "step": "manifest",
+        "detail": {
+          "id": "ugc-script-idea-1-question-ugc-testimonial-30s-0",
+          "synthetic": false,
+          "costGbp": 350
+        }
+      },
+      {
+        "seq": 18,
+        "type": "review",
+        "area": "ugc",
+        "step": "ugc.persona",
+        "detail": {
+          "decision": "approved",
+          "score": null
+        }
+      },
+      {
+        "seq": 19,
+        "type": "llm_call",
+        "area": "video",
+        "step": "selectClips",
+        "detail": {
+          "selections": 6,
+          "unmatched": []
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 698,
+          "outputTokens": 214,
+          "costUsd": 0.007072
+        }
+      },
+      {
+        "seq": 20,
+        "type": "note",
+        "area": "video",
+        "step": "edl",
+        "detail": {
+          "durationSec": 32,
+          "cues": 7,
+          "pacingIssues": []
+        }
+      },
+      {
+        "seq": 21,
+        "type": "llm_call",
+        "area": "landing",
+        "step": "spec-A",
+        "detail": {},
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 755,
+          "outputTokens": 855,
+          "costUsd": 0.02012
+        }
+      },
+      {
+        "seq": 22,
+        "type": "guardrail",
+        "area": "landing",
+        "step": "check-A",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 23,
+        "type": "llm_call",
+        "area": "landing",
+        "step": "spec-B",
+        "detail": {},
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 755,
+          "outputTokens": 863,
+          "costUsd": 0.02028
+        }
+      },
+      {
+        "seq": 24,
+        "type": "guardrail",
+        "area": "landing",
+        "step": "check-B",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 25,
+        "type": "review",
+        "area": "landing",
+        "step": "landing.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 26,
+        "type": "note",
+        "area": "media-buyer",
+        "step": "launchPlan",
+        "detail": {
+          "adsets": 6
+        }
+      },
+      {
+        "seq": 27,
+        "type": "review",
+        "area": "media-buyer",
+        "step": "launch.approve",
+        "detail": {
+          "decision": "approved",
+          "score": null
+        }
+      },
+      {
+        "seq": 28,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:idea",
+        "detail": {
+          "label": "When did you last check how warm your mum's house is"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 358,
+          "outputTokens": 63,
+          "costUsd": 0.002692
+        }
+      },
+      {
+        "seq": 29,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:copy",
+        "detail": {
+          "label": "primary text (short)"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 336,
+          "outputTokens": 63,
+          "costUsd": 0.002604
+        }
+      },
+      {
+        "seq": 30,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:script",
+        "detail": {
+          "label": "When did you last check how warm your mum's house is (ugc-testimonial, 30s)"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 411,
+          "outputTokens": 81,
+          "costUsd": 0.003264
+        }
+      },
+      {
+        "seq": 31,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:landing",
+        "detail": {
+          "label": "landing A hero"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 417,
+          "outputTokens": 80,
+          "costUsd": 0.003268
+        }
+      }
+    ],
+    "totals": {
+      "llmCalls": 12,
+      "inputTokens": 6604,
+      "outputTokens": 6844,
+      "costUsd": 0.16329599999999997,
+      "byArea": {
+        "ideas": 0.041872,
+        "copy": 0.013252,
+        "static": 0.012348,
+        "scripts": 0.033012,
+        "ugc": 0.003512,
+        "video": 0.007072,
+        "landing": 0.0404,
+        "evals": 0.011828
+      }
+    }
+  },
+  "reviews": [
+    {
+      "gate": "ideas.select",
+      "area": "ideas",
+      "risk": "human"
+    },
+    {
+      "gate": "copy.approve",
+      "area": "copy",
+      "risk": "human"
+    },
+    {
+      "gate": "static.approve",
+      "area": "static",
+      "risk": "human"
+    },
+    {
+      "gate": "scripts.approve",
+      "area": "scripts",
+      "risk": "human"
+    },
+    {
+      "gate": "ugc.persona",
+      "area": "ugc",
+      "risk": "human"
+    },
+    {
+      "gate": "landing.approve",
+      "area": "landing",
+      "risk": "human"
+    },
+    {
+      "gate": "launch.approve",
+      "area": "media-buyer",
+      "risk": "human"
+    }
+  ]
+}

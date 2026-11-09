@@ -1,0 +1,3934 @@
+{
+  "pkg": {
+    "brief": {
+      "id": "brief-2026-hungry-half-term",
+      "client": {
+        "id": "kindred",
+        "name": "Kindred Kitchens",
+        "cause": "Ending child food poverty in the UK",
+        "region": "UK",
+        "charityNumber": "1188888",
+        "website": "https://www.kindredkitchens.example.org",
+        "brand": {
+          "primary": "#2F7D4F",
+          "secondary": "#1F2D3D",
+          "accent": "#F5C451",
+          "text": "#17201A",
+          "background": "#F7F4EC",
+          "fontFamily": "Inter, Arial, sans-serif"
+        },
+        "voice": {
+          "tone": [
+            "practical",
+            "warm",
+            "respectful",
+            "plain English"
+          ],
+          "avoid": [
+            "the poor",
+            "needy",
+            "handouts",
+            "hungry kids"
+          ],
+          "exampleLines": [
+            "No child should start the day on an empty stomach.",
+            "A full plate changes a whole week."
+          ]
+        },
+        "proofPoints": [
+          "Last year Kindred Kitchens provided 310,000 meals across 14 towns",
+          "£20 fills a family food parcel for a week",
+          "£45 stocks a school breakfast club for a week",
+          "£90 funds a week of fresh fruit and veg for a community fridge",
+          "9 in 10 families we support have at least one adult in work",
+          "Kindred Kitchens has run community kitchens since 2014"
+        ],
+        "complianceNotes": [
+          "Never photograph children without written parental consent",
+          "Gift Aid statement must appear on every donation page",
+          "Do not describe families as 'poor' or 'needy'"
+        ]
+      },
+      "campaignName": "Hungry Half Term 2026",
+      "objective": "donations",
+      "audience": {
+        "name": "Parents who give",
+        "description": "UK parents aged 30-50 who already give to children's causes and recognise how fast a tight week becomes an empty cupboard",
+        "ageRange": "30-50",
+        "motivations": [
+          "Cannot stand the thought of a child going without",
+          "Responds to local, concrete impact",
+          "Wants to know a gift is used well"
+        ],
+        "objections": [
+          "Thinks food banks are only for people out of work",
+          "Worried the money goes on admin",
+          "Assumes supermarkets already donate enough"
+        ]
+      },
+      "offer": {
+        "ask": "Help a family eat well this half term",
+        "donationTiers": [
+          {
+            "amount": 20,
+            "currency": "GBP",
+            "impact": "fills a family food parcel for a week"
+          },
+          {
+            "amount": 45,
+            "currency": "GBP",
+            "impact": "stocks a school breakfast club for a week"
+          },
+          {
+            "amount": 90,
+            "currency": "GBP",
+            "impact": "funds a week of fresh fruit and veg for a community fridge"
+          }
+        ],
+        "matchFunding": "Every gift matched by Fairfield Foods until 28 February",
+        "deadline": "28 February 2027",
+        "giftAidEligible": true
+      },
+      "keyMessage": "When school stops, free school meals stop too. Your gift keeps a family fed through half term, and right now it goes twice as far.",
+      "channels": [
+        "meta_feed",
+        "meta_stories",
+        "meta_reels"
+      ],
+      "constraints": {
+        "dailyBudgetGbp": 180,
+        "targetRoas": 3.5,
+        "targetCpaGbp": 12,
+        "startDate": "2027-02-08",
+        "endDate": "2027-02-28"
+      },
+      "creativeContext": {
+        "beneficiarySingular": "a family",
+        "beneficiaryPlural": "families",
+        "problemInDailyLife": "Parents skip meals so their children can eat, and say nothing.",
+        "storySeed": "My neighbour skipped dinner most nights so her kids could eat, and never told anyone.",
+        "openingQuestion": "Do you know which family on your street skipped dinner last night?",
+        "everydayComparison": "two coffees",
+        "settingNoun": "kitchen table",
+        "whatWeDo": "runs community kitchens and school breakfast clubs so no child starts the day hungry.",
+        "caseStudy": "Last February a dad of three in Oldham was working nights and still running out of food by Wednesday. Kindred Kitchens' community fridge and a weekly parcel got the family through half term, and the breakfast club meant the kids ate before school every day. Names and details changed to protect privacy; the case is real.",
+        "brollKeywords": [
+          "kitchen table",
+          "empty cupboard",
+          "school gates",
+          "breakfast club",
+          "volunteers packing parcels",
+          "community fridge",
+          "fresh fruit and veg",
+          "delivery van",
+          "family meal",
+          "end card"
+        ]
+      },
+      "references": [
+        "Previous appeal: UGC from a volunteer packing parcels outperformed studio video on ROAS"
+      ]
+    },
+    "status": "complete",
+    "ideas": {
+      "ranked": [
+        {
+          "id": "idea-7-contrast",
+          "title": "Two kitchen tables, one difference",
+          "angle": "contrast",
+          "hook": "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+          "concept": "A split-frame creative showing two near-identical kitchen tables: one with what it needs, one without. The only difference is a £20 gift. Copy explains that £20 fills a family food parcel for a week.",
+          "whyItWorks": "Contrast makes an invisible problem visible in under two seconds, and the £20 price tag answers \"what does my money actually do\".",
+          "audienceInsight": "Cannot stand the thought of a child going without",
+          "formats": [
+            "static",
+            "video",
+            "landing"
+          ],
+          "visualDirection": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 8.2,
+          "rank": 1
+        },
+        {
+          "id": "idea-1-question",
+          "title": "Do you know which family on your street skipped dinner last night",
+          "angle": "question",
+          "hook": "Do you know which family on your street skipped dinner last night?",
+          "concept": "Opens with a question the audience is already half-asking, then widens it to ending child food poverty in the uk and the £90 ask.",
+          "whyItWorks": "A personal question earns the first second of attention without shock imagery.",
+          "audienceInsight": "Wants to know a gift is used well",
+          "formats": [
+            "ugc",
+            "video",
+            "static"
+          ],
+          "visualDirection": "Presenter to camera for UGC; for static, the question in large type over a kitchen table scene.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 8.5,
+            "feasibility": 9
+          },
+          "total": 8.1,
+          "rank": 2
+        },
+        {
+          "id": "idea-8-stat-led",
+          "title": "The number behind the ask",
+          "angle": "stat-led",
+          "hook": "£90. That is what it takes: funds a week of fresh fruit and veg for a community fridge.",
+          "concept": "A single oversized number fills the frame with a short line underneath: \"funds a week of fresh fruit and veg for a community fridge\". Supporting line cites: £45 stocks a school breakfast club for a week.",
+          "whyItWorks": "A specific, small number removes the 'drop in the ocean' feeling and makes the ask feel finishable.",
+          "audienceInsight": "Wants to know a gift is used well",
+          "formats": [
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Flat brand background, huge numeral in accent colour, a tight crop of the kitchen table in the lower third.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 6,
+            "clarity": 10,
+            "emotionalPull": 7,
+            "brandFit": 9,
+            "feasibility": 10
+          },
+          "total": 8,
+          "rank": 3
+        },
+        {
+          "id": "idea-4-myth-bust",
+          "title": "Myth: food banks are only for people out of work",
+          "angle": "myth-bust",
+          "hook": "\"food banks are only for people out of work.\" Here is what actually happens.",
+          "concept": "Directly tackles the objection \"Thinks food banks are only for people out of work\" in the first line, then explains the gap Kindred Kitchens fills and what £20 does about it.",
+          "whyItWorks": "Naming the objection first earns trust and pre-empts the scroll-past.",
+          "audienceInsight": "Thinks food banks are only for people out of work",
+          "formats": [
+            "video",
+            "ugc",
+            "static"
+          ],
+          "visualDirection": "Text-first creative: objection struck through, answer beneath, presenter to camera for video.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 8,
+            "clarity": 9,
+            "emotionalPull": 6,
+            "brandFit": 8,
+            "feasibility": 9
+          },
+          "total": 7.9,
+          "rank": 4
+        },
+        {
+          "id": "idea-5-behind-the-scenes",
+          "title": "Ride along with the Kindred Kitchens team",
+          "angle": "behind-the-scenes",
+          "hook": "We filmed one Tuesday with the Kindred Kitchens team. This is what £45 looks like in real life.",
+          "concept": "Documentary-style footage of the team doing the work the donation funds (stocks a school breakfast club for a week). No actors, no music swells, just the work.",
+          "whyItWorks": "Showing the operation answers the admin-cost worry better than any pie chart.",
+          "audienceInsight": "Worried the money goes on admin",
+          "formats": [
+            "video",
+            "ugc"
+          ],
+          "visualDirection": "Handheld, natural sound, captions throughout, team in branded jackets, end card with the tier.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 8,
+            "emotionalPull": 8,
+            "brandFit": 10,
+            "feasibility": 6
+          },
+          "total": 7.9,
+          "rank": 5
+        },
+        {
+          "id": "idea-10-founder-direct",
+          "title": "Thirty seconds from our director",
+          "angle": "founder-direct",
+          "hook": "I run Kindred Kitchens. I want to tell you exactly where your £45 goes.",
+          "concept": "A single unedited take of the charity director speaking plainly about the weeks ahead and the offer. No b-roll, captions only.",
+          "whyItWorks": "Low production, high trust. Direct accountability answers the admin objection head on.",
+          "audienceInsight": "Worried the money goes on admin",
+          "formats": [
+            "video",
+            "ugc"
+          ],
+          "visualDirection": "Phone camera, eye level, office or depot background, burned-in captions, 9:16.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 6,
+            "clarity": 9,
+            "emotionalPull": 7,
+            "brandFit": 9,
+            "feasibility": 10
+          },
+          "total": 7.8,
+          "rank": 6
+        },
+        {
+          "id": "idea-9-how-it-works",
+          "title": "From your gift to a family",
+          "angle": "how-it-works",
+          "hook": "What happens in the first two days after you give £45?",
+          "concept": "A three-step explainer: you give, we act, a family gets what they need. Each step shows the real person or system involved, ending with \"stocks a school breakfast club for a week\".",
+          "whyItWorks": "Transparency about process is a direct response to the fear that money disappears into admin.",
+          "audienceInsight": "Worried the money goes on admin",
+          "formats": [
+            "video",
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Three-panel carousel or 15s animation with simple icons in brand colours, one sentence per panel.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 6,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 7.8,
+          "rank": 7
+        },
+        {
+          "id": "idea-2-letter",
+          "title": "A letter you will not get",
+          "angle": "letter",
+          "hook": "Most people we help never write to thank anyone. This is the letter they would send.",
+          "concept": "A handwritten-style letter from a family describing an ordinary good day, revealed line by line. Signed with a first name only. Closes with the £20 ask.",
+          "whyItWorks": "The letter form slows the reader down and rewards attention with emotion rather than shock.",
+          "audienceInsight": "Cannot stand the thought of a child going without",
+          "formats": [
+            "video",
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Paper texture, handwriting font animated as if being written, soft lamp light.",
+          "riskFlags": [
+            "Must be clearly labelled as representative, not a real letter, unless consent exists"
+          ],
+          "scores": {
+            "novelty": 8,
+            "clarity": 7,
+            "emotionalPull": 9,
+            "brandFit": 8,
+            "feasibility": 8
+          },
+          "total": 7.75,
+          "rank": 8
+        },
+        {
+          "id": "idea-6-urgency-match",
+          "title": "Doubled until the deadline",
+          "angle": "urgency-match",
+          "hook": "Every gift matched by Fairfield Foods until 28 February.",
+          "concept": "A countdown-led creative built around the match offer. £90 becomes £180 and the copy states exactly what that pays for twice over.",
+          "whyItWorks": "Match funding is the strongest proven conversion lever in charity paid social; the deadline gives a reason to act today rather than someday.",
+          "audienceInsight": "Wants to know a gift is used well",
+          "formats": [
+            "static",
+            "video",
+            "landing"
+          ],
+          "visualDirection": "Bold accent background, the two amounts side by side with an arrow, deadline date in a sticker element.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 5,
+            "clarity": 10,
+            "emotionalPull": 7,
+            "brandFit": 8,
+            "feasibility": 10
+          },
+          "total": 7.5,
+          "rank": 9
+        },
+        {
+          "id": "idea-3-local-pride",
+          "title": "Families in your postcode",
+          "angle": "local-pride",
+          "hook": "Within two miles of you: parents skip meals so their children can eat, and say nothing.",
+          "concept": "Geo-personalised copy by region, with Kindred Kitchens's local track record (£45 stocks a school breakfast club for a week). The ask stays national; the framing feels like a neighbour.",
+          "whyItWorks": "Proximity increases perceived responsibility and makes impact feel checkable.",
+          "audienceInsight": "Wants to know a gift is used well",
+          "formats": [
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Map-pin style graphic over a local street at dusk, one kitchen table highlighted in accent colour.",
+          "riskFlags": [
+            "Needs region-level ad set split for the personalised line"
+          ],
+          "scores": {
+            "novelty": 7,
+            "clarity": 8,
+            "emotionalPull": 7,
+            "brandFit": 8,
+            "feasibility": 7
+          },
+          "total": 7.15,
+          "rank": 10
+        }
+      ],
+      "selected": [
+        {
+          "id": "idea-7-contrast",
+          "title": "Two kitchen tables, one difference",
+          "angle": "contrast",
+          "hook": "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+          "concept": "A split-frame creative showing two near-identical kitchen tables: one with what it needs, one without. The only difference is a £20 gift. Copy explains that £20 fills a family food parcel for a week.",
+          "whyItWorks": "Contrast makes an invisible problem visible in under two seconds, and the £20 price tag answers \"what does my money actually do\".",
+          "audienceInsight": "Cannot stand the thought of a child going without",
+          "formats": [
+            "static",
+            "video",
+            "landing"
+          ],
+          "visualDirection": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 9,
+            "feasibility": 9
+          },
+          "total": 8.2,
+          "rank": 1
+        },
+        {
+          "id": "idea-1-question",
+          "title": "Do you know which family on your street skipped dinner last night",
+          "angle": "question",
+          "hook": "Do you know which family on your street skipped dinner last night?",
+          "concept": "Opens with a question the audience is already half-asking, then widens it to ending child food poverty in the uk and the £90 ask.",
+          "whyItWorks": "A personal question earns the first second of attention without shock imagery.",
+          "audienceInsight": "Wants to know a gift is used well",
+          "formats": [
+            "ugc",
+            "video",
+            "static"
+          ],
+          "visualDirection": "Presenter to camera for UGC; for static, the question in large type over a kitchen table scene.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 7,
+            "clarity": 9,
+            "emotionalPull": 8,
+            "brandFit": 8.5,
+            "feasibility": 9
+          },
+          "total": 8.1,
+          "rank": 2
+        },
+        {
+          "id": "idea-8-stat-led",
+          "title": "The number behind the ask",
+          "angle": "stat-led",
+          "hook": "£90. That is what it takes: funds a week of fresh fruit and veg for a community fridge.",
+          "concept": "A single oversized number fills the frame with a short line underneath: \"funds a week of fresh fruit and veg for a community fridge\". Supporting line cites: £45 stocks a school breakfast club for a week.",
+          "whyItWorks": "A specific, small number removes the 'drop in the ocean' feeling and makes the ask feel finishable.",
+          "audienceInsight": "Wants to know a gift is used well",
+          "formats": [
+            "static",
+            "landing"
+          ],
+          "visualDirection": "Flat brand background, huge numeral in accent colour, a tight crop of the kitchen table in the lower third.",
+          "riskFlags": [],
+          "scores": {
+            "novelty": 6,
+            "clarity": 10,
+            "emotionalPull": 7,
+            "brandFit": 9,
+            "feasibility": 10
+          },
+          "total": 8,
+          "rank": 3
+        }
+      ],
+      "primary": {
+        "id": "idea-7-contrast",
+        "title": "Two kitchen tables, one difference",
+        "angle": "contrast",
+        "hook": "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+        "concept": "A split-frame creative showing two near-identical kitchen tables: one with what it needs, one without. The only difference is a £20 gift. Copy explains that £20 fills a family food parcel for a week.",
+        "whyItWorks": "Contrast makes an invisible problem visible in under two seconds, and the £20 price tag answers \"what does my money actually do\".",
+        "audienceInsight": "Cannot stand the thought of a child going without",
+        "formats": [
+          "static",
+          "video",
+          "landing"
+        ],
+        "visualDirection": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right.",
+        "riskFlags": [],
+        "scores": {
+          "novelty": 7,
+          "clarity": 9,
+          "emotionalPull": 8,
+          "brandFit": 9,
+          "feasibility": 9
+        },
+        "total": 8.2,
+        "rank": 1
+      }
+    },
+    "copy": {
+      "pack": {
+        "hooks": [
+          "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+          "£20 fills a family food parcel for a week. That is the whole ask.",
+          "Right now, parents skip meals so their children can eat, and say nothing.",
+          "Every gift matched by Fairfield Foods until 28 February.",
+          "No child should start the day on an empty stomach. You can change that today."
+        ],
+        "headlines": [
+          "£20 helps a family today",
+          "Your gift, doubled",
+          "No child should start the day on an emp…",
+          "£45 stocks a school breakfast",
+          "Help a family now"
+        ],
+        "primaryTexts": [
+          {
+            "variant": "short",
+            "text": "£20 fills a family food parcel for a week. Doubled right now. Donate today and help a family.",
+            "angle": "contrast"
+          },
+          {
+            "variant": "medium",
+            "text": "Same street. Same week. One kitchen table has what it needs. One doesn't. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. £20 fills a family food parcel for a week; £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February. Donate now.",
+            "angle": "contrast"
+          },
+          {
+            "variant": "long",
+            "text": "Same street. Same week. One kitchen table has what it needs. One doesn't.\n\n£20 fills a family food parcel for a week. Parents skip meals so their children can eat, and say nothing. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. But only with your help.\n\n£20 fills a family food parcel for a week. £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February, so every gift goes twice as far. Please give before 28 February 2027.\n\nDonate today and help a family.",
+            "angle": "contrast"
+          }
+        ],
+        "descriptions": [
+          "£20 = fills a family food",
+          "Gift Aid adds 25% at no cost",
+          "Every gift doubled"
+        ],
+        "storyOverlays": [
+          "£20 fills a family food parcel for a week",
+          "Your gift doubled until 28 February 2027",
+          "Swipe up to donate £20"
+        ],
+        "ctaButton": "DONATE_NOW",
+        "messagingPillars": [
+          "Concrete impact: £20 fills a family food parcel for a week",
+          "Urgency: Every gift matched by Fairfield Foods until 28 February",
+          "Trust: £20 fills a family food parcel for a week"
+        ]
+      },
+      "validation": {
+        "overall": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        },
+        "fields": [
+          {
+            "field": "hook",
+            "index": 0,
+            "text": "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 1,
+            "text": "£20 fills a family food parcel for a week. That is the whole ask.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 2,
+            "text": "Right now, parents skip meals so their children can eat, and say nothing.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 3,
+            "text": "Every gift matched by Fairfield Foods until 28 February.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "hook",
+            "index": 4,
+            "text": "No child should start the day on an empty stomach. You can change that today.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 0,
+            "text": "£20 helps a family today",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 1,
+            "text": "Your gift, doubled",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 2,
+            "text": "No child should start the day on an emp…",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 3,
+            "text": "£45 stocks a school breakfast",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "headline",
+            "index": 4,
+            "text": "Help a family now",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "primaryText",
+            "index": 0,
+            "text": "£20 fills a family food parcel for a week. Doubled right now. Donate today and help a family.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "primaryText",
+            "index": 1,
+            "text": "Same street. Same week. One kitchen table has what it needs. One doesn't. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. £20 fills a family food parcel for a week; £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February. Donate now.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "primaryText",
+            "index": 2,
+            "text": "Same street. Same week. One kitchen table has what it needs. One doesn't.\n\n£20 fills a family food parcel for a week. Parents skip meals so their children can eat, and say nothing. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. But only with your help.\n\n£20 fills a family food parcel for a week. £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February, so every gift goes twice as far. Please give before 28 February 2027.\n\nDonate today and help a family.",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "description",
+            "index": 0,
+            "text": "£20 = fills a family food",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "description",
+            "index": 1,
+            "text": "Gift Aid adds 25% at no cost",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "description",
+            "index": 2,
+            "text": "Every gift doubled",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "storyOverlay",
+            "index": 0,
+            "text": "£20 fills a family food parcel for a week",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "storyOverlay",
+            "index": 1,
+            "text": "Your gift doubled until 28 February 2027",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "storyOverlay",
+            "index": 2,
+            "text": "Swipe up to donate £20",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "messagingPillars",
+            "index": 0,
+            "text": "Concrete impact: £20 fills a family food parcel for a week",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "messagingPillars",
+            "index": 1,
+            "text": "Urgency: Every gift matched by Fairfield Foods until 28 February",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          },
+          {
+            "field": "messagingPillars",
+            "index": 2,
+            "text": "Trust: £20 fills a family food parcel for a week",
+            "report": {
+              "ok": true,
+              "issues": [],
+              "score": 100
+            }
+          }
+        ],
+        "cleaned": {
+          "hooks": [
+            "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+            "£20 fills a family food parcel for a week. That is the whole ask.",
+            "Right now, parents skip meals so their children can eat, and say nothing.",
+            "Every gift matched by Fairfield Foods until 28 February.",
+            "No child should start the day on an empty stomach. You can change that today."
+          ],
+          "headlines": [
+            "£20 helps a family today",
+            "Your gift, doubled",
+            "No child should start the day on an emp…",
+            "£45 stocks a school breakfast",
+            "Help a family now"
+          ],
+          "primaryTexts": [
+            {
+              "variant": "short",
+              "text": "£20 fills a family food parcel for a week. Doubled right now. Donate today and help a family.",
+              "angle": "contrast"
+            },
+            {
+              "variant": "medium",
+              "text": "Same street. Same week. One kitchen table has what it needs. One doesn't. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. £20 fills a family food parcel for a week; £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February. Donate now.",
+              "angle": "contrast"
+            },
+            {
+              "variant": "long",
+              "text": "Same street. Same week. One kitchen table has what it needs. One doesn't.\n\n£20 fills a family food parcel for a week. Parents skip meals so their children can eat, and say nothing. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. But only with your help.\n\n£20 fills a family food parcel for a week. £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February, so every gift goes twice as far. Please give before 28 February 2027.\n\nDonate today and help a family.",
+              "angle": "contrast"
+            }
+          ],
+          "descriptions": [
+            "£20 = fills a family food",
+            "Gift Aid adds 25% at no cost",
+            "Every gift doubled"
+          ],
+          "storyOverlays": [
+            "£20 fills a family food parcel for a week",
+            "Your gift doubled until 28 February 2027",
+            "Swipe up to donate £20"
+          ],
+          "ctaButton": "DONATE_NOW",
+          "messagingPillars": [
+            "Concrete impact: £20 fills a family food parcel for a week",
+            "Urgency: Every gift matched by Fairfield Foods until 28 February",
+            "Trust: £20 fills a family food parcel for a week"
+          ]
+        },
+        "removed": []
+      }
+    },
+    "creatives": [
+      {
+        "rendered": {
+          "spec": {
+            "id": "creative-idea-7-contrast-square",
+            "ideaId": "idea-7-contrast",
+            "layout": "split-contrast",
+            "format": "square",
+            "headline": "£20 helps a family today",
+            "subline": "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+            "cta": "Donate £20",
+            "badge": "Doubled until 28 February 2027",
+            "imagePrompt": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right. Warm, natural light, documentary feel, shallow depth of field, no faces, no text, no logos. Crop for square.",
+            "imageStyle": "photo",
+            "colours": {
+              "background": "secondary",
+              "text": "background",
+              "accent": "accent"
+            },
+            "notes": "Generated from idea idea-7-contrast; idea marked static-friendly."
+          },
+          "svg": "sha256:192a5bce7dcfcffc149cb8a34804cd32e85eadd74afeeaf9c6f9311aac8e19d3",
+          "width": 1080,
+          "height": 1080,
+          "textBoxes": [
+            {
+              "x": 76,
+              "y": 141,
+              "width": 579,
+              "height": 60.8,
+              "role": "badge"
+            },
+            {
+              "x": 76,
+              "y": 243,
+              "width": 772,
+              "height": 180,
+              "role": "headline"
+            },
+            {
+              "x": 76,
+              "y": 458,
+              "width": 916,
+              "height": 100,
+              "role": "subline"
+            },
+            {
+              "x": 76,
+              "y": 923,
+              "width": 292,
+              "height": 81,
+              "role": "cta"
+            },
+            {
+              "x": 635,
+              "y": 923,
+              "width": 369,
+              "height": 81,
+              "role": "logo"
+            }
+          ]
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "rendered": {
+          "spec": {
+            "id": "creative-idea-7-contrast-story",
+            "ideaId": "idea-7-contrast",
+            "layout": "split-contrast",
+            "format": "story",
+            "headline": "Your gift, doubled",
+            "subline": "£20 fills a family food parcel for a week",
+            "cta": "Donate £20",
+            "badge": "Doubled until 28 February 2027",
+            "imagePrompt": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right. Warm, natural light, documentary feel, shallow depth of field, no faces, no text, no logos. Crop for story.",
+            "imageStyle": "photo",
+            "colours": {
+              "background": "secondary",
+              "text": "background",
+              "accent": "accent"
+            },
+            "notes": "Generated from idea idea-7-contrast; idea marked static-friendly."
+          },
+          "svg": "sha256:ff7ecd0ca7ba6d54bb571967fe8ffd1edeb30c32ead99c93ace191b2d10e295a",
+          "width": 1080,
+          "height": 1920,
+          "textBoxes": [
+            {
+              "x": 76,
+              "y": 334,
+              "width": 579,
+              "height": 60.8,
+              "role": "badge"
+            },
+            {
+              "x": 76,
+              "y": 436,
+              "width": 772,
+              "height": 90,
+              "role": "headline"
+            },
+            {
+              "x": 76,
+              "y": 561,
+              "width": 834,
+              "height": 50,
+              "role": "subline"
+            },
+            {
+              "x": 76,
+              "y": 1455,
+              "width": 292,
+              "height": 81,
+              "role": "cta"
+            },
+            {
+              "x": 635,
+              "y": 1455,
+              "width": 369,
+              "height": 81,
+              "role": "logo"
+            }
+          ]
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "rendered": {
+          "spec": {
+            "id": "creative-idea-7-contrast-landscape",
+            "ideaId": "idea-7-contrast",
+            "layout": "split-contrast",
+            "format": "landscape",
+            "headline": "No child should start the day on an emp…",
+            "subline": "Same street. Same week. One kitchen table has what it needs. One doesn't.",
+            "cta": "Donate £20",
+            "badge": "Doubled until 28 February 2027",
+            "imagePrompt": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right. Warm, natural light, documentary feel, shallow depth of field, no faces, no text, no logos. Crop for landscape.",
+            "imageStyle": "photo",
+            "colours": {
+              "background": "secondary",
+              "text": "background",
+              "accent": "accent"
+            },
+            "notes": "Generated from idea idea-7-contrast; idea marked static-friendly."
+          },
+          "svg": "sha256:071ba7a0b7ce3c3d169cfdcd8c769af3226f1fb20d7edc5f219496d343e5e32c",
+          "width": 1200,
+          "height": 628,
+          "textBoxes": [
+            {
+              "x": 44,
+              "y": 82,
+              "width": 344,
+              "height": 36.1,
+              "role": "badge"
+            },
+            {
+              "x": 44,
+              "y": 143,
+              "width": 990,
+              "height": 52,
+              "role": "headline"
+            },
+            {
+              "x": 44,
+              "y": 215,
+              "width": 843,
+              "height": 28,
+              "role": "subline"
+            },
+            {
+              "x": 44,
+              "y": 538,
+              "width": 166,
+              "height": 46,
+              "role": "cta"
+            },
+            {
+              "x": 937,
+              "y": 538,
+              "width": 219,
+              "height": 46,
+              "role": "logo"
+            }
+          ]
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      }
+    ],
+    "scripts": [
+      {
+        "script": {
+          "id": "script-idea-7-contrast-ugc-testimonial-30s-0",
+          "ideaId": "idea-7-contrast",
+          "title": "Two kitchen tables, one difference (ugc-testimonial, 30s)",
+          "style": "ugc-testimonial",
+          "targetSeconds": 30,
+          "aspect": "9:16",
+          "beats": [
+            {
+              "name": "hook",
+              "voiceover": "Honest question. Do you know which family on your street skipped dinner last night?",
+              "onScreenText": "Same street. Same week. One kitchen table has what it needs…",
+              "visual": "Presenter to camera, phone held at eye level, kitchen table background",
+              "brollKeywords": [
+                "kitchen table",
+                "empty cupboard",
+                "school gates"
+              ],
+              "seconds": 3.6
+            },
+            {
+              "name": "problem",
+              "voiceover": "My neighbour skipped dinner most nights so her kids could eat, and never told anyone. Kindred Kitchens says that's common.",
+              "onScreenText": "Parents skip meals so their children can eat, and say nothing.",
+              "visual": "Slow push on a quiet kitchen table, natural light",
+              "brollKeywords": [
+                "breakfast club",
+                "volunteers packing parcels",
+                "community fridge"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "turn",
+              "voiceover": "Then I found out what £20 actually does.",
+              "onScreenText": "£20 changes that",
+              "visual": "Hard cut to warm light; the thing the gift buys enters frame",
+              "brollKeywords": [
+                "fresh fruit and veg",
+                "delivery van",
+                "family meal"
+              ],
+              "seconds": 4.5
+            },
+            {
+              "name": "proof",
+              "voiceover": "Last year Kindred Kitchens provided 310,000 meals across 14 towns.",
+              "onScreenText": "Last year Kindred Kitchens provided 310,000 meals across 14 towns",
+              "visual": "Documentary footage of the Kindred Kitchens team with captions",
+              "brollKeywords": [
+                "end card",
+                "kitchen table",
+                "empty cupboard"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "offer",
+              "voiceover": "£20 fills a family food parcel for a week. And right now, every gift is doubled.",
+              "onScreenText": "£20 fills a family food parcel for a week · Doubled",
+              "visual": "Tier card animates in over warm footage",
+              "brollKeywords": [
+                "school gates",
+                "breakfast club",
+                "volunteers packing parcels"
+              ],
+              "seconds": 5.4
+            },
+            {
+              "name": "cta",
+              "voiceover": "Tap the link, give £20, and a family gets help this week.",
+              "onScreenText": "Donate £20 today",
+              "visual": "End card: logo, CTA, donation URL",
+              "brollKeywords": [
+                "end card"
+              ],
+              "seconds": 4.5
+            }
+          ],
+          "captionStyle": "burned-in-bold",
+          "musicMood": "none or very low acoustic bed",
+          "disclosureRequired": true,
+          "estimatedSeconds": 35.3
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "script": {
+          "id": "script-idea-7-contrast-founder-direct-15s-1",
+          "ideaId": "idea-7-contrast",
+          "title": "Two kitchen tables, one difference (founder-direct, 15s)",
+          "style": "founder-direct",
+          "targetSeconds": 15,
+          "aspect": "9:16",
+          "beats": [
+            {
+              "name": "hook",
+              "voiceover": "I run Kindred Kitchens. Here's where £20 goes.",
+              "onScreenText": "Same street. Same week. One kitchen table has what it needs…",
+              "visual": "Presenter to camera, phone held at eye level, kitchen table background",
+              "brollKeywords": [
+                "kitchen table",
+                "empty cupboard",
+                "school gates"
+              ],
+              "seconds": 3
+            },
+            {
+              "name": "problem",
+              "voiceover": "Parents skip meals so their children can eat.",
+              "onScreenText": "Parents skip meals so their children can eat, and say nothing.",
+              "visual": "Slow push on a quiet kitchen table, natural light",
+              "brollKeywords": [
+                "breakfast club",
+                "volunteers packing parcels",
+                "community fridge"
+              ],
+              "seconds": 3
+            },
+            {
+              "name": "turn",
+              "voiceover": "£20 changes that.",
+              "onScreenText": "£20 changes that",
+              "visual": "Hard cut to warm light; the thing the gift buys enters frame",
+              "brollKeywords": [
+                "fresh fruit and veg",
+                "delivery van",
+                "family meal"
+              ],
+              "seconds": 2.3
+            },
+            {
+              "name": "proof",
+              "voiceover": "Kindred Kitchens has run community kitchens since 2014.",
+              "onScreenText": "Last year Kindred Kitchens provided 310,000 meals across 14 towns",
+              "visual": "Documentary footage of the Kindred Kitchens team with captions",
+              "brollKeywords": [
+                "end card",
+                "kitchen table",
+                "empty cupboard"
+              ],
+              "seconds": 2.3
+            },
+            {
+              "name": "offer",
+              "voiceover": "£20 fills a family food parcel for a week.",
+              "onScreenText": "£20 fills a family food parcel for a week · Doubled",
+              "visual": "Tier card animates in over warm footage",
+              "brollKeywords": [
+                "school gates",
+                "breakfast club",
+                "volunteers packing parcels"
+              ],
+              "seconds": 2.3
+            },
+            {
+              "name": "cta",
+              "voiceover": "Donate £20 today.",
+              "onScreenText": "Donate £20 today",
+              "visual": "End card: logo, CTA, donation URL",
+              "brollKeywords": [
+                "end card"
+              ],
+              "seconds": 2.3
+            }
+          ],
+          "captionStyle": "burned-in-bold",
+          "musicMood": "none or very low acoustic bed",
+          "disclosureRequired": false,
+          "estimatedSeconds": 17.8
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "script": {
+          "id": "script-idea-7-contrast-problem-solution-30s-2",
+          "ideaId": "idea-7-contrast",
+          "title": "Two kitchen tables, one difference (problem-solution, 30s)",
+          "style": "problem-solution",
+          "targetSeconds": 30,
+          "aspect": "9:16",
+          "beats": [
+            {
+              "name": "hook",
+              "voiceover": "Same street.",
+              "onScreenText": "Same street. Same week. One kitchen table has what it needs…",
+              "visual": "Fast cut: a kitchen table that shows the problem, no people",
+              "brollKeywords": [
+                "kitchen table",
+                "empty cupboard",
+                "school gates"
+              ],
+              "seconds": 3.6
+            },
+            {
+              "name": "problem",
+              "voiceover": "Parents skip meals so their children can eat, and say nothing. Most never tell anyone.",
+              "onScreenText": "Parents skip meals so their children can eat, and say nothing.",
+              "visual": "Slow push on a quiet kitchen table, natural light",
+              "brollKeywords": [
+                "breakfast club",
+                "volunteers packing parcels",
+                "community fridge"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "turn",
+              "voiceover": "It does not take much to change that.",
+              "onScreenText": "£20 changes that",
+              "visual": "Hard cut to warm light; the thing the gift buys enters frame",
+              "brollKeywords": [
+                "fresh fruit and veg",
+                "delivery van",
+                "family meal"
+              ],
+              "seconds": 4.5
+            },
+            {
+              "name": "proof",
+              "voiceover": "Last year Kindred Kitchens provided 310,000 meals across 14 towns.",
+              "onScreenText": "Last year Kindred Kitchens provided 310,000 meals across 14 towns",
+              "visual": "Documentary footage of the Kindred Kitchens team with captions",
+              "brollKeywords": [
+                "end card",
+                "kitchen table",
+                "empty cupboard"
+              ],
+              "seconds": 6
+            },
+            {
+              "name": "offer",
+              "voiceover": "£20 fills a family food parcel for a week. And right now, every gift is doubled.",
+              "onScreenText": "£20 fills a family food parcel for a week · Doubled",
+              "visual": "Tier card animates in over warm footage",
+              "brollKeywords": [
+                "school gates",
+                "breakfast club",
+                "volunteers packing parcels"
+              ],
+              "seconds": 5.4
+            },
+            {
+              "name": "cta",
+              "voiceover": "Donate £20 today and help a family.",
+              "onScreenText": "Donate £20 today",
+              "visual": "End card: logo, CTA, donation URL",
+              "brollKeywords": [
+                "end card"
+              ],
+              "seconds": 4.5
+            }
+          ],
+          "captionStyle": "burned-in-bold",
+          "musicMood": "warm, understated piano",
+          "disclosureRequired": false,
+          "estimatedSeconds": 31
+        },
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      }
+    ],
+    "ugc": {
+      "id": "ugc-script-idea-7-contrast-ugc-testimonial-30s-0",
+      "scriptId": "script-idea-7-contrast-ugc-testimonial-30s-0",
+      "persona": {
+        "name": "Chris, 44, supporter who has seen it first-hand",
+        "ageRange": "30-50",
+        "description": "Warm, slightly rushed energy of someone filming between errands; natural kitchen table setting, no make-up artist, phone propped on a shelf.",
+        "voiceStyle": "conversational, regional UK accent, small pauses, no script-reading cadence",
+        "synthetic": false,
+        "whyThisPersona": "The audience (Parents who give) trusts peers over institutions; someone who can honestly say \"My neighbour skipped dinner most nights so her kids could eat, and never told anyone.\" mirrors their situation."
+      },
+      "shots": [
+        {
+          "beatName": "hook",
+          "camera": "Handheld selfie, eye level, slight movement",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Presenter to camera, phone held at eye level, kitchen table background",
+          "dialogue": "Honest question. Do you know which family on your street skipped dinner last night?",
+          "onScreenText": "Same street. Same week. One kitchen table has what it needs…",
+          "props": [
+            "kitchen table",
+            "empty cupboard",
+            "school gates"
+          ],
+          "durationSec": 3.6
+        },
+        {
+          "beatName": "problem",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Slow push on a quiet kitchen table, natural light",
+          "dialogue": "My neighbour skipped dinner most nights so her kids could eat, and never told anyone. Kindred Kitchens says that's common.",
+          "onScreenText": "Parents skip meals so their children can eat, and say nothing.",
+          "props": [
+            "breakfast club",
+            "volunteers packing parcels",
+            "community fridge"
+          ],
+          "durationSec": 6
+        },
+        {
+          "beatName": "turn",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Hard cut to warm light; the thing the gift buys enters frame",
+          "dialogue": "Then I found out what £20 actually does.",
+          "onScreenText": "£20 changes that",
+          "props": [
+            "fresh fruit and veg",
+            "delivery van",
+            "family meal"
+          ],
+          "durationSec": 4.5
+        },
+        {
+          "beatName": "proof",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Documentary footage of the Kindred Kitchens team with captions",
+          "dialogue": "Last year Kindred Kitchens provided 310,000 meals across 14 towns.",
+          "onScreenText": "Last year Kindred Kitchens provided 310,000 meals across 14 towns",
+          "props": [
+            "end card",
+            "kitchen table",
+            "empty cupboard"
+          ],
+          "durationSec": 6
+        },
+        {
+          "beatName": "offer",
+          "camera": "Handheld selfie or cutaway to b-roll",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "Tier card animates in over warm footage",
+          "dialogue": "£20 fills a family food parcel for a week. And right now, every gift is doubled.",
+          "onScreenText": "£20 fills a family food parcel for a week · Doubled",
+          "props": [
+            "school gates",
+            "breakfast club",
+            "volunteers packing parcels"
+          ],
+          "durationSec": 5.4
+        },
+        {
+          "beatName": "cta",
+          "camera": "Static, presenter centred, end card overlay",
+          "setting": "Presenter's own kitchen or living room, daylight",
+          "action": "End card: logo, CTA, donation URL",
+          "dialogue": "Tap the link, give £20, and a family gets help this week.",
+          "onScreenText": "Donate £20 today",
+          "props": [
+            "end card"
+          ],
+          "durationSec": 4.5
+        }
+      ],
+      "voice": {
+        "provider": "real-creator",
+        "settings": {
+          "direction": "conversational, regional UK accent, small pauses, no script-reading cadence"
+        }
+      },
+      "avatar": {
+        "provider": "real-creator",
+        "settings": {
+          "briefDeliveryFormat": "PDF shot list + script",
+          "usageRights": "paid social, 12 months, UK"
+        }
+      },
+      "captions": "burned-in-bold",
+      "aspect": "9:16",
+      "deliverables": [
+        {
+          "format": "mp4 1080x1920 h264",
+          "filename": "script-idea-7-contrast-ugc-testimonial-30s-0-9x16.mp4",
+          "placement": "meta_reels, meta_stories"
+        },
+        {
+          "format": "mp4 1080x1080 h264",
+          "filename": "script-idea-7-contrast-ugc-testimonial-30s-0-1x1.mp4",
+          "placement": "meta_feed"
+        },
+        {
+          "format": "srt",
+          "filename": "script-idea-7-contrast-ugc-testimonial-30s-0.srt",
+          "placement": "captions"
+        }
+      ],
+      "disclosure": {
+        "aiGenerated": false,
+        "label": "Real creator. No synthetic media.",
+        "metaAiDisclosureFlag": false
+      },
+      "approvals": [
+        {
+          "gate": "script",
+          "owner": "creative-lead",
+          "status": "approved"
+        },
+        {
+          "gate": "persona",
+          "owner": "client-services",
+          "status": "pending"
+        },
+        {
+          "gate": "rough-cut",
+          "owner": "creative-lead",
+          "status": "pending"
+        },
+        {
+          "gate": "final",
+          "owner": "client",
+          "status": "pending"
+        }
+      ],
+      "estimatedCostGbp": 350,
+      "estimatedTurnaroundHours": 120
+    },
+    "video": {
+      "edl": {
+        "id": "edl-script-idea-7-contrast-ugc-testimonial-30s-0",
+        "scriptId": "script-idea-7-contrast-ugc-testimonial-30s-0",
+        "aspect": "9:16",
+        "fps": 30,
+        "durationSec": 32,
+        "timeline": [
+          {
+            "track": "video",
+            "clipId": "clip-01",
+            "startSec": 0,
+            "endSec": 3.6,
+            "sourceInSec": 0,
+            "sourceOutSec": 3.6,
+            "beatName": "hook"
+          },
+          {
+            "track": "text",
+            "startSec": 0,
+            "endSec": 3.6,
+            "text": "Same street. Same week. One kitchen table has what it needs…",
+            "beatName": "hook"
+          },
+          {
+            "track": "broll",
+            "clipId": "clip-03",
+            "startSec": 3.6,
+            "endSec": 9.6,
+            "sourceInSec": 0,
+            "sourceOutSec": 6,
+            "beatName": "problem"
+          },
+          {
+            "track": "text",
+            "startSec": 3.6,
+            "endSec": 9.6,
+            "text": "Parents skip meals so their children can eat, and say nothing.",
+            "beatName": "problem"
+          },
+          {
+            "track": "video",
+            "clipId": "clip-01",
+            "startSec": 9.6,
+            "endSec": 14.1,
+            "sourceInSec": 12,
+            "sourceOutSec": 16.5,
+            "beatName": "turn"
+          },
+          {
+            "track": "text",
+            "startSec": 9.6,
+            "endSec": 14.1,
+            "text": "£20 changes that",
+            "beatName": "turn"
+          },
+          {
+            "track": "broll",
+            "clipId": "clip-04",
+            "startSec": 14.1,
+            "endSec": 20.1,
+            "sourceInSec": 9,
+            "sourceOutSec": 15,
+            "beatName": "proof"
+          },
+          {
+            "track": "text",
+            "startSec": 14.1,
+            "endSec": 20.1,
+            "text": "Last year Kindred Kitchens provided 310,000 meals across 14 towns",
+            "beatName": "proof"
+          },
+          {
+            "track": "broll",
+            "clipId": "clip-02",
+            "startSec": 20.1,
+            "endSec": 25.5,
+            "sourceInSec": 0,
+            "sourceOutSec": 5.4,
+            "beatName": "offer"
+          },
+          {
+            "track": "text",
+            "startSec": 20.1,
+            "endSec": 25.5,
+            "text": "£20 fills a family food parcel for a week · Doubled",
+            "beatName": "offer"
+          },
+          {
+            "track": "video",
+            "clipId": "clip-01",
+            "startSec": 25.5,
+            "endSec": 30,
+            "sourceInSec": 26,
+            "sourceOutSec": 30.5,
+            "beatName": "cta"
+          },
+          {
+            "track": "text",
+            "startSec": 25.5,
+            "endSec": 30,
+            "text": "Donate £20 today",
+            "beatName": "cta"
+          },
+          {
+            "track": "logo",
+            "startSec": 30,
+            "endSec": 32,
+            "text": "Kindred Kitchens"
+          }
+        ],
+        "captions": [
+          {
+            "index": 1,
+            "startSec": 0,
+            "endSec": 3.6,
+            "lines": [
+              "Honest question. Do you know which family",
+              "on your street skipped dinner last night?"
+            ]
+          },
+          {
+            "index": 2,
+            "startSec": 3.6,
+            "endSec": 7.8,
+            "lines": [
+              "My neighbour skipped dinner most nights so",
+              "her kids could eat, and never told"
+            ]
+          },
+          {
+            "index": 3,
+            "startSec": 7.8,
+            "endSec": 9.6,
+            "lines": [
+              "anyone. Kindred Kitchens says that's",
+              "common."
+            ]
+          },
+          {
+            "index": 4,
+            "startSec": 9.6,
+            "endSec": 14.1,
+            "lines": [
+              "Then I found out what £20 actually does."
+            ]
+          },
+          {
+            "index": 5,
+            "startSec": 14.1,
+            "endSec": 20.1,
+            "lines": [
+              "Last year Kindred Kitchens provided",
+              "310,000 meals across 14 towns."
+            ]
+          },
+          {
+            "index": 6,
+            "startSec": 20.1,
+            "endSec": 25.5,
+            "lines": [
+              "£20 fills a family food parcel for a week.",
+              "And right now, every gift is doubled."
+            ]
+          },
+          {
+            "index": 7,
+            "startSec": 25.5,
+            "endSec": 30,
+            "lines": [
+              "Tap the link, give £20, and a family gets",
+              "help this week."
+            ]
+          }
+        ],
+        "music": {
+          "mood": "none or very low acoustic bed",
+          "duckDb": -12,
+          "fadeOutSec": 1.5
+        },
+        "branding": {
+          "introLogoSec": 0,
+          "endCardSec": 2,
+          "endCardText": "Kindred Kitchens · Donate today"
+        },
+        "exportPresets": [
+          {
+            "name": "reels",
+            "width": 1080,
+            "height": 1920,
+            "bitrateKbps": 8000
+          }
+        ]
+      },
+      "srt": "sha256:485b438210bb20a0488cc0c3c1d4a533466a6d9ec47e77a291f541fb6a6ddad9",
+      "plan": [
+        {
+          "name": "trim hook from clip-01",
+          "args": [
+            "-y",
+            "-ss",
+            "0",
+            "-t",
+            "3.6",
+            "-i",
+            "footage/priya-kitchen-take2.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-00.mp4"
+          ],
+          "command": "ffmpeg -y -ss 0 -t 3.6 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-00.mp4",
+          "outputs": [
+            "render/seg-00.mp4"
+          ]
+        },
+        {
+          "name": "trim problem from clip-03",
+          "args": [
+            "-y",
+            "-ss",
+            "0",
+            "-t",
+            "6",
+            "-i",
+            "footage/broll-mug-hands.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-01.mp4"
+          ],
+          "command": "ffmpeg -y -ss 0 -t 6 -i footage/broll-mug-hands.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-01.mp4",
+          "outputs": [
+            "render/seg-01.mp4"
+          ]
+        },
+        {
+          "name": "trim turn from clip-01",
+          "args": [
+            "-y",
+            "-ss",
+            "12",
+            "-t",
+            "4.5",
+            "-i",
+            "footage/priya-kitchen-take2.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-02.mp4"
+          ],
+          "command": "ffmpeg -y -ss 12 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-02.mp4",
+          "outputs": [
+            "render/seg-02.mp4"
+          ]
+        },
+        {
+          "name": "trim proof from clip-04",
+          "args": [
+            "-y",
+            "-ss",
+            "9",
+            "-t",
+            "6",
+            "-i",
+            "footage/home-visit-team.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-03.mp4"
+          ],
+          "command": "ffmpeg -y -ss 9 -t 6 -i footage/home-visit-team.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-03.mp4",
+          "outputs": [
+            "render/seg-03.mp4"
+          ]
+        },
+        {
+          "name": "trim offer from clip-02",
+          "args": [
+            "-y",
+            "-ss",
+            "0",
+            "-t",
+            "5.4",
+            "-i",
+            "footage/broll-terrace-dusk.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-04.mp4"
+          ],
+          "command": "ffmpeg -y -ss 0 -t 5.4 -i footage/broll-terrace-dusk.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-04.mp4",
+          "outputs": [
+            "render/seg-04.mp4"
+          ]
+        },
+        {
+          "name": "trim cta from clip-01",
+          "args": [
+            "-y",
+            "-ss",
+            "26",
+            "-t",
+            "4.5",
+            "-i",
+            "footage/priya-kitchen-take2.mp4",
+            "-vf",
+            "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/seg-05.mp4"
+          ],
+          "command": "ffmpeg -y -ss 26 -t 4.5 -i footage/priya-kitchen-take2.mp4 -vf scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30 -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/seg-05.mp4",
+          "outputs": [
+            "render/seg-05.mp4"
+          ]
+        },
+        {
+          "name": "end card",
+          "args": [
+            "-y",
+            "-f",
+            "lavfi",
+            "-i",
+            "color=c=0xC8442B:s=1080x1920:d=2:r=30",
+            "-f",
+            "lavfi",
+            "-i",
+            "anullsrc=r=48000:cl=stereo",
+            "-vf",
+            "drawbox=x=0:y=0:w=iw:h=ih:color=0xC8442B:t=fill,drawtext=text='Kindred Kitchens · Donate today':fontcolor=white:fontsize=65:x=(w-text_w)/2:y=(h-text_h)/2",
+            "-t",
+            "2",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "-shortest",
+            "render/end-card.mp4"
+          ],
+          "command": "ffmpeg -y -f lavfi -i color=c=0xC8442B:s=1080x1920:d=2:r=30 -f lavfi -i anullsrc=r=48000:cl=stereo -vf \"drawbox=x=0:y=0:w=iw:h=ih:color=0xC8442B:t=fill,drawtext=text='Kindred Kitchens · Donate today':fontcolor=white:fontsize=65:x=(w-text_w)/2:y=(h-text_h)/2\" -t 2 -c:v libx264 -preset fast -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k -shortest render/end-card.mp4",
+          "outputs": [
+            "render/end-card.mp4"
+          ]
+        },
+        {
+          "name": "concat",
+          "args": [
+            "-y",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            "render/concat.txt",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-assembled.mp4"
+          ],
+          "command": "ffmpeg -y -f concat -safe 0 -i render/concat.txt -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-assembled.mp4",
+          "outputs": [
+            "render/concat.txt",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-assembled.mp4"
+          ],
+          "files": [
+            {
+              "path": "render/concat.txt",
+              "content": "file 'seg-00.mp4'\nfile 'seg-01.mp4'\nfile 'seg-02.mp4'\nfile 'seg-03.mp4'\nfile 'seg-04.mp4'\nfile 'seg-05.mp4'\nfile 'end-card.mp4'\n"
+            }
+          ]
+        },
+        {
+          "name": "burn captions",
+          "args": [
+            "-y",
+            "-i",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-assembled.mp4",
+            "-vf",
+            "subtitles=render/edl-script-idea-7-contrast-ugc-testimonial-30s-0.srt:force_style='FontName=Arial,FontSize=9,Bold=1,Outline=2,Shadow=0,Alignment=2,MarginV=40,MarginL=23,MarginR=23'",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-pix_fmt",
+            "yuv420p",
+            "-c:a",
+            "copy",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-captioned.mp4"
+          ],
+          "command": "ffmpeg -y -i render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-assembled.mp4 -vf \"subtitles=render/edl-script-idea-7-contrast-ugc-testimonial-30s-0.srt:force_style='FontName=Arial,FontSize=9,Bold=1,Outline=2,Shadow=0,Alignment=2,MarginV=40,MarginL=23,MarginR=23'\" -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a copy render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-captioned.mp4",
+          "outputs": [
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-captioned.mp4"
+          ]
+        },
+        {
+          "name": "music bed with ducking",
+          "args": [
+            "-y",
+            "-i",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-captioned.mp4",
+            "-stream_loop",
+            "-1",
+            "-i",
+            "render/music-none-or-very-low-acoustic-bed.m4a",
+            "-filter_complex",
+            "[1:a]volume=-12dB,afade=t=out:st=30.5:d=1.5[m];[m][0:a]sidechaincompress=threshold=0.05:ratio=6:attack=20:release=300[ducked];[0:a][ducked]amix=inputs=2:duration=first:dropout_transition=2[a]",
+            "-map",
+            "0:v",
+            "-map",
+            "[a]",
+            "-c:v",
+            "copy",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "-shortest",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-mixed.mp4"
+          ],
+          "command": "ffmpeg -y -i render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-captioned.mp4 -stream_loop -1 -i render/music-none-or-very-low-acoustic-bed.m4a -filter_complex \"[1:a]volume=-12dB,afade=t=out:st=30.5:d=1.5[m];[m][0:a]sidechaincompress=threshold=0.05:ratio=6:attack=20:release=300[ducked];[0:a][ducked]amix=inputs=2:duration=first:dropout_transition=2[a]\" -map 0:v -map \"[a]\" -c:v copy -c:a aac -ar 48000 -ac 2 -b:a 128k -shortest render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-mixed.mp4",
+          "outputs": [
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-mixed.mp4"
+          ]
+        },
+        {
+          "name": "export reels",
+          "args": [
+            "-y",
+            "-i",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-mixed.mp4",
+            "-vf",
+            "scale=1080:1920",
+            "-c:v",
+            "libx264",
+            "-b:v",
+            "8000k",
+            "-pix_fmt",
+            "yuv420p",
+            "-movflags",
+            "+faststart",
+            "-c:a",
+            "aac",
+            "-ar",
+            "48000",
+            "-ac",
+            "2",
+            "-b:a",
+            "128k",
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-reels.mp4"
+          ],
+          "command": "ffmpeg -y -i render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-mixed.mp4 -vf scale=1080:1920 -c:v libx264 -b:v 8000k -pix_fmt yuv420p -movflags +faststart -c:a aac -ar 48000 -ac 2 -b:a 128k render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-reels.mp4",
+          "outputs": [
+            "render/edl-script-idea-7-contrast-ugc-testimonial-30s-0-reels.mp4"
+          ]
+        }
+      ],
+      "pacing": {
+        "averageShotSec": 5,
+        "firstCutAtSec": 3.6,
+        "shotCount": 6,
+        "issues": []
+      },
+      "unmatchedBeats": []
+    },
+    "landing": [
+      {
+        "spec": {
+          "id": "landing-idea-7-contrast-A",
+          "ideaId": "idea-7-contrast",
+          "variant": "A",
+          "variantHypothesis": "Control: impact-led headline from the approved copy pack.",
+          "slug": "hungry-half-term-2026-a",
+          "title": "Help a family eat well this half term | Kindred Kitchens",
+          "metaDescription": "£20 fills a family food parcel for a week. Every gift matched by Fairfield Foods until 28 February. Donate to Kindred Kitchens today and help a family.",
+          "hero": {
+            "headline": "£20 helps a family today",
+            "subheadline": "£20 fills a family food parcel for a week. Every gift matched by Fairfield Foods until 28 February. Give in two minutes.",
+            "ctaLabel": "Donate £20",
+            "imagePrompt": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right. Warm natural light, documentary feel, no identifiable faces, space on the left for text.",
+            "imageAlt": "Kitchen table scene representing Kindred Kitchens's work"
+          },
+          "problem": {
+            "heading": "The problem, plainly",
+            "body": "When school stops, free school meals stop too. Your gift keeps a family fed through half term, and right now it goes twice as far. Parents skip meals so their children can eat, and say nothing. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry."
+          },
+          "impact": [
+            {
+              "amount": 20,
+              "label": "Fills a family food parcel for a week"
+            },
+            {
+              "amount": 45,
+              "label": "Stocks a school breakfast club for a week"
+            },
+            {
+              "amount": 90,
+              "label": "Funds a week of fresh fruit and veg for a community fridge"
+            }
+          ],
+          "proof": [
+            {
+              "text": "Last year Kindred Kitchens provided 310,000 meals across 14 towns"
+            },
+            {
+              "text": "£20 fills a family food parcel for a week"
+            },
+            {
+              "text": "£45 stocks a school breakfast club for a week"
+            },
+            {
+              "text": "£90 funds a week of fresh fruit and veg for a community fridge"
+            }
+          ],
+          "story": {
+            "heading": "What your gift changes for a family",
+            "body": "Last February a dad of three in Oldham was working nights and still running out of food by Wednesday. Kindred Kitchens' community fridge and a weekly parcel got the family through half term, and the breakfast club meant the kids ate before school every day. Names and details changed to protect privacy; the case is real.",
+            "attribution": "Kindred Kitchens team"
+          },
+          "faq": [
+            {
+              "question": "Isn't this only for people out of work?",
+              "answer": "9 in 10 families we support have at least one adult in work A tight week can become an empty cupboard for any family; Kindred Kitchens is there when it does."
+            },
+            {
+              "question": "How much of my donation goes on admin?",
+              "answer": "Most of what you give funds direct help: fills a family food parcel for a week, stocks a school breakfast club for a week, funds a week of fresh fruit and veg for a community fridge. Kindred Kitchens publishes its accounts every year and we are happy to show you exactly how the appeal money was spent."
+            },
+            {
+              "question": "Don't supermarkets already donate enough?",
+              "answer": "Surplus food helps, but it is unpredictable and rarely includes fresh produce. Your gift buys what is actually needed, when it is needed. Last year Kindred Kitchens provided 310,000 meals across 14 towns"
+            }
+          ],
+          "trust": [
+            "Registered charity no. 1188888",
+            "Registered with the Fundraising Regulator",
+            "Secure payments",
+            "Gift Aid adds 25% at no cost to you"
+          ],
+          "form": {
+            "amounts": [
+              20,
+              45,
+              90
+            ],
+            "defaultAmount": 45,
+            "frequencies": [
+              "one-off",
+              "monthly"
+            ],
+            "giftAid": true,
+            "currency": "GBP",
+            "buttonLabel": "Donate now"
+          },
+          "closingCta": {
+            "headline": "Give before 28 February 2027 and your gift is doubled",
+            "ctaLabel": "Donate £20"
+          }
+        },
+        "html": "sha256:8d42bd6a7887c64d35e5d9c1108920a49a449b7e2fdc608877ec235ac0dd109b",
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      },
+      {
+        "spec": {
+          "id": "landing-idea-7-contrast-B",
+          "ideaId": "idea-7-contrast",
+          "variant": "B",
+          "variantHypothesis": "Test: urgency/match-led headline lifts conversion rate without lowering average gift.",
+          "slug": "hungry-half-term-2026-b",
+          "title": "Help a family eat well this half term | Kindred Kitchens",
+          "metaDescription": "£20 fills a family food parcel for a week. Every gift matched by Fairfield Foods until 28 February. Donate to Kindred Kitchens today and help a family.",
+          "hero": {
+            "headline": "Your gift goes twice as far right now",
+            "subheadline": "£20 fills a family food parcel for a week. Every gift matched by Fairfield Foods until 28 February. Give in two minutes.",
+            "ctaLabel": "Donate £20",
+            "imagePrompt": "Split screen of two kitchen tables, warm vs cold colour grade, one line of copy across the seam, logo bottom right. Warm natural light, documentary feel, no identifiable faces, space on the left for text.",
+            "imageAlt": "Kitchen table scene representing Kindred Kitchens's work"
+          },
+          "problem": {
+            "heading": "The problem, plainly",
+            "body": "When school stops, free school meals stop too. Your gift keeps a family fed through half term, and right now it goes twice as far. Parents skip meals so their children can eat, and say nothing. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry."
+          },
+          "impact": [
+            {
+              "amount": 20,
+              "label": "Fills a family food parcel for a week"
+            },
+            {
+              "amount": 45,
+              "label": "Stocks a school breakfast club for a week"
+            },
+            {
+              "amount": 90,
+              "label": "Funds a week of fresh fruit and veg for a community fridge"
+            }
+          ],
+          "proof": [
+            {
+              "text": "Last year Kindred Kitchens provided 310,000 meals across 14 towns"
+            },
+            {
+              "text": "£20 fills a family food parcel for a week"
+            },
+            {
+              "text": "£45 stocks a school breakfast club for a week"
+            },
+            {
+              "text": "£90 funds a week of fresh fruit and veg for a community fridge"
+            }
+          ],
+          "story": {
+            "heading": "What your gift changes for a family",
+            "body": "Last February a dad of three in Oldham was working nights and still running out of food by Wednesday. Kindred Kitchens' community fridge and a weekly parcel got the family through half term, and the breakfast club meant the kids ate before school every day. Names and details changed to protect privacy; the case is real.",
+            "attribution": "Kindred Kitchens team"
+          },
+          "faq": [
+            {
+              "question": "Isn't this only for people out of work?",
+              "answer": "9 in 10 families we support have at least one adult in work A tight week can become an empty cupboard for any family; Kindred Kitchens is there when it does."
+            },
+            {
+              "question": "How much of my donation goes on admin?",
+              "answer": "Most of what you give funds direct help: fills a family food parcel for a week, stocks a school breakfast club for a week, funds a week of fresh fruit and veg for a community fridge. Kindred Kitchens publishes its accounts every year and we are happy to show you exactly how the appeal money was spent."
+            },
+            {
+              "question": "Don't supermarkets already donate enough?",
+              "answer": "Surplus food helps, but it is unpredictable and rarely includes fresh produce. Your gift buys what is actually needed, when it is needed. Last year Kindred Kitchens provided 310,000 meals across 14 towns"
+            }
+          ],
+          "trust": [
+            "Registered charity no. 1188888",
+            "Registered with the Fundraising Regulator",
+            "Secure payments",
+            "Gift Aid adds 25% at no cost to you"
+          ],
+          "form": {
+            "amounts": [
+              20,
+              45,
+              90
+            ],
+            "defaultAmount": 45,
+            "frequencies": [
+              "one-off",
+              "monthly"
+            ],
+            "giftAid": true,
+            "currency": "GBP",
+            "buttonLabel": "Donate now"
+          },
+          "closingCta": {
+            "headline": "Give before 28 February 2027 and your gift is doubled",
+            "ctaLabel": "Donate £20"
+          }
+        },
+        "html": "sha256:87ed754cf37b5f8c8cb581f9b43b6af59a49001c4fe59ddee9ac7bc8bef5bb36",
+        "report": {
+          "ok": true,
+          "issues": [],
+          "score": 100
+        }
+      }
+    ],
+    "landingDiff": [
+      "hero.headline: \"£20 helps a family today\" -> \"Your gift goes twice as far right now\""
+    ],
+    "launchPlan": {
+      "campaign": {
+        "name": "Hungry Half Term 2026",
+        "objective": "donations",
+        "dailyBudgetGbp": 180,
+        "startDate": "2027-02-08",
+        "endDate": "2027-02-28"
+      },
+      "adsets": [
+        {
+          "name": "Hungry Half Term 2026 · Feed · Lookalike 1% previous donors",
+          "placement": "Feed",
+          "audience": "Lookalike 1% previous donors",
+          "dailyBudgetGbp": 30,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-7-contrast · short · Feed",
+              "creativeId": "creative-idea-7-contrast-square",
+              "primaryTextVariant": "short",
+              "headline": "£20 helps a family today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-7-contrast · medium · Feed",
+              "creativeId": "creative-idea-7-contrast-square",
+              "primaryTextVariant": "medium",
+              "headline": "£20 helps a family today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Hungry Half Term 2026 · Stories · Lookalike 1% previous donors",
+          "placement": "Stories",
+          "audience": "Lookalike 1% previous donors",
+          "dailyBudgetGbp": 30,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-7-contrast · short · Stories",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "short",
+              "headline": "£20 helps a family today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-7-contrast · medium · Stories",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "medium",
+              "headline": "£20 helps a family today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Hungry Half Term 2026 · Reels · Lookalike 1% previous donors",
+          "placement": "Reels",
+          "audience": "Lookalike 1% previous donors",
+          "dailyBudgetGbp": 30,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-7-contrast · short · Reels",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "short",
+              "headline": "£20 helps a family today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-7-contrast · medium · Reels",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "medium",
+              "headline": "£20 helps a family today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Hungry Half Term 2026 · Feed · Interests: Parents who give",
+          "placement": "Feed",
+          "audience": "Interests: Parents who give",
+          "dailyBudgetGbp": 30,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-7-contrast · short · Feed",
+              "creativeId": "creative-idea-7-contrast-square",
+              "primaryTextVariant": "short",
+              "headline": "£20 helps a family today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-7-contrast · medium · Feed",
+              "creativeId": "creative-idea-7-contrast-square",
+              "primaryTextVariant": "medium",
+              "headline": "£20 helps a family today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Hungry Half Term 2026 · Stories · Interests: Parents who give",
+          "placement": "Stories",
+          "audience": "Interests: Parents who give",
+          "dailyBudgetGbp": 30,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-7-contrast · short · Stories",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "short",
+              "headline": "£20 helps a family today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-7-contrast · medium · Stories",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "medium",
+              "headline": "£20 helps a family today",
+              "landingVariant": "B"
+            }
+          ]
+        },
+        {
+          "name": "Hungry Half Term 2026 · Reels · Interests: Parents who give",
+          "placement": "Reels",
+          "audience": "Interests: Parents who give",
+          "dailyBudgetGbp": 30,
+          "optimisation": "OFFSITE_CONVERSIONS (Donate)",
+          "ads": [
+            {
+              "name": "idea-7-contrast · short · Reels",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "short",
+              "headline": "£20 helps a family today",
+              "landingVariant": "A"
+            },
+            {
+              "name": "idea-7-contrast · medium · Reels",
+              "creativeId": "creative-idea-7-contrast-story",
+              "primaryTextVariant": "medium",
+              "headline": "£20 helps a family today",
+              "landingVariant": "B"
+            }
+          ]
+        }
+      ],
+      "tracking": {
+        "utmTemplate": "utm_source=meta&utm_medium=paid_social&utm_campaign=Hungry%20Half%20Term%202026&utm_content={{ad.name}}",
+        "conversionEvent": "Donate (Purchase) via Conversions API + pixel",
+        "attributionWindow": "7-day click, 1-day view"
+      },
+      "guardrailsForAgent": {
+        "targetRoas": 3.5,
+        "targetCpaGbp": 12,
+        "autonomy": "assist"
+      }
+    },
+    "gates": [
+      {
+        "gate": "ideas.select",
+        "area": "ideas",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "copy.approve",
+        "area": "copy",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "static.approve",
+        "area": "static",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "scripts.approve",
+        "area": "scripts",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "ugc.persona",
+        "area": "ugc",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "landing.approve",
+        "area": "landing",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      },
+      {
+        "gate": "launch.approve",
+        "area": "media-buyer",
+        "risk": "human",
+        "guardrailScore": 100,
+        "decision": "approved",
+        "reviewer": "policy-reviewer"
+      }
+    ],
+    "audit": {
+      "events": [
+        {
+          "seq": 1,
+          "type": "llm_call",
+          "area": "ideas",
+          "step": "generate",
+          "detail": {
+            "count": 10
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 770,
+            "outputTokens": 1974,
+            "costUsd": 0.04256
+          }
+        },
+        {
+          "seq": 2,
+          "type": "review",
+          "area": "ideas",
+          "step": "ideas.select",
+          "detail": {
+            "decision": "approved",
+            "score": null
+          }
+        },
+        {
+          "seq": 3,
+          "type": "llm_call",
+          "area": "copy",
+          "step": "generate",
+          "detail": {
+            "idea": "idea-7-contrast"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 665,
+            "outputTokens": 534,
+            "costUsd": 0.01334
+          }
+        },
+        {
+          "seq": 4,
+          "type": "guardrail",
+          "area": "copy",
+          "step": "validate",
+          "detail": {
+            "score": 100,
+            "removed": 0
+          }
+        },
+        {
+          "seq": 5,
+          "type": "review",
+          "area": "copy",
+          "step": "copy.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 6,
+          "type": "llm_call",
+          "area": "static",
+          "step": "concept",
+          "detail": {
+            "formats": [
+              "square",
+              "story",
+              "landscape"
+            ]
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 574,
+            "outputTokens": 531,
+            "costUsd": 0.012916
+          }
+        },
+        {
+          "seq": 7,
+          "type": "render",
+          "area": "static",
+          "step": "creative-idea-7-contrast-square",
+          "detail": {
+            "format": "square",
+            "layout": "split-contrast",
+            "score": 100,
+            "ok": true,
+            "background": false
+          }
+        },
+        {
+          "seq": 8,
+          "type": "render",
+          "area": "static",
+          "step": "creative-idea-7-contrast-story",
+          "detail": {
+            "format": "story",
+            "layout": "split-contrast",
+            "score": 100,
+            "ok": true,
+            "background": false
+          }
+        },
+        {
+          "seq": 9,
+          "type": "render",
+          "area": "static",
+          "step": "creative-idea-7-contrast-landscape",
+          "detail": {
+            "format": "landscape",
+            "layout": "split-contrast",
+            "score": 100,
+            "ok": true,
+            "background": false
+          }
+        },
+        {
+          "seq": 10,
+          "type": "review",
+          "area": "static",
+          "step": "static.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 11,
+          "type": "llm_call",
+          "area": "scripts",
+          "step": "generate",
+          "detail": {
+            "requests": 3
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 713,
+            "outputTokens": 1571,
+            "costUsd": 0.034272
+          }
+        },
+        {
+          "seq": 12,
+          "type": "guardrail",
+          "area": "scripts",
+          "step": "script-idea-7-contrast-ugc-testimonial-30s-0",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 13,
+          "type": "guardrail",
+          "area": "scripts",
+          "step": "script-idea-7-contrast-founder-direct-15s-1",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 14,
+          "type": "guardrail",
+          "area": "scripts",
+          "step": "script-idea-7-contrast-problem-solution-30s-2",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 15,
+          "type": "review",
+          "area": "scripts",
+          "step": "scripts.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 16,
+          "type": "llm_call",
+          "area": "ugc",
+          "step": "persona",
+          "detail": {
+            "script": "script-idea-7-contrast-ugc-testimonial-30s-0"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 214,
+            "outputTokens": 143,
+            "costUsd": 0.003716
+          }
+        },
+        {
+          "seq": 17,
+          "type": "note",
+          "area": "ugc",
+          "step": "manifest",
+          "detail": {
+            "id": "ugc-script-idea-7-contrast-ugc-testimonial-30s-0",
+            "synthetic": false,
+            "costGbp": 350
+          }
+        },
+        {
+          "seq": 18,
+          "type": "review",
+          "area": "ugc",
+          "step": "ugc.persona",
+          "detail": {
+            "decision": "approved",
+            "score": null
+          }
+        },
+        {
+          "seq": 19,
+          "type": "llm_call",
+          "area": "video",
+          "step": "selectClips",
+          "detail": {
+            "selections": 6,
+            "unmatched": []
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 721,
+            "outputTokens": 215,
+            "costUsd": 0.007184
+          }
+        },
+        {
+          "seq": 20,
+          "type": "note",
+          "area": "video",
+          "step": "edl",
+          "detail": {
+            "durationSec": 32,
+            "cues": 7,
+            "pacingIssues": []
+          }
+        },
+        {
+          "seq": 21,
+          "type": "llm_call",
+          "area": "landing",
+          "step": "spec-A",
+          "detail": {},
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 763,
+            "outputTokens": 866,
+            "costUsd": 0.020372
+          }
+        },
+        {
+          "seq": 22,
+          "type": "guardrail",
+          "area": "landing",
+          "step": "check-A",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 23,
+          "type": "llm_call",
+          "area": "landing",
+          "step": "spec-B",
+          "detail": {},
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 763,
+            "outputTokens": 876,
+            "costUsd": 0.020572
+          }
+        },
+        {
+          "seq": 24,
+          "type": "guardrail",
+          "area": "landing",
+          "step": "check-B",
+          "detail": {
+            "score": 100,
+            "ok": true
+          }
+        },
+        {
+          "seq": 25,
+          "type": "review",
+          "area": "landing",
+          "step": "landing.approve",
+          "detail": {
+            "decision": "approved",
+            "score": 100
+          }
+        },
+        {
+          "seq": 26,
+          "type": "note",
+          "area": "media-buyer",
+          "step": "launchPlan",
+          "detail": {
+            "adsets": 6
+          }
+        },
+        {
+          "seq": 27,
+          "type": "review",
+          "area": "media-buyer",
+          "step": "launch.approve",
+          "detail": {
+            "decision": "approved",
+            "score": null
+          }
+        },
+        {
+          "seq": 28,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:idea",
+          "detail": {
+            "label": "Two kitchen tables, one difference"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 376,
+            "outputTokens": 63,
+            "costUsd": 0.002764
+          }
+        },
+        {
+          "seq": 29,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:copy",
+          "detail": {
+            "label": "primary text (short)"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 331,
+            "outputTokens": 63,
+            "costUsd": 0.002584
+          }
+        },
+        {
+          "seq": 30,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:script",
+          "detail": {
+            "label": "Two kitchen tables, one difference (ugc-testimonial, 30s)"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 422,
+            "outputTokens": 81,
+            "costUsd": 0.003308
+          }
+        },
+        {
+          "seq": 31,
+          "type": "llm_call",
+          "area": "evals",
+          "step": "judge:landing",
+          "detail": {
+            "label": "landing A hero"
+          },
+          "usage": {
+            "provider": "mock",
+            "model": "claude-opus-5-5",
+            "inputTokens": 420,
+            "outputTokens": 80,
+            "costUsd": 0.00328
+          }
+        }
+      ]
+    }
+  },
+  "judgement": {
+    "items": [
+      {
+        "artefactType": "idea",
+        "label": "Two kitchen tables, one difference",
+        "judgement": {
+          "clarity": 9,
+          "specificity": 9,
+          "emotionalPull": 7,
+          "brandFit": 10,
+          "overall": 8.7,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      },
+      {
+        "artefactType": "copy",
+        "label": "primary text (short)",
+        "judgement": {
+          "clarity": 9,
+          "specificity": 8,
+          "emotionalPull": 7,
+          "brandFit": 10,
+          "overall": 8.4,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      },
+      {
+        "artefactType": "script",
+        "label": "Two kitchen tables, one difference (ugc-testimonial, 30s)",
+        "judgement": {
+          "clarity": 9,
+          "specificity": 10,
+          "emotionalPull": 10,
+          "brandFit": 10,
+          "overall": 9.8,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Grounded in a real-feeling moment rather than a mission statement.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      },
+      {
+        "artefactType": "landing",
+        "label": "landing A hero",
+        "judgement": {
+          "clarity": 9,
+          "specificity": 10,
+          "emotionalPull": 9,
+          "brandFit": 10,
+          "overall": 9.5,
+          "strengths": [
+            "Cites concrete facts from the brief.",
+            "Short sentences that read at a glance.",
+            "Grounded in a real-feeling moment rather than a mission statement.",
+            "Clean against brand and regulator guardrails."
+          ],
+          "weaknesses": [],
+          "verdict": "ship"
+        }
+      }
+    ],
+    "meanOverall": 9.1,
+    "verdictCounts": {
+      "ship": 4,
+      "revise": 0,
+      "reject": 0
+    }
+  },
+  "launch": {
+    "adAccountId": "act_<client>",
+    "campaign": {
+      "name": "Hungry Half Term 2026",
+      "objective": "OUTCOME_SALES",
+      "status": "PAUSED",
+      "special_ad_categories": [],
+      "buying_type": "AUCTION"
+    },
+    "adsets": [
+      {
+        "name": "Hungry Half Term 2026 · Feed · Lookalike 1% previous donors",
+        "campaign_ref": "campaign:hungry-half-term-2026",
+        "daily_budget": 3000,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 30,
+          "age_max": 50,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "feed"
+          ],
+          "instagram_positions": [
+            "stream"
+          ],
+          "custom_audiences": [
+            {
+              "name": "Lookalike 1% previous donors"
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2027-02-08T00:00:00+00:00",
+        "end_time": "2027-02-28T23:59:59+00:00"
+      },
+      {
+        "name": "Hungry Half Term 2026 · Stories · Lookalike 1% previous donors",
+        "campaign_ref": "campaign:hungry-half-term-2026",
+        "daily_budget": 3000,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 30,
+          "age_max": 50,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "story"
+          ],
+          "instagram_positions": [
+            "story"
+          ],
+          "custom_audiences": [
+            {
+              "name": "Lookalike 1% previous donors"
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2027-02-08T00:00:00+00:00",
+        "end_time": "2027-02-28T23:59:59+00:00"
+      },
+      {
+        "name": "Hungry Half Term 2026 · Reels · Lookalike 1% previous donors",
+        "campaign_ref": "campaign:hungry-half-term-2026",
+        "daily_budget": 3000,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 30,
+          "age_max": 50,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "facebook_reels"
+          ],
+          "instagram_positions": [
+            "reels"
+          ],
+          "custom_audiences": [
+            {
+              "name": "Lookalike 1% previous donors"
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2027-02-08T00:00:00+00:00",
+        "end_time": "2027-02-28T23:59:59+00:00"
+      },
+      {
+        "name": "Hungry Half Term 2026 · Feed · Interests: Parents who give",
+        "campaign_ref": "campaign:hungry-half-term-2026",
+        "daily_budget": 3000,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 30,
+          "age_max": 50,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "feed"
+          ],
+          "instagram_positions": [
+            "stream"
+          ],
+          "flexible_spec": [
+            {
+              "interests": [
+                {
+                  "name": "Parents who give"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2027-02-08T00:00:00+00:00",
+        "end_time": "2027-02-28T23:59:59+00:00"
+      },
+      {
+        "name": "Hungry Half Term 2026 · Stories · Interests: Parents who give",
+        "campaign_ref": "campaign:hungry-half-term-2026",
+        "daily_budget": 3000,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 30,
+          "age_max": 50,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "story"
+          ],
+          "instagram_positions": [
+            "story"
+          ],
+          "flexible_spec": [
+            {
+              "interests": [
+                {
+                  "name": "Parents who give"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2027-02-08T00:00:00+00:00",
+        "end_time": "2027-02-28T23:59:59+00:00"
+      },
+      {
+        "name": "Hungry Half Term 2026 · Reels · Interests: Parents who give",
+        "campaign_ref": "campaign:hungry-half-term-2026",
+        "daily_budget": 3000,
+        "billing_event": "IMPRESSIONS",
+        "optimization_goal": "OFFSITE_CONVERSIONS",
+        "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+        "promoted_object": {
+          "pixel_id": "<pixel_id>",
+          "custom_event_type": "PURCHASE"
+        },
+        "targeting": {
+          "geo_locations": {
+            "countries": [
+              "GB"
+            ]
+          },
+          "age_min": 30,
+          "age_max": 50,
+          "publisher_platforms": [
+            "facebook",
+            "instagram"
+          ],
+          "facebook_positions": [
+            "facebook_reels"
+          ],
+          "instagram_positions": [
+            "reels"
+          ],
+          "flexible_spec": [
+            {
+              "interests": [
+                {
+                  "name": "Parents who give"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "PAUSED",
+        "start_time": "2027-02-08T00:00:00+00:00",
+        "end_time": "2027-02-28T23:59:59+00:00"
+      }
+    ],
+    "creatives": [
+      {
+        "name": "creative-idea-7-contrast-square · short · LP A",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "£20 fills a family food parcel for a week. Doubled right now. Donate today and help a family.",
+            "name": "£20 helps a family today",
+            "description": "£20 = fills a family food",
+            "link": "https://give.kindred.example/hungry-half-term-2026-a",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.kindred.example/hungry-half-term-2026-a"
+              }
+            },
+            "image_hash": "<upload:creative-idea-7-contrast-square.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Hungry%20Half%20Term%202026&utm_content={{ad.name}}&utm_term=lp-A",
+        "creative_ref": "creative:creative-idea-7-contrast-square-short-a"
+      },
+      {
+        "name": "creative-idea-7-contrast-square · medium · LP B",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "Same street. Same week. One kitchen table has what it needs. One doesn't. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. £20 fills a family food parcel for a week; £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February. Donate now.",
+            "name": "£20 helps a family today",
+            "description": "£20 = fills a family food",
+            "link": "https://give.kindred.example/hungry-half-term-2026-b",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.kindred.example/hungry-half-term-2026-b"
+              }
+            },
+            "image_hash": "<upload:creative-idea-7-contrast-square.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Hungry%20Half%20Term%202026&utm_content={{ad.name}}&utm_term=lp-B",
+        "creative_ref": "creative:creative-idea-7-contrast-square-medium-b"
+      },
+      {
+        "name": "creative-idea-7-contrast-story · short · LP A",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "£20 fills a family food parcel for a week. Doubled right now. Donate today and help a family.",
+            "name": "£20 helps a family today",
+            "description": "£20 = fills a family food",
+            "link": "https://give.kindred.example/hungry-half-term-2026-a",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.kindred.example/hungry-half-term-2026-a"
+              }
+            },
+            "image_hash": "<upload:creative-idea-7-contrast-story.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Hungry%20Half%20Term%202026&utm_content={{ad.name}}&utm_term=lp-A",
+        "creative_ref": "creative:creative-idea-7-contrast-story-short-a"
+      },
+      {
+        "name": "creative-idea-7-contrast-story · medium · LP B",
+        "object_story_spec": {
+          "page_id": "<page_id>",
+          "link_data": {
+            "message": "Same street. Same week. One kitchen table has what it needs. One doesn't. Kindred Kitchens runs community kitchens and school breakfast clubs so no child starts the day hungry. £20 fills a family food parcel for a week; £45 stocks a school breakfast club for a week. Every gift matched by Fairfield Foods until 28 February. Donate now.",
+            "name": "£20 helps a family today",
+            "description": "£20 = fills a family food",
+            "link": "https://give.kindred.example/hungry-half-term-2026-b",
+            "call_to_action": {
+              "type": "DONATE_NOW",
+              "value": {
+                "link": "https://give.kindred.example/hungry-half-term-2026-b"
+              }
+            },
+            "image_hash": "<upload:creative-idea-7-contrast-story.png>"
+          }
+        },
+        "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign=Hungry%20Half%20Term%202026&utm_content={{ad.name}}&utm_term=lp-B",
+        "creative_ref": "creative:creative-idea-7-contrast-story-medium-b"
+      }
+    ],
+    "ads": [
+      {
+        "name": "idea-7-contrast · short · Feed",
+        "adset_ref": "adset:hungry-half-term-2026-feed-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-7-contrast-square-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · medium · Feed",
+        "adset_ref": "adset:hungry-half-term-2026-feed-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-7-contrast-square-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · short · Stories",
+        "adset_ref": "adset:hungry-half-term-2026-stories-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-7-contrast-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · medium · Stories",
+        "adset_ref": "adset:hungry-half-term-2026-stories-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-7-contrast-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · short · Reels",
+        "adset_ref": "adset:hungry-half-term-2026-reels-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-7-contrast-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · medium · Reels",
+        "adset_ref": "adset:hungry-half-term-2026-reels-lookalike-1-previous-donors",
+        "creative_ref": "creative:creative-idea-7-contrast-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · short · Feed",
+        "adset_ref": "adset:hungry-half-term-2026-feed-interests-parents-who-give",
+        "creative_ref": "creative:creative-idea-7-contrast-square-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · medium · Feed",
+        "adset_ref": "adset:hungry-half-term-2026-feed-interests-parents-who-give",
+        "creative_ref": "creative:creative-idea-7-contrast-square-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · short · Stories",
+        "adset_ref": "adset:hungry-half-term-2026-stories-interests-parents-who-give",
+        "creative_ref": "creative:creative-idea-7-contrast-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · medium · Stories",
+        "adset_ref": "adset:hungry-half-term-2026-stories-interests-parents-who-give",
+        "creative_ref": "creative:creative-idea-7-contrast-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · short · Reels",
+        "adset_ref": "adset:hungry-half-term-2026-reels-interests-parents-who-give",
+        "creative_ref": "creative:creative-idea-7-contrast-story-short-a",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "idea-7-contrast · medium · Reels",
+        "adset_ref": "adset:hungry-half-term-2026-reels-interests-parents-who-give",
+        "creative_ref": "creative:creative-idea-7-contrast-story-medium-b",
+        "status": "PAUSED",
+        "tracking_specs": [
+          {
+            "action.type": [
+              "offsite_conversion"
+            ],
+            "fb_pixel": [
+              "<pixel_id>"
+            ]
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "adsets": 6,
+      "ads": 12,
+      "dailyBudgetPence": 18000,
+      "allPaused": true
+    }
+  },
+  "audit": {
+    "events": [
+      {
+        "seq": 1,
+        "type": "llm_call",
+        "area": "ideas",
+        "step": "generate",
+        "detail": {
+          "count": 10
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 770,
+          "outputTokens": 1974,
+          "costUsd": 0.04256
+        }
+      },
+      {
+        "seq": 2,
+        "type": "review",
+        "area": "ideas",
+        "step": "ideas.select",
+        "detail": {
+          "decision": "approved",
+          "score": null
+        }
+      },
+      {
+        "seq": 3,
+        "type": "llm_call",
+        "area": "copy",
+        "step": "generate",
+        "detail": {
+          "idea": "idea-7-contrast"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 665,
+          "outputTokens": 534,
+          "costUsd": 0.01334
+        }
+      },
+      {
+        "seq": 4,
+        "type": "guardrail",
+        "area": "copy",
+        "step": "validate",
+        "detail": {
+          "score": 100,
+          "removed": 0
+        }
+      },
+      {
+        "seq": 5,
+        "type": "review",
+        "area": "copy",
+        "step": "copy.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 6,
+        "type": "llm_call",
+        "area": "static",
+        "step": "concept",
+        "detail": {
+          "formats": [
+            "square",
+            "story",
+            "landscape"
+          ]
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 574,
+          "outputTokens": 531,
+          "costUsd": 0.012916
+        }
+      },
+      {
+        "seq": 7,
+        "type": "render",
+        "area": "static",
+        "step": "creative-idea-7-contrast-square",
+        "detail": {
+          "format": "square",
+          "layout": "split-contrast",
+          "score": 100,
+          "ok": true,
+          "background": false
+        }
+      },
+      {
+        "seq": 8,
+        "type": "render",
+        "area": "static",
+        "step": "creative-idea-7-contrast-story",
+        "detail": {
+          "format": "story",
+          "layout": "split-contrast",
+          "score": 100,
+          "ok": true,
+          "background": false
+        }
+      },
+      {
+        "seq": 9,
+        "type": "render",
+        "area": "static",
+        "step": "creative-idea-7-contrast-landscape",
+        "detail": {
+          "format": "landscape",
+          "layout": "split-contrast",
+          "score": 100,
+          "ok": true,
+          "background": false
+        }
+      },
+      {
+        "seq": 10,
+        "type": "review",
+        "area": "static",
+        "step": "static.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 11,
+        "type": "llm_call",
+        "area": "scripts",
+        "step": "generate",
+        "detail": {
+          "requests": 3
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 713,
+          "outputTokens": 1571,
+          "costUsd": 0.034272
+        }
+      },
+      {
+        "seq": 12,
+        "type": "guardrail",
+        "area": "scripts",
+        "step": "script-idea-7-contrast-ugc-testimonial-30s-0",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 13,
+        "type": "guardrail",
+        "area": "scripts",
+        "step": "script-idea-7-contrast-founder-direct-15s-1",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 14,
+        "type": "guardrail",
+        "area": "scripts",
+        "step": "script-idea-7-contrast-problem-solution-30s-2",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 15,
+        "type": "review",
+        "area": "scripts",
+        "step": "scripts.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 16,
+        "type": "llm_call",
+        "area": "ugc",
+        "step": "persona",
+        "detail": {
+          "script": "script-idea-7-contrast-ugc-testimonial-30s-0"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 214,
+          "outputTokens": 143,
+          "costUsd": 0.003716
+        }
+      },
+      {
+        "seq": 17,
+        "type": "note",
+        "area": "ugc",
+        "step": "manifest",
+        "detail": {
+          "id": "ugc-script-idea-7-contrast-ugc-testimonial-30s-0",
+          "synthetic": false,
+          "costGbp": 350
+        }
+      },
+      {
+        "seq": 18,
+        "type": "review",
+        "area": "ugc",
+        "step": "ugc.persona",
+        "detail": {
+          "decision": "approved",
+          "score": null
+        }
+      },
+      {
+        "seq": 19,
+        "type": "llm_call",
+        "area": "video",
+        "step": "selectClips",
+        "detail": {
+          "selections": 6,
+          "unmatched": []
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 721,
+          "outputTokens": 215,
+          "costUsd": 0.007184
+        }
+      },
+      {
+        "seq": 20,
+        "type": "note",
+        "area": "video",
+        "step": "edl",
+        "detail": {
+          "durationSec": 32,
+          "cues": 7,
+          "pacingIssues": []
+        }
+      },
+      {
+        "seq": 21,
+        "type": "llm_call",
+        "area": "landing",
+        "step": "spec-A",
+        "detail": {},
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 763,
+          "outputTokens": 866,
+          "costUsd": 0.020372
+        }
+      },
+      {
+        "seq": 22,
+        "type": "guardrail",
+        "area": "landing",
+        "step": "check-A",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 23,
+        "type": "llm_call",
+        "area": "landing",
+        "step": "spec-B",
+        "detail": {},
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 763,
+          "outputTokens": 876,
+          "costUsd": 0.020572
+        }
+      },
+      {
+        "seq": 24,
+        "type": "guardrail",
+        "area": "landing",
+        "step": "check-B",
+        "detail": {
+          "score": 100,
+          "ok": true
+        }
+      },
+      {
+        "seq": 25,
+        "type": "review",
+        "area": "landing",
+        "step": "landing.approve",
+        "detail": {
+          "decision": "approved",
+          "score": 100
+        }
+      },
+      {
+        "seq": 26,
+        "type": "note",
+        "area": "media-buyer",
+        "step": "launchPlan",
+        "detail": {
+          "adsets": 6
+        }
+      },
+      {
+        "seq": 27,
+        "type": "review",
+        "area": "media-buyer",
+        "step": "launch.approve",
+        "detail": {
+          "decision": "approved",
+          "score": null
+        }
+      },
+      {
+        "seq": 28,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:idea",
+        "detail": {
+          "label": "Two kitchen tables, one difference"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 376,
+          "outputTokens": 63,
+          "costUsd": 0.002764
+        }
+      },
+      {
+        "seq": 29,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:copy",
+        "detail": {
+          "label": "primary text (short)"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 331,
+          "outputTokens": 63,
+          "costUsd": 0.002584
+        }
+      },
+      {
+        "seq": 30,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:script",
+        "detail": {
+          "label": "Two kitchen tables, one difference (ugc-testimonial, 30s)"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 422,
+          "outputTokens": 81,
+          "costUsd": 0.003308
+        }
+      },
+      {
+        "seq": 31,
+        "type": "llm_call",
+        "area": "evals",
+        "step": "judge:landing",
+        "detail": {
+          "label": "landing A hero"
+        },
+        "usage": {
+          "provider": "mock",
+          "model": "claude-opus-5-5",
+          "inputTokens": 420,
+          "outputTokens": 80,
+          "costUsd": 0.00328
+        }
+      }
+    ],
+    "totals": {
+      "llmCalls": 12,
+      "inputTokens": 6732,
+      "outputTokens": 6997,
+      "costUsd": 0.166868,
+      "byArea": {
+        "ideas": 0.04256,
+        "copy": 0.01334,
+        "static": 0.012916,
+        "scripts": 0.034272,
+        "ugc": 0.003716,
+        "video": 0.007184,
+        "landing": 0.040944,
+        "evals": 0.011936
+      }
+    }
+  },
+  "reviews": [
+    {
+      "gate": "ideas.select",
+      "area": "ideas",
+      "risk": "human"
+    },
+    {
+      "gate": "copy.approve",
+      "area": "copy",
+      "risk": "human"
+    },
+    {
+      "gate": "static.approve",
+      "area": "static",
+      "risk": "human"
+    },
+    {
+      "gate": "scripts.approve",
+      "area": "scripts",
+      "risk": "human"
+    },
+    {
+      "gate": "ugc.persona",
+      "area": "ugc",
+      "risk": "human"
+    },
+    {
+      "gate": "landing.approve",
+      "area": "landing",
+      "risk": "human"
+    },
+    {
+      "gate": "launch.approve",
+      "area": "media-buyer",
+      "risk": "human"
+    }
+  ]
+}

@@ -1,0 +1,717 @@
+{
+  "reports": [
+    {
+      "client": "hearthline",
+      "input": {
+        "clientId": "hearthline",
+        "clientName": "Hearthline",
+        "asOf": "2026-11-08",
+        "days": 7,
+        "targetRoas": 3,
+        "current": {
+          "spend": 1383.17,
+          "revenue": 5853.23,
+          "roas": 4.23,
+          "conversions": 147,
+          "cpa": 9.41,
+          "avgGift": 39.82
+        },
+        "previous": {
+          "spend": 1339.65,
+          "revenue": 5982.37,
+          "roas": 4.47,
+          "conversions": 146,
+          "cpa": 9.18,
+          "avgGift": 40.98
+        },
+        "deltasPct": {
+          "spend": 3.25,
+          "revenue": -2.16,
+          "roas": -5.37,
+          "conversions": 0.68,
+          "cpa": 2.51
+        },
+        "adsets": [
+          {
+            "name": "WW - Lookalike 1% Donors",
+            "spend": 820.54,
+            "revenue": 4020.25,
+            "roas": 4.9,
+            "conversions": 100
+          },
+          {
+            "name": "WW - Interests Older Parents",
+            "spend": 562.63,
+            "revenue": 1832.98,
+            "roas": 3.26,
+            "conversions": 47
+          }
+        ],
+        "topCreative": {
+          "name": "WW - UGC Priya 30s",
+          "type": "ugc",
+          "roas": 5.15
+        },
+        "insights": [
+          {
+            "severity": "positive",
+            "title": "Hearthline is beating ROAS target (4.23 vs 3)",
+            "detail": "£5,853 raised on £1,383 with CPA £9.41. There is headroom to scale budget in 20% steps."
+          }
+        ],
+        "actions": [
+          "One audience is performing well above target, so we are increasing its budget in a measured step.",
+          "One ad has been seen too often by the same people; a fresh creative is in production."
+        ]
+      },
+      "narrative": {
+        "headline": "Hearthline: £5,853 raised, ahead of target",
+        "summary": [
+          "Over the 7 days to 2026-11-08 your campaigns raised £5,853 from 147 donations on £1,383 of advertising, a return of 4.23x against a target of 3x. The average gift was £40 and each donation cost £9 to acquire.",
+          "Compared with the previous 7 days, the amount raised is down 2.16% and the cost per donation moved 2.51%. Your strongest ad was \"WW - UGC Priya 30s\", a ugc, returning 5.15x."
+        ],
+        "highlights": [
+          "WW - Lookalike 1% Donors returned 4.9x on £821.",
+          "Hearthline is beating ROAS target (4.23 vs 3)."
+        ],
+        "concerns": [],
+        "nextSteps": [
+          "One audience is performing well above target, so we are increasing its budget in a measured step.",
+          "One ad has been seen too often by the same people; a fresh creative is in production."
+        ]
+      },
+      "check": {
+        "ok": true,
+        "unverified": [],
+        "checked": 19
+      },
+      "html": "sha256:8346521c3e13634ce88f1cc76c7771596b0bb2623e60b5c19e17e2b257ad7731"
+    },
+    {
+      "client": "bluewater",
+      "input": {
+        "clientId": "bluewater",
+        "clientName": "Bluewater Trust",
+        "asOf": "2026-11-08",
+        "days": 7,
+        "targetRoas": 2.5,
+        "current": {
+          "spend": 874.94,
+          "revenue": 1821.67,
+          "roas": 2.08,
+          "conversions": 48,
+          "cpa": 18.23,
+          "avgGift": 37.95
+        },
+        "previous": {
+          "spend": 885.24,
+          "revenue": 2505.7,
+          "roas": 2.83,
+          "conversions": 70,
+          "cpa": 12.65,
+          "avgGift": 35.8
+        },
+        "deltasPct": {
+          "spend": -1.16,
+          "revenue": -27.3,
+          "roas": -26.5,
+          "conversions": -31.43,
+          "cpa": 44.11
+        },
+        "adsets": [
+          {
+            "name": "OC - Interests Marine",
+            "spend": 607.52,
+            "revenue": 980.08,
+            "roas": 1.61,
+            "conversions": 28
+          },
+          {
+            "name": "OC - Retargeting Site Visitors",
+            "spend": 267.42,
+            "revenue": 841.59,
+            "roas": 3.15,
+            "conversions": 20
+          }
+        ],
+        "topCreative": {
+          "name": "OC - Static Reminder",
+          "type": "static",
+          "roas": 3.15
+        },
+        "insights": [
+          {
+            "severity": "critical",
+            "title": "Zero donations recorded on OC - Interests Marine for 3 days despite 453 clicks",
+            "detail": "Previous 3 days had 20 donations. This pattern usually means the pixel, Conversions API or donation-platform webhook stopped firing, not that donors stopped giving."
+          },
+          {
+            "severity": "warning",
+            "title": "Bluewater Trust revenue down 27.3% week on week",
+            "detail": "£2,506 -> £1,822 with spend -1.16% and CPA +44.11%."
+          }
+        ],
+        "actions": [
+          "We spotted a possible tracking issue and are checking it with your donation platform before changing anything."
+        ]
+      },
+      "narrative": {
+        "headline": "Bluewater Trust: £1,822 raised, working to get back to target",
+        "summary": [
+          "Over the 7 days to 2026-11-08 your campaigns raised £1,822 from 48 donations on £875 of advertising, a return of 2.08x against a target of 2.5x. The average gift was £38 and each donation cost £18 to acquire.",
+          "Compared with the previous 7 days, the amount raised is down 27.3% and the cost per donation moved 44.11%. Your strongest ad was \"OC - Static Reminder\", a static, returning 3.15x."
+        ],
+        "highlights": [
+          "Donations held steady at 48 for the period."
+        ],
+        "concerns": [
+          "Zero donations recorded on OC - Interests Marine for 3 days despite 453 clicks.",
+          "OC - Interests Marine returned 1.61x on £608, below where we want it."
+        ],
+        "nextSteps": [
+          "We spotted a possible tracking issue and are checking it with your donation platform before changing anything."
+        ]
+      },
+      "check": {
+        "ok": true,
+        "unverified": [],
+        "checked": 18
+      },
+      "html": "sha256:9da14dcad51d6f3166ae8852f415cf60f1946e9ca53eb92c7bc0e979813aba1b"
+    },
+    {
+      "client": "kindred",
+      "input": {
+        "clientId": "kindred",
+        "clientName": "Kindred Kitchens",
+        "asOf": "2026-11-08",
+        "days": 7,
+        "targetRoas": 3.5,
+        "current": {
+          "spend": 1379.8,
+          "revenue": 3670.44,
+          "roas": 2.66,
+          "conversions": 85,
+          "cpa": 16.23,
+          "avgGift": 43.18
+        },
+        "previous": {
+          "spend": 1364.21,
+          "revenue": 4699.4,
+          "roas": 3.44,
+          "conversions": 135,
+          "cpa": 10.11,
+          "avgGift": 34.81
+        },
+        "deltasPct": {
+          "spend": 1.14,
+          "revenue": -21.9,
+          "roas": -22.67,
+          "conversions": -37.04,
+          "cpa": 60.53
+        },
+        "adsets": [
+          {
+            "name": "FB - Broad UK 35+",
+            "spend": 989.11,
+            "revenue": 2100.66,
+            "roas": 2.12,
+            "conversions": 69
+          },
+          {
+            "name": "RG - Lookalike Regular Givers",
+            "spend": 390.69,
+            "revenue": 1569.78,
+            "roas": 4.02,
+            "conversions": 16
+          }
+        ],
+        "topCreative": {
+          "name": "RG - Video Thank You",
+          "type": "video",
+          "roas": 4.65
+        },
+        "insights": [
+          {
+            "severity": "warning",
+            "title": "Kindred Kitchens CPA up 60.53% week on week (£10.11 -> £16.23)",
+            "detail": "Conversions -37.04% on spend +1.14%."
+          }
+        ],
+        "actions": [
+          "We are trimming budget on an audience whose cost per donation has risen while we refresh its creative."
+        ]
+      },
+      "narrative": {
+        "headline": "Kindred Kitchens: £3,670 raised, working to get back to target",
+        "summary": [
+          "Over the 7 days to 2026-11-08 your campaigns raised £3,670 from 85 donations on £1,380 of advertising, a return of 2.66x against a target of 3.5x. The average gift was £43 and each donation cost £16 to acquire.",
+          "Compared with the previous 7 days, the amount raised is down 21.9% and the cost per donation moved 60.53%. Your strongest ad was \"RG - Video Thank You\", a video, returning 4.65x."
+        ],
+        "highlights": [
+          "Donations held steady at 85 for the period."
+        ],
+        "concerns": [
+          "FB - Broad UK 35+ returned 2.12x on £989, below where we want it."
+        ],
+        "nextSteps": [
+          "We are trimming budget on an audience whose cost per donation has risen while we refresh its creative."
+        ]
+      },
+      "check": {
+        "ok": true,
+        "unverified": [],
+        "checked": 17
+      },
+      "html": "sha256:f77f834f5b1ca3eeee18156bb846025376246dec02b4cf3929bbfc695bc3e94c"
+    },
+    {
+      "client": "northlight",
+      "input": {
+        "clientId": "northlight",
+        "clientName": "Northlight Hospice",
+        "asOf": "2026-11-08",
+        "days": 7,
+        "targetRoas": 3,
+        "current": {
+          "spend": 821.67,
+          "revenue": 1591.44,
+          "roas": 1.94,
+          "conversions": 36,
+          "cpa": 22.82,
+          "avgGift": 44.21
+        },
+        "previous": {
+          "spend": 860.72,
+          "revenue": 1714.31,
+          "roas": 1.99,
+          "conversions": 39,
+          "cpa": 22.07,
+          "avgGift": 43.96
+        },
+        "deltasPct": {
+          "spend": -4.54,
+          "revenue": -7.17,
+          "roas": -2.51,
+          "conversions": -7.69,
+          "cpa": 3.4
+        },
+        "adsets": [
+          {
+            "name": "HRG - Retargeting Engagers",
+            "spend": 457.47,
+            "revenue": 322.49,
+            "roas": 0.7,
+            "conversions": 7
+          },
+          {
+            "name": "HRG - Interests Local 45+",
+            "spend": 364.2,
+            "revenue": 1268.95,
+            "roas": 3.48,
+            "conversions": 29
+          }
+        ],
+        "topCreative": {
+          "name": "HRG - Static Local",
+          "type": "static",
+          "roas": 3.48
+        },
+        "insights": [
+          {
+            "severity": "warning",
+            "title": "Northlight Hospice is below ROAS target (1.94 vs 3)",
+            "detail": "£822 spent for £1,591 raised. CPA £22.82 against a £15 target. ROAS moved -2.51% week on week."
+          }
+        ],
+        "actions": [
+          "We are pausing an audience group that is not delivering value and will re-plan it with you."
+        ]
+      },
+      "narrative": {
+        "headline": "Northlight Hospice: £1,591 raised, working to get back to target",
+        "summary": [
+          "Over the 7 days to 2026-11-08 your campaigns raised £1,591 from 36 donations on £822 of advertising, a return of 1.94x against a target of 3x. The average gift was £44 and each donation cost £23 to acquire.",
+          "Compared with the previous 7 days, the amount raised is down 7.17% and the cost per donation moved 3.4%. Your strongest ad was \"HRG - Static Local\", a static, returning 3.48x."
+        ],
+        "highlights": [
+          "Donations held steady at 36 for the period."
+        ],
+        "concerns": [
+          "HRG - Retargeting Engagers returned 0.7x on £457, below where we want it."
+        ],
+        "nextSteps": [
+          "We are pausing an audience group that is not delivering value and will re-plan it with you."
+        ]
+      },
+      "check": {
+        "ok": true,
+        "unverified": [],
+        "checked": 16
+      },
+      "html": "sha256:84df801f76b19cac29a598e468e6c0e4d9a66f72249c2c4c3c7970fccf5fd812"
+    },
+    {
+      "client": "paws",
+      "input": {
+        "clientId": "paws",
+        "clientName": "Paws & Place",
+        "asOf": "2026-11-08",
+        "days": 7,
+        "targetRoas": 3,
+        "current": {
+          "spend": 667.22,
+          "revenue": 1745.13,
+          "roas": 2.62,
+          "conversions": 64,
+          "cpa": 10.43,
+          "avgGift": 27.27
+        },
+        "previous": {
+          "spend": 664.08,
+          "revenue": 2484.62,
+          "roas": 3.74,
+          "conversions": 85,
+          "cpa": 7.81,
+          "avgGift": 29.23
+        },
+        "deltasPct": {
+          "spend": 0.47,
+          "revenue": -29.76,
+          "roas": -29.95,
+          "conversions": -24.71,
+          "cpa": 33.55
+        },
+        "adsets": [
+          {
+            "name": "RA - Interests Pets",
+            "spend": 667.22,
+            "revenue": 1745.13,
+            "roas": 2.62,
+            "conversions": 64
+          }
+        ],
+        "topCreative": {
+          "name": "RA - Static Before After",
+          "type": "static",
+          "roas": 4.1
+        },
+        "insights": [
+          {
+            "severity": "warning",
+            "title": "Paws & Place revenue down 29.76% week on week",
+            "detail": "£2,485 -> £1,745 with spend +0.47% and CPA +33.55%."
+          }
+        ],
+        "actions": [
+          "We are retiring an ad that was not bringing in donations and moving its budget to ones that are."
+        ]
+      },
+      "narrative": {
+        "headline": "Paws & Place: £1,745 raised, working to get back to target",
+        "summary": [
+          "Over the 7 days to 2026-11-08 your campaigns raised £1,745 from 64 donations on £667 of advertising, a return of 2.62x against a target of 3x. The average gift was £27 and each donation cost £10 to acquire.",
+          "Compared with the previous 7 days, the amount raised is down 29.76% and the cost per donation moved 33.55%. Your strongest ad was \"RA - Static Before After\", a static, returning 4.1x."
+        ],
+        "highlights": [
+          "Donations held steady at 64 for the period."
+        ],
+        "concerns": [],
+        "nextSteps": [
+          "We are retiring an ad that was not bringing in donations and moving its budget to ones that are."
+        ]
+      },
+      "check": {
+        "ok": true,
+        "unverified": [],
+        "checked": 14
+      },
+      "html": "sha256:11909cea80bc8e757653e723e20ac7e26ea247535e9c403c491971a5595f8a5c"
+    },
+    {
+      "client": "brightstart",
+      "input": {
+        "clientId": "brightstart",
+        "clientName": "Bright Start Literacy",
+        "asOf": "2026-11-08",
+        "days": 7,
+        "targetRoas": 2.5,
+        "current": {
+          "spend": 142.13,
+          "revenue": 369.44,
+          "roas": 2.6,
+          "conversions": 11,
+          "cpa": 12.92,
+          "avgGift": 33.59
+        },
+        "previous": {
+          "spend": 139.5,
+          "revenue": 437.29,
+          "roas": 3.13,
+          "conversions": 13,
+          "cpa": 10.73,
+          "avgGift": 33.64
+        },
+        "deltasPct": {
+          "spend": 1.89,
+          "revenue": -15.52,
+          "roas": -16.93,
+          "conversions": -15.38,
+          "cpa": 20.41
+        },
+        "adsets": [
+          {
+            "name": "LA - Interests Parents",
+            "spend": 142.13,
+            "revenue": 369.44,
+            "roas": 2.6,
+            "conversions": 11
+          }
+        ],
+        "topCreative": {
+          "name": "LA - Static Bookshelf",
+          "type": "static",
+          "roas": 2.78
+        },
+        "insights": [
+          {
+            "severity": "info",
+            "title": "Bright Start Literacy spend pacing at 58.01% of budget",
+            "detail": "£142 delivered against £245 budgeted over 7 days."
+          }
+        ],
+        "actions": [
+          "One audience is too small for Meta to optimise well; we are consolidating audiences so your budget works harder."
+        ]
+      },
+      "narrative": {
+        "headline": "Bright Start Literacy: £369 raised, ahead of target",
+        "summary": [
+          "Over the 7 days to 2026-11-08 your campaigns raised £369 from 11 donations on £142 of advertising, a return of 2.6x against a target of 2.5x. The average gift was £34 and each donation cost £13 to acquire.",
+          "Compared with the previous 7 days, the amount raised is down 15.52% and the cost per donation moved 20.41%. Your strongest ad was \"LA - Static Bookshelf\", a static, returning 2.78x."
+        ],
+        "highlights": [
+          "Donations held steady at 11 for the period."
+        ],
+        "concerns": [],
+        "nextSteps": [
+          "One audience is too small for Meta to optimise well; we are consolidating audiences so your budget works harder."
+        ]
+      },
+      "check": {
+        "ok": true,
+        "unverified": [],
+        "checked": 14
+      },
+      "html": "sha256:1be486e633e39b1e21f45f4631967d3995c7be154916aac075715a6cf2ffa464"
+    }
+  ],
+  "drafts": [
+    {
+      "question": {
+        "id": "q-001",
+        "clientId": "hearthline",
+        "from": "Marie (Head of Fundraising)",
+        "receivedAt": "2026-11-09",
+        "text": "Morning! How are the winter ads doing so far? The trustees meet Thursday and I'd like a line or two on results."
+      },
+      "reply": {
+        "category": "performance",
+        "subject": "Re: Morning",
+        "reply": "Hi Marie,\n\nGood question. Over the last 7 days your campaigns raised £5,853 from 147 donations on £1,383 of advertising, a return of 4.23x against the 3x we agreed. That is ahead of target, and the amount raised is down 2.16% on the previous period. The strongest ad is \"WW - UGC Priya 30s\" at 5.15x.\n\nThis week we are increasing budget on an audience that is beating target and refreshing a creative that has been seen too often.\n\nThe full weekly report is here: https://trueroas.example/reports/hearthline\n\nBest wishes,\nHaseeb",
+        "factsUsed": [
+          "revenue £5853.23",
+          "donations 147",
+          "spend £1383.17",
+          "roas 4.23",
+          "target 3",
+          "revenue delta -2.16%"
+        ],
+        "needsHumanInput": false,
+        "confidence": 0.85
+      },
+      "guardrails": {
+        "ok": true,
+        "issues": []
+      },
+      "numbers": {
+        "ok": true,
+        "unverified": []
+      },
+      "risk": "approve"
+    },
+    {
+      "question": {
+        "id": "q-002",
+        "clientId": "kindred",
+        "from": "Dan (Director)",
+        "receivedAt": "2026-11-09",
+        "text": "Can we increase the daily budget? Feels like we should be spending more while half term is coming up."
+      },
+      "reply": {
+        "category": "budget",
+        "subject": "Re: Can we increase the daily budget",
+        "reply": "Hi Dan,\n\nThe account is currently set to £210 a day across your audiences, and over the last 7 days we spent £1,380 to raise £3,670 (2.66x). Because the return is currently 2.66x against a 3.5x target, I would hold the budget where it is while we improve the creative and audiences, then scale once we are back on target. Happy to talk through options on a quick call this week.\n\nBest wishes,\nHaseeb",
+        "factsUsed": [
+          "daily budget £210",
+          "spend £1379.8",
+          "revenue £3670.44",
+          "roas 2.66"
+        ],
+        "needsHumanInput": false,
+        "confidence": 0.8
+      },
+      "guardrails": {
+        "ok": true,
+        "issues": []
+      },
+      "numbers": {
+        "ok": true,
+        "unverified": []
+      },
+      "risk": "approve"
+    },
+    {
+      "question": {
+        "id": "q-003",
+        "clientId": "paws",
+        "from": "Georgia (Comms Lead)",
+        "receivedAt": "2026-11-08",
+        "text": "Which ad is working best at the moment? The puppy video felt strong to us internally."
+      },
+      "reply": {
+        "category": "creative",
+        "subject": "Re: Which ad is working best at the moment",
+        "reply": "Hi Georgia,\n\nThe ad working hardest right now is \"RA - Static Before After\", a static creative returning 4.1x. If there is a message or image you would like us to test, send it over and we will build it into the next round.\n\nBest wishes,\nHaseeb",
+        "factsUsed": [
+          "top creative RA - Static Before After 4.1x"
+        ],
+        "needsHumanInput": false,
+        "confidence": 0.75
+      },
+      "guardrails": {
+        "ok": true,
+        "issues": []
+      },
+      "numbers": {
+        "ok": true,
+        "unverified": []
+      },
+      "risk": "approve"
+    },
+    {
+      "question": {
+        "id": "q-004",
+        "clientId": "northlight",
+        "from": "Ian (Finance)",
+        "receivedAt": "2026-11-08",
+        "text": "The October invoice doesn't match the media spend figure in the dashboard. Can you explain the difference?"
+      },
+      "reply": {
+        "category": "billing",
+        "subject": "Re: The October invoice doesn't match the media spend figure in the dashb…",
+        "reply": "Hi Ian,\n\nThanks for flagging this. I am checking the details with our finance team and will come back to you with a full answer by the end of tomorrow.\n\nBest wishes,\nHaseeb",
+        "factsUsed": [],
+        "needsHumanInput": true,
+        "escalationReason": "Billing and invoice questions need finance; the assistant has no access to invoices.",
+        "confidence": 0.95
+      },
+      "guardrails": {
+        "ok": true,
+        "issues": []
+      },
+      "numbers": {
+        "ok": true,
+        "unverified": []
+      },
+      "risk": "human"
+    },
+    {
+      "question": {
+        "id": "q-005",
+        "clientId": "bluewater",
+        "from": "Priya (CEO)",
+        "receivedAt": "2026-11-09",
+        "text": "I'm disappointed with the last fortnight. Donations have dropped and nobody told us. Can you explain what's going on?"
+      },
+      "reply": {
+        "category": "complaint",
+        "subject": "Re: I'm disappointed with the last fortnight",
+        "reply": "Hi Priya,\n\nI am sorry this has been frustrating. I want to understand exactly what has gone wrong and put it right, so I will call you today rather than go back and forth by email.\n\nBest wishes,\nHaseeb",
+        "factsUsed": [],
+        "needsHumanInput": true,
+        "escalationReason": "Complaints are handled personally by the account manager; no automated reply beyond a holding note.",
+        "confidence": 0.95
+      },
+      "guardrails": {
+        "ok": true,
+        "issues": []
+      },
+      "numbers": {
+        "ok": true,
+        "unverified": []
+      },
+      "risk": "human"
+    },
+    {
+      "question": {
+        "id": "q-006",
+        "clientId": "brightstart",
+        "from": "Sam (Trustee)",
+        "receivedAt": "2026-11-07",
+        "text": "Could you send a summary of the numbers for the board pack? Spend, donations and return would be perfect."
+      },
+      "reply": {
+        "category": "performance",
+        "subject": "Re: Could you send a summary of the numbers for the board pack",
+        "reply": "Hi Sam,\n\nGood question. Over the last 7 days your campaigns raised £369 from 11 donations on £142 of advertising, a return of 2.6x against the 2.5x we agreed. That is ahead of target, and the amount raised is down 15.52% on the previous period. The strongest ad is \"LA - Static Bookshelf\" at 2.78x.\n\nThis week we are consolidating audiences so Meta can optimise properly.\n\nThe full weekly report is here: https://trueroas.example/reports/brightstart\n\nBest wishes,\nHaseeb",
+        "factsUsed": [
+          "revenue £369.44",
+          "donations 11",
+          "spend £142.13",
+          "roas 2.6",
+          "target 2.5",
+          "revenue delta -15.52%"
+        ],
+        "needsHumanInput": false,
+        "confidence": 0.85
+      },
+      "guardrails": {
+        "ok": true,
+        "issues": []
+      },
+      "numbers": {
+        "ok": true,
+        "unverified": []
+      },
+      "risk": "approve"
+    },
+    {
+      "question": {
+        "id": "q-007",
+        "clientId": "hearthline",
+        "from": "Marie (Head of Fundraising)",
+        "receivedAt": "2026-11-07",
+        "text": "Random one: do you know a good printer for the Christmas appeal leaflets?"
+      },
+      "reply": {
+        "category": "other",
+        "subject": "Re: Random one: do you know a good printer for the Christmas appeal leafl…",
+        "reply": "Hi Marie,\n\nThanks for your email. I want to give you a proper answer rather than a quick one, so let me look into this and come back to you shortly.\n\nBest wishes,\nHaseeb",
+        "factsUsed": [],
+        "needsHumanInput": true,
+        "escalationReason": "Question does not match a data-backed category; a human needs to answer.",
+        "confidence": 0.6
+      },
+      "guardrails": {
+        "ok": true,
+        "issues": []
+      },
+      "numbers": {
+        "ok": true,
+        "unverified": []
+      },
+      "risk": "human"
+    }
+  ]
+}
