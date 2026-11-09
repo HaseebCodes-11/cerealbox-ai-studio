@@ -167,4 +167,19 @@ describe("ffmpeg plan", () => {
     expect(noMusic.map((s) => s.name)).not.toContain("music bed with ducking");
     expect(escapeDrawtext("It's 50%: ok")).toBe("It\\'s 50\\%\\: ok");
   });
+
+  it("carries structured args that match the display command and declares the concat list file", () => {
+    for (const s of plan) {
+      expect(s.args.length).toBeGreaterThan(2);
+      expect(s.command.startsWith("ffmpeg ")).toBe(true);
+      expect(s.command).toContain(s.outputs[s.outputs.length - 1]!);
+    }
+    const concat = plan.find((s) => s.name === "concat")!;
+    expect(concat.files).toHaveLength(1);
+    expect(concat.files![0]!.content.split("\n").filter(Boolean)).toHaveLength(script.beats.length + 1);
+    expect(concat.files![0]!.content).toContain("file 'seg-00.mp4'");
+    const noText = buildFfmpegPlan(edl, clips, { noText: true });
+    expect(noText.find((s) => s.name === "end card")!.command).not.toContain("drawtext");
+    expect(plan.find((s) => s.name === "end card")!.command).toContain("drawtext");
+  });
 });

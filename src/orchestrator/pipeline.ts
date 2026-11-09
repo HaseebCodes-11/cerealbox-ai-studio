@@ -8,7 +8,8 @@ import { copyGenerationTask, hasMinimumViableCopy, validateCopy, type CopyPack, 
 import { ideaGenerationTask, rankIdeas, selectIdeas, type IdeaAngle, type RankedIdea } from "../areas/ideas";
 import { checkLandingPage, landingSpecTask, renderLandingPage, variantDiff, type LandingPageSpec } from "../areas/landing";
 import { scriptGenerationTask, validateScript, type Script, type ScriptStyle } from "../areas/scripts";
-import { checkCreative, creativeConceptTask, renderCreative, type CreativeFormatName, type RenderedCreative } from "../areas/static";
+import { checkCreative, creativeConceptTask, renderCreative, type CreativeFormatName, type ImageProvider, type RenderedCreative } from "../areas/static";
+import { CREATIVE_FORMATS } from "../areas/static/types";
 import { buildUgcManifest, personaTask, type UgcManifest } from "../areas/ugc";
 import { analysePacing, buildEdl, buildFfmpegPlan, clipSelectionTask, toSrt, type Edl, type RawClip, type RenderStep } from "../areas/video";
 
@@ -38,6 +39,8 @@ export interface PipelineOptions {
   scriptRequests?: Array<{ style: ScriptStyle; targetSeconds: 15 | 30 | 60 }>;
   allowSyntheticPresenter?: boolean;
   clips?: RawClip[];
+  /** Generates photo backgrounds for photo-style creatives; omitted = labelled placeholder. */
+  imageProvider?: ImageProvider;
 }
 
 export interface GateRecord {
@@ -153,9 +156,16 @@ export async function runCampaignPipeline(options: PipelineOptions): Promise<Cam
   const specResult = await provider.run(creativeConceptTask, { brief, idea, copy, formats });
   audit.record("llm_call", "static", "concept", { formats }, specResult.usage);
   for (const spec of specResult.output.specs) {
-    const rendered = renderCreative(spec, brief.client.brand, brief.client.name);
+    let background: string | undefined;
+    if (options.imageProvider && spec.imageStyle === "photo") {
+      const { width, height } = CREATIVE_FORMATS[spec.format];
+      const image = await options.imageProvider.generate({ prompt: spec.imagePrompt, width, height, palette: brief.client.brand, seed: spec.id });
+      background = image.markup;
+      audit.record("render", "static", `${spec.id}:background`, { provider: image.provider, raster: Boolean(image.dataUri) });
+    }
+    const rendered = renderCreative(spec, brief.client.brand, brief.client.name, background ? { background } : {});
     const report = checkCreative(rendered, brief.client.brand, brief);
-    audit.record("render", "static", spec.id, { format: spec.format, layout: spec.layout, score: report.score, ok: report.ok });
+    audit.record("render", "static", spec.id, { format: spec.format, layout: spec.layout, score: report.score, ok: report.ok, background: Boolean(background) });
     pkg.creatives.push({ rendered, report });
   }
   const passingCreatives = pkg.creatives.filter((c) => c.report.ok);

@@ -7,12 +7,14 @@
  *   LLM_PROVIDER=anthropic npm run demo
  *   npm run demo -- --brief samples/brief-winter-warmth.json --allow-synthetic
  */
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { formatUsd } from "../core/cost";
 import { getProvider } from "../core/llm";
 import { RecordingReviewer } from "../core/review";
 import { runCampaignPipeline } from "../orchestrator";
-import { renderPng } from "../areas/static";
+import { getImageProvider, renderPng } from "../areas/static";
+import { judgePackage } from "../evals/judge";
 import { scriptToMarkdown } from "../areas/scripts";
 import { generateMockDataset, generateInsights, insightsToMarkdown, narrativeTask, renderDashboard, askToast } from "../areas/toast";
 import { runMediaBuyerAgent, MockMetaAdsClient, recommendationsToMarkdown, formatSlackAlert } from "../areas/media-buyer";
@@ -27,7 +29,9 @@ async function main(): Promise<void> {
 
   heading(`CerealBox AI Studio demo · provider=${provider.name} · brief=${brief.campaignName}`);
 
-  const pkg = await runCampaignPipeline({ brief, provider, reviewer, clips, allowSyntheticPresenter: flag("allow-synthetic") });
+  const imageProvider = getImageProvider();
+  const pkg = await runCampaignPipeline({ brief, provider, reviewer, clips, allowSyntheticPresenter: flag("allow-synthetic"), imageProvider });
+  const judgement = await judgePackage(pkg, provider);
 
   // Ideas
   writeOut(join(root, "01-ideas.json"), json(pkg.ideas));
@@ -132,6 +136,24 @@ async function main(): Promise<void> {
   writeOut(join(landingDir, "ab-diff.md"), [`# A/B diff`, ``, ...pkg.landingDiff.map((d) => `- ${d}`), ``, `Hypothesis B: ${pkg.landing[1]?.spec.variantHypothesis ?? ""}`].join("\n"));
   console.log(`Landing pages: ${pkg.landing.filter((l) => l.report.ok).length}/${pkg.landing.length} pass QA (${landingDir})`);
 
+  // Quality judgement
+  writeOut(join(root, "11-quality-judgement.json"), json(judgement));
+  writeOut(
+    join(root, "11-quality-judgement.md"),
+    [
+      `# Creative quality · LLM-as-judge (${provider.name})`,
+      ``,
+      `Mean overall **${judgement.meanOverall}/10** · ship ${judgement.verdictCounts.ship} · revise ${judgement.verdictCounts.revise} · reject ${judgement.verdictCounts.reject}`,
+      ``,
+      `| Artefact | Clarity | Specificity | Emotion | Brand fit | Overall | Verdict |`,
+      `|---|---|---|---|---|---|---|`,
+      ...judgement.items.map((i) => `| ${i.artefactType}: ${i.label} | ${i.judgement.clarity} | ${i.judgement.specificity} | ${i.judgement.emotionalPull} | ${i.judgement.brandFit} | ${i.judgement.overall} | ${i.judgement.verdict} |`),
+      ``,
+      ...judgement.items.flatMap((i) => [`## ${i.artefactType}: ${i.label}`, ...i.judgement.strengths.map((s) => `- ✅ ${s}`), ...i.judgement.weaknesses.map((w) => `- ⚠️ ${w}`), ``]),
+    ].join("\n"),
+  );
+  console.log(`Quality: judge mean ${judgement.meanOverall}/10 (${judgement.verdictCounts.ship} ship, ${judgement.verdictCounts.revise} revise, ${judgement.verdictCounts.reject} reject)`);
+
   // Launch plan + gates + audit
   if (pkg.launchPlan) writeOut(join(root, "08-launch-plan.json"), json(pkg.launchPlan));
   writeOut(join(root, "09-review-gates.md"), [`# Review gates`, ``, `| Gate | Area | Risk | Guardrail score | Decision | Reviewer | Reason |`, `|---|---|---|---|---|---|---|`, ...pkg.gates.map((g) => `| ${g.gate} | ${g.area} | ${g.risk} | ${g.guardrailScore} | ${g.decision} | ${g.reviewer ?? "—"} | ${g.reason ?? "—"} |`)].join("\n"));
@@ -153,7 +175,9 @@ async function main(): Promise<void> {
   writeOut(join(toastDir, "insights.md"), [`# Toast insights · ${asOf}`, ``, `## ${narrative.headline}`, ``, ...narrative.paragraphs, ``, `### Actions today`, ...narrative.actionsToday.map((a) => `- ${a}`), ``, `## All insights`, insightsToMarkdown(insights)].join("\n"));
   writeOut(join(toastDir, "dataset.json"), json(data));
   writeOut(join(toastDir, "ask-toast.md"), [`# Ask Toast · sample answers`, ``, ...answers.flatMap((a) => [`**Q: ${a.question}**`, ``, a.text, ``, `_intent: ${a.intent.intent} · metric: ${a.intent.metric} · ${a.sources.join(", ")}_`, ``])].join("\n"));
+  writeOut(join(toastDir, "insights.json"), json({ asOf, days: 7, insights, narrative, answers }));
   const agentDir = outDir("agent");
+  writeOut(join(agentDir, "run.json"), json({ asOf, autonomy: "copilot", dryRun: true, recommendations: agent.recommendations, alerts: agent.alerts, briefs: agent.briefs, actions: agent.actions }));
   writeOut(join(agentDir, "recommendations.md"), [`# Media Buyer agent · ${asOf} · autonomy=copilot · dry run`, ``, recommendationsToMarkdown(agent.recommendations), ``, `## Actions`, ...agent.actions.map((a) => `- ${a.ok ? "✅" : "❌"} ${a.detail}`)].join("\n"));
   writeOut(join(agentDir, "alerts.md"), [`# Alerts`, ``, ...agent.alerts.map((a) => "```\n" + formatSlackAlert(a) + "\n```")].join("\n"));
   writeOut(join(agentDir, "briefs.md"), [`# Morning briefs`, ``, ...agent.briefs.flatMap((b) => [`## ${b.clientName}: ${b.brief.headline}`, ``, b.brief.summary, ``, ...b.brief.priorities.map((p) => `- ${p.recommendationId}: ${p.why}`), ``])].join("\n"));
@@ -189,6 +213,47 @@ async function main(): Promise<void> {
     `By area: ${Object.entries(totals.byArea).map(([k, v]) => `${k} ${formatUsd(v)}`).join(" · ")}`,
   ].join("\n");
   writeOut(join(root, "SUMMARY.md"), summary);
+
+  // Review queue + manifest for the web app (web/)
+  const previewFor = (gate: string): { kind: string; data: unknown } => {
+    switch (gate) {
+      case "ideas.select":
+        return { kind: "ideas", data: pkg.ideas.selected.map((i) => ({ rank: i.rank, title: i.title, angle: i.angle, hook: i.hook, total: i.total, whyItWorks: i.whyItWorks })) };
+      case "copy.approve":
+        return { kind: "copy", data: pkg.copy?.pack ?? {} };
+      case "static.approve":
+        return { kind: "creatives", data: pkg.creatives.map((c) => ({ id: c.rendered.spec.id, format: c.rendered.spec.format, layout: c.rendered.spec.layout, png: `03-creatives/${c.rendered.spec.id}.png`, score: c.report.score, ok: c.report.ok, issues: c.report.issues.map((i) => i.message) })) };
+      case "scripts.approve":
+        return { kind: "scripts", data: pkg.scripts.map((s) => ({ title: s.script.title, style: s.script.style, targetSeconds: s.script.targetSeconds, ok: s.report.ok, score: s.report.score, beats: s.script.beats.map((b) => ({ name: b.name, seconds: b.seconds, voiceover: b.voiceover, onScreenText: b.onScreenText })) })) };
+      case "ugc.persona":
+        return { kind: "ugc", data: pkg.ugc ? { persona: pkg.ugc.persona.name, synthetic: pkg.ugc.persona.synthetic, why: pkg.ugc.persona.whyThisPersona, avatar: pkg.ugc.avatar.provider, voice: pkg.ugc.voice.provider, shots: pkg.ugc.shots.length, estimatedCostGbp: pkg.ugc.estimatedCostGbp, turnaroundHours: pkg.ugc.estimatedTurnaroundHours, disclosure: pkg.ugc.disclosure.label } : {} };
+      case "landing.approve":
+        return { kind: "landing", data: pkg.landing.map((l) => ({ variant: l.spec.variant, html: `07-landing/variant-${l.spec.variant}.html`, headline: l.spec.hero.headline, hypothesis: l.spec.variantHypothesis, ok: l.report.ok, score: l.report.score })) };
+      default:
+        return { kind: "launch", data: (pkg.launchPlan?.adsets ?? []).map((a) => ({ name: a.name, placement: a.placement, dailyBudgetGbp: a.dailyBudgetGbp, ads: a.ads.length })) };
+    }
+  };
+  writeOut(
+    join(root, "review-queue.json"),
+    json({
+      briefId: brief.id,
+      client: brief.client.name,
+      campaign: brief.campaignName,
+      status: pkg.status,
+      quality: { meanOverall: judgement.meanOverall, verdictCounts: judgement.verdictCounts },
+      cost: { llmCalls: totals.llmCalls, costUsd: totals.costUsd },
+      items: pkg.gates.map((g) => ({ id: `${brief.id}:${g.gate}`, ...g, summary: reviewer.requests.find((r) => r.gate === g.gate)?.summary ?? "", preview: previewFor(g.gate) })),
+    }),
+  );
+  const manifestPath = join(process.env.OUT_DIR ?? "out", "manifest.json");
+  let manifest: { generatedAt: string; provider: string; toast: { asOf: string }; briefs: Array<{ id: string; client: string; campaign: string; dir: string }> } = { generatedAt: new Date().toISOString(), provider: provider.name, toast: { asOf }, briefs: [] };
+  try {
+    manifest = { ...manifest, ...(JSON.parse(readFileSync(manifestPath, "utf8")) as typeof manifest), generatedAt: new Date().toISOString(), provider: provider.name, toast: { asOf } };
+  } catch {
+    // first run
+  }
+  manifest.briefs = [...manifest.briefs.filter((b) => b.id !== brief.id), { id: brief.id, client: brief.client.name, campaign: brief.campaignName, dir: brief.id }];
+  writeOut(manifestPath, json(manifest));
   console.log(`\nCost (est.): campaign package ${formatUsd(totals.costUsd)} · daily agent run ${formatUsd(agentTotals.costUsd)}`);
   console.log(`\nAll outputs in ./${root} and ./out/toast, ./out/agent`);
 }

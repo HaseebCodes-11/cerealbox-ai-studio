@@ -7,6 +7,8 @@ import { join } from "node:path";
 import { formatUsd } from "../core/cost";
 import { getProvider } from "../core/llm";
 import { runAgentRecall, runPipelineScorecard, runRedTeam } from "../evals/suite";
+import { judgePackage } from "../evals/judge";
+import { runCampaignPipeline } from "../orchestrator";
 import { readdirSync } from "node:fs";
 import { arg, heading, json, loadBrief, outDir, writeOut } from "./shared";
 
@@ -42,10 +44,21 @@ async function main(): Promise<void> {
   for (const d of recall.detected) console.log(`${d.found ? "FOUND " : "MISSED"} ${d.label.padEnd(20)} ${d.rule} on ${d.entityId}`);
   console.log(`\nrecall ${Math.round(recall.recall * 100)}% · ${recall.falsePositives} recommendation(s) outside the injected scenarios · ${recall.totalRecommendations} total`);
 
-  const dir = outDir("evals");
-  writeOut(join(dir, "results.json"), json({ redTeam: red, scorecards: scores, agentRecall: recall, provider: provider.name, ranAt: new Date().toISOString() }));
+  heading("4. Creative quality · LLM-as-judge");
+  const judgements = [];
+  for (const brief of briefs) {
+    const pkg = await runCampaignPipeline({ brief, provider });
+    const judgement = await judgePackage(pkg, provider);
+    judgements.push({ client: brief.client.name, ...judgement });
+    console.log(`\n${brief.client.name}: mean ${judgement.meanOverall}/10 · ship ${judgement.verdictCounts.ship} · revise ${judgement.verdictCounts.revise} · reject ${judgement.verdictCounts.reject}`);
+    for (const i of judgement.items) console.log(`  ${i.judgement.verdict.toUpperCase().padEnd(7)} ${i.artefactType.padEnd(8)} ${i.judgement.overall}/10  ${i.label}`);
+  }
+  const rejects = judgements.reduce((s, j) => s + j.verdictCounts.reject, 0);
 
-  const failed = redPass !== red.length || recall.recall < 1 || scores.some((s) => s.status !== "complete");
+  const dir = outDir("evals");
+  writeOut(join(dir, "results.json"), json({ redTeam: red, scorecards: scores, agentRecall: recall, judgements, provider: provider.name, ranAt: new Date().toISOString() }));
+
+  const failed = redPass !== red.length || recall.recall < 1 || scores.some((s) => s.status !== "complete") || rejects > 0;
   console.log(`\n${failed ? "EVAL FAILED" : "EVAL PASSED"} · results in ${dir}/results.json`);
   if (failed) process.exit(1);
 }

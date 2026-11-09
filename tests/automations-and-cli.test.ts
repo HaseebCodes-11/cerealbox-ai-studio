@@ -61,6 +61,38 @@ describe("supabase schema", () => {
   });
 });
 
+describe("supabase edge functions", () => {
+  const dir = join(ROOT, "supabase/functions");
+
+  it("ships four Deno handlers that reuse the pipeline modules behind service-role auth", () => {
+    const expected = ["toast-insights", "ads-agent-run", "ads-agent-execute", "run-pipeline-stage"];
+    for (const name of expected) {
+      const src = readFileSync(join(dir, name, "index.ts"), "utf8");
+      expect(src, name).toContain("Deno.serve(");
+      expect(src, name).toContain("requireServiceRole(req)");
+      expect(src, name).toContain("@supabase/supabase-js");
+    }
+    expect(readFileSync(join(dir, "toast-insights/index.ts"), "utf8")).toContain("generateInsights");
+    expect(readFileSync(join(dir, "ads-agent-run/index.ts"), "utf8")).toContain("runMediaBuyerAgent");
+    expect(readFileSync(join(dir, "run-pipeline-stage/index.ts"), "utf8")).toContain("ideaGenerationTask");
+    const deno = JSON.parse(readFileSync(join(dir, "deno.json"), "utf8"));
+    expect(deno.unstable).toContain("sloppy-imports");
+    expect(deno.imports.zod).toMatch(/^npm:zod/);
+    expect(existsSync(join(dir, "README.md"))).toBe(true);
+  });
+
+  it("every src module the functions import exists", () => {
+    for (const name of ["toast-insights", "ads-agent-run", "ads-agent-execute", "run-pipeline-stage"]) {
+      const src = readFileSync(join(dir, name, "index.ts"), "utf8");
+      const imports = [...src.matchAll(/from "(\.\.\/\.\.\/\.\.\/src\/[^"]+)"/g)].map((m) => m[1]!);
+      for (const rel of imports) {
+        const target = join(dir, name, rel);
+        expect(existsSync(`${target}.ts`) || existsSync(join(target, "index.ts")), `${name}: ${rel}`).toBe(true);
+      }
+    }
+  });
+});
+
 describe("documentation", () => {
   it("covers every area in the brief and the required interview sections", () => {
     const submission = readFileSync(join(ROOT, "docs/SUBMISSION.md"), "utf8");

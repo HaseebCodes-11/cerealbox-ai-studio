@@ -1,0 +1,10 @@
+{
+  "unstable": ["sloppy-imports"],
+  "imports": {
+    "zod": "npm:zod@^4.6.0",
+    "@anthropic-ai/sdk": "npm:@anthropic-ai/sdk@^1.6.0",
+    "@anthropic-ai/sdk/helpers/beta/zod": "npm:@anthropic-ai/sdk@^1.6.0/helpers/beta/zod",
+    "@supabase/supabase-js": "npm:@supabase/supabase-js@^2"
+  },
+  "compilerOptions": { "lib": ["deno.window"], "strict": true }
+}

@@ -11,7 +11,12 @@ import { CREATIVE_FORMATS, type CreativeSpec, type RenderedCreative } from "./ty
 
 const AVG_CHAR_WIDTH = 0.55; // of font size, for a geometric sans
 
-export function renderCreative(spec: CreativeSpec, palette: BrandPalette, brandName: string): RenderedCreative {
+export interface RenderOptions {
+  /** SVG markup for the background image layer (from an ImageProvider). */
+  background?: string;
+}
+
+export function renderCreative(spec: CreativeSpec, palette: BrandPalette, brandName: string, options: RenderOptions = {}): RenderedCreative {
   const { width, height } = CREATIVE_FORMATS[spec.format];
   // Scale typography off the shorter side so landscape and story both fit.
   const base = Math.min(width, height);
@@ -35,10 +40,23 @@ export function renderCreative(spec: CreativeSpec, palette: BrandPalette, brandN
     parts.push(
       `<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${bg}" stop-opacity="0.15"/><stop offset="1" stop-color="${bg}" stop-opacity="0.95"/></linearGradient></defs>`,
     );
-    parts.push(`<rect width="${width}" height="${height}" fill="${shade(bg, -12)}"/>`);
-    parts.push(`<rect width="${width}" height="${height}" fill="url(#g)"/>`);
-    const lfs = Math.round(base * 0.02);
-    parts.push(`<text x="${margin}" y="${safeTop + lfs}" font-family="${font}" font-size="${lfs}" fill="${text}" opacity="0.55">${escapeHtml(`[photo] ${truncateForLabel(spec.imagePrompt)}`)}</text>`);
+    if (options.background) {
+      // Generated image layer, then the brand gradient so text stays legible over any photo.
+      parts.push(options.background);
+      parts.push(`<rect width="${width}" height="${height}" fill="url(#g)"/>`);
+    } else {
+      parts.push(`<rect width="${width}" height="${height}" fill="${shade(bg, -12)}"/>`);
+      parts.push(`<rect width="${width}" height="${height}" fill="url(#g)"/>`);
+      const lfs = Math.round(base * 0.02);
+      parts.push(`<text x="${margin}" y="${safeTop + lfs}" font-family="${font}" font-size="${lfs}" fill="${text}" opacity="0.55">${escapeHtml(`[photo] ${truncateForLabel(spec.imagePrompt)}`)}</text>`);
+    }
+  }
+
+  // Layout treatments go under every text layer so overlays never dim the badge or headline.
+  if (spec.layout === "split-contrast") {
+    const seam = Math.round(width / 2);
+    parts.push(`<rect x="0" y="0" width="${seam}" height="${height}" fill="${shade(bg, -25)}" opacity="0.6"/>`);
+    parts.push(`<line x1="${seam}" y1="0" x2="${seam}" y2="${height}" stroke="${accent}" stroke-width="6"/>`);
   }
 
   let cursorY = safeTop + Math.round(base * 0.06);
@@ -50,12 +68,6 @@ export function renderCreative(spec: CreativeSpec, palette: BrandPalette, brandN
     parts.push(`<text x="${margin + fs * 0.8}" y="${cursorY + fs * 1.3}" font-family="${font}" font-weight="700" font-size="${fs}" fill="${palette.text}">${escapeHtml(spec.badge)}</text>`);
     textBoxes.push({ x: margin, y: cursorY, width: w, height: fs * 1.9, role: "badge" });
     cursorY += Math.round(fs * 3.2);
-  }
-
-  if (spec.layout === "split-contrast") {
-    const seam = Math.round(width / 2);
-    parts.push(`<rect x="0" y="0" width="${seam}" height="${height}" fill="${shade(bg, -25)}" opacity="0.6"/>`);
-    parts.push(`<line x1="${seam}" y1="0" x2="${seam}" y2="${height}" stroke="${accent}" stroke-width="6"/>`);
   }
 
   if (spec.layout === "stat-led" && spec.stat) {
@@ -117,7 +129,8 @@ export function renderCreative(spec: CreativeSpec, palette: BrandPalette, brandN
 
   // Logo lock-up (text wordmark placeholder) bottom right
   const lfs2 = Math.round(base * 0.03);
-  const logoW = Math.round(brandName.length * lfs2 * AVG_CHAR_WIDTH);
+  // Bold uppercase runs wider than the body-text average; measure it generously so it never clips.
+  const logoW = Math.round(brandName.length * lfs2 * 0.72);
   parts.push(`<text x="${width - margin - logoW}" y="${ctaY + cfs * 1.45}" font-family="${font}" font-weight="800" font-size="${lfs2}" fill="${text}" data-role="logo">${escapeHtml(brandName.toUpperCase())}</text>`);
   textBoxes.push({ x: width - margin - logoW, y: ctaY, width: logoW, height: ctaH, role: "logo" });
 

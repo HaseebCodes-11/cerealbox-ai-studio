@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --panel2: #1e2230;
+  --text: #e8eaf0;
+  --muted: #9aa3b5;
+  --accent: #f2b134;
+  --good: #3ddc84;
+  --bad: #ff6b6b;
+  --info: #5aa9ff;
+  --border: #2a2f3d;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
